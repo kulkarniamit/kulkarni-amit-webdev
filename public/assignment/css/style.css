@@ -4,4 +4,30 @@ input.form-control {
 
 body {
     padding-top: 36px;
+    font-family: 'Open Sans', sans-serif;
 }
+.navbar-default{
+    background-color: #172435;
+}
+
+.navbar-default .navbar-brand{
+    color:#e5bd1d;
+    font-weight: bold;
+}
+
+.navbar-fixed-top{
+    border-width: 0 0 0;
+}
+
+.login-container{
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Optional */
+    padding: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    /* Optional */
+}
+.buttons-style{margin-top: 30px;}
