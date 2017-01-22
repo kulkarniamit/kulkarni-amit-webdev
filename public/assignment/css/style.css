@@ -1,7 +1,4 @@
-input.form-control {
-    margin-bottom: 5px;
-}
-
+/* General styles for bootstrap pages with fixed navbar */
 body {
     padding-top: 36px;
     font-family: 'Open Sans', sans-serif;
@@ -15,19 +12,10 @@ body {
     font-weight: bold;
 }
 
+.navbar-default .navbar-brand:hover{
+    color:#e5bd1d;
+}
+
 .navbar-fixed-top{
     border-width: 0 0 0;
 }
-
-.login-container{
-    margin-top: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* Optional */
-    padding: 20px;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
-    /* Optional */
-}
-.buttons-style{margin-top: 30px;}
