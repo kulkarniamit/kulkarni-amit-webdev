@@ -1,0 +1,47 @@
+.profile-container{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+}
+.other-links{
+    margin-top: 20px;
+    margin-bottom: 60px;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+}
+
+.other-links a.btn{
+    padding: 20px 25px;
+}
+.other-links .col-md-6{
+    padding: 0;
+}
+
+.buttons-style{margin-top: 30px;}
+
+.glyphicon-ok{
+    color: white;
+}
+input.form-control {
+    margin-bottom: 5px;
+}
+
+.profile-heading{
+    font-size:26px;
+    color: #000000;
+    padding: 10px;
+    max-width: 600px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+}
+.profile-footer{
+    margin:15px;
+}
