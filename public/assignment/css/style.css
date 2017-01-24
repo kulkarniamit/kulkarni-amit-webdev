@@ -18,3 +18,7 @@ body {
 .bar-color{
     background-color: #172435;
 }
+
+.navbar-brand{
+    font-size: 14px;
+}

@@ -1,14 +1,14 @@
 .glyphicon-plus-sign{
     color: white;
-    font-size: 20px;
+    /*font-size: 20px;*/
 }
 .div-link-style{
     display: block;
 }
 .website-record{
     padding:10px 0 10px 0;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
-    margin: 5px;
+    /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);*/
+    /*margin: 5px;*/
 }
 
 .add-sign{
