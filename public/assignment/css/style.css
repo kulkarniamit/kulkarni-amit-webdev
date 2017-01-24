@@ -1,6 +1,6 @@
 /* General styles for bootstrap pages with fixed navbar */
 body {
-    padding-top: 36px;
+    /*padding-top: 36px;*/
     font-family: 'Open Sans', sans-serif;
 }
 .navbar-default{

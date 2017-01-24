@@ -20,7 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
     <link href="../css/style.css" rel="stylesheet"/>
-    <link href="../css/profile.css" rel="stylesheet"/>
+    <link href="../css/websiteslist.css" rel="stylesheet"/>
+    <link href="../css/sticky-footer.css" rel="stylesheet"/>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
@@ -30,78 +31,77 @@
     <link rel="mask-icon" href="../css/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="../user/profile.html">
                 <span class="glyphicon glyphicon-triangle-left"></span>
             </a>
-            <a class="navbar-brand" href="#">Profile</a>
-            <div class="row">
-                <div class="col-xs-2 pull-right visible-xs-block hidden-lg text-center">
-                    <p class="navbar-text">
-                        <a href="profile.html" class="navbar-link" >
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </a>
-                    </p>
-                </div>
-            </div>
+            <a class="navbar-brand" href="#">Websites</a>
+            <a href="website-new.html" class="navbar-text navbar-link pull-right hidden-lg top-right-icon-style">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
         </div>
+        <p class="pull-right hidden-xs hidden-sm add-sign">
+            <a href="website-new.html" class="navbar-link">
+                <span class="glyphicon glyphicon-plus-sign" ></span>
+            </a>
+        </p>
     </div>
 </nav>
 
 
     <div class="container">
-        <div class="profile-container">
-            <form action="profile.html" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username" value="joe">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com" value="joe@gmail.com">
-                </div>
-                <div class="form-group">
-                    <label for="first-name">First Name</label>
-                    <input type="text" class="form-control" id="first-name" placeholder="Alice" value="Joe">
-                </div>
-                <div class="form-group">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" class="form-control" id="last-name" placeholder="Wonderland" value="Tribbiani">
-                </div>
-
-                <div class="hidden-xs">
-                    <input type="submit" class="form-control btn btn-success" value="Update">
-                </div>
-            </form>
-        </div>
-
-        <div class="row other-links">
-            <div class="col-xs-12 col-md-6">
-                <a class="btn btn-primary btn-block"
-                   href="website-list.html">Websites</a>
+        <div class="websites-container">
+            <div class="websites-list-heading text-center">
+                List of websites
             </div>
-            <div class="col-xs-12 col-md-6">
-                <a class="btn btn-danger  btn-block"
-                   href="login.html">Logout</a>
-            </div>
+            <a style="display:block" href="website-edit.html">
+                <div class="row website-record">
+                    <div class="col-xs-10"> Address book App</div>
+                    <div class="col-xs-2 text-center">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </div>
+                </div>
+            </a>
+            <a style="display:block" href="website-edit.html">
+                <div class="row website-record">
+                    <div class="col-xs-10"> Blogger</div>
+                    <div class="col-xs-2 text-center">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </div>
+                </div>
+            </a>
+            <a style="display:block" href="website-edit.html">
+                <div class="row website-record">
+                    <div class="col-xs-10"> Blogging App </div>
+                    <div class="col-xs-2 text-center">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </div>
+                </div>
+            </a>
+            <a style="display:block" href="website-edit.html">
+                <div class="row website-record">
+                    <div class="col-xs-10"> Script Testing App </div>
+                    <div class="col-xs-2 text-center">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center profile-footer">
-                <a href="profile.html">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-        </div>
+        <p class="text-muted pull-right">
+            <a href="../user/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
     </div>
-</nav>
+</footer>
 
 </body>
 </html>

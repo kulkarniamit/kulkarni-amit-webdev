@@ -21,6 +21,7 @@
 
     <link href="../css/style.css" rel="stylesheet"/>
     <link href="../css/profile.css" rel="stylesheet"/>
+    <link href="../css/sticky-footer.css" rel="stylesheet"/>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
@@ -44,17 +45,26 @@
                     <!--</a>-->
                 <!--</p>-->
                 <!-- Professor template code -->
-                <div class="row">
-                    <div class="col-xs-2 pull-right visible-xs-block hidden-lg text-center">
-                        <p class="navbar-text">
-                            <a href="profile.html" class="navbar-link" >
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
 
+                <a href="profile.html" class="navbar-text navbar-link pull-right hidden-lg top-right-icon-style">
+                    <span class="glyphicon glyphicon-ok-sign"></span>
+                </a>
+
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-2 pull-right visible-xs-block hidden-lg text-center">-->
+                        <!--<p class="navbar-text">-->
+                            <!--<a href="profile.html" class="navbar-link" >-->
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                            <!--</a>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <p class="pull-right hidden-xs hidden-sm ok-sign">
+                <a href="profile.html" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok-sign" ></span>
+                </a>
+            </p>
         </div>
 </nav>
 
@@ -72,15 +82,15 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com" value="joe@gmail.com">
+                    <input type="email" class="form-control" id="email" placeholder="username@domain.com" value="joe@gmail.com">
                 </div>
                 <div class="form-group">
                     <label for="first-name">First Name</label>
-                    <input type="text" class="form-control" id="first-name" placeholder="Alice" value="Joe">
+                    <input type="text" class="form-control" id="first-name" placeholder="First name" value="Joe">
                 </div>
                 <div class="form-group">
                     <label for="last-name">Last Name</label>
-                    <input type="text" class="form-control" id="last-name" placeholder="Wonderland" value="Tribbiani">
+                    <input type="text" class="form-control" id="last-name" placeholder="Last name" value="Tribbiani">
                 </div>
 
                 <div class="hidden-xs">
@@ -101,17 +111,27 @@
         </div>
     </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center profile-footer">
-                <a href="profile.html">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-        </div>
+        <p class="text-muted pull-right">
+            <a href="profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
     </div>
-</nav>
+</footer>
+
+<!--<nav class="navbar navbar-default navbar-fixed-bottom">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-12 text-center profile-footer">-->
+                <!--<a href="profile.html">-->
+                    <!--<span class="glyphicon glyphicon-user"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
 
 </body>
 </html>

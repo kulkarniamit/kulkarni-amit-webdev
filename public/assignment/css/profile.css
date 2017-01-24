@@ -7,7 +7,7 @@
 }
 .other-links{
     margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     max-width: 600px;
     margin-left:auto;
     margin-right: auto;
@@ -23,8 +23,9 @@
 
 .buttons-style{margin-top: 30px;}
 
-.glyphicon-ok{
+.glyphicon-ok-sign{
     color: white;
+    font-size: 20px;
 }
 input.form-control {
     margin-bottom: 5px;
@@ -35,7 +36,7 @@ input.form-control {
     color: #000000;
     padding: 10px;
     max-width: 600px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     margin-bottom: 10px;
     max-width: 600px;
     margin-left:auto;
@@ -45,4 +46,12 @@ input.form-control {
 .profile-footer{
     margin-top:15px;
     margin-bottom: 15px;
+}
+
+.ok-sign{
+    margin-top:15px;
+}
+
+.top-right-icon-style{
+    margin: 15px;
 }
