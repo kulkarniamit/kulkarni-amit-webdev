@@ -7,7 +7,7 @@
 }
 .other-links{
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     max-width: 600px;
     margin-left:auto;
     margin-right: auto;
@@ -36,7 +36,6 @@ input.form-control {
     color: #000000;
     padding: 10px;
     max-width: 600px;
-    /*margin-top: 20px;*/
     margin-bottom: 10px;
     max-width: 600px;
     margin-left:auto;

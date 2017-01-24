@@ -1,12 +1,7 @@
 /* General styles for bootstrap pages with fixed navbar */
 body {
-    /*padding-top: 36px;*/
     font-family: 'Open Sans', sans-serif;
 }
-.navbar-default{
-    background-color: #172435;
-}
-
 .navbar-default .navbar-brand{
     color:#e5bd1d;
     font-weight: bold;
@@ -18,4 +13,8 @@ body {
 
 .navbar-fixed-top{
     border-width: 0 0 0;
+}
+
+.bar-color{
+    background-color: #172435;
 }
