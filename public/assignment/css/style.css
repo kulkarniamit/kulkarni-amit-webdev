@@ -28,7 +28,7 @@ body {
 .glyphicon{
     color: white;
 }
-.margin-right-fix{
+.wbdev-margin-right-fix{
     /*Apply this to right elements in navbar*/
     /*
     In order to provide the same privileges that the
@@ -41,7 +41,7 @@ body {
     margin-right: -15px;
 }
 
-.container-side-space-fix{
+. wbdev-container-side-space-fix{
     padding-right: 20px;
     padding-left: 20px;
 }
