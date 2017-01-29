@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Edit page</title>
+    <meta name="description" content="">
+    <meta name="author" content="Amit Kulkarni">
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <link href="../css/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/navbar-fixed-top.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../css/newwebsite.css" rel="stylesheet"/>
+    <link href="../css/sticky-footer.css" rel="stylesheet"/>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="../css/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../css/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="../css/favicons/manifest.json">
+    <link rel="mask-icon" href="../css/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top bar-color">
+    <div class="container">
+        <!-- Targetting phone display -->
+        <div class="navbar-header visible-xs">
+            <a class="navbar-brand" href="page-list.html">
+                <span class="glyphicon glyphicon-triangle-left"></span>
+            </a>
+            <a class="navbar-brand" href="#">Edit page</a>
+            <a href="page-list.html" class="navbar-text navbar-link pull-right top-right-icon-style-xs">
+                <span class="glyphicon glyphicon-ok-sign"></span>
+            </a>
+        </div>
+
+        <!-- Targetting large display -->
+        <div class="row hidden-xs">
+            <div class="navbar col-sm-5">
+                <a class="navbar-brand" href="page-list.html">
+                    <span class="glyphicon glyphicon-triangle-left"></span>
+                </a>
+                <a class="navbar-brand" href="#">Pages</a>
+                <a href="page-new.html" class="navbar-text navbar-link pull-right top-right-icon-style">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </a>
+            </div>
+            <div class="navbar col-sm-7">
+                <p class="navbar-brand text-left pull-left" href="#">Edit Page</p>
+                <a href="page-list.html" class="navbar-link pull-right top-right-icon-style-lg">
+                    <span class="glyphicon glyphicon-ok-sign"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="websites-container">
+        <div class="row">
+            <div class="col-sm-5 left-section hidden-xs">
+                <div class="row website-record">
+                    <a href="page-list.html" class="col-xs-10">
+                        Blog post
+                    </a>
+                    <a href="page-edit.html" class="col-xs-2 text-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+                <div class="row website-record">
+                    <a href="page-list.html" class="col-xs-10">
+                        Blogs
+                    </a>
+                    <a href="page-edit.html" class="col-xs-2 text-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+                <div class="row website-record">
+                    <a href="page-list.html" class="col-xs-10">
+                        Home
+                    </a>
+                    <a href="page-edit.html" class="col-xs-2 text-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+                <div class="row website-record">
+                    <a href="page-list.html" class="col-xs-10">
+                        About
+                    </a>
+                    <a href="page-edit.html" class="col-xs-2 text-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+                <div class="row website-record">
+                    <a href="page-list.html" class="col-xs-10">
+                        Contact us
+                    </a>
+                    <a href="page-edit.html" class="col-xs-2 text-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-7 website-details col-xs-12">
+                <form action="website-new.html.html" method="POST">
+                    <div class="form-group">
+                        <label for="pname">Name</label>
+                        <input type="text" class="form-control" id="pname" placeholder="Name of your page" value="Blog post">
+                    </div>
+                    <div class="form-group">
+                        <label for="ptitle">Title</label>
+                        <input type="text" class="form-control" id="ptitle" placeholder="Name of your page" value="Some page title">
+                    </div>
+                    <a class="form-control btn btn-danger" href="page-list.html">
+                        Delete
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="footer bar-color">
+    <div class="container">
+        <p class="text-muted pull-right">
+            <a href="../user/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

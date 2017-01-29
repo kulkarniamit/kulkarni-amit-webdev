@@ -1,6 +1,5 @@
 .glyphicon-ok-sign, .glyphicon-plus-sign{
     color: white;
-    /*font-size: 20px;*/
 }
 .website-record{
     padding:10px 0 10px 0;
@@ -19,9 +18,6 @@
 }
 .top-right-icon-style-lg{
     margin-top: 15px;
-}
-.left-section{
-    border-right: 1px solid #d3d3d3;
 }
 div.row .navbar{
     margin-bottom: 0;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Create new website</title>
+    <title>Create new page</title>
     <meta name="description" content="">
     <meta name="author" content="Amit Kulkarni">
 
@@ -37,11 +37,11 @@
         <div class="container">
             <!-- Targetting phone display -->
             <div class="navbar-header visible-xs">
-                <a class="navbar-brand" href="website-list.html">
+                <a class="navbar-brand" href="page-list.html">
                     <span class="glyphicon glyphicon-triangle-left"></span>
                 </a>
-                <a class="navbar-brand" href="#">New Website</a>
-                <a href="website-list.html" class="navbar-text navbar-link pull-right top-right-icon-style-xs">
+                <a class="navbar-brand" href="#">New Page</a>
+                <a href="page-list.html" class="navbar-text navbar-link pull-right top-right-icon-style-xs">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -49,17 +49,17 @@
             <!-- Targetting large display -->
             <div class="row hidden-xs">
                 <div class="navbar col-sm-5">
-                    <a class="navbar-brand" href="website-list.html">
+                    <a class="navbar-brand" href="page-list.html">
                         <span class="glyphicon glyphicon-triangle-left"></span>
                     </a>
-                    <a class="navbar-brand" href="#">Websites</a>
-                    <a href="website-new.html" class="navbar-text navbar-link pull-right top-right-icon-style">
+                    <a class="navbar-brand" href="#">Pages</a>
+                    <a href="page-new.html" class="navbar-text navbar-link pull-right top-right-icon-style">
                         <span class="glyphicon glyphicon-plus-sign"></span>
                     </a>
                 </div>
                 <div class="navbar col-sm-7">
-                    <p class="navbar-brand text-left pull-left" href="#">New Website</p>
-                    <a href="website-list.html" class="navbar-link pull-right top-right-icon-style-lg">
+                    <p class="navbar-brand text-left pull-left" href="#">New Page</p>
+                    <a href="page-list.html" class="navbar-link pull-right top-right-icon-style-lg">
                         <span class="glyphicon glyphicon-ok-sign"></span>
                     </a>
                 </div>
@@ -72,49 +72,55 @@
             <div class="row">
                 <div class="col-sm-5 left-section hidden-xs">
                     <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Address book App
+                        <a href="page-list.html" class="col-xs-10">
+                            Blog post
                         </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
+                        <a href="page-edit.html" class="col-xs-2 text-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
                     <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Blogger
+                        <a href="page-list.html" class="col-xs-10">
+                            Blogs
                         </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
+                        <a href="page-edit.html" class="col-xs-2 text-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
                     <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Blogger App
+                        <a href="page-list.html" class="col-xs-10">
+                            Home
                         </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
+                        <a href="page-edit.html" class="col-xs-2 text-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
                     <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Script Testing App
+                        <a href="page-list.html" class="col-xs-10">
+                            About
                         </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
+                        <a href="page-edit.html" class="col-xs-2 text-right">
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                     </div>
-
+                    <div class="row website-record">
+                        <a href="page-list.html" class="col-xs-10">
+                            Contact us
+                        </a>
+                        <a href="page-edit.html" class="col-xs-2 text-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
                 </div>
-
                 <div class="col-sm-7 website-details col-xs-12">
                     <form action="website-new.html.html" method="POST">
                         <div class="form-group">
-                            <label for="wname">Name</label>
-                            <input type="text" class="form-control" id="wname" placeholder="Name of your website">
+                            <label for="pname">Name</label>
+                            <input type="text" class="form-control" id="pname" placeholder="Page Name">
                         </div>
                         <div class="form-group">
-                            <label for="wdesc">Description</label>
-                            <textarea rows="4" class="form-control" id="wdesc" placeholder="Description"></textarea>
+                            <label for="ptitle">Title</label>
+                            <textarea rows="4" class="form-control" id="ptitle" placeholder="Page Title"></textarea>
                         </div>
                     </form>
 
@@ -122,8 +128,6 @@
             </div>
         </div>
     </div>
-
-
 
     <footer class="footer bar-color">
         <div class="container">
