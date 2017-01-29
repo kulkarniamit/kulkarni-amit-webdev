@@ -1,6 +1,8 @@
 /* General styles for bootstrap pages with fixed navbar */
 body {
     font-family: 'Open Sans', sans-serif;
+    margin-top: 60px;
+    margin-bottom: 50px;
 }
 .navbar-default .navbar-brand{
     color:#e5bd1d;
@@ -15,10 +17,31 @@ body {
     border-width: 0 0 0;
 }
 
-.bar-color{
+.wbdev-bar-color{
     background-color: #172435;
 }
 
 .navbar-brand{
     font-size: 14px;
+}
+
+.glyphicon{
+    color: white;
+}
+.margin-right-fix{
+    /*Apply this to right elements in navbar*/
+    /*
+    In order to provide the same privileges that the
+    navbar-brand (pull-left) elements receive
+    @media (min-width: 768px)
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: -15px;
+    }
+    */
+    margin-right: -15px;
+}
+
+.container-side-space-fix{
+    padding-right: 20px;
+    padding-left: 20px;
 }

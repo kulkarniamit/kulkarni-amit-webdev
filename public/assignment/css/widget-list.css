@@ -1,37 +1,24 @@
-.glyphicon-plus-sign{
-    color: white;
-}
-.website-record{
-    padding:10px 0 10px 0;
+.wbdev-widget-type-style{
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #eeeeee;
 }
-.add-sign{
-    margin-top:15px;
-}
-.top-right-icon-style{
-    margin: 15px;
-}
-.widget-setings-icons{
+.wbdev-widget-setings-icons{
     position: absolute;
     float: right;
     right:15px;
     top: 0;
 }
-.cog-style{
+.wbdev-cog-style{
     padding: 5px;
     background-color: #e5bd1d;
     color: #FFFFFF;
 }
-.hamburger-style{
+.wbdev-hamburger-style{
     padding: 5px;
     background-color: #e5bd1d;
     color: #FFFFFF;
 }
-
-body{
-    margin-bottom: 50px;
-}
-
-.website-record .thumbnail{
+.wbdev-widget-type-style .thumbnail{
     padding: 0;
 }
