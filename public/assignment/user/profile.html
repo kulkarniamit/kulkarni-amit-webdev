@@ -14,14 +14,9 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/navbar-fixed-top.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-    <link href="../css/sticky-footer.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
     <link href="../css/profile.css" rel="stylesheet"/>
-
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
@@ -33,38 +28,24 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top  wbdev-bar-color">
-    <!--<div class="container-fluid">-->
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Profile</a>
-                <!-- Professor template code -->
-                <!--<p class="navbar-text pull-right">-->
-                    <!--<a href="#" class="navbar-link">-->
-                        <!--<span class="glyphicon glyphicon-ok-sign"></span>-->
-                    <!--</a>-->
-                <!--</p>-->
-                <!-- Professor template code -->
-
-                <a href="profile.html" class="navbar-text navbar-link pull-right hidden-lg hidden-md hidden-sm top-right-icon-style">
+    <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+        <div class="container-fluid wbdev-container-side-space-fix">
+            <div class="navbar-brand pull-right wbdev-margin-right-fix">
+                <a href="profile.html">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
-            <p class="pull-right hidden-xs ok-sign">
-                <a href="profile.html" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok-sign" ></span>
-                </a>
-            </p>
+            <div class="navbar-header">
+                <a class="navbar-brand">Profile</a>
+            </div>
         </div>
-</nav>
+    </nav>
 
-
-    <div class="container">
-        <!--<h1>Profile</h1>-->
-        <div class="row profile-heading text-center">
+    <div class="container-fluid">
+        <div class="row wbdev-profile-heading text-center">
             Welcome Joe
         </div>
-        <div class="profile-container">
+        <div class="wbdev-profile-container">
             <form action="profile.html" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -89,27 +70,27 @@
             </form>
         </div>
 
-        <div class="row other-links">
+        <div class="row wbdev-other-links">
             <div class="col-xs-12 col-md-6">
                 <a class="btn btn-primary btn-block"
                    href="../website/website-list.html">Websites</a>
             </div>
             <div class="col-xs-12 col-md-6">
-                <a class="btn btn-danger  btn-block"
+                <a class="btn btn-danger btn-block"
                    href="login.html">Logout</a>
             </div>
         </div>
     </div>
 
-<footer class="footer wbdev-bar-color">
-    <div class="container">
-        <p class="text-muted pull-right">
-            <a href="profile.html">
+<nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="navbar-brand pull-right wbdev-margin-right-fix">
+            <a href="../user/profile.html">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
-        </p>
+        </div>
     </div>
-</footer>
+</nav>
 
 </body>
 </html>
