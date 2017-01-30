@@ -15,9 +15,6 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/navbar-fixed-top.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
     <link href="../css/style.css" rel="stylesheet"/>
@@ -32,19 +29,20 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top  wbdev-bar-color">
-        <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+        <div class="container-fluid wbdev-container-side-space-fix">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">CS5610 Assignments</a>
+                <a class="navbar-brand">CS5610 Assignments</a>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row registration-container">
+    <div class="container-fluid">
+        <div class="row wbdev-registration-container">
             <div class="col-xs-12">
                 <h3>Register</h3>
-                <form action="register.html" method="POST">
+                <form action="register.html"
+                      method="POST">
                     <div>
                         <input type="text"
                                class="form-control"
@@ -56,7 +54,7 @@
                                class="form-control"
                                placeholder="Verify Password"/>
                     </div>
-                    <div class="buttons-style">
+                    <div class="wbdev-buttons-style">
                         <a class="btn btn-success btn-block"
                            href="profile.html">Register</a>
                         <a class="btn btn-danger  btn-block"
