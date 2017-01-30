@@ -18,14 +18,16 @@ body {
 }
 
 .wbdev-bar-color{
-    background-color: #172435;
+    /*background-color: #172435;*/
+    background-color: #36465d;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
 }
 
 .navbar-brand{
     font-size: 14px;
 }
 
-.glyphicon-ok-sign, .glyphicon-plus-sign{
+.glyphicon-ok-sign, .glyphicon-plus-sign, .glyphicon-user{
     color: white;
 }
 .wbdev-margin-right-fix{
