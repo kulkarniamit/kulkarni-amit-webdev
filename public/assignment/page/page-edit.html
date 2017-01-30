@@ -14,14 +14,11 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/navbar-fixed-top.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
     <link href="../css/style.css" rel="stylesheet"/>
-    <link href="../css/newwebsite.css" rel="stylesheet"/>
-    <link href="../css/sticky-footer.css" rel="stylesheet"/>
+    <link href="../css/body-divider.css" rel="stylesheet"/>
+    <link href="../css/page-edit-styles.css" rel="stylesheet"/>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
@@ -33,115 +30,175 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top  wbdev-bar-color">
-    <div class="container">
-        <!-- Targetting phone display -->
-        <div class="navbar-header visible-xs">
-            <a class="navbar-brand" href="page-list.html">
-                <span class="glyphicon glyphicon-triangle-left"></span>
-            </a>
-            <a class="navbar-brand" href="#">Edit page</a>
-            <a href="page-list.html" class="navbar-text navbar-link pull-right top-right-icon-style-xs">
-                <span class="glyphicon glyphicon-ok-sign"></span>
-            </a>
-        </div>
-
-        <!-- Targetting large display -->
-        <div class="row hidden-xs">
-            <div class="navbar col-sm-5">
-                <a class="navbar-brand" href="page-list.html">
-                    <span class="glyphicon glyphicon-triangle-left"></span>
-                </a>
-                <a class="navbar-brand" href="#">Pages</a>
-                <a href="page-new.html" class="navbar-text navbar-link pull-right top-right-icon-style">
+    <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-brand pull-right wbdev-margin-right-fix">
+                <a href="page-new.html">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </a>
             </div>
-            <div class="navbar col-sm-7">
-                <p class="navbar-brand text-left pull-left" href="#">Edit Page</p>
-                <a href="page-list.html" class="navbar-link pull-right top-right-icon-style-lg">
+            <a class="navbar-brand" href="page-list.html">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Pages
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="navbar-brand pull-right wbdev-margin-right-fix">
+                <a href="page-list.html">
                     <span class="glyphicon glyphicon-ok-sign"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand visible-xs wbdev-margin-left-fix"
+                   href="page-list.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand">
+                    Edit Page
                 </a>
             </div>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <div class="websites-container">
-        <div class="row">
-            <div class="col-sm-5 left-section hidden-xs">
-                <div class="row website-record">
-                    <a href="page-list.html" class="col-xs-10">
-                        Blog post
-                    </a>
-                    <a href="page-edit.html" class="col-xs-2 text-right">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </div>
-                <div class="row website-record">
-                    <a href="page-list.html" class="col-xs-10">
-                        Blogs
-                    </a>
-                    <a href="page-edit.html" class="col-xs-2 text-right">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </div>
-                <div class="row website-record">
-                    <a href="page-list.html" class="col-xs-10">
-                        Home
-                    </a>
-                    <a href="page-edit.html" class="col-xs-2 text-right">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </div>
-                <div class="row website-record">
-                    <a href="page-list.html" class="col-xs-10">
-                        About
-                    </a>
-                    <a href="page-edit.html" class="col-xs-2 text-right">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </div>
-                <div class="row website-record">
-                    <a href="page-list.html" class="col-xs-10">
-                        Contact us
-                    </a>
-                    <a href="page-edit.html" class="col-xs-2 text-right">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </div>
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs wbdv-left-pane">
+            <div class="row wbdev-page-list-record">
+                <a href="page-list.html" class="col-xs-10">
+                    Blog post
+                </a>
+                <a href="page-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
             </div>
-            <div class="col-sm-7 website-details col-xs-12">
-                <form action="website-new.html.html" method="POST">
-                    <div class="form-group">
-                        <label for="pname">Name</label>
-                        <input type="text" class="form-control" id="pname" placeholder="Name of your page" value="Blog post">
-                    </div>
-                    <div class="form-group">
-                        <label for="ptitle">Title</label>
-                        <input type="text" class="form-control" id="ptitle" placeholder="Name of your page" value="Some page title">
-                    </div>
-                    <a class="form-control btn btn-danger" href="page-list.html">
-                        Delete
-                    </a>
-                </form>
+            <div class="row wbdev-page-list-record">
+                <a href="page-list.html" class="col-xs-10">
+                    Blogs
+                </a>
+                <a href="page-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+            <div class="row wbdev-page-list-record">
+                <a href="page-list.html" class="col-xs-10">
+                    Home
+                </a>
+                <a href="page-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+            <div class="row wbdev-page-list-record">
+                <a href="page-list.html" class="col-xs-10">
+                    About
+                </a>
+                <a href="page-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+            <div class="row wbdev-page-list-record">
+                <a href="page-list.html" class="col-xs-10">
+                    Contact us
+                </a>
+                <a href="page-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
             </div>
         </div>
+        <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+            <form action="page-edit.html" method="POST">
+                <div class="form-group">
+                    <label for="pname">Name</label>
+                    <input type="text" class="form-control" id="pname" placeholder="Name of your page" value="Blog post">
+                </div>
+                <div class="form-group">
+                    <label for="ptitle">Title</label>
+                    <input type="text" class="form-control" id="ptitle" placeholder="Name of your page" value="Some page title">
+                </div>
+                <a class="form-control btn btn-danger" href="page-list.html">
+                    Delete
+                </a>
+            </form>
+        </div>
     </div>
-</div>
 
+<!--<div class="container">-->
+    <!--<div class="websites-container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-5 left-section hidden-xs">-->
+                <!--<div class="row website-record">-->
+                    <!--<a href="page-list.html" class="col-xs-10">-->
+                        <!--Blog post-->
+                    <!--</a>-->
+                    <!--<a href="page-edit.html" class="col-xs-2 text-right">-->
+                        <!--<span class="glyphicon glyphicon-cog"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="row website-record">-->
+                    <!--<a href="page-list.html" class="col-xs-10">-->
+                        <!--Blogs-->
+                    <!--</a>-->
+                    <!--<a href="page-edit.html" class="col-xs-2 text-right">-->
+                        <!--<span class="glyphicon glyphicon-cog"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="row website-record">-->
+                    <!--<a href="page-list.html" class="col-xs-10">-->
+                        <!--Home-->
+                    <!--</a>-->
+                    <!--<a href="page-edit.html" class="col-xs-2 text-right">-->
+                        <!--<span class="glyphicon glyphicon-cog"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="row website-record">-->
+                    <!--<a href="page-list.html" class="col-xs-10">-->
+                        <!--About-->
+                    <!--</a>-->
+                    <!--<a href="page-edit.html" class="col-xs-2 text-right">-->
+                        <!--<span class="glyphicon glyphicon-cog"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="row website-record">-->
+                    <!--<a href="page-list.html" class="col-xs-10">-->
+                        <!--Contact us-->
+                    <!--</a>-->
+                    <!--<a href="page-edit.html" class="col-xs-2 text-right">-->
+                        <!--<span class="glyphicon glyphicon-cog"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-7 website-details col-xs-12">-->
+                <!--<form action="website-new.html.html" method="POST">-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="pname">Name</label>-->
+                        <!--<input type="text" class="form-control" id="pname" placeholder="Name of your page" value="Blog post">-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="ptitle">Title</label>-->
+                        <!--<input type="text" class="form-control" id="ptitle" placeholder="Name of your page" value="Some page title">-->
+                    <!--</div>-->
+                    <!--<a class="form-control btn btn-danger" href="page-list.html">-->
+                        <!--Delete-->
+                    <!--</a>-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
-
-<footer class="footer  wbdev-bar-color">
-    <div class="container">
-        <p class="text-muted pull-right">
+<nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="navbar-brand pull-right wbdev-margin-right-fix">
             <a href="../user/profile.html">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
-        </p>
+        </div>
     </div>
-</footer>
+</nav>
 
 </body>
 </html>
