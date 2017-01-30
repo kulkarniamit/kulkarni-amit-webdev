@@ -14,14 +14,11 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/navbar-fixed-top.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 
     <link href="../css/style.css" rel="stylesheet"/>
-    <link href="../css/newwebsite.css" rel="stylesheet"/>
-    <link href="../css/sticky-footer.css" rel="stylesheet"/>
+    <link href="../css/body-divider.css" rel="stylesheet"/>
+    <link href="../css/website-new-styles.css" rel="stylesheet"/>
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
@@ -33,107 +30,108 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top  wbdev-bar-color">
-        <div class="container">
-            <!-- Targetting phone display -->
-            <div class="navbar-header visible-xs">
-                <a class="navbar-brand" href="website-list.html">
-                    <span class="glyphicon glyphicon-triangle-left"></span>
+    <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-brand pull-right wbdev-margin-right-fix">
+                <a href="website-new.html">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
                 </a>
-                <a class="navbar-brand" href="#">New Website</a>
-                <a href="website-list.html" class="navbar-text navbar-link pull-right top-right-icon-style-xs">
+            </div>
+            <a class="navbar-brand" href="website-list.html">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Websites
+                </a>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="navbar-brand pull-right wbdev-margin-right-fix">
+                <a href="website-list.html">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
-
-            <!-- Targetting large display -->
-            <div class="row hidden-xs">
-                <div class="navbar col-sm-5">
-                    <a class="navbar-brand" href="website-list.html">
-                        <span class="glyphicon glyphicon-triangle-left"></span>
-                    </a>
-                    <a class="navbar-brand" href="#">Websites</a>
-                    <a href="website-new.html" class="navbar-text navbar-link pull-right top-right-icon-style">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                    </a>
-                </div>
-                <div class="navbar col-sm-7">
-                    <p class="navbar-brand text-left pull-left" href="#">New Website</p>
-                    <a href="website-list.html" class="navbar-link pull-right top-right-icon-style-lg">
-                        <span class="glyphicon glyphicon-ok-sign"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="websites-container">
-            <div class="row">
-                <div class="col-sm-5 left-section hidden-xs">
-                    <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Address book App
-                        </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Blogger
-                        </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Blogger App
-                        </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-                    <div class="row website-record">
-                        <a href="../page/page-list.html" class="col-xs-10">
-                            Script Testing App
-                        </a>
-                        <a href="website-edit.html" class="col-xs-2 text-right">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-7 website-details col-xs-12">
-                    <form action="website-new.html.html" method="POST">
-                        <div class="form-group">
-                            <label for="wname">Name</label>
-                            <input type="text" class="form-control" id="wname" placeholder="Name of your website">
-                        </div>
-                        <div class="form-group">
-                            <label for="wdesc">Description</label>
-                            <textarea rows="4" class="form-control" id="wdesc" placeholder="Description"></textarea>
-                        </div>
-                    </form>
-
-                </div>
+            <div class="navbar-header">
+                <a class="navbar-brand visible-xs wbdev-margin-left-fix"
+                   href="website-list.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand">
+                    New Website
+                </a>
             </div>
         </div>
     </div>
+</nav>
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs wbdv-left-pane">
+            <div class="row wbdev-website-record">
+                <a href="../page/page-list.html" class="col-xs-10">
+                    Address book App
+                </a>
+                <a href="website-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+            <div class="row wbdev-website-record">
+                <a href="../page/page-list.html" class="col-xs-10">
+                    Blogger
+                </a>
+                <a href="website-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+            <div class="row wbdev-website-record">
+                <a href="../page/page-list.html" class="col-xs-10">
+                    Blogger App
+                </a>
+                <a href="website-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+            <div class="row wbdev-website-record">
+                <a href="../page/page-list.html" class="col-xs-10">
+                    Script Testing App
+                </a>
+                <a href="website-edit.html" class="col-xs-2 text-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+        </div>
 
-
-
-    <footer class="footer wbdev-bar-color">
-        <div class="container">
-            <p class="text-muted pull-right">
+        <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+            <form action="website-new.html"
+                  class="wbdev-form-padding"
+                  method="POST">
+                <div class="form-group">
+                    <label for="wname">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="wname"
+                           placeholder="Name of your website">
+                </div>
+                <div class="form-group">
+                    <label for="wdesc">Description</label>
+                    <textarea rows="4"
+                              class="form-control"
+                              id="wdesc"
+                              placeholder="Description"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
+        <div class="container-fluid wbdev-container-side-space-fix">
+            <div class="navbar-brand pull-right wbdev-margin-right-fix">
                 <a href="../user/profile.html">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
-            </p>
+            </div>
         </div>
-    </footer>
+    </nav>
 
 </body>
 </html>
