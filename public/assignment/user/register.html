@@ -44,15 +44,27 @@
                 <form action="register.html"
                       method="POST">
                     <div>
-                        <input type="text"
-                               class="form-control"
-                               placeholder="Username"/>
-                        <input type="password"
-                               class="form-control"
-                               placeholder="Password"/>
-                        <input type="password"
-                               class="form-control"
-                               placeholder="Verify Password"/>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="username"
+                                   placeholder="Username"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="password"
+                                   placeholder="Password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="vpassword">Verify Password</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="vpassword"
+                                   placeholder="Verify Password"/>
+                        </div>
                     </div>
                     <div class="wbdev-buttons-style">
                         <a class="btn btn-success btn-block"
