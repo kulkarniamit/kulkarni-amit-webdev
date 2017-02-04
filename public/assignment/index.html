@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMaker">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Assignment Home Page</title>
+    <meta name="description" content="">
+    <meta name="author" content="Amit Kulkarni">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="css/bootstrap/css/bootstrap.css" rel="stylesheet"/>-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="css/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="css/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="css/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="css/favicons/manifest.json">
+    <link rel="mask-icon" href="css/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
 </head>
 <body>
-    <h1>Assignment Home Page</h1>
-    <a href="user/login.html">
-        <h3>Assignment 1 Login page</h3>
-    </a>
+    <div ng-view>
+        <h1 class="text-center">Assignment Home Page</h1>
+        <a href="#!/login">
+            <h3>Assignment 3 Login page</h3>
+        </a>
+    </div>
 </body>
 </html>

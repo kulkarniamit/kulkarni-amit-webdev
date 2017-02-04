@@ -1,0 +1,79 @@
+<nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="navbar-brand pull-right wbdev-margin-right-fix">
+            <a href="#!/profile">
+                <span class="glyphicon glyphicon-ok-sign"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">Profile</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row wbdev-profile-heading text-center">
+        Welcome Joe
+    </div>
+    <div class="wbdev-profile-container">
+        <form action="profile.view.client.html"
+              method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text"
+                       class="form-control"
+                       id="username"
+                       placeholder="Username"
+                       value="joe">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       placeholder="username@domain.com"
+                       value="joe@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="first-name"
+                       placeholder="First name"
+                       value="Joe">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="last-name"
+                       placeholder="Last name"
+                       value="Tribbiani">
+            </div>
+            <div class="hidden-xs">
+                <input type="submit"
+                       class="form-control btn btn-success"
+                       value="Update">
+            </div>
+        </form>
+    </div>
+
+    <div class="row wbdev-other-links">
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-primary btn-block"
+               href="../website/website-list.view.client.html">Websites</a>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-danger btn-block"
+               href="#!/login">Logout</a>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="navbar-brand pull-right wbdev-margin-right-fix">
+            <a href="#!/profile">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

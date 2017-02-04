@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Profile</title>
+    <title>Widget Image Edit</title>
     <meta name="description" content="">
     <meta name="author" content="Amit Kulkarni">
 
@@ -15,6 +15,7 @@
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
     <link href="../css/style.css" rel="stylesheet"/>
 
     <!-- Favicon -->
@@ -25,84 +26,71 @@
     <link rel="mask-icon" href="../css/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
-
-    <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
-        <div class="container-fluid wbdev-container-side-space-fix">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="profile.html">
-                    <span class="glyphicon glyphicon-ok-sign"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="navbar-brand">Profile</a>
-            </div>
+<nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="navbar-brand pull-right wbdev-margin-right-fix">
+            <a href="widget-list.view.client.html">
+                <span class="glyphicon glyphicon-ok-sign"></span>
+            </a>
         </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row wbdev-profile-heading text-center">
-            Welcome Joe
-        </div>
-        <div class="wbdev-profile-container">
-            <form action="profile.html"
-                  method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text"
-                           class="form-control"
-                           id="username"
-                           placeholder="Username"
-                           value="joe">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email"
-                           class="form-control"
-                           id="email"
-                           placeholder="username@domain.com"
-                           value="joe@gmail.com">
-                </div>
-                <div class="form-group">
-                    <label for="first-name">First Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="first-name"
-                           placeholder="First name"
-                           value="Joe">
-                </div>
-                <div class="form-group">
-                    <label for="last-name">Last Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="last-name"
-                           placeholder="Last name"
-                           value="Tribbiani">
-                </div>
-                <div class="hidden-xs">
-                    <input type="submit"
-                           class="form-control btn btn-success"
-                           value="Update">
-                </div>
-            </form>
-        </div>
-
-        <div class="row wbdev-other-links">
-            <div class="col-xs-12 col-md-6">
-                <a class="btn btn-primary btn-block"
-                   href="../website/website-list.html">Websites</a>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <a class="btn btn-danger btn-block"
-                   href="login.html">Logout</a>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="widget-list.view.client.html">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand wbdev-margin-left-fix"> Widget Edit </a>
         </div>
     </div>
+</nav>
+
+<div class="container-fluid wbdev-container-side-space-fix">
+    <div class="row">
+        <div class="col-xs-12">
+            <form action="widget-heading.view.client.html" method="POST">
+                <div class="form-group">
+                    <label for="inputname">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="inputname"
+                           value="Fall color">
+                </div>
+                <div class="form-group">
+                    <label for="inputtext">Text</label>
+                    <input type="text"
+                           id="inputtext"
+                           class="form-control"
+                           value="Fall colors of New Hampshire"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputwidth">Width</label>
+                    <input type="text"
+                           id="inputwidth"
+                           class="form-control"
+                           value="100%"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputimage">Upload</label>
+                    <input type="file"
+                           id="inputimage"
+                           class="form-control"
+                           value="100%"/>
+                </div>
+                <btn class="form-control btn btn-primary">
+                    Upload Image
+                </btn>
+                <a class="form-control btn btn-danger" href="widget-list.view.client.html">
+                    Delete
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.html">
+            <a href="../user/profile.view.client.html">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
