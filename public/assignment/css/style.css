@@ -1,9 +1,4 @@
-/* General styles for bootstrap pages with fixed navbar */
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin-top: 60px;
-    margin-bottom: 50px;
-}
+/* Bootstrap overrides */
 .navbar-default .navbar-brand{
     color:#e5bd1d;
     font-weight: bold;
@@ -17,12 +12,6 @@ body {
     border-width: 0 0 0;
 }
 
-.wbdev-bar-color{
-    /*background-color: #172435;*/
-    background-color: #36465d;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
-}
-
 .navbar-brand{
     font-size: 14px;
 }
@@ -30,6 +19,37 @@ body {
 .glyphicon-ok-sign, .glyphicon-plus-sign, .glyphicon-user, .glyphicon-share-alt{
     color: white;
 }
+
+.btn{
+    border-radius: 0;
+}
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+h3{
+    text-align: center;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+/* My webdev custom styles */
+
+.wbdev-bar-color{
+    /*background-color: #172435;*/
+    background-color: #36465d;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
+}
+
 .wbdev-margin-right-fix{
     /*Apply this to right elements in navbar*/
     /*
@@ -50,11 +70,134 @@ body {
     padding-right: 20px;
     padding-left: 20px;
 }
+.wbdv-left-pane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    overflow: auto;
+}
+.wbdv-right-pane {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-bottom: 52px;
+    margin-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: auto;
+}
+/* Login page styles */
 
-a:hover{
-    text-decoration: none;
+.wbdev-login-container{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Optional */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    /* Optional */
+}
+.wbdev-buttons-style{margin-top: 30px;}
+
+/* Profile page styles */
+.wbdev-profile-container{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+}
+.wbdev-other-links{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
 }
 
-.btn{
-    border-radius: 0;
+.wbdev-other-links a.btn{
+    padding: 20px 25px;
+}
+.wbdev-other-links .col-md-6{
+    padding: 0;
+}
+.wbdev-profile-heading{
+    font-size:26px;
+    color: #000000;
+    padding: 10px;
+    max-width: 600px;
+    margin-bottom: 10px;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+}
+
+/* Registration page styles */
+.wbdev-registration-container{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Optional */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    /* Optional */
+}
+
+/* website-edit styles */
+.wbdev-website-record{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.wbdev-form-padding{
+    padding-top: 10px;
+}
+
+/* page-list, page-new and page-edit styles */
+.wbdev-page-list-record{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* widget-list page styles */
+.wbdev-widget-type-style{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+.wbdev-widget-setings-icons{
+    position: absolute;
+    float: right;
+    right:15px;
+    top: 0;
+}
+.wbdev-cog-style{
+    padding: 5px;
+    background-color: #e5bd1d;
+    color: #FFFFFF;
+}
+.wbdev-hamburger-style{
+    padding: 5px;
+    background-color: #e5bd1d;
+    color: #FFFFFF;
+}
+.wbdev-widget-type-style .thumbnail{
+    padding: 0;
+}
+
+/*widget-chooser page styles */
+.wbdev-widget-chooser-record{
+    padding: 15px;
 }
