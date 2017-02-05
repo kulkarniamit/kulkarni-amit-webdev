@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="#!/profile">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-ok-sign"></span>
             </a>
         </div>
@@ -74,8 +75,9 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="#!/profile">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

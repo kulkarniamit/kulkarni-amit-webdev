@@ -1,13 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="website-new.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToNewWebsite()">
                 <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand"
-               href="../user/profile.view.client.html">
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand wbdev-margin-left-fix">Websites</a>
@@ -50,8 +51,9 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

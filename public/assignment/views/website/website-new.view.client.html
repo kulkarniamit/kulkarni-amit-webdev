@@ -1,143 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Create new website</title>
-    <meta name="description" content="">
-    <meta name="author" content="Amit Kulkarni">
+<nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+                ng-click="model.navigateToNewWebsite()">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+        </div>
+        <a class="navbar-brand"
+           ng-click="model.navigateToWebsites()">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Websites
+            </a>
+        </div>
+    </div>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <!--<link href="../css/bootstrap/css/bootstrap.css" rel="stylesheet"/>-->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-
-    <link href="../css/style.css" rel="stylesheet"/>
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="../css/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="../css/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="../css/favicons/manifest.json">
-    <link rel="mask-icon" href="../css/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
-    <div class="row container-fluid">
-        <div class="col-sm-4 hidden-xs">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="website-new.view.client.html">
-                    <span class="glyphicon glyphicon-plus-sign"></span>
-                </a>
-            </div>
-            <a class="navbar-brand" href="website-list.view.client.html">
+    <div class="col-sm-8">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToWebsites()">
+                <span class="glyphicon glyphicon-ok-sign"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand visible-xs wbdev-margin-left-fix"
+               ng-click="model.navigateToWebsites()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <div class="navbar-header">
-                <a class="navbar-brand">
-                    Websites
-                </a>
-            </div>
+            <a class="navbar-brand wbdev-margin-left-fix">
+                New Website
+            </a>
         </div>
+    </div>
+</div>
+</nav>
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs wbdv-left-pane">
+        <div class="row wbdev-website-record">
+            <a href="../page/page-list.view.client.html"
+               class="col-xs-10">
+                Address book App
+            </a>
+            <a href="website-edit.view.client.html"
+               class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </div>
+        <div class="row wbdev-website-record">
+            <a href="../page/page-list.view.client.html"
+               class="col-xs-10">
+                Blogger
+            </a>
+            <a href="website-edit.view.client.html"
+               class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </div>
+        <div class="row wbdev-website-record">
+            <a href="../page/page-list.view.client.html"
+               class="col-xs-10">
+                Blogger App
+            </a>
+            <a href="website-edit.view.client.html"
+               class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </div>
+        <div class="row wbdev-website-record">
+            <a href="../page/page-list.view.client.html"
+               class="col-xs-10">
+                Script Testing App
+            </a>
+            <a href="website-edit.view.client.html"
+               class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+        </div>
+    </div>
 
-        <div class="col-sm-8">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="website-list.view.client.html">
-                    <span class="glyphicon glyphicon-ok-sign"></span>
-                </a>
+    <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <form action="website-new.view.client.html"
+              class="wbdev-form-padding"
+              method="POST">
+            <div class="form-group">
+                <label for="wname">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="wname"
+                       placeholder="Name of your website">
             </div>
-            <div class="navbar-header">
-                <a class="navbar-brand visible-xs wbdev-margin-left-fix"
-                   href="website-list.view.client.html">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="navbar-brand wbdev-margin-left-fix">
-                    New Website
-                </a>
+            <div class="form-group">
+                <label for="wdesc">Description</label>
+                <textarea rows="4"
+                          class="form-control"
+                          id="wdesc"
+                          placeholder="Description"></textarea>
             </div>
+        </form>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
         </div>
     </div>
 </nav>
-    <div class="row container-fluid">
-        <div class="col-sm-4 hidden-xs wbdv-left-pane">
-            <div class="row wbdev-website-record">
-                <a href="../page/page-list.view.client.html"
-                   class="col-xs-10">
-                    Address book App
-                </a>
-                <a href="website-edit.view.client.html"
-                   class="col-xs-2 text-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-            <div class="row wbdev-website-record">
-                <a href="../page/page-list.view.client.html"
-                   class="col-xs-10">
-                    Blogger
-                </a>
-                <a href="website-edit.view.client.html"
-                   class="col-xs-2 text-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-            <div class="row wbdev-website-record">
-                <a href="../page/page-list.view.client.html"
-                   class="col-xs-10">
-                    Blogger App
-                </a>
-                <a href="website-edit.view.client.html"
-                   class="col-xs-2 text-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-            <div class="row wbdev-website-record">
-                <a href="../page/page-list.view.client.html"
-                   class="col-xs-10">
-                    Script Testing App
-                </a>
-                <a href="website-edit.view.client.html"
-                   class="col-xs-2 text-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-sm-8 col-xs-12 wbdv-right-pane">
-            <form action="website-new.view.client.html"
-                  class="wbdev-form-padding"
-                  method="POST">
-                <div class="form-group">
-                    <label for="wname">Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="wname"
-                           placeholder="Name of your website">
-                </div>
-                <div class="form-group">
-                    <label for="wdesc">Description</label>
-                    <textarea rows="4"
-                              class="form-control"
-                              id="wdesc"
-                              placeholder="Description"></textarea>
-                </div>
-            </form>
-        </div>
-    </div>
-    <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
-        <div class="container-fluid wbdev-container-side-space-fix">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="../user/profile.view.client.html">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-        </div>
-    </nav>
-
-</body>
-</html>

@@ -25,6 +25,8 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.navigateToWebsites = navigateToWebsites;
+        vm.navigateToProfile = navigateToProfile;
+
         function init() {
             vm.user = UserService.findUserById(vm.userId);
             if (vm.user == null){
@@ -35,6 +37,10 @@
 
         function navigateToWebsites() {
             $location.url("/user/"+vm.userId+"/website");
+        }
+
+        function navigateToProfile() {
+            $location.url("/user/"+vm.userId);
         }
     }
     

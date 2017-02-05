@@ -1,12 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="website-new.view.client.html">
+            <div class="pull-right wbdev-margin-right-fix">
+                <a class="navbar-brand"
+                   ng-click="model.navigateToNewWebsite()">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </a>
             </div>
-            <a class="navbar-brand" href="website-list.view.client.html">
+            <a class="navbar-brand"
+               ng-click="model.navigateToWebsites()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <div class="navbar-header">
@@ -16,14 +18,15 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="website-list.view.client.html">
+            <div class="pull-right wbdev-margin-right-fix">
+                <a class="navbar-brand"
+                   ng-click="model.navigateToWebsites()">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand visible-xs wbdev-margin-left-fix"
-                   href="website-list.view.client.html">
+                   ng-click="model.navigateToWebsites()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand wbdev-margin-left-fix">
@@ -116,8 +119,9 @@
                 <span class="glyphicon glyphicon-share-alt"></span>
             </a>
         </div>
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
