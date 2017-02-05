@@ -17,7 +17,6 @@
         init();
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToNewWebsite = navigateToNewWebsite;
-        vm.navigateToWebsites = navigateToWebsites;
         vm.navigateToWebsitePages = navigateToWebsitePages;
         vm.navigateToWebsiteEdit = navigateToWebsiteEdit;
 
@@ -26,9 +25,6 @@
         }
         function navigateToNewWebsite() {
             $location.url("user/"+$routeParams["uid"]+"/website/new");
-        }
-        function navigateToWebsites() {
-            $location.url("user/"+$routeParams["uid"]+"/website");
         }
         function navigateToWebsitePages(wid) {
             $location.url("user/"+$routeParams["uid"]+"/website/"+wid+"/page");

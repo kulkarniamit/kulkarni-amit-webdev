@@ -5,8 +5,38 @@
         .controller("NewPageController", NewPageController)
         .controller("EditPageController", EditPageController);
 
-    function PageListController() {
-        
+    function PageListController($routeParams, $location, PageService) {
+        var vm = this;
+        vm.websiteId = $routeParams["wid"];
+        function init(){
+            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            if(vm.pages.length == 0){
+                vm.error = "No pages created yet";
+            }
+        }
+        init();
+
+        vm.navigateToProfile = navigateToProfile;
+        vm.navigateToNewPage = navigateToNewPage;
+        vm.navigateToWebsites = navigateToWebsites;
+        vm.navigateToPageWidgets = navigateToPageWidgets;
+        vm.navigateToPageEdit = navigateToPageEdit;
+
+        function navigateToProfile() {
+            $location.url("user/"+$routeParams["uid"]);
+        }
+        function navigateToNewPage() {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/new");
+        }
+        function navigateToWebsites() {
+            $location.url("user/"+$routeParams["uid"]+"/website/");
+        }
+        function navigateToPageWidgets(pid) {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid+"/widget");
+        }
+        function navigateToPageEdit(pid) {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
+        }
     }
     
     function NewPageController() {

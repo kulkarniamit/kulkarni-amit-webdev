@@ -1,13 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="page-new.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToNewPage()">
                 <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand"
-               href="../website/website-list.view.client.html">
+               ng-click="model.navigateToWebsites()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand wbdev-margin-left-fix">Pages</a>
@@ -15,61 +16,74 @@
     </div>
 </nav>
 <div class="container-fluid wbdev-container-side-space-fix">
-    <div class="row wbdev-page-list-record">
-        <a href="../widget/widget-list.view.client.html"
+    <div ng-show="model.error" class="alert alert-warning text-center" role="alert"> {{model.error}}</div>
+    <div class="row wbdev-page-list-record"
+         ng-repeat="page in model.pages">
+        <a ng-click="model.navigateToPageWidgets(page._id)"
            class="col-xs-10">
-            Blog post
+            {{page.name}}
         </a>
-        <a href="page-edit.view.client.html"
+        <a ng-click="model.navigateToPageEdit(page._id)"
            class="col-xs-2 text-right">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
     </div>
-    <div class="row wbdev-page-list-record">
-        <a href="../widget/widget-list.view.client.html"
-           class="col-xs-10">
-            Blogs
-        </a>
-        <a href="page-edit.view.client.html"
-           class="col-xs-2 text-right">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-    </div>
-    <div class="row wbdev-page-list-record">
-        <a href="../widget/widget-list.view.client.html"
-           class="col-xs-10">
-            Home
-        </a>
-        <a href="page-edit.view.client.html"
-           class="col-xs-2 text-right">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-    </div>
-    <div class="row wbdev-page-list-record">
-        <a href="../widget/widget-list.view.client.html"
-           class="col-xs-10">
-            About
-        </a>
-        <a href="page-edit.view.client.html"
-           class="col-xs-2 text-right">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-    </div>
-    <div class="row wbdev-page-list-record">
-        <a href="../widget/widget-list.view.client.html"
-           class="col-xs-10">
-            Contact us
-        </a>
-        <a href="page-edit.view.client.html"
-           class="col-xs-2 text-right">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-    </div>
+    <!--<div class="row wbdev-page-list-record">-->
+        <!--<a href="../widget/widget-list.view.client.html"-->
+           <!--class="col-xs-10">-->
+            <!--Blog post-->
+        <!--</a>-->
+        <!--<a href="page-edit.view.client.html"-->
+           <!--class="col-xs-2 text-right">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-page-list-record">-->
+        <!--<a href="../widget/widget-list.view.client.html"-->
+           <!--class="col-xs-10">-->
+            <!--Blogs-->
+        <!--</a>-->
+        <!--<a href="page-edit.view.client.html"-->
+           <!--class="col-xs-2 text-right">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-page-list-record">-->
+        <!--<a href="../widget/widget-list.view.client.html"-->
+           <!--class="col-xs-10">-->
+            <!--Home-->
+        <!--</a>-->
+        <!--<a href="page-edit.view.client.html"-->
+           <!--class="col-xs-2 text-right">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-page-list-record">-->
+        <!--<a href="../widget/widget-list.view.client.html"-->
+           <!--class="col-xs-10">-->
+            <!--About-->
+        <!--</a>-->
+        <!--<a href="page-edit.view.client.html"-->
+           <!--class="col-xs-2 text-right">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-page-list-record">-->
+        <!--<a href="../widget/widget-list.view.client.html"-->
+           <!--class="col-xs-10">-->
+            <!--Contact us-->
+        <!--</a>-->
+        <!--<a href="page-edit.view.client.html"-->
+           <!--class="col-xs-2 text-right">-->
+            <!--<span class="glyphicon glyphicon-cog"></span>-->
+        <!--</a>-->
+    <!--</div>-->
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
