@@ -1,12 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="page-new.view.client.html">
+            <div class="pull-right wbdev-margin-right-fix">
+                <a class="navbar-brand"
+                   ng-click="model.navigateToNewPage()">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </a>
             </div>
-            <a class="navbar-brand" href="page-list.view.client.html">
+            <a class="navbar-brand"
+               ng-click="model.navigateToPages()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <div class="navbar-header">
@@ -17,8 +19,9 @@
         </div>
 
         <div class="col-sm-8">
-            <div class="navbar-brand pull-right wbdev-margin-right-fix">
-                <a href="page-list.view.client.html">
+            <div class="pull-right wbdev-margin-right-fix">
+                <a class="navbar-brand"
+                   ng-click="model.navigateToPages()">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -36,46 +39,59 @@
 </nav>
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
-        <div class="row wbdev-page-list-record">
-            <a href="page-list.view.client.html" class="col-xs-10">
-                Blog post
+        <div ng-show="model.error" class="alert alert-warning text-center" role="alert"> {{model.error}}</div>
+        <div class="row wbdev-page-list-record"
+             ng-repeat="page in model.pages">
+            <a ng-click="model.navigateToPageWidgets(page._id)"
+               class="col-xs-10">
+                {{page.name}}
             </a>
-            <a href="page-edit.view.client.html" class="col-xs-2 text-right">
+            <a ng-click="model.navigateToPageEdit(page._id)"
+               class="col-xs-2 text-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-        <div class="row wbdev-page-list-record">
-            <a href="page-list.view.client.html" class="col-xs-10">
-                Blogs
-            </a>
-            <a href="page-edit.view.client.html" class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class="row wbdev-page-list-record">
-            <a href="page-list.view.client.html" class="col-xs-10">
-                Home
-            </a>
-            <a href="page-edit.view.client.html" class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class="row wbdev-page-list-record">
-            <a href="page-list.view.client.html" class="col-xs-10">
-                About
-            </a>
-            <a href="page-edit.view.client.html" class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class="row wbdev-page-list-record">
-            <a href="page-list.view.client.html" class="col-xs-10">
-                Contact us
-            </a>
-            <a href="page-edit.view.client.html" class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
+
+        <!--<div class="row wbdev-page-list-record">-->
+            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
+                <!--Blog post-->
+            <!--</a>-->
+            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-page-list-record">-->
+            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
+                <!--Blogs-->
+            <!--</a>-->
+            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-page-list-record">-->
+            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
+                <!--Home-->
+            <!--</a>-->
+            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-page-list-record">-->
+            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
+                <!--About-->
+            <!--</a>-->
+            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-page-list-record">-->
+            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
+                <!--Contact us-->
+            <!--</a>-->
+            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
     </div>
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
         <form action="page-new.view.client.html"
@@ -94,8 +110,9 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

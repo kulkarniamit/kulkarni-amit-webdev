@@ -38,46 +38,59 @@
 </nav>
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
-        <div class="row wbdev-website-record">
-            <a href="../page/page-list.view.client.html"
+        <div ng-show="model.error" class="alert alert-warning text-center" role="alert"> {{model.error}}</div>
+        <div class="row wbdev-website-record"
+             ng-repeat="website in model.websites">
+            <a ng-click="model.navigateToWebsitePages(website._id)"
                class="col-xs-10">
-                Address book App
+                {{website.name}}
             </a>
-            <a href="website-edit.view.client.html"
+            <a ng-click="model.navigateToWebsiteEdit(website._id)"
                class="col-xs-2 text-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-        <div class="row wbdev-website-record">
-            <a href="../page/page-list.view.client.html"
-               class="col-xs-10">
-                Blogger
-            </a>
-            <a href="website-edit.view.client.html"
-               class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class="row wbdev-website-record">
-            <a href="../page/page-list.view.client.html"
-               class="col-xs-10">
-                Blogger App
-            </a>
-            <a href="website-edit.view.client.html"
-               class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
-        <div class="row wbdev-website-record">
-            <a href="../page/page-list.view.client.html"
-               class="col-xs-10">
-                Script Testing App
-            </a>
-            <a href="website-edit.view.client.html"
-               class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </div>
+
+        <!--<div class="row wbdev-website-record">-->
+            <!--<a href="../page/page-list.view.client.html"-->
+               <!--class="col-xs-10">-->
+                <!--Address book App-->
+            <!--</a>-->
+            <!--<a href="website-edit.view.client.html"-->
+               <!--class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-website-record">-->
+            <!--<a href="../page/page-list.view.client.html"-->
+               <!--class="col-xs-10">-->
+                <!--Blogger-->
+            <!--</a>-->
+            <!--<a href="website-edit.view.client.html"-->
+               <!--class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-website-record">-->
+            <!--<a href="../page/page-list.view.client.html"-->
+               <!--class="col-xs-10">-->
+                <!--Blogger App-->
+            <!--</a>-->
+            <!--<a href="website-edit.view.client.html"-->
+               <!--class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="row wbdev-website-record">-->
+            <!--<a href="../page/page-list.view.client.html"-->
+               <!--class="col-xs-10">-->
+                <!--Script Testing App-->
+            <!--</a>-->
+            <!--<a href="website-edit.view.client.html"-->
+               <!--class="col-xs-2 text-right">-->
+                <!--<span class="glyphicon glyphicon-cog"></span>-->
+            <!--</a>-->
+        <!--</div>-->
     </div>
 
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">

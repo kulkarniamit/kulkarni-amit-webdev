@@ -39,19 +39,76 @@
         }
     }
     
-    function NewPageController() {
-        
+    function NewPageController($routeParams, $location, PageService) {
+        var vm = this;
+        vm.websiteId = $routeParams["wid"];
+        function init(){
+            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            if(vm.pages.length == 0){
+                vm.error = "No pages created yet";
+            }
+        }
+        init();
+
+        vm.navigateToProfile = navigateToProfile;
+        vm.navigateToNewPage = navigateToNewPage;
+        vm.navigateToPages = navigateToPages;
+        vm.navigateToPageWidgets = navigateToPageWidgets;
+        vm.navigateToPageEdit = navigateToPageEdit;
+
+        function navigateToProfile() {
+            $location.url("user/"+$routeParams["uid"]);
+        }
+        function navigateToNewPage() {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/new");
+        }
+        function navigateToPages() {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
+        }
+        function navigateToPageWidgets(pid) {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid+"/widget");
+        }
+        function navigateToPageEdit(pid) {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
+        }
+
     }
     
     function EditPageController($routeParams, PageService, $location) {
         var vm = this;
         vm.pageId = $routeParams["pid"];
+        vm.websiteId = $routeParams["wid"];
         function init() {
             vm.page = PageService.findPageById(vm.pageId);
             if (vm.page == null){
                 $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
             }
+            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            if(vm.pages.length == 0){
+                vm.error = "No pages created yet";
+            }
         }
         init();
+        vm.navigateToProfile = navigateToProfile;
+        vm.navigateToNewPage = navigateToNewPage;
+        vm.navigateToPages = navigateToPages;
+        vm.navigateToPageWidgets = navigateToPageWidgets;
+        vm.navigateToPageEdit = navigateToPageEdit;
+        function navigateToProfile() {
+            $location.url("user/"+$routeParams["uid"]);
+        }
+        function navigateToNewPage() {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/new");
+        }
+        function navigateToPages() {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
+        }
+        function navigateToPageWidgets(pid) {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid+"/widget");
+        }
+        function navigateToPageEdit(pid) {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
+        }
+
     }
 })();
