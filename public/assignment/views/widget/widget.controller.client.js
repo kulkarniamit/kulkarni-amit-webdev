@@ -50,7 +50,7 @@
 
     }
     
-    function NewWidgetController($routeParams, $location) {
+    function NewWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToWidgets = navigateToWidgets;

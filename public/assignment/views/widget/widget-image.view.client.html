@@ -1,11 +1,11 @@
 <form action="widget-heading.view.client.html" method="POST">
-    <div class="form-group">
-        <label for="inputname">Name</label>
-        <input type="text"
-               class="form-control"
-               id="inputname"
-               value="Fall color">
-    </div>
+    <!--<div class="form-group">-->
+        <!--<label for="inputname">Name</label>-->
+        <!--<input type="text"-->
+               <!--class="form-control"-->
+               <!--id="inputname"-->
+               <!--value="Fall color">-->
+    <!--</div>-->
     <div class="form-group">
         <label for="inputtext">Text</label>
         <input type="text"
@@ -18,14 +18,14 @@
         <input type="text"
                id="inputwidth"
                class="form-control"
-               value="100%"/>
+               value="{{model.widget.width}}"/>
     </div>
     <div class="form-group">
         <label for="inputimage">Upload</label>
         <input type="file"
                id="inputimage"
                class="form-control"
-               value="100%"/>
+               value="{{model.widget.url}}"/>
     </div>
     <btn class="form-control btn btn-primary">
         Upload Image
