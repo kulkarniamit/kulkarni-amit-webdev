@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="navbar-header">
-            <a class="navbar-brand" href="widget-list.view.client.html">
+            <a class="navbar-brand"
+               ng-click="model.navigateToWidgets()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand wbdev-margin-left-fix">Choose Widget</a>
@@ -12,7 +13,7 @@
 <div class="container-fluid wbdev-container-side-space-fix">
     <div class="row">
         <div class="col-xs-12 wbdev-widget-chooser-record">
-            <a href="widget-heading.view.client.html">
+            <a ng-click="model.navigateToEditWidget(widget._id)">
                 Header 1
             </a>
         </div>
@@ -72,8 +73,9 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

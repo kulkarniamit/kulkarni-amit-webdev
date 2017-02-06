@@ -50,8 +50,16 @@
 
     }
     
-    function NewWidgetController() {
-        
+    function NewWidgetController($routeParams, $location) {
+        var vm = this;
+        vm.navigateToProfile = navigateToProfile;
+        vm.navigateToWidgets = navigateToWidgets;
+        function navigateToProfile() {
+            $location.url("user/"+$routeParams["uid"]);
+        }
+        function navigateToWidgets() {
+            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+$routeParams["pid"]+"/widget");
+        }
     }
     
     function EditWidgetController($routeParams, $location, WidgetService) {
