@@ -71,7 +71,6 @@
         function navigateToPageEdit(pid) {
             $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
         }
-
     }
     
     function EditPageController($routeParams, PageService, $location) {
@@ -109,6 +108,5 @@
         function navigateToPageEdit(pid) {
             $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
         }
-
     }
 })();

@@ -1,12 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="widget-chooser.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToNewWidget()">
                 <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="../page/page-list.view.client.html">
+            <a class="navbar-brand"
+               ng-click="model.navigateToPages()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand wbdev-margin-left-fix">Widgets</a>
@@ -15,77 +17,134 @@
 </nav>
 
 <div class="container-fluid wbdev-container-side-space-fix">
-    <div class="row wbdev-widget-type-style">
+    <div class="row wbdev-widget-type-style"
+         ng-repeat="widget in model.widgets">
         <div class="col-xs-12">
-            <h1>Heading 1</h1>
-            <div class="wbdev-widget-setings-icons">
-                <a href="widget-heading.view.client.html">
-                    <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
-                </a>
-                <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+            <div ng-switch="widget.widgetType">
+                <div ng-switch-when="HEADER">
+                    <div ng-switch="widget.size">
+                        <h1 ng-switch-when="1">{{widget.text}}</h1>
+                        <h2 ng-switch-when="2">{{widget.text}}</h2>
+                        <h3 ng-switch-when="3">{{widget.text}}</h3>
+                        <h4 ng-switch-when="4">{{widget.text}}</h4>
+                        <h5 ng-switch-when="5">{{widget.text}}</h5>
+                        <h6 ng-switch-when="6">{{widget.text}}</h6>
+                    </div>
+                    <div class="wbdev-widget-setings-icons">
+                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <iframe width="100%"
+                            height="300"
+                            ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}">
+                    </iframe>
+                    <div class="wbdev-widget-setings-icons">
+                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <a class="thumbnail">
+                        <img src="{{widget.url}}"
+                             alt="Fall colors">
+                    </a>
+                    <div class="wbdev-widget-setings-icons">
+                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
+                </div>
+                <div ng-switch-when="HTML">
+                    <div ng-bind-html="model.checkSafeHtml(widget.text)"></div>
+                    <div class="wbdev-widget-setings-icons">
+                        <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="row wbdev-widget-type-style">
-        <div class="col-xs-12">
-            <h4>Heading 4</h4>
-            <div class="wbdev-widget-setings-icons">
-                <a href="widget-heading.view.client.html">
-                    <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
-                </a>
-                <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row wbdev-widget-type-style">
-        <div class="col-xs-12">
-            <iframe width="100%"
-                    height="300"
-                    src="https://www.youtube.com/embed/vlDzYIIOYmM">
-            </iframe>
-            <div class="wbdev-widget-setings-icons">
-                <a href="widget-youtube.view.client.html">
-                    <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
-                </a>
-                <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row wbdev-widget-type-style">
-        <div class="col-xs-12">
-            <a href="#" class="thumbnail">
-                <img src="https://s-media-cache-ak0.pinimg.com/originals/a2/2a/0a/a22a0a7e624943303b23cc326598c167.jpg"
-                     alt="Fall colors">
-            </a>
-            <div class="wbdev-widget-setings-icons">
-                <a href="widget-image.view.client.html">
-                    <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
-                </a>
-                <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row wbdev-widget-type-style">
-        <div class="col-xs-12">
-            <p>
-                <b>Paragraph widget</b><br/>
-                Lorem ipsum dolor sit amet, homero omnium probatus id sed, et per quod tantas labore.
-                Eam no brute apeirian phaedrum, te zril expetendis usu. At solum tempor mel, ad qui vide eius semper,
-                corpora nostrum an qui. Id nam dicam labores suscipit, ne mei justo explicari.
-                Cum tation impedit no, eu doctus senserit qui.
-            </p>
-            <div class="wbdev-widget-setings-icons">
-                <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
-                <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
-            </div>
-        </div>
-    </div>
+
+    <!--<div class="row wbdev-widget-type-style">-->
+        <!--<div class="col-xs-12">-->
+            <!--<h1>Heading 1</h1>-->
+            <!--<div class="wbdev-widget-setings-icons">-->
+                <!--<a href="widget-heading.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog wbdev-cog-style"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-widget-type-style">-->
+        <!--<div class="col-xs-12">-->
+            <!--<h4>Heading 4</h4>-->
+            <!--<div class="wbdev-widget-setings-icons">-->
+                <!--<a href="widget-heading.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog wbdev-cog-style"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-widget-type-style">-->
+        <!--<div class="col-xs-12">-->
+            <!--<iframe width="100%"-->
+                    <!--height="300"-->
+                    <!--src="https://www.youtube.com/embed/vlDzYIIOYmM">-->
+            <!--</iframe>-->
+            <!--<div class="wbdev-widget-setings-icons">-->
+                <!--<a href="widget-youtube.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog wbdev-cog-style"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-widget-type-style">-->
+        <!--<div class="col-xs-12">-->
+            <!--<a href="#" class="thumbnail">-->
+                <!--<img src="https://s-media-cache-ak0.pinimg.com/originals/a2/2a/0a/a22a0a7e624943303b23cc326598c167.jpg"-->
+                     <!--alt="Fall colors">-->
+            <!--</a>-->
+            <!--<div class="wbdev-widget-setings-icons">-->
+                <!--<a href="widget-image.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog wbdev-cog-style"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row wbdev-widget-type-style">-->
+        <!--<div class="col-xs-12">-->
+            <!--<p>-->
+                <!--<b>Paragraph widget</b><br/>-->
+                <!--Lorem ipsum dolor sit amet, homero omnium probatus id sed, et per quod tantas labore.-->
+                <!--Eam no brute apeirian phaedrum, te zril expetendis usu. At solum tempor mel, ad qui vide eius semper,-->
+                <!--corpora nostrum an qui. Id nam dicam labores suscipit, ne mei justo explicari.-->
+                <!--Cum tation impedit no, eu doctus senserit qui.-->
+            <!--</p>-->
+            <!--<div class="wbdev-widget-setings-icons">-->
+                <!--<span class="glyphicon glyphicon-cog wbdev-cog-style"></span>-->
+                <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.navigateToProfile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

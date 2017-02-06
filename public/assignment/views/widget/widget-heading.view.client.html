@@ -1,94 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Widget Heading Edit</title>
-    <meta name="description" content="">
-    <meta name="author" content="Amit Kulkarni">
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <!--<link href="../css/bootstrap/css/bootstrap.css" rel="stylesheet"/>-->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-
-    <link href="../css/style.css" rel="stylesheet"/>
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../css/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="../css/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="../css/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="../css/favicons/manifest.json">
-    <link rel="mask-icon" href="../css/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
-</head>
-
-<body>
-<nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
-    <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="widget-list.view.client.html">
-                <span class="glyphicon glyphicon-ok-sign"></span>
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand"
-               href="widget-list.view.client.html">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="navbar-brand wbdev-margin-left-fix"> Widget Edit </a>
-        </div>
+<form action="widget-heading.view.client.html"
+      method="POST">
+    <div class="form-group">
+        <label for="inputname">Name</label>
+        <input type="text"
+               class="form-control"
+               id="inputname"
+               placeholder="">
     </div>
-</nav>
-
-<div class="container-fluid wbdev-container-side-space-fix">
-    <div class="row">
-        <div class="col-xs-12">
-            <form action="widget-heading.view.client.html"
-                  method="POST">
-                <div class="form-group">
-                    <label for="inputname">Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="inputname"
-                           placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="inputtext">Text</label>
-                    <input type="text"
-                           id="inputtext"
-                           class="form-control"
-                           value="US Senate reaches compromise on Russia"/>
-                </div>
-                <div class="form-group">
-                    <label for="inputsize">Size</label>
-                    <input type="text"
-                           id="inputsize"
-                           class="form-control"
-                           value="3"/>
-                </div>
-                <a class="form-control btn btn-danger"
-                   href="widget-list.view.client.html">
-                    Delete
-                </a>
-            </form>
-        </div>
+    <div class="form-group">
+        <label for="inputtext">Text</label>
+        <input type="text"
+               id="inputtext"
+               class="form-control"
+               value="US Senate reaches compromise on Russia"/>
     </div>
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom wbdev-bar-color">
-    <div class="container-fluid wbdev-container-side-space-fix">
-        <div class="navbar-brand pull-right wbdev-margin-right-fix">
-            <a href="../user/profile.view.client.html">
-                <span class="glyphicon glyphicon-user"></span>
-            </a>
-        </div>
+    <div class="form-group">
+        <label for="inputsize">Size</label>
+        <input type="text"
+               id="inputsize"
+               class="form-control"
+               value="3"/>
     </div>
-</nav>
-
-</body>
-</html>
+    <a class="form-control btn btn-danger"
+       href="widget-list.view.client.html">
+        Delete
+    </a>
+</form>
