@@ -21,7 +21,7 @@
         <div class="col-sm-8">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
-                   ng-click="model.navigateToPages()">
+                   ng-click="model.addNewPage(page)">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -52,58 +52,27 @@
             </a>
         </div>
 
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Blog post-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Blogs-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Home-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--About-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Contact us-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
     </div>
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <div ng-show="model.blankerror" class="alert alert-danger text-center" role="alert"> {{model.blankerror}}</div>
         <form action="page-new.view.client.html"
               method="POST"
               class="wbdev-form-padding">
             <div class="form-group">
                 <label for="pname">Name</label>
-                <input type="text" class="form-control" id="pname" placeholder="Page Name">
+                <input type="text"
+                       class="form-control"
+                       id="pname"
+                       placeholder="Page Name"
+                       ng-model="page.name">
             </div>
             <div class="form-group">
-                <label for="ptitle">Title</label>
-                <textarea rows="4" class="form-control" id="ptitle" placeholder="Page Title"></textarea>
+                <label for="pdesc">Description</label>
+                <input type="text"
+                       class="form-control"
+                       id="pdesc"
+                       placeholder="Page Description"
+                       ng-model="page.description"></textarea>
             </div>
         </form>
     </div>

@@ -50,12 +50,27 @@
         }
         init();
 
+        vm.addNewPage = addNewPage;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToNewPage = navigateToNewPage;
         vm.navigateToPages = navigateToPages;
         vm.navigateToPageWidgets = navigateToPageWidgets;
         vm.navigateToPageEdit = navigateToPageEdit;
 
+        function addNewPage(newPage) {
+            if(newPage == null || newPage.name == "" || newPage.description == ""){
+                vm.blankerror = "Please enter the page name and description";
+                return;
+            }
+            var page = PageService.createPage(vm.websiteId,newPage);
+            if(page == null){
+                vm.error = "Could not create page, try again after some time";
+                return;
+            }
+            else{
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            }
+        }
         function navigateToProfile() {
             $location.url("user/"+$routeParams["uid"]);
         }

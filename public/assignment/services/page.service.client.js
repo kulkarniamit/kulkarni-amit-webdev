@@ -21,7 +21,15 @@
         };
 
         return api;
-        function createPage() {}
+        function createPage(wid, newPage) {
+            var pid = (parseInt(pages[pages.length -1]._id) + 1).toString();
+            var page = {_id: pid,
+                name: newPage.name,
+                websiteId: wid,
+                description: newPage.description};
+            pages.push(page);
+            return angular.copy(page);
+        }
         function findPagesByWebsiteId(wid) {
             var pagesList = [];
             for(var i = 0; i< pages.length;i++){

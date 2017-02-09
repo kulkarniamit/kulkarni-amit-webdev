@@ -61,7 +61,6 @@
             }
             return null;
         }
-
         function deleteWebsite(wid) {
             for(var i in websites) {
                 var website = websites[i];
