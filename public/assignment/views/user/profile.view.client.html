@@ -13,9 +13,16 @@
 </nav>
 <div class="container-fluid">
     <div class="row wbdev-profile-heading text-center">
-        Welcome {{model.user.firstName}}
+        Welcome {{model.firstName}}
     </div>
     <div class="wbdev-profile-container">
+        <div class="alert alert-success" ng-show="model.message">
+            {{model.message}}
+        </div>
+        <div class="alert alert-danger" ng-show="model.error">
+            {{model.error}}
+        </div>
+
         <form action="profile.view.client.html"
               method="POST">
             <div class="form-group">
@@ -24,8 +31,7 @@
                        class="form-control"
                        id="username"
                        placeholder="Username"
-                       ng-model="model.user.username"
-                       value="joe">
+                       ng-model="model.user.username">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -33,8 +39,7 @@
                        class="form-control"
                        id="email"
                        placeholder="username@domain.com"
-                       ng-model="model.user.email"
-                       value="joe@gmail.com">
+                       ng-model="model.user.email">
             </div>
             <div class="form-group">
                 <label for="first-name">First Name</label>
@@ -42,8 +47,7 @@
                        class="form-control"
                        id="first-name"
                        placeholder="First name"
-                       ng-model="model.user.firstName"
-                       value="Joe">
+                       ng-model="model.user.firstName">
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
@@ -51,13 +55,13 @@
                        class="form-control"
                        id="last-name"
                        placeholder="Last name"
-                       ng-model="model.user.lastName"
-                       value="Tribbiani">
+                       ng-model="model.user.lastName">
             </div>
-            <div class="hidden-xs">
-                <input type="submit"
-                       class="form-control btn btn-success"
-                       value="Update">
+            <div class="">
+                <a ng-click="model.updateUser(model.user)"
+                   class="btn btn-success btn-block">
+                    Update
+                </a>
             </div>
         </form>
     </div>

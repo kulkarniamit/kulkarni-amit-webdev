@@ -26,11 +26,17 @@
         vm.userId = $routeParams["uid"];
         vm.navigateToWebsites = navigateToWebsites;
         vm.navigateToProfile = navigateToProfile;
+        vm.updateUser = updateUser;
+
+        // vm.user = UserService.findUserById(vm.userId);
 
         function init() {
             vm.user = UserService.findUserById(vm.userId);
             if (vm.user == null){
                 $location.url("/login");
+            }
+            else{
+                vm.firstName = angular.copy(vm.user.firstName);
             }
         }
         init();
@@ -38,9 +44,18 @@
         function navigateToWebsites() {
             $location.url("/user/"+vm.userId+"/website");
         }
-
         function navigateToProfile() {
             $location.url("/user/"+vm.userId);
+        }
+
+        function updateUser(newUser) {
+            var user = UserService.updateUser(vm.userId, newUser);
+            vm.firstName = user.firstName;
+            if(user == null) {
+                vm.error = "Unable to update user";
+            } else {
+                vm.message = "User successfully updated"
+            }
         }
     }
     

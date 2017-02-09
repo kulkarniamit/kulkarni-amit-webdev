@@ -33,10 +33,10 @@
             return angular.copy(newUser);
         }
         function findUserById(userid) {
-            for(var i = 0; i< users.length;i++){
-                if(users[i]._id === userid){
-                    var user = angular.copy(users[i]);
-                    return user;
+            for(var u in users) {
+                var user = users[u];
+                if( user._id === userid ) {
+                    return angular.copy(user);
                 }
             }
             return null;
@@ -44,12 +44,11 @@
         function findUserByUsername(usernamesent) {
             for(var i = 0; i< users.length;i++){
                 if(users[i].username === usernamesent){
-                    return users[i];
+                    return angular.copy(users[i]);
                 }
             }
             return null;
         }
-
         function findUserByCredentials(username, password) {
             for(var i = 0; i < users.length; i++){
                 if(users[i].username === username && users[i].password === password){
@@ -58,7 +57,18 @@
             }
             return null;
         }
-        function updateUser() {}
+        function updateUser(userId, newUser) {
+            for(var u in users) {
+                var user = users[u];
+                if( user._id === userId ) {
+                    users[u].firstName = newUser.firstName;
+                    users[u].lastName = newUser.lastName;
+                    users[u].email = newUser.email;
+                    return angular.copy(user);
+                }
+            }
+            return null;
+        }
         function deleteUser() {}
     }
 })();
