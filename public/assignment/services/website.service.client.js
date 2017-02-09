@@ -27,7 +27,7 @@
             var websitesList = [];
             for(var i = 0; i< websites.length;i++){
                 if(websites[i].developerId === uid){
-                    var website = JSON.parse(JSON.stringify(websites[i]));
+                    var website = angular.copy(websites[i]);
                     websitesList.push(website);
                 }
             }
@@ -36,7 +36,7 @@
         function findWebsitesById(wid) {
             for(var i = 0; i< websites.length;i++){
                 if(websites[i]._id === wid){
-                    var website = JSON.parse(JSON.stringify(websites[i]));
+                    var website = angular.copy(websites[i]);
                     return website;
                 }
             }

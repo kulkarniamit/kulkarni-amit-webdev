@@ -29,7 +29,7 @@
             var widgetsList = [];
             for(var i = 0; i< widgets.length;i++){
                 if(widgets[i].pageId === pid){
-                    var widget = JSON.parse(JSON.stringify(widgets[i]));
+                    var widget = angular.copy(widgets[i]);
                     widgetsList.push(widget);
                 }
             }
@@ -38,7 +38,7 @@
         function findWidgetById(widgetId) {
             for(var i = 0; i< widgets.length;i++){
                 if(widgets[i]._id === widgetId){
-                    var widget = JSON.parse(JSON.stringify(widgets[i]));
+                    var widget = angular.copy(widgets[i]);
                     return widget;
                 }
             }

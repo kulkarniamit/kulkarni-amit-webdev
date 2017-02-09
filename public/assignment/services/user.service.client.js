@@ -22,12 +22,20 @@
 
         return api;
         function createUser(user) {
-            
+            var userId = users[users.length -1]._id + 1;
+            var newUser = {_id: userId,
+                            username: user.username,
+                            password: user.password,
+                            email: user.email,
+                            firstName: user.firstname,
+                            lastName: user.lastname};
+            users.push(newUser);
+            return angular.copy(newUser);
         }
         function findUserById(userid) {
             for(var i = 0; i< users.length;i++){
                 if(users[i]._id === userid){
-                    var user = JSON.parse(JSON.stringify(users[i]));
+                    var user = angular.copy(users[i]);
                     return user;
                 }
             }

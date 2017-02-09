@@ -26,7 +26,7 @@
             var pagesList = [];
             for(var i = 0; i< pages.length;i++){
                 if(pages[i].websiteId === wid){
-                    var page = JSON.parse(JSON.stringify(pages[i]));
+                    var page = angular.copy(pages[i]);
                     pagesList.push(page);
                 }
             }
@@ -35,7 +35,7 @@
         function findPageById(pid) {
             for(var i = 0; i< pages.length;i++){
                 if(pages[i]._id === pid){
-                    var page = JSON.parse(JSON.stringify(pages[i]));
+                    var page = angular.copy(pages[i]);
                     return page;
                 }
             }
