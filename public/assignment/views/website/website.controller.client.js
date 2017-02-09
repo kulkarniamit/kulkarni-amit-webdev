@@ -87,6 +87,7 @@
         vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
         vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToNewWebsite = navigateToNewWebsite;
         vm.navigateToWebsites = navigateToWebsites;
@@ -117,7 +118,16 @@
             else {
                 $location.url("user/"+vm.userId+"/website")
             }
-
+        }
+        function deleteWebsite() {
+            var result = WebsiteService.deleteWebsite(vm.websiteId);
+            if(result == null){
+                vm.deleteError = "Website could not be deleted, please try again";
+                return;
+            }
+            else{
+                $location.url("/user/"+vm.userId+"/website");
+            }
         }
         function navigateToProfile() {
             $location.url("user/"+$routeParams["uid"]);

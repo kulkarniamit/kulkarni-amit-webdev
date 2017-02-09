@@ -62,6 +62,15 @@
             return null;
         }
 
-        function deleteWebsite() {}
+        function deleteWebsite(wid) {
+            for(var i in websites) {
+                var website = websites[i];
+                if( website._id === wid ) {
+                    websites.splice(i,1);
+                    return 1;
+                }
+            }
+            return null;
+        }
     }
 })();
