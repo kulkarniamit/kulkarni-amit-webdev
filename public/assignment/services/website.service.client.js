@@ -22,7 +22,15 @@
         };
 
         return api;
-        function createWebsite(userId, website) {}
+        function createWebsite(userId, website) {
+            var wid = (parseInt(websites[websites.length -1]._id) + 1).toString();
+            var newWebsite = {_id: wid,
+                name: website.name,
+                developerId: userId,
+                description: website.description};
+            websites.push(newWebsite);
+            return angular.copy(newWebsite);
+        }
         function findWebsitesByUser(uid) {
             var websitesList = [];
             for(var i = 0; i< websites.length;i++){

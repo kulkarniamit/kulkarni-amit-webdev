@@ -21,7 +21,8 @@
     <div class="col-sm-8">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               ng-click="model.navigateToWebsites()">
+               ng-click="model.addNewWebsite(website)">
+               <!--ng-click="model.navigateToWebsites()">-->
                 <span class="glyphicon glyphicon-ok-sign"></span>
             </a>
         </div>
@@ -62,6 +63,7 @@
                 <input type="text"
                        class="form-control"
                        id="wname"
+                       ng-model="website.name"
                        placeholder="Name of your website">
             </div>
             <div class="form-group">
@@ -69,6 +71,7 @@
                 <textarea rows="4"
                           class="form-control"
                           id="wdesc"
+                          ng-model="website.description"
                           placeholder="Description"></textarea>
             </div>
         </form>
