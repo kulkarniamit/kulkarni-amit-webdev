@@ -50,7 +50,18 @@
             }
             return null;
         }
-        function updateWebsite() {}
+        function updateWebsite(wid, updatedWebsite) {
+            for(var i in websites) {
+                var website = websites[i];
+                if( website._id === wid ) {
+                    websites[i].name = updatedWebsite.name;
+                    websites[i].description = updatedWebsite.description;
+                    return angular.copy(website);
+                }
+            }
+            return null;
+        }
+
         function deleteWebsite() {}
     }
 })();

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
-    <div class="row container-fluid">
+    <div class="row container-fluid wbdev-container-side-space-fix">
         <div class="col-sm-4 hidden-xs">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
@@ -20,7 +20,7 @@
         <div class="col-sm-8">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
-                   ng-click="model.navigateToWebsites()">
+                   ng-click="model.updateWebsite(model.website)">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -50,50 +50,11 @@
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-
-        <!--<div class="row wbdev-website-record">-->
-            <!--<a href="../page/page-list.view.client.html"-->
-               <!--class="col-xs-10">-->
-                <!--Address book App-->
-            <!--</a>-->
-            <!--<a href="website-edit.view.client.html"-->
-               <!--class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-website-record">-->
-            <!--<a href="../page/page-list.view.client.html"-->
-               <!--class="col-xs-10">-->
-                <!--Blogger-->
-            <!--</a>-->
-            <!--<a href="website-edit.view.client.html"-->
-               <!--class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-website-record">-->
-            <!--<a href="../page/page-list.view.client.html"-->
-               <!--class="col-xs-10">-->
-                <!--Blogger App-->
-            <!--</a>-->
-            <!--<a href="website-edit.view.client.html"-->
-               <!--class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-website-record">-->
-            <!--<a href="../page/page-list.view.client.html"-->
-               <!--class="col-xs-10">-->
-                <!--Script Testing App-->
-            <!--</a>-->
-            <!--<a href="website-edit.view.client.html"-->
-               <!--class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
     </div>
 
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <div ng-show="model.error" class="alert alert-danger text-center" role="alert"> {{model.error}}</div>
+        <div ng-show="model.blankerror" class="alert alert-danger text-center" role="alert"> {{model.blankerror}}</div>
         <form action="website-new.view.client.html"
               class="wbdev-form-padding"
               method="POST">
@@ -112,7 +73,7 @@
                           class="form-control"
                           id="wdesc"
                           ng-model="model.website.description"
-                          placeholder="Description">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters
+                          placeholder="Description">
                         </textarea>
             </div>
             <a class="form-control btn btn-danger"

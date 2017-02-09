@@ -52,6 +52,10 @@
         vm.navigateToWebsiteEdit = navigateToWebsiteEdit;
 
         function addNewWebsite(website) {
+            if(website == null || website.name == "" || website.description == ""){
+                vm.blankerror = "Please enter the website name and description";
+                return;
+            }
             var website = WebsiteService.createWebsite(vm.userId,website);
             if(website == null){
                 vm.error = "Could not create website, try again after some time";
@@ -82,6 +86,7 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
+        vm.updateWebsite = updateWebsite;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToNewWebsite = navigateToNewWebsite;
         vm.navigateToWebsites = navigateToWebsites;
@@ -99,6 +104,21 @@
             }
         }
         init();
+
+        function updateWebsite(website) {
+            if(website == null || website.name == "" || website.description == ""){
+                vm.blankerror = "Name or description cannot be empty";
+                return;
+            }
+            var website = WebsiteService.updateWebsite(vm.websiteId, website);
+            if(website == null){
+                vm.error = "Update failed, please try again later";
+            }
+            else {
+                $location.url("user/"+vm.userId+"/website")
+            }
+
+        }
         function navigateToProfile() {
             $location.url("user/"+$routeParams["uid"]);
         }

@@ -22,7 +22,7 @@
 
         return api;
         function createUser(user) {
-            var userId = users[users.length -1]._id + 1;
+            var userId = (parseInt(users[users.length -1]._id) + 1).toString();
             var newUser = {_id: userId,
                             username: user.username,
                             password: user.password,

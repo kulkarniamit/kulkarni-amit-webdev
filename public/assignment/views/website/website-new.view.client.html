@@ -1,42 +1,40 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
-<div class="row container-fluid">
-    <div class="col-sm-4 hidden-xs">
-        <div class="pull-right wbdev-margin-right-fix">
+    <div class="row container-fluid wbdev-container-side-space-fix">
+        <div class="col-sm-4 hidden-xs">
+            <div class="pull-right wbdev-margin-right-fix">
+                <a class="navbar-brand"
+                    ng-click="model.navigateToNewWebsite()">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </a>
+            </div>
             <a class="navbar-brand"
-                ng-click="model.navigateToNewWebsite()">
-                <span class="glyphicon glyphicon-plus-sign"></span>
-            </a>
-        </div>
-        <a class="navbar-brand"
-           ng-click="model.navigateToWebsites()">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <div class="navbar-header">
-            <a class="navbar-brand">
-                Websites
-            </a>
-        </div>
-    </div>
-
-    <div class="col-sm-8">
-        <div class="pull-right wbdev-margin-right-fix">
-            <a class="navbar-brand"
-               ng-click="model.addNewWebsite(website)">
-               <!--ng-click="model.navigateToWebsites()">-->
-                <span class="glyphicon glyphicon-ok-sign"></span>
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand visible-xs wbdev-margin-left-fix"
                ng-click="model.navigateToWebsites()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="navbar-brand wbdev-margin-left-fix">
-                New Website
-            </a>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Websites
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="pull-right wbdev-margin-right-fix">
+                <a class="navbar-brand"
+                   ng-click="model.addNewWebsite(website)">
+                    <span class="glyphicon glyphicon-ok-sign"></span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand visible-xs wbdev-margin-left-fix"
+                   ng-click="model.navigateToWebsites()">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand wbdev-margin-left-fix">
+                    New Website
+                </a>
+            </div>
         </div>
     </div>
-</div>
 </nav>
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
@@ -55,6 +53,7 @@
     </div>
 
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <div ng-show="model.blankerror" class="alert alert-danger text-center" role="alert"> {{model.blankerror}}</div>
         <form action="website-new.view.client.html"
               class="wbdev-form-padding"
               method="POST">
