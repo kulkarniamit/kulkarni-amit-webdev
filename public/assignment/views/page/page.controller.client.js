@@ -41,6 +41,7 @@
     
     function NewPageController($routeParams, $location, PageService) {
         var vm = this;
+        vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
         function init(){
             vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
@@ -90,6 +91,7 @@
     
     function EditPageController($routeParams, PageService, $location) {
         var vm = this;
+        vm.userId = $routeParams["uid"];
         vm.pageId = $routeParams["pid"];
         vm.websiteId = $routeParams["wid"];
         function init() {
@@ -103,11 +105,40 @@
             }
         }
         init();
+
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToNewPage = navigateToNewPage;
         vm.navigateToPages = navigateToPages;
         vm.navigateToPageWidgets = navigateToPageWidgets;
         vm.navigateToPageEdit = navigateToPageEdit;
+
+
+        function updatePage(page) {
+            if(page == null || page.name == "" || page.description == ""){
+                vm.blankerror = "Name or description cannot be empty";
+                return;
+            }
+            var page = PageService.updatePage(vm.pageId, page);
+            if(page == null){
+                vm.error = "Update failed, please try again later";
+            }
+            else {
+                $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            }
+        }
+        function deletePage() {
+            var result = PageService.deletePage(vm.pageId);
+            if(result == null){
+                vm.deleteError = "Page could not be deleted, please try again";
+                return;
+            }
+            else{
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            }
+        }
+
         function navigateToProfile() {
             $location.url("user/"+$routeParams["uid"]);
         }

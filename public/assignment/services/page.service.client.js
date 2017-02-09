@@ -49,7 +49,26 @@
             }
             return null;
         }
-        function updatePage() {}
-        function deletePage() {}
+        function updatePage(pid, updatedPage) {
+            for(var i in pages) {
+                var page = pages[i];
+                if( page._id === pid) {
+                    pages[i].name = updatedPage.name;
+                    pages[i].description = updatedPage.description;
+                    return angular.copy(page);
+                }
+            }
+            return null;
+        }
+        function deletePage(pid) {
+            for(var i in pages) {
+                var page = pages[i];
+                if( page._id === pid) {
+                    pages.splice(i,1);
+                    return 1;
+                }
+            }
+            return null;
+        }
     }
 })();

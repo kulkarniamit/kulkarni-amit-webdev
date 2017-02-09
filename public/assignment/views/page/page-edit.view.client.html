@@ -20,7 +20,7 @@
         <div class="col-sm-8">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
-                   ng-click="model.navigateToPages()">
+                   ng-click="model.updatePage(model.page)">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -50,49 +50,12 @@
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </div>
-
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Blog post-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Blogs-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Home-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--About-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
-        <!--<div class="row wbdev-page-list-record">-->
-            <!--<a href="page-list.view.client.html" class="col-xs-10">-->
-                <!--Contact us-->
-            <!--</a>-->
-            <!--<a href="page-edit.view.client.html" class="col-xs-2 text-right">-->
-                <!--<span class="glyphicon glyphicon-cog"></span>-->
-            <!--</a>-->
-        <!--</div>-->
     </div>
+
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <div ng-show="model.error" class="alert alert-danger text-center" role="alert"> {{model.error}}</div>
+        <div ng-show="model.blankerror" class="alert alert-danger text-center" role="alert"> {{model.blankerror}}</div>
+        <div ng-show="model.deleteError" class="alert alert-danger text-center" role="alert"> {{model.deleteError}}</div>
         <form action="page-edit.view.client.html" method="POST">
             <div class="form-group">
                 <label for="pname">Name</label>
@@ -112,7 +75,8 @@
                        ng-model="model.page.description"
                        value="Some page title">
             </div>
-            <a class="form-control btn btn-danger" href="page-list.view.client.html">
+            <a class="form-control btn btn-danger"
+               ng-click="model.deletePage()">
                 Delete
             </a>
         </form>
