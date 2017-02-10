@@ -73,7 +73,16 @@
             }
             return null;
         }
-        function updateWidget() {}
+        function updateWidget(wgid, updatedWidget) {
+            for(var i in widgets) {
+                var widget = widgets[i];
+                if( widget._id === wgid) {
+                    widgets[i] = updatedWidget;
+                    return angular.copy(widget);
+                }
+            }
+            return null;
+        }
         function deleteWidget() {}
     }
 })();

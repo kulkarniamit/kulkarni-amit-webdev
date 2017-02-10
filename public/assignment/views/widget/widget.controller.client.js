@@ -110,9 +110,20 @@
             vm.widget = WidgetService.findWidgetById(vm.wgid);
         }
         init();
-
+        vm.updateWidget = updateWidget;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToWidgets = navigateToWidgets;
+
+        function updateWidget(updatedWidget) {
+            var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);
+            if(updatedWidgetObject == null){
+                vm.updateerror = "Could not update the widget!";
+                return;
+            }
+            else{
+                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+            }
+        }
         function navigateToProfile() {
             $location.url("user/"+vm.uid);
         }
