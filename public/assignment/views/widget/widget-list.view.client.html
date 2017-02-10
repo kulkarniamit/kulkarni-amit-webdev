@@ -37,8 +37,9 @@
                         <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
                     </div>
                 </div>
-                <div ng-switch-when="YOUTUBE">
-                    <iframe width="100%"
+                <div ng-switch-when="YOUTUBE"
+                     class="text-center">
+                    <iframe width="{{widget.width}}"
                             height="300"
                             ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}">
                     </iframe>
@@ -52,7 +53,8 @@
                 <div ng-switch-when="IMAGE">
                     <a class="thumbnail">
                         <img src="{{widget.url}}"
-                             alt="Fall colors">
+                             width="{{widget.width}}"
+                             alt="Picture">
                     </a>
                     <div class="wbdev-widget-setings-icons">
                         <a ng-click="model.navigateToEditWidget(widget._id)">
