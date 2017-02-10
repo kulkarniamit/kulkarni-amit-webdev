@@ -35,10 +35,6 @@ a:hover{
     text-decoration: none;
 }
 
-h3{
-    text-align: center;
-}
-
 body {
     font-family: 'Open Sans', sans-serif;
     margin-top: 60px;
@@ -115,6 +111,9 @@ a{
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
     /* Optional */
 }
+.wbdev-login-container h3{
+    text-align: center;
+}
 .wbdev-buttons-style{margin-top: 30px;}
 
 /* Profile page styles */
@@ -124,6 +123,9 @@ a{
     margin-right: auto;
     padding: 20px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+}
+.wbdev-registration-container h3{
+    text-align: center;
 }
 .wbdev-other-links{
     margin-top: 20px;

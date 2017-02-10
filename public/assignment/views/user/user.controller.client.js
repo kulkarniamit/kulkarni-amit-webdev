@@ -64,6 +64,10 @@
         vm.register = register;
 
         function register(user) {
+            if(user.username == null || user.email == null){
+                vm.registrationerror = "Username and Email are required to create an account";
+                return;
+            }
             var userInDB = UserService.findUserByUsername(user.username);
             if(userInDB != null){
                 vm.registrationerror = "Username taken, please try another username";

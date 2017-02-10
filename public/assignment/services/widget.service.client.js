@@ -83,6 +83,15 @@
             }
             return null;
         }
-        function deleteWidget() {}
+        function deleteWidget(wgid) {
+            for(var i in widgets) {
+                var widget = widgets[i];
+                if( widget._id === wgid ) {
+                    widgets.splice(i,1);
+                    return 1;
+                }
+            }
+            return null;
+        }
     }
 })();

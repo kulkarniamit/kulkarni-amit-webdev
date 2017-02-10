@@ -111,6 +111,7 @@
         }
         init();
         vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToWidgets = navigateToWidgets;
 
@@ -118,6 +119,17 @@
             var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);
             if(updatedWidgetObject == null){
                 vm.updateerror = "Could not update the widget!";
+                return;
+            }
+            else{
+                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+            }
+        }
+
+        function deleteWidget(wgid) {
+            var deleteResult = WidgetService.deleteWidget(wgid);
+            if(deleteResult == null){
+                vm.deleteerror = "Could not delete the widget!";
                 return;
             }
             else{
