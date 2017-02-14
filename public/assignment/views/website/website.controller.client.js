@@ -5,7 +5,7 @@
         .controller("NewWebsiteController", NewWebsiteController)
         .controller("EditWebsiteController", EditWebsiteController);
 
-    function WebsiteListController($routeParams, $location, WebsiteService) {
+    function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         function init(){
@@ -15,23 +15,6 @@
             }
         }
         init();
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToNewWebsite = navigateToNewWebsite;
-        vm.navigateToWebsitePages = navigateToWebsitePages;
-        vm.navigateToWebsiteEdit = navigateToWebsiteEdit;
-
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToNewWebsite() {
-            $location.url("user/"+$routeParams["uid"]+"/website/new");
-        }
-        function navigateToWebsitePages(wid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+wid+"/page");
-        }
-        function navigateToWebsiteEdit(wid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+wid);
-        }
     }
     
     function NewWebsiteController($routeParams, $location, WebsiteService) {
@@ -45,12 +28,6 @@
         }
         init();
         vm.addNewWebsite = addNewWebsite;
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToNewWebsite = navigateToNewWebsite;
-        vm.navigateToWebsites = navigateToWebsites;
-        vm.navigateToWebsitePages = navigateToWebsitePages;
-        vm.navigateToWebsiteEdit = navigateToWebsiteEdit;
-
         function addNewWebsite(website) {
             if(website == null || website.name == "" || website.description == ""){
                 vm.blankerror = "Please enter the website name and description";
@@ -65,21 +42,6 @@
                 $location.url("/user/"+vm.userId+"/website");
             }
         }
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToNewWebsite() {
-            $location.url("user/"+$routeParams["uid"]+"/website/new");
-        }
-        function navigateToWebsites() {
-            $location.url("user/"+$routeParams["uid"]+"/website");
-        }
-        function navigateToWebsitePages(wid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+wid+"/page");
-        }
-        function navigateToWebsiteEdit(wid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+wid);
-        }
     }
     
     function EditWebsiteController($routeParams, $location, WebsiteService) {
@@ -88,11 +50,7 @@
         vm.websiteId = $routeParams["wid"];
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToNewWebsite = navigateToNewWebsite;
-        vm.navigateToWebsites = navigateToWebsites;
-        vm.navigateToWebsitePages = navigateToWebsitePages;
-        vm.navigateToWebsiteEdit = navigateToWebsiteEdit;
+
         function init() {
             vm.website = WebsiteService.findWebsitesById(vm.websiteId);
             if (vm.website == null){
@@ -128,21 +86,6 @@
             else{
                 $location.url("/user/"+vm.userId+"/website");
             }
-        }
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToNewWebsite() {
-            $location.url("user/"+$routeParams["uid"]+"/website/new");
-        }
-        function navigateToWebsites() {
-            $location.url("user/"+$routeParams["uid"]+"/website");
-        }
-        function navigateToWebsitePages(wid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+wid+"/page");
-        }
-        function navigateToWebsiteEdit(wid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+wid);
         }
     }
 })();

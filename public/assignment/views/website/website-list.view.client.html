@@ -2,13 +2,13 @@
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               ng-click="model.navigateToNewWebsite()">
+               href="#!/user/{{model.userId}}/website/new">
                 <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand"
-               ng-click="model.navigateToProfile()">
+               href="#!/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand wbdev-margin-left-fix">Websites</a>
@@ -19,11 +19,11 @@
     <div ng-show="model.error" class="alert alert-warning text-center" role="alert"> {{model.error}}</div>
     <div class="row wbdev-website-record"
          ng-repeat="website in model.websites">
-        <a ng-click="model.navigateToWebsitePages(website._id)"
+        <a href="#!/user/{{model.userId}}/website/{{website._id}}/page"
            class="col-xs-10">
             {{website.name}}
         </a>
-        <a ng-click="model.navigateToWebsiteEdit(website._id)"
+        <a href="#!/user/{{model.userId}}/website/{{website._id}}"
            class="col-xs-2 text-right">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
@@ -33,7 +33,7 @@
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               ng-click="model.navigateToProfile()">
+               href="#!/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

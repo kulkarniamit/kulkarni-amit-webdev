@@ -16,15 +16,16 @@
         Welcome {{model.firstName}}
     </div>
     <div class="wbdev-profile-container">
-        <div class="alert alert-success" ng-show="model.message">
+        <div class="alert alert-success"
+             ng-show="model.message">
             {{model.message}}
         </div>
-        <div class="alert alert-danger" ng-show="model.error">
+        <div class="alert alert-danger"
+             ng-show="model.error">
             {{model.error}}
         </div>
 
-        <form action="profile.view.client.html"
-              method="POST">
+        <form method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text"

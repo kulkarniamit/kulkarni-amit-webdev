@@ -9,8 +9,12 @@
     <div class="row wbdev-registration-container">
         <div class="col-xs-12">
             <h3>Register</h3>
-            <div ng-show="model.registrationerror" class="alert alert-danger text-center" role="alert"> {{model.registrationerror}}</div>
-            <div ng-show="model.passwordmismatch" class="alert alert-danger text-center" role="alert"> {{model.passwordmismatch}}</div>
+            <div ng-show="model.registrationerror"
+                 class="alert alert-danger text-center"
+                 role="alert"> {{model.registrationerror}}</div>
+            <div ng-show="model.passwordmismatch"
+                 class="alert alert-danger text-center"
+                 role="alert"> {{model.passwordmismatch}}</div>
             <form action="#!/register"
                   method="POST">
                 <div>
