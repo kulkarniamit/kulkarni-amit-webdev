@@ -7,7 +7,12 @@
 
     function WidgetListController($routeParams, $location, WidgetService, $sce) {
         var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.websiteId = $routeParams["wid"];
         vm.pageId = $routeParams["pid"];
+        vm.checkSafeHtml = checkSafeHtml;
+        vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
+
         function init(){
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
             if(vm.widgets.length == 0){
@@ -16,25 +21,6 @@
         }
         init();
 
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToPages = navigateToPages;
-        vm.navigateToNewWidget = navigateToNewWidget;
-        vm.navigateToEditWidget = navigateToEditWidget;
-        vm.checkSafeHtml = checkSafeHtml;
-        vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
-
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToPages() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
-        }
-        function navigateToNewWidget() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+$routeParams["pid"]+"/widget/new");
-        }
-        function navigateToEditWidget(wgid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+$routeParams["pid"]+"/widget/"+wgid);
-        }
         function checkSafeHtml(html) {
             return $sce.trustAsHtml(html);
         }
@@ -46,8 +32,6 @@
             console.log(url);
             return $sce.trustAsResourceUrl(url);
         }
-
-
     }
     
     function NewWidgetController($routeParams, $location, WidgetService) {
@@ -56,19 +40,10 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
 
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToWidgets = navigateToWidgets;
         vm.createHeaderWidget = createHeaderWidget;
         vm.createHTMLWidget = createHTMLWidget;
         vm.createImageWidget = createImageWidget;
         vm.createYoutubeWidget = createYoutubeWidget;
-
-        function navigateToProfile() {
-            $location.url("user/"+vm.uid);
-        }
-        function navigateToWidgets() {
-            $location.url("user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-        }
 
         function createHeaderWidget(headerSize) {
             var widget = {type: "HEADER",
@@ -79,7 +54,6 @@
                 $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
             }
         }
-
         function createHTMLWidget() {
             var widget = {type: "HTML",
                           text: "Sample <i>HTML</i> text"};
@@ -88,7 +62,6 @@
                 $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
             }
         }
-
         function createImageWidget() {
             var widget = {type: "IMAGE",
                 width: "100%",
@@ -118,8 +91,6 @@
 
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToWidgets = navigateToWidgets;
 
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.wgid);
@@ -136,7 +107,6 @@
                 $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
             }
         }
-
         function deleteWidget(wgid) {
             var deleteResult = WidgetService.deleteWidget(wgid);
             if(deleteResult == null){
@@ -146,12 +116,6 @@
             else{
                 $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
             }
-        }
-        function navigateToProfile() {
-            $location.url("user/"+vm.uid);
-        }
-        function navigateToWidgets() {
-            $location.url("user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
         }
     }
 })();

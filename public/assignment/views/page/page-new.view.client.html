@@ -39,7 +39,11 @@
 </nav>
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
-        <div ng-show="model.error" class="alert alert-warning text-center" role="alert"> {{model.error}}</div>
+        <div ng-show="model.error"
+             class="alert alert-warning text-center"
+             role="alert">
+            {{model.error}}
+        </div>
         <div class="row wbdev-page-list-record"
              ng-repeat="page in model.pages">
             <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"

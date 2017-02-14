@@ -2,13 +2,13 @@
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               ng-click="model.navigateToNewWidget()">
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus-sign"></span>
             </a>
         </div>
         <div class="navbar-header">
             <a class="navbar-brand"
-               ng-click="model.navigateToPages()">
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand wbdev-margin-left-fix">Widgets</a>
@@ -31,7 +31,7 @@
                         <h6 ng-switch-when="6">{{widget.text}}</h6>
                     </div>
                     <div class="wbdev-widget-setings-icons">
-                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                             <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
                         </a>
                         <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
@@ -44,7 +44,7 @@
                             ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}">
                     </iframe>
                     <div class="wbdev-widget-setings-icons">
-                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                             <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
                         </a>
                         <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
@@ -57,7 +57,7 @@
                              alt="Picture">
                     </a>
                     <div class="wbdev-widget-setings-icons">
-                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                             <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
                         </a>
                         <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
@@ -66,7 +66,7 @@
                 <div ng-switch-when="HTML">
                     <div ng-bind-html="model.checkSafeHtml(widget.text)"></div>
                     <div class="wbdev-widget-setings-icons">
-                        <a ng-click="model.navigateToEditWidget(widget._id)">
+                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                             <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
                         </a>
                         <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>

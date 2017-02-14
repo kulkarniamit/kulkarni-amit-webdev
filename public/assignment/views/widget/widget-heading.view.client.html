@@ -1,6 +1,9 @@
-<form action="widget-heading.view.client.html"
-      method="POST">
-    <div ng-show="model.updateerror" class="alert alert-warning text-center" role="alert"> {{model.updateerror}}</div>
+<form method="POST">
+    <div ng-show="model.updateerror"
+         class="alert alert-warning text-center"
+         role="alert">
+        {{model.updateerror}}
+    </div>
     <div class="form-group">
         <label for="inputname">Name</label>
         <input type="text"
