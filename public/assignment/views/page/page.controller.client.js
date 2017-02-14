@@ -5,8 +5,9 @@
         .controller("NewPageController", NewPageController)
         .controller("EditPageController", EditPageController);
 
-    function PageListController($routeParams, $location, PageService) {
+    function PageListController($routeParams, PageService) {
         var vm = this;
+        vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
         function init(){
             vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
@@ -15,28 +16,6 @@
             }
         }
         init();
-
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToNewPage = navigateToNewPage;
-        vm.navigateToWebsites = navigateToWebsites;
-        vm.navigateToPageWidgets = navigateToPageWidgets;
-        vm.navigateToPageEdit = navigateToPageEdit;
-
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToNewPage() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/new");
-        }
-        function navigateToWebsites() {
-            $location.url("user/"+$routeParams["uid"]+"/website/");
-        }
-        function navigateToPageWidgets(pid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid+"/widget");
-        }
-        function navigateToPageEdit(pid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
-        }
     }
     
     function NewPageController($routeParams, $location, PageService) {
@@ -52,12 +31,6 @@
         init();
 
         vm.addNewPage = addNewPage;
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToNewPage = navigateToNewPage;
-        vm.navigateToPages = navigateToPages;
-        vm.navigateToPageWidgets = navigateToPageWidgets;
-        vm.navigateToPageEdit = navigateToPageEdit;
-
         function addNewPage(newPage) {
             if(newPage == null || newPage.name == "" || newPage.description == ""){
                 vm.blankerror = "Please enter the page name and description";
@@ -72,21 +45,6 @@
                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
             }
         }
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToNewPage() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/new");
-        }
-        function navigateToPages() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
-        }
-        function navigateToPageWidgets(pid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid+"/widget");
-        }
-        function navigateToPageEdit(pid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
-        }
     }
     
     function EditPageController($routeParams, PageService, $location) {
@@ -97,7 +55,7 @@
         function init() {
             vm.page = PageService.findPageById(vm.pageId);
             if (vm.page == null){
-                $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
+                $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
             }
             vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
             if(vm.pages.length == 0){
@@ -108,12 +66,6 @@
 
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
-        vm.navigateToProfile = navigateToProfile;
-        vm.navigateToNewPage = navigateToNewPage;
-        vm.navigateToPages = navigateToPages;
-        vm.navigateToPageWidgets = navigateToPageWidgets;
-        vm.navigateToPageEdit = navigateToPageEdit;
-
 
         function updatePage(page) {
             if(page == null || page.name == "" || page.description == ""){
@@ -137,22 +89,6 @@
             else{
                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
             }
-        }
-
-        function navigateToProfile() {
-            $location.url("user/"+$routeParams["uid"]);
-        }
-        function navigateToNewPage() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/new");
-        }
-        function navigateToPages() {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page");
-        }
-        function navigateToPageWidgets(pid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid+"/widget");
-        }
-        function navigateToPageEdit(pid) {
-            $location.url("user/"+$routeParams["uid"]+"/website/"+$routeParams["wid"]+"/page/"+pid);
         }
     }
 })();

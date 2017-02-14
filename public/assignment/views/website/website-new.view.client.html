@@ -38,7 +38,9 @@
 </nav>
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
-        <div ng-show="model.error" class="alert alert-warning text-center" role="alert"> {{model.error}}</div>
+        <div ng-show="model.error"
+             class="alert alert-warning text-center"
+             role="alert"> {{model.error}}</div>
         <div class="row wbdev-website-record"
              ng-repeat="website in model.websites">
             <a href="#!/user/{{model.userId}}/website/{{website._id}}/page"
