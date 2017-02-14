@@ -59,6 +59,7 @@
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToWidgets = navigateToWidgets;
         vm.createHeaderWidget = createHeaderWidget;
+        vm.createHTMLWidget = createHTMLWidget;
         vm.createImageWidget = createImageWidget;
         vm.createYoutubeWidget = createYoutubeWidget;
 
@@ -73,6 +74,15 @@
             var widget = {type: "HEADER",
                           size: headerSize,
                           text: "Sample Heading "+headerSize}
+            var newWidget = WidgetService.createWidget(vm.pid, widget);
+            if(newWidget != null){
+                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            }
+        }
+
+        function createHTMLWidget() {
+            var widget = {type: "HTML",
+                          text: "Sample <i>HTML</i> text"};
             var newWidget = WidgetService.createWidget(vm.pid, widget);
             if(newWidget != null){
                 $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
@@ -106,14 +116,15 @@
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
 
-        function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgid);
-        }
-        init();
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
         vm.navigateToProfile = navigateToProfile;
         vm.navigateToWidgets = navigateToWidgets;
+
+        function init() {
+            vm.widget = WidgetService.findWidgetById(vm.wgid);
+        }
+        init();
 
         function updateWidget(updatedWidget) {
             var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);

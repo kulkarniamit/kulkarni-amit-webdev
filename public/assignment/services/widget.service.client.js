@@ -35,6 +35,12 @@
                                     size: widget.size,
                                     text: widget.text};
                     break;
+                case "HTML":
+                    newWidget = {   _id: wgid,
+                                    widgetType: widget.type,
+                                    pageId: pageId,
+                                    text: widget.text};
+                    break;
                 case "IMAGE":
                     newWidget = {   _id: wgid,
                                     widgetType: widget.type,
