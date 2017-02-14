@@ -52,6 +52,10 @@ a{
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
 }
 
+.wbdev-empty-form-margin{
+    margin-top: 10px;
+}
+
 .wbdev-margin-right-fix{
     /*Apply this to right elements in navbar*/
     /*

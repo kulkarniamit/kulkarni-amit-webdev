@@ -40,7 +40,7 @@
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
         <div ng-show="model.error"
-             class="alert alert-warning text-center"
+             class="alert alert-warning text-center wbdev-empty-form-margin"
              role="alert">
             {{model.error}}
         </div>
@@ -59,7 +59,7 @@
     </div>
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
         <div ng-show="model.blankerror"
-             class="alert alert-danger text-center"
+             class="alert alert-danger text-center wbdev-form-padding"
              role="alert"> {{model.blankerror}}
         </div>
         <form method="POST"
