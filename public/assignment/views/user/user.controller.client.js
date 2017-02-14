@@ -24,12 +24,8 @@
     function ProfileController($routeParams, UserService, $location) {
         var vm = this;
         vm.userId = $routeParams["uid"];
-        vm.navigateToWebsites = navigateToWebsites;
-        vm.navigateToProfile = navigateToProfile;
         vm.updateUser = updateUser;
-
-        // vm.user = UserService.findUserById(vm.userId);
-
+        vm.deleteUser = deleteUser;
         function init() {
             vm.user = UserService.findUserById(vm.userId);
             if (vm.user == null){
@@ -41,13 +37,6 @@
         }
         init();
 
-        function navigateToWebsites() {
-            $location.url("/user/"+vm.userId+"/website");
-        }
-        function navigateToProfile() {
-            $location.url("/user/"+vm.userId);
-        }
-
         function updateUser(newUser) {
             var user = UserService.updateUser(vm.userId, newUser);
             vm.firstName = user.firstName;
@@ -55,6 +44,17 @@
                 vm.error = "Unable to update user";
             } else {
                 vm.message = "User successfully updated"
+            }
+        }
+
+        function deleteUser(userToDelete) {
+            var result = UserService.deleteUserById(userToDelete._id);
+            if (result == null){
+                vm.error = "User not found";
+            }
+            else{
+                $location.url("/login");
+                return;
             }
         }
     }
