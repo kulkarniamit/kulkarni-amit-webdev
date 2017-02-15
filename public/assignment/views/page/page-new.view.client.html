@@ -3,12 +3,12 @@
         <div class="col-sm-4 hidden-xs">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
-                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+                   href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </a>
             </div>
             <a class="navbar-brand"
-               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <div class="navbar-header">
@@ -27,7 +27,7 @@
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand visible-xs wbdev-margin-left-fix"
-                   href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                   href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
                 <a class="navbar-brand wbdev-margin-left-fix">
@@ -46,11 +46,11 @@
         </div>
         <div class="row wbdev-page-list-record"
              ng-repeat="page in model.pages">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"
                class="col-xs-10">
                 {{page.name}}
             </a>
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}"
                class="col-xs-2 text-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
@@ -87,7 +87,7 @@
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               href="#!/user/{{model.userId}}">
+               href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

@@ -15,7 +15,7 @@
             <div ng-show="model.passwordmismatch"
                  class="alert alert-danger text-center"
                  role="alert"> {{model.passwordmismatch}}</div>
-            <form action="#!/register"
+            <form action="#/register"
                   method="POST">
                 <div>
                     <div class="form-group">
@@ -72,7 +72,7 @@
                        ng-click="model.register(model.user)">
                         Register</a>
                     <a class="btn btn-danger  btn-block"
-                       href="#!/login">Cancel</a>
+                       href="#/login">Cancel</a>
                 </div>
             </form>
         </div>
