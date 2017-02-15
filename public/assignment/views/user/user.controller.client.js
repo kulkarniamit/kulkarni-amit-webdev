@@ -38,6 +38,12 @@
         init();
 
         function updateUser(newUser) {
+            vm.blankerror = null;
+            vm.error = null;
+            if(newUser.email == "" || newUser.firstName == ""||newUser.lastName == ""){
+                vm.blankerror = "Please provide values for all fields to update";
+                return;
+            }
             var user = UserService.updateUser(vm.userId, newUser);
             vm.firstName = user.firstName;
             if(user == null) {
