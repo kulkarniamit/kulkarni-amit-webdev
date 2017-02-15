@@ -56,6 +56,10 @@ a{
     margin-top: 10px;
 }
 
+.wbdev-btn-margin-bottom{
+    margin-bottom: 5px;
+}
+
 .wbdev-margin-right-fix{
     /*Apply this to right elements in navbar*/
     /*

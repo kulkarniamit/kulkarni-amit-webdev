@@ -18,11 +18,15 @@
                class="form-control"
                ng-model="model.widget.url"/>
     </div>
-    <btn class="form-control btn btn-primary">
-        Upload Image
-    </btn>
-    <a class="form-control btn btn-danger"
-       ng-click="model.deleteWidget(model.widget._id)">
-        Delete
-    </a>
+    <div class="form-group wbdev-btn-margin-bottom">
+        <btn class="btn btn-primary btn-block">
+            Upload Image
+        </btn>
+    </div>
+    <div class="form-group">
+        <a class="btn btn-danger btn-block"
+           ng-click="model.deleteWidget(model.widget._id)">
+            Delete
+        </a>
+    </div>
 </form>
