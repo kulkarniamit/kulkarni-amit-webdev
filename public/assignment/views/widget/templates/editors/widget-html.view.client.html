@@ -6,11 +6,9 @@
     </div>
     <div class="form-group">
         <label for="inputname">Text</label>
-        <input type="text"
-               class="form-control"
-               id="inputname"
-               ng-model="model.widget.text"
-               placeholder="">
+        <textarea class="form-control"
+                  id="inputname"
+                  ng-model="model.widget.text"></textarea>
     </div>
     <a class="form-control btn btn-danger"
        ng-click="model.deleteWidget(model.widget._id)">
