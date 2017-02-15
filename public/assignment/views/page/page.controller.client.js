@@ -32,7 +32,7 @@
 
         vm.addNewPage = addNewPage;
         function addNewPage(newPage) {
-            if(newPage == null || newPage.name == "" || newPage.description == ""){
+            if(newPage == null || newPage.name == null || newPage.name == "" || newPage.description == ""){
                 vm.blankerror = "Please enter the page name and description";
                 return;
             }
@@ -68,7 +68,7 @@
         vm.deletePage = deletePage;
 
         function updatePage(page) {
-            if(page == null || page.name == "" || page.description == ""){
+            if(page == null || page.name == null || page.name == "" || page.description == ""){
                 vm.blankerror = "Name or description cannot be empty";
                 return;
             }

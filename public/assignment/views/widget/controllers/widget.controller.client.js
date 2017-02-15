@@ -89,6 +89,7 @@
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
 
+        vm.hasEmptyProperties = hasEmptyProperties;
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
 
@@ -97,7 +98,23 @@
         }
         init();
 
+        // Helper function to check if any object attribute is empty
+        // Need not be exposed using vm
+        function hasEmptyProperties(target) {
+            for (var member in target) {
+                if (target[member] == "")
+                    return true;
+            }
+            return false;
+        }
+
         function updateWidget(updatedWidget) {
+            vm.updateerror = null;
+            if(vm.hasEmptyProperties(updatedWidget)){
+                // User did not set required fields
+                vm.updateerror = "Could not update the widget!";
+                return;
+            }
             var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);
             if(updatedWidgetObject == null){
                 vm.updateerror = "Could not update the widget!";

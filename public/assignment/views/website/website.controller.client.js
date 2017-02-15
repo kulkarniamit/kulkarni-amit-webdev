@@ -29,7 +29,7 @@
         init();
         vm.addNewWebsite = addNewWebsite;
         function addNewWebsite(website) {
-            if(website == null || website.name == "" || website.description == ""){
+            if(website == null || website.name == null || website.name == "" || website.description == ""){
                 vm.blankerror = "Please enter the website name and description";
                 return;
             }
@@ -65,7 +65,7 @@
         init();
 
         function updateWebsite(website) {
-            if(website == null || website.name == "" || website.description == ""){
+            if(website == null || website.name == null || website.name == "" || website.description == ""){
                 vm.blankerror = "Name or description cannot be empty";
                 return;
             }
