@@ -47,7 +47,7 @@
 
         function createHeaderWidget(headerSize) {
             var widget = {type: "HEADER",
-                          size: headerSize,
+                          size: headerSize.toString(),
                           text: "Sample Heading "+headerSize}
             var newWidget = WidgetService.createWidget(vm.pid, widget);
             if(newWidget != null){

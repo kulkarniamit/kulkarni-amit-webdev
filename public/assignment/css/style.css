@@ -44,6 +44,11 @@ body {
 a{
     cursor: pointer;
 }
+
+a.thumbnail:hover, .thumbnail{
+    border: 0;
+}
+
 /* My webdev custom styles */
 
 .wbdev-bar-color{
