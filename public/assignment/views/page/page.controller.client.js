@@ -10,10 +10,17 @@
         vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
         function init(){
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            if(vm.pages.length == 0){
-                vm.error = "No pages created yet";
-            }
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .success(function (response) {
+                    vm.pages = response;
+                    if(vm.pages.length == 0){
+                        vm.error = "No pages created yet";
+                    }
+                });
+            // if(vm.pages.length == 0){
+            //     vm.error = "No pages created yet";
+            // }
         }
         init();
     }
@@ -22,28 +29,44 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
+        vm.addNewPage = addNewPage;
         function init(){
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            if(vm.pages.length == 0){
-                vm.error = "No pages created yet";
-            }
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .success(function (response) {
+                    vm.pages = response;
+                    if(vm.pages.length == 0){
+                        vm.error = "No pages created yet";
+                    }
+                });
+            // if(vm.pages.length == 0){
+            //     vm.error = "No pages created yet";
+            // }
         }
         init();
 
-        vm.addNewPage = addNewPage;
         function addNewPage(newPage) {
             if(newPage == null || newPage.name == null || newPage.name == "" || newPage.description == ""){
                 vm.blankerror = "Please enter the page name and description";
                 return;
             }
-            var page = PageService.createPage(vm.websiteId,newPage);
-            if(page == null){
-                vm.error = "Could not create page, try again after some time";
-                return;
-            }
-            else{
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            }
+            PageService
+                .createPage(vm.websiteId,newPage)
+                .success(function (response) {
+                    if(response){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }
+                })
+                .error(function (response) {
+                    vm.error = "Could not create page, try again after some time";
+                });
+            // if(page == null){
+            //     vm.error = "Could not create page, try again after some time";
+            //     return;
+            // }
+            // else{
+            //     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                // }
         }
     }
     
@@ -53,14 +76,31 @@
         vm.pageId = $routeParams["pid"];
         vm.websiteId = $routeParams["wid"];
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
-            if (vm.page == null){
-                $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            }
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            if(vm.pages.length == 0){
-                vm.error = "No pages created yet";
-            }
+            PageService
+                .findPageById(vm.pageId)
+                .success(function (response) {
+                    vm.page = response;
+                    if(vm.page){
+                        PageService
+                            .findPagesByWebsiteId(vm.websiteId)
+                            .success(function (response) {
+                                vm.pages = response;
+                                if(vm.pages.length == 0){
+                                    vm.error = "No pages created yet";
+                                }
+                            });
+                    }
+                })
+                .error(function (response) {
+                    $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                });
+            // if (vm.page == null){
+            //     $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            // }
+            // vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            // if(vm.pages.length == 0){
+            //     vm.error = "No pages created yet";
+            // }
         }
         init();
 
@@ -72,23 +112,43 @@
                 vm.blankerror = "Name or description cannot be empty";
                 return;
             }
-            var page = PageService.updatePage(vm.pageId, page);
-            if(page == null){
-                vm.error = "Update failed, please try again later";
-            }
-            else {
-                $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            }
+            PageService
+                .updatePage(vm.pageId, page)
+                .success(function (response) {
+                    var page = response;
+                    if(page){
+                        $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }
+                })
+                .error(function (response) {
+                    vm.error = "Update failed, please try again later";
+                });
+            // if(page == null){
+            //     vm.error = "Update failed, please try again later";
+            // }
+            // else {
+            //     $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            // }
         }
         function deletePage() {
-            var result = PageService.deletePage(vm.pageId);
-            if(result == null){
-                vm.deleteError = "Page could not be deleted, please try again";
-                return;
-            }
-            else{
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            }
+            PageService
+                .deletePage(vm.pageId)
+                .success(function (response) {
+                    if(response){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    }
+                })
+                .error(function (response) {
+                    vm.deleteError = "Page could not be deleted, please try again";
+                    return;
+                });
+            // if(result == null){
+            //     vm.deleteError = "Page could not be deleted, please try again";
+            //     return;
+            // }
+            // else{
+            //     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            // }
         }
     }
 })();
