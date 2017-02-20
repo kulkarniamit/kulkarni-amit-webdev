@@ -10,16 +10,17 @@
         vm.login = login;
         function login(username, password) {
             // var user = UserService.findUserByCredentials(username,password);
-            var promise = UserService.findUserByCredentials(username,password);
-            promise.success(function (response) {
-               var user = response;
-                if(user == null){
-                    vm.error = "Username/password does not match";
-                    return null;
-                }
-                else{
-                    $location.url("/user/"+user._id);
-                }
+            UserService
+                .findUserByCredentials(username,password)
+                .success(function (response) {
+                   var user = response;
+                    if(user){
+                        $location.url("/user/"+user._id);
+                    }
+                    else{
+                        vm.error = "Username/password does not match";
+                        return null;
+                    }
             });
             // if(user == null){
             //     vm.error = "Username/password does not match";
@@ -87,14 +88,23 @@
         }
 
         function deleteUser(userToDelete) {
-            var result = UserService.deleteUserById(userToDelete._id);
-            if (result == null){
-                vm.error = "User not found";
-            }
-            else{
-                $location.url("/login");
-                return;
-            }
+            UserService
+                .deleteUserById(userToDelete._id)
+                .success(function (response) {
+                    console.log(response);
+                    $location.url("/login");
+                })
+                .error(function (response) {
+                    console.log(response);
+                    vm.error = "User not found";
+                });
+            // if (result == null){
+            //     vm.error = "User not found";
+            // }
+            // else{
+            //     $location.url("/login");
+            //     return;
+            // }
         }
     }
     
@@ -125,8 +135,11 @@
                 })
                 .error(function (err) {
                     // There was an error, so the user does not exist
-                    var newuser = UserService.createUser(user);
-                    $location.url("/user/"+newuser._id);
+                    UserService
+                        .createUser(user)
+                        .success(function (newuser) {
+                            $location.url("/user/"+newuser._id);
+                        });
                 });
             // var userInDB = UserService.findUserByUsername(user.username);
             // if(userInDB != null){

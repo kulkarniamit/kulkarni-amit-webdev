@@ -22,15 +22,16 @@
 
         return api;
         function createUser(user) {
-            var userId = (parseInt(users[users.length -1]._id) + 1).toString();
-            var newUser = {_id: userId,
-                            username: user.username,
-                            password: user.password,
-                            email: user.email,
-                            firstName: user.firstname,
-                            lastName: user.lastname};
-            users.push(newUser);
-            return angular.copy(newUser);
+            return $http.post("/api/user/", user);
+            // var userId = (parseInt(users[users.length -1]._id) + 1).toString();
+            // var newUser = {_id: userId,
+            //                 username: user.username,
+            //                 password: user.password,
+            //                 email: user.email,
+            //                 firstName: user.firstname,
+            //                 lastName: user.lastname};
+            // users.push(newUser);
+            // return angular.copy(newUser);
         }
         function findUserById(userid) {
             return $http.get("/api/user/"+userid);
@@ -74,14 +75,15 @@
             // return null;
         }
         function deleteUserById(uid) {
-            for(var u in users) {
-                var user = users[u];
-                if( user._id === uid ) {
-                    users.splice(u,1);
-                    return "success";
-                }
-            }
-            return null;
+            return $http.delete("/api/user/"+uid);
+            // for(var u in users) {
+            //     var user = users[u];
+            //     if( user._id === uid ) {
+            //         users.splice(u,1);
+            //         return "success";
+            //     }
+            // }
+            // return null;
         }
     }
 })();
