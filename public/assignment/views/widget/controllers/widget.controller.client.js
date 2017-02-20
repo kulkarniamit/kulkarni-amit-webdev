@@ -14,17 +14,23 @@
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
 
         function init(){
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            if(vm.widgets.length == 0){
-                vm.error = "No widgets used yet";
-            }
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .success(function (response) {
+                    vm.widgets = response;
+                    if(vm.widgets.length == 0){
+                        vm.error = "No widgets used yet";
+                    }
+                });
+            // if(vm.widgets.length == 0){
+            //     vm.error = "No widgets used yet";
+            // }
         }
         init();
 
         function checkSafeHtml(html) {
             return $sce.trustAsHtml(html);
         }
-
         function checkSafeYouTubeUrl(url) {
             var parts = url.split('/');
             var id = parts[parts.length - 1];
@@ -49,36 +55,76 @@
             var widget = {type: "HEADER",
                           size: headerSize.toString(),
                           text: "Sample Heading "+headerSize}
-            var newWidget = WidgetService.createWidget(vm.pid, widget);
-            if(newWidget != null){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            }
+            WidgetService
+                .createWidget(vm.pid, widget)
+                .success(function (response) {
+                    var newWidget = response;
+                    if(newWidget){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                    }
+                })
+                .error(function (response) {
+
+                })
+            // if(newWidget != null){
+            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            // }
         }
         function createHTMLWidget() {
             var widget = {type: "HTML",
                           text: "Sample <i>HTML</i> text"};
-            var newWidget = WidgetService.createWidget(vm.pid, widget);
-            if(newWidget != null){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            }
+            WidgetService
+                .createWidget(vm.pid, widget)
+                .success(function (response) {
+                    var newWidget = response;
+                    if(newWidget){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                    }
+                })
+                .error(function (response) {
+
+                })
+            // if(newWidget != null){
+            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            // }
         }
         function createImageWidget() {
             var widget = {type: "IMAGE",
                 width: "100%",
                 url: "https://www.djaysgourmet.com.au/wp-content/uploads/2016/02/sample.jpg"}
-            var newWidget = WidgetService.createWidget(vm.pid, widget);
-            if(newWidget != null){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            }
+            WidgetService
+                .createWidget(vm.pid, widget)
+                .success(function (response) {
+                    var newWidget = response;
+                    if(newWidget){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                    }
+                })
+                .error(function (response) {
+
+                })
+            // if(newWidget != null){
+            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            // }
         }
         function createYoutubeWidget() {
             var widget = {type: "YOUTUBE",
                 width: "100%",
                 url: "https://www.youtube.com/embed/vlDzYIIOYmM"}
-            var newWidget = WidgetService.createWidget(vm.pid, widget);
-            if(newWidget != null){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            }
+            WidgetService
+                .createWidget(vm.pid, widget)
+                .success(function (response) {
+                    var newWidget = response;
+                    if(newWidget){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                    }
+                })
+                .error(function (response) {
+
+                })
+            // if(newWidget != null){
+            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            // }
         }
     }
     
@@ -94,7 +140,11 @@
         vm.deleteWidget = deleteWidget;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgid);
+            WidgetService
+                .findWidgetById(vm.wgid)
+                .success(function (response) {
+                    vm.widget = response;
+                })
         }
         init();
 
@@ -115,24 +165,44 @@
                 vm.updateerror = "Could not update the widget!";
                 return;
             }
-            var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);
-            if(updatedWidgetObject == null){
-                vm.updateerror = "Could not update the widget!";
-                return;
-            }
-            else{
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-            }
+            WidgetService
+                .updateWidget(vm.wgid, updatedWidget)
+                .success(function (response) {
+                    var updatedWidgetObject = response;
+                    if(updatedWidgetObject){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                    }
+                })
+                .error(function(response){
+                    vm.updateerror = "Could not update the widget!";
+                });
+            // var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);
+            // if(updatedWidgetObject == null){
+            //     vm.updateerror = "Could not update the widget!";
+            //     return;
+            // }
+            // else{
+            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+            // }
         }
         function deleteWidget(wgid) {
-            var deleteResult = WidgetService.deleteWidget(wgid);
-            if(deleteResult == null){
-                vm.deleteerror = "Could not delete the widget!";
-                return;
-            }
-            else{
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-            }
+            WidgetService
+                .deleteWidget(wgid)
+                .success(function (response) {
+                    if(response){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                    }
+                })
+                .error(function (response) {
+                    vm.deleteerror = "Could not delete the widget!";
+                })
+            // if(deleteResult == null){
+            //     vm.deleteerror = "Could not delete the widget!";
+            //     return;
+            // }
+            // else{
+            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+            // }
         }
     }
 })();
