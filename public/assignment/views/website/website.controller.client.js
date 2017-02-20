@@ -9,10 +9,17 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         function init(){
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            if(vm.websites.length == 0){
-                vm.error = "No websites created yet";
-            }
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .success(function (response) {
+                    vm.websites = response;
+                    if(vm.websites.length == 0){
+                        vm.error = "No websites created yet";
+                    }
+                });
+            // if(vm.websites.length == 0){
+            //     vm.error = "No websites created yet";
+            // }
         }
         init();
     }
@@ -21,10 +28,17 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         function init(){
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            if(vm.websites.length == 0){
-                vm.error = "No websites created yet";
-            }
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .success(function (response) {
+                    vm.websites = response;
+                    if(vm.websites.length == 0){
+                        vm.error = "No websites created yet";
+                    }
+                });
+            // if(vm.websites.length == 0){
+            //     vm.error = "No websites created yet";
+            // }
         }
         init();
         vm.addNewWebsite = addNewWebsite;
@@ -33,14 +47,25 @@
                 vm.blankerror = "Please enter the website name and description";
                 return;
             }
-            var website = WebsiteService.createWebsite(vm.userId,website);
-            if(website == null){
-                vm.error = "Could not create website, try again after some time";
-                return;
-            }
-            else{
-                $location.url("/user/"+vm.userId+"/website");
-            }
+            WebsiteService
+                .createWebsite(vm.userId,website)
+                .success(function (response) {
+                    var newWebsite = response;
+                    if(website){
+                        $location.url("/user/"+vm.userId+"/website");
+                    }
+                })
+                .error(function (response) {
+                    vm.error = "Could not create website, try again after some time";
+                    return;
+                });
+            // if(website == null){
+            //     vm.error = "Could not create website, try again after some time";
+            //     return;
+            // }
+            // else{
+            //     $location.url("/user/"+vm.userId+"/website");
+            // }
         }
     }
     
@@ -52,15 +77,29 @@
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
-            vm.website = WebsiteService.findWebsitesById(vm.websiteId);
-            if (vm.website == null){
-                $location.url("user/"+$routeParams["uid"]+"/website");
-            }
-
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            if(vm.websites.length == 0){
-                vm.error = "No websites created yet";
-            }
+            WebsiteService
+                .findWebsitesById(vm.websiteId)
+                .success(function (response) {
+                    vm.website = response;
+                    if(vm.website){
+                        WebsiteService
+                            .findWebsitesByUser(vm.userId)
+                            .success(function (response) {
+                                vm.websites = response;
+                                if(vm.websites.length == 0){
+                                    vm.error = "No websites created yet";
+                                }
+                            });
+                    }
+                });
+            // if (vm.website == null){
+            //     $location.url("user/"+$routeParams["uid"]+"/website");
+            // }
+            //
+            // vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            // if(vm.websites.length == 0){
+            //     vm.error = "No websites created yet";
+            // }
         }
         init();
 
@@ -69,23 +108,36 @@
                 vm.blankerror = "Name or description cannot be empty";
                 return;
             }
-            var website = WebsiteService.updateWebsite(vm.websiteId, website);
-            if(website == null){
-                vm.error = "Update failed, please try again later";
-            }
-            else {
-                $location.url("user/"+vm.userId+"/website")
-            }
+            WebsiteService
+                .updateWebsite(vm.websiteId, website)
+                .success(function (response) {
+                    var website = response;
+                    $location.url("user/"+vm.userId+"/website")
+                });
+            // if(website == null){
+            //     vm.error = "Update failed, please try again later";
+            // }
+            // else {
+            //     $location.url("user/"+vm.userId+"/website")
+            // }
         }
         function deleteWebsite() {
-            var result = WebsiteService.deleteWebsite(vm.websiteId);
-            if(result == null){
-                vm.deleteError = "Website could not be deleted, please try again";
-                return;
-            }
-            else{
-                $location.url("/user/"+vm.userId+"/website");
-            }
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .success(function (response) {
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error(function (response) {
+                    vm.deleteError = "Website could not be deleted, please try again";
+                    return;
+                });
+            // if(result == null){
+            //     vm.deleteError = "Website could not be deleted, please try again";
+            //     return;
+            // }
+            // else{
+            //     $location.url("/user/"+vm.userId+"/website");
+            // }
         }
     }
 })();

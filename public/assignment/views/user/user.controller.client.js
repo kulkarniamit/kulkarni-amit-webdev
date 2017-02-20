@@ -91,11 +91,9 @@
             UserService
                 .deleteUserById(userToDelete._id)
                 .success(function (response) {
-                    console.log(response);
                     $location.url("/login");
                 })
                 .error(function (response) {
-                    console.log(response);
                     vm.error = "User not found";
                 });
             // if (result == null){
