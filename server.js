@@ -10,6 +10,10 @@ app.use(express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
 
+// Our assignment server
+var assignment = require("./assignment/app.js");
+assignment(app);
+
 var port = process.env.PORT || 3000;
 
 app.listen(port);
