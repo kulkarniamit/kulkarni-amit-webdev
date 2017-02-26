@@ -16,11 +16,10 @@
                    var user = response;
                     if(user){
                         $location.url("/user/"+user._id);
-                    }
-                    else{
+                    }})
+                    .error(function (error) {
                         vm.error = "Username/password does not match";
                         return null;
-                    }
             });
             // if(user == null){
             //     vm.error = "Username/password does not match";

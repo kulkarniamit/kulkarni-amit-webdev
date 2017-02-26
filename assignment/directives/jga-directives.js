@@ -1,1 +1,0 @@
-//Create a directive called jga-sortable that uses jQuery and jQueryUI to implement the reordering behavior.

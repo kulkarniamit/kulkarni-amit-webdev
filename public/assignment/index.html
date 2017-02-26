@@ -24,19 +24,30 @@
     <link rel="mask-icon" href="css/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <!--<script src="js/angular.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
+
+    <!-- Services -->
     <script src="services/user.service.client.js"></script>
     <script src="services/website.service.client.js"></script>
     <script src="services/page.service.client.js"></script>
     <script src="services/widget.service.client.js"></script>
+
+    <!-- Controller -->
     <script src="views/user/user.controller.client.js"></script>
     <script src="views/website/website.controller.client.js"></script>
     <script src="views/page/page.controller.client.js"></script>
     <script src="views/widget/controllers/widget.controller.client.js"></script>
+
+    <!-- Directives -->
+    <script src="directives/jga-directives.js"></script>
+
 </head>
 <body>
     <div ng-view>

@@ -41,8 +41,16 @@ module.exports = function (app) {
         var password = req.query["password"];
         var user = users.find(function(u){
             return u.username == username && u.password == password;
-        })
-        res.send(user);
+        });
+        if(user){
+            // user is truthy (not undefined, not blank, not null
+            res.send(user);
+        }
+        else{
+            res.sendStatus(401);
+        }
+
+
     }
     function findUserById(req, res) {
         var userId = req.params.userId;
@@ -53,10 +61,11 @@ module.exports = function (app) {
     }
     function updateUser(req, res) {
         var userId = req.params.userId;
-        var newUser = req.body;
+
         for(var u in users) {
             var user = users[u];
             if( user._id === userId ) {
+                var newUser = req.body;
                 users[u].firstName = newUser.firstName;
                 users[u].lastName = newUser.lastName;
                 users[u].email = newUser.email;

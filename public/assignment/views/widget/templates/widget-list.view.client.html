@@ -16,31 +16,56 @@
     </div>
 </nav>
 
-<div class="container-fluid wbdev-container-side-space-fix">
+<div jga-sortable class="container-fluid wbdev-container-side-space-fix">
     <div class="row wbdev-widget-type-style"
          ng-repeat="widget in model.widgets">
         <div class="col-xs-12">
 
-            <div class="wbdev-widget-setings-icons">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-                    <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
-                </a>
-                <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
-            </div>
+            <!--<div class="wbdev-widget-setings-icons">-->
+                <!--<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
+                    <!--<span class="glyphicon glyphicon-cog wbdev-cog-style"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
+            <!--</div>-->
 
             <div ng-switch="widget.widgetType">
                 <div ng-switch-when="HEADER">
                     <ng-include src="'views/widget/templates/widget-HEADER.view.client.html'"></ng-include>
+                    <div class="wbdev-widget-setings-icons">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
+
                 </div>
                 <div ng-switch-when="YOUTUBE"
                      class="text-center">
                     <ng-include src="'views/widget/templates/widget-YOUTUBE.view.client.html'"></ng-include>
+                    <div class="wbdev-widget-setings-icons">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
                 </div>
                 <div ng-switch-when="IMAGE">
                     <ng-include src="'views/widget/templates/widget-IMAGE.view.client.html'"></ng-include>
+                    <div class="wbdev-widget-setings-icons">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
                 </div>
                 <div ng-switch-when="HTML">
                     <ng-include src="'views/widget/templates/widget-HTML.view.client.html'"></ng-include>
+                    <div class="wbdev-widget-setings-icons">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                            <span class="glyphicon glyphicon-cog wbdev-cog-style"></span>
+                        </a>
+                        <span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>
+                    </div>
                 </div>
             </div>
         </div>
