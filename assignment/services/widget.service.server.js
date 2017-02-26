@@ -9,6 +9,20 @@ module.exports = function (app) {
         {_id: "789", widgetType : "HTML", pageId: "321", text: "<p>Lorem <i>Ipsum</i> something</p>"}
     ];
 
+    var multer = require('multer'); // npm install multer --save
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, __dirname+"/../../public/uploads")
+        },
+        filename: function (req, file, cb) {
+            var extArray = file.mimetype.split("/");
+            var extension = extArray[extArray.length - 1];
+            cb(null, 'widget_image_' + Date.now()+ '.' +extension)
+        }
+    });
+    var upload = multer({storage: storage});
+    app.post("/api/upload",upload.single('myFile'), uploadImage);
+
     app.post("/api/page/:pageId/widget",createWidget);
     app.get("/api/page/:pageId/widget",findAllWidgetsForPage);
     app.get("/api/widget/:widgetId",findWidgetById);
@@ -90,5 +104,25 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
+    }
+
+    function uploadImage(req, res){
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+
+        var originalname = myFile.originalname; // File name on user's computer
+        // var filename = myFile.filename; // new file name in upload folder
+        var path = myFile.path; // full path of uploaded file
+        var destination = myFile.destination; // folder where file is saved to
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        var imageWidget = widgets.find(function (widget) {
+            return widget._id == widgetId;
+        })
+        imageWidget.width = width;
+        imageWidget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+        res.responseStatus(200);
     }
 }
