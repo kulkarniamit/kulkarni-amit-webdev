@@ -109,6 +109,8 @@ module.exports = function (app) {
     function uploadImage(req, res){
         var widgetId = req.body.widgetId;
         var width = req.body.width;
+        var uid = req.body.uid;
+        var wid = req.body.wid;
         var myFile = req.file;
 
         var originalname = myFile.originalname; // File name on user's computer
@@ -123,6 +125,6 @@ module.exports = function (app) {
         })
         imageWidget.width = width;
         imageWidget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-        res.responseStatus(200);
+        res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+imageWidget.pageId+"/widget");
     }
 }
