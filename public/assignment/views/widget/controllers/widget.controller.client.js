@@ -91,7 +91,8 @@
         function createImageWidget() {
             var widget = {type: "IMAGE",
                 width: "100%",
-                url: "https://www.djaysgourmet.com.au/wp-content/uploads/2016/02/sample.jpg"}
+                // url: "https://www.djaysgourmet.com.au/wp-content/uploads/2016/02/sample.jpg"}
+                url: ""}
             WidgetService
                 .createWidget(vm.pid, widget)
                 .success(function (response) {
@@ -152,6 +153,10 @@
         // Need not be exposed using vm
         function hasEmptyProperties(target) {
             for (var member in target) {
+		// Ignore empty urls
+		if(member === "url" || member == "index"){
+			continue;
+		}
                 if (target[member] == "")
                     return true;
             }
