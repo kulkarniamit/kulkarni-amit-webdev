@@ -57,15 +57,12 @@
                 .success(function (response) {
                     var newWidget = response;
                     if(newWidget){
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id+"?status=new");
                     }
                 })
                 .error(function (response) {
 
                 })
-            // if(newWidget != null){
-            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            // }
         }
         function createHTMLWidget() {
             var widget = {type: "HTML",
@@ -75,15 +72,12 @@
                 .success(function (response) {
                     var newWidget = response;
                     if(newWidget){
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id+"?status=new");
                     }
                 })
                 .error(function (response) {
 
                 })
-            // if(newWidget != null){
-            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            // }
         }
         function createImageWidget() {
             var widget = {type: "IMAGE",
@@ -94,7 +88,7 @@
                 .success(function (response) {
                     var newWidget = response;
                     if(newWidget){
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id+"?status=new");
                     }
                 })
                 .error(function (response) {
@@ -110,7 +104,7 @@
                 .success(function (response) {
                     var newWidget = response;
                     if(newWidget){
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id+"?status=new");
                     }
                 })
                 .error(function (response) {
@@ -132,6 +126,7 @@
         vm.hasEmptyProperties = hasEmptyProperties;
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.navigateToWidgetList = navigateToWidgetList;
 
         function init() {
             WidgetService
@@ -142,6 +137,21 @@
         }
         init();
 
+        function navigateToWidgetList(widget) {
+            // Check if we are navigating back from a new widget
+            // query param format for new widgets: ?status=new
+            // If yes, delete the new widget
+            if($location.search().status === "new"){
+                WidgetService
+                    .deleteWidget(widget._id)
+                    .success(function () {
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                    });
+            }
+            else{
+                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+            }
+        }
         // Helper function to check if any object attribute is empty
         // Need not be exposed using vm
         function hasEmptyProperties(target) {
@@ -194,13 +204,6 @@
                 .error(function (response) {
                     vm.deleteerror = "Could not delete the widget!";
                 })
-            // if(deleteResult == null){
-            //     vm.deleteerror = "Could not delete the widget!";
-            //     return;
-            // }
-            // else{
-            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-            // }
         }
     }
 })();
