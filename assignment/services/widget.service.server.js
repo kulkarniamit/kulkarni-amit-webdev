@@ -185,6 +185,11 @@ module.exports = function (app) {
             var destination = myFile.destination; // folder where file is saved to
             var size = myFile.size;
             var mimetype = myFile.mimetype;
+            if(imageWidget.url){
+                // User wants to replace an image
+                var imageName = imageWidget.url.split('//').pop().split("/").pop();
+                deleteUploadedImage(imageName);
+            }
             imageWidget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
         }
         res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+imageWidget.pageId+"/widget");
