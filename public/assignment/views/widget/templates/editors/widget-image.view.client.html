@@ -3,22 +3,10 @@
      role="alert">
     {{model.updateerror}}
 </div>
-<!--<div class="form-group">-->
-    <!--<label for="inputurl">URL</label>-->
-    <!--<input type="text"-->
-           <!--id="inputurl"-->
-           <!--class="form-control"-->
-           <!--ng-model="model.widget.url"/>-->
-<!--</div>-->
-<!--<div class="form-group">-->
-    <!--<label for="inputwidth">Width</label>-->
-    <!--<input type="text"-->
-           <!--id="inputwidth"-->
-           <!--class="form-control"-->
-           <!--ng-model="model.widget.width"/>-->
-<!--</div>-->
 <div class="form-group">
-    <form action="/api/upload" method="post" enctype="multipart/form-data">
+    <form action="/api/upload"
+          method="post"
+          enctype="multipart/form-data">
         <div class="form-group">
             <label for="inputwidth">Width</label>
             <input type="text"
@@ -34,27 +22,18 @@
                class="form-control"/>
         <input name="uid"
                value="{{model.uid}}"
-               style="display: none"/>
+               class="wbdev-hide-element"/>
         <input name="wid"
                value="{{model.wid}}"
-               style="display: none"/>
+               class="wbdev-hide-element"/>
         <input name="widgetId"
                value="{{model.widget._id}}"
-               style="display: none"/>
+               class="wbdev-hide-element"/>
         <button type="submit"
                 class="btn btn-block btn-primary">Upload Image</button>
     </form>
 
-    <!--<input type="file"-->
-           <!--id="inputimage"-->
-           <!--class="form-control"-->
-           <!--ng-model="model.widget.url"/>-->
 </div>
-<!--<div class="form-group wbdev-btn-margin-bottom">-->
-    <!--<btn class="btn btn-primary btn-block">-->
-        <!--Upload Image-->
-    <!--</btn>-->
-<!--</div>-->
 <div class="form-group">
     <a class="btn btn-danger btn-block"
        ng-click="model.deleteWidget(model.widget._id)">

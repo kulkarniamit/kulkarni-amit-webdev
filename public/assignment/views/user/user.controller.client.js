@@ -138,21 +138,6 @@
                             $location.url("/user/"+newuser._id);
                         });
                 });
-            // var userInDB = UserService.findUserByUsername(user.username);
-            // if(userInDB != null){
-            //     vm.registrationerror = "Username taken, please try another username";
-            //     vm.passwordmismatch = "";
-            //     return;
-            // }
-            // else{
-            //     if (user.password != user.passwordverification){
-            //         vm.registrationerror ="";
-            //         vm.passwordmismatch = "Passwords do not match";
-            //         return;
-            //     }
-            //     var newuser = UserService.createUser(user);
-            //     $location.url("/user/"+newuser._id);
-            // }
         }
     }
 })();

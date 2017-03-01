@@ -16,7 +16,11 @@
     </div>
 </nav>
 
-<div jga-sortable class="container-fluid wbdev-container-side-space-fix">
+<div wbdv-sortable class="container-fluid wbdev-container-side-space-fix">
+    <div ng-if="model.zeroWidgetError"
+         class="alert alert-warning text-center">
+        {{model.zeroWidgetError}}
+    </div>
     <div class="row wbdev-widget-type-style"
          ng-repeat="widget in model.widgets">
         <div class="col-xs-12">

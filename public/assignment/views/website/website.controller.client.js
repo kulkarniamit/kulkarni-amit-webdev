@@ -17,9 +17,6 @@
                         vm.error = "No websites created yet";
                     }
                 });
-            // if(vm.websites.length == 0){
-            //     vm.error = "No websites created yet";
-            // }
         }
         init();
     }
@@ -36,9 +33,6 @@
                         vm.error = "No websites created yet";
                     }
                 });
-            // if(vm.websites.length == 0){
-            //     vm.error = "No websites created yet";
-            // }
         }
         init();
         vm.addNewWebsite = addNewWebsite;
@@ -59,13 +53,6 @@
                     vm.error = "Could not create website, try again after some time";
                     return;
                 });
-            // if(website == null){
-            //     vm.error = "Could not create website, try again after some time";
-            //     return;
-            // }
-            // else{
-            //     $location.url("/user/"+vm.userId+"/website");
-            // }
         }
     }
     
@@ -92,14 +79,6 @@
                             });
                     }
                 });
-            // if (vm.website == null){
-            //     $location.url("user/"+$routeParams["uid"]+"/website");
-            // }
-            //
-            // vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            // if(vm.websites.length == 0){
-            //     vm.error = "No websites created yet";
-            // }
         }
         init();
 
@@ -114,12 +93,6 @@
                     var website = response;
                     $location.url("user/"+vm.userId+"/website")
                 });
-            // if(website == null){
-            //     vm.error = "Update failed, please try again later";
-            // }
-            // else {
-            //     $location.url("user/"+vm.userId+"/website")
-            // }
         }
         function deleteWebsite() {
             WebsiteService
@@ -131,13 +104,6 @@
                     vm.deleteError = "Website could not be deleted, please try again";
                     return;
                 });
-            // if(result == null){
-            //     vm.deleteError = "Website could not be deleted, please try again";
-            //     return;
-            // }
-            // else{
-            //     $location.url("/user/"+vm.userId+"/website");
-            // }
         }
     }
 })();

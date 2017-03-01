@@ -227,3 +227,8 @@ a.thumbnail:hover, .thumbnail{
 .wbdev-widget-chooser-record{
     padding: 15px;
 }
+
+/* widget-edit styles */
+.wbdev-hide-element{
+    display: none;
+}

@@ -24,9 +24,6 @@ module.exports = function (app) {
                     console.log("Directory created successfully!");
                 });
             }
-            // else{
-            //     console.log("uploads directory already exists");
-            // }
             cb(null, uploadsDirectory);
         },
         filename: function (req, file, cb) {
@@ -37,7 +34,6 @@ module.exports = function (app) {
     });
     var upload = multer({storage: storage});
     app.post("/api/upload",upload.single('myFile'), uploadImage);
-
     app.post("/api/page/:pageId/widget",createWidget);
     app.get("/api/page/:pageId/widget",findAllWidgetsForPage);
     app.get("/api/widget/:widgetId",findWidgetById);
@@ -45,45 +41,6 @@ module.exports = function (app) {
     app.delete("/api/widget/:widgetId",deleteWidget);
     app.put("/page/:pid/widget", updateWidgetOrder);
 
-    function updateWidgetOrder(req, res) {
-        var pageId = req.params.pid;
-        var startIndex = parseInt(req.query.initial);
-        var endIndex = parseInt(req.query.final);
-        var widgetsOfPage = widgets.filter(function (w) {
-            return w.pageId === pageId;
-        })
-
-        var fromWidget = widgetsOfPage.find(function (w) {
-            return w.index === startIndex;
-        })
-        var toWidget = widgetsOfPage.find(function (w) {
-            return w.index === endIndex;
-        })
-
-        fromWidget.index = endIndex;
-
-        if(startIndex < endIndex){
-            // A widget moved down
-            // Other widget index -= 1
-            widgetsOfPage.filter(function (w) {
-                return w.index > startIndex && w.index < endIndex;
-            }).map(function (w) {
-                    w.index -= 1;
-            });
-            toWidget.index -=1;
-        }
-        else {
-            // A widget moved up
-            // Other widget index += 1
-            widgetsOfPage.filter(function (w) {
-                return w.index < startIndex && w.index > endIndex;
-            }).map(function (w) {
-                w.index += 1;
-            });
-            toWidget.index +=1;
-        }
-        res.sendStatus(200);
-    }
     function createWidget(req, res){
         var pageId = req.params.pageId;
         var widget = req.body;
@@ -231,5 +188,44 @@ module.exports = function (app) {
             imageWidget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
         }
         res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+imageWidget.pageId+"/widget");
+    }
+    function updateWidgetOrder(req, res) {
+        var pageId = req.params.pid;
+        var startIndex = parseInt(req.query.initial);
+        var endIndex = parseInt(req.query.final);
+        var widgetsOfPage = widgets.filter(function (w) {
+            return w.pageId === pageId;
+        })
+
+        var fromWidget = widgetsOfPage.find(function (w) {
+            return w.index === startIndex;
+        })
+        var toWidget = widgetsOfPage.find(function (w) {
+            return w.index === endIndex;
+        })
+
+        fromWidget.index = endIndex;
+
+        if(startIndex < endIndex){
+            // A widget moved down
+            // Other widget index -= 1
+            widgetsOfPage.filter(function (w) {
+                return w.index > startIndex && w.index < endIndex;
+            }).map(function (w) {
+                w.index -= 1;
+            });
+            toWidget.index -=1;
+        }
+        else {
+            // A widget moved up
+            // Other widget index += 1
+            widgetsOfPage.filter(function (w) {
+                return w.index < startIndex && w.index > endIndex;
+            }).map(function (w) {
+                w.index += 1;
+            });
+            toWidget.index +=1;
+        }
+        res.sendStatus(200);
     }
 }

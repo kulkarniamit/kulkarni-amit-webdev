@@ -19,12 +19,9 @@
                 .success(function (response) {
                     vm.widgets = response;
                     if(vm.widgets.length == 0){
-                        vm.error = "No widgets used yet";
+                        vm.zeroWidgetError = "No widgets added yet";
                     }
                 });
-            // if(vm.widgets.length == 0){
-            //     vm.error = "No widgets used yet";
-            // }
         }
         init();
 
@@ -91,7 +88,6 @@
         function createImageWidget() {
             var widget = {type: "IMAGE",
                 width: "100%",
-                // url: "https://www.djaysgourmet.com.au/wp-content/uploads/2016/02/sample.jpg"}
                 url: ""}
             WidgetService
                 .createWidget(vm.pid, widget)
@@ -104,9 +100,6 @@
                 .error(function (response) {
 
                 })
-            // if(newWidget != null){
-            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
-            // }
         }
         function createYoutubeWidget() {
             var widget = {type: "YOUTUBE",

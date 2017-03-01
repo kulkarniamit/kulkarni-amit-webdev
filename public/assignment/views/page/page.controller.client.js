@@ -17,10 +17,10 @@
                     if(vm.pages.length == 0){
                         vm.error = "No pages created yet";
                     }
+                })
+                .error(function (response) {
+                    vm.error = "Could not find the pages";
                 });
-            // if(vm.pages.length == 0){
-            //     vm.error = "No pages created yet";
-            // }
         }
         init();
     }
@@ -39,9 +39,6 @@
                         vm.error = "No pages created yet";
                     }
                 });
-            // if(vm.pages.length == 0){
-            //     vm.error = "No pages created yet";
-            // }
         }
         init();
 
@@ -60,13 +57,6 @@
                 .error(function (response) {
                     vm.error = "Could not create page, try again after some time";
                 });
-            // if(page == null){
-            //     vm.error = "Could not create page, try again after some time";
-            //     return;
-            // }
-            // else{
-            //     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                // }
         }
     }
     
@@ -94,13 +84,6 @@
                 .error(function (response) {
                     $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
                 });
-            // if (vm.page == null){
-            //     $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            // }
-            // vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
-            // if(vm.pages.length == 0){
-            //     vm.error = "No pages created yet";
-            // }
         }
         init();
 
@@ -123,12 +106,6 @@
                 .error(function (response) {
                     vm.error = "Update failed, please try again later";
                 });
-            // if(page == null){
-            //     vm.error = "Update failed, please try again later";
-            // }
-            // else {
-            //     $location.url("user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            // }
         }
         function deletePage() {
             PageService
@@ -142,13 +119,6 @@
                     vm.deleteError = "Page could not be deleted, please try again";
                     return;
                 });
-            // if(result == null){
-            //     vm.deleteError = "Page could not be deleted, please try again";
-            //     return;
-            // }
-            // else{
-            //     $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-            // }
         }
     }
 })();
