@@ -21,10 +21,25 @@ module.exports = function (app) {
     ];
 
     var multer = require('multer'); // npm install multer --save
+    var fs = require("fs");
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname+"/../../public/uploads")
-//            cb(null, "/app/public/uploads")
+            var dirName = __dirname+"/../../public/uploads";
+            if(!fs.existsSync(dirName)){
+                // Directory does not exist, create one
+                console.log("Going to create directory "+dirName);
+                fs.mkdir(dirName, function(err){
+                    if (err) {
+                        return console.error(err);
+                    }
+                    console.log("Directory created successfully!");
+                });
+            }
+            else{
+                console.log("uploads directory already exists");
+            }
+            // cb(null, __dirname+"/../../public/uploads");
+            cb(null, dirName);
         },
         filename: function (req, file, cb) {
             var extArray = file.mimetype.split("/");
