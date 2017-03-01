@@ -29,8 +29,6 @@
             return $sce.trustAsHtml(html);
         }
         function checkSafeYouTubeUrl(url) {
-            var parts = url.split('/');
-            var id = parts[parts.length - 1];
             var id = url.split("=")[1];
             url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);
