@@ -31,8 +31,8 @@
         function checkSafeYouTubeUrl(url) {
             var parts = url.split('/');
             var id = parts[parts.length - 1];
+            var id = url.split("=")[1];
             url = "https://www.youtube.com/embed/"+id;
-            console.log(url);
             return $sce.trustAsResourceUrl(url);
         }
     }
@@ -98,7 +98,7 @@
         function createYoutubeWidget() {
             var widget = {type: "YOUTUBE",
                 width: "100%",
-                url: "https://www.youtube.com/embed/vlDzYIIOYmM"}
+                url: "https://www.youtube.com/watch?v=vlDzYIIOYmM"}
             WidgetService
                 .createWidget(vm.pid, widget)
                 .success(function (response) {

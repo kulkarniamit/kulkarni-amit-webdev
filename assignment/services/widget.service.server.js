@@ -5,7 +5,7 @@ module.exports = function (app) {
         {_id: "345", widgetType : "IMAGE", pageId: "321", width:"90%", url : "", index:3},
         {_id: "456", widgetType : "HTML", pageId: "123", text: "<p>Some text of paragraph</p>", index:0},
         {_id: "567", widgetType : "HEADER", pageId: "321", size:"5", text: "Something else", index:0},
-        {_id: "678", widgetType : "YOUTUBE", pageId: "321", width:"75%", url: "https://www.youtube.com/embed/vlDzYIIOYmM", index:2},
+        {_id: "678", widgetType : "YOUTUBE", pageId: "321", width:"75%", url: "https://www.youtube.com/watch?v=vlDzYIIOYmM", index:2},
         {_id: "789", widgetType : "HTML", pageId: "321", text: "<p>Lorem <i>Ipsum</i> something</p>", index:1}
     ];
 
