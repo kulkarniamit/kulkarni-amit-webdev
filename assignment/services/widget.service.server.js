@@ -1,18 +1,7 @@
 module.exports = function (app) {
-    // var widgets = [
-    //     {_id: "123", widgetType : "HEADER", pageId: "321", size:"1", text: "GIZMODO"},
-    //     {_id: "234", widgetType : "HEADER", pageId: "123", size:"4", text: "Something"},
-    //     {_id: "345", widgetType : "IMAGE", pageId: "321", width:"90%", url : "https://s-media-cache-ak0.pinimg.com/originals/a2/2a/0a/a22a0a7e624943303b23cc326598c167.jpg"},
-    //     {_id: "456", widgetType : "HTML", pageId: "123", text: "<p>Some text of paragraph</p>"},
-    //     {_id: "567", widgetType : "HEADER", pageId: "321", size:"5", text: "Something else"},
-    //     {_id: "678", widgetType : "YOUTUBE", pageId: "321", width:"75%", url: "https://www.youtube.com/embed/vlDzYIIOYmM"},
-    //     {_id: "789", widgetType : "HTML", pageId: "321", text: "<p>Lorem <i>Ipsum</i> something</p>"}
-    // ];
-
     var widgets = [
         {_id: "123", widgetType : "HEADER", pageId: "321", size:"1", text: "GIZMODO", index: 4},
         {_id: "234", widgetType : "HEADER", pageId: "123", size:"4", text: "Something", index: 1},
-        // {_id: "345", widgetType : "IMAGE", pageId: "321", width:"90%", url : "https://s-media-cache-ak0.pinimg.com/originals/a2/2a/0a/a22a0a7e624943303b23cc326598c167.jpg", index:3},
         {_id: "345", widgetType : "IMAGE", pageId: "321", width:"90%", url : "", index:3},
         {_id: "456", widgetType : "HTML", pageId: "123", text: "<p>Some text of paragraph</p>", index:0},
         {_id: "567", widgetType : "HEADER", pageId: "321", size:"5", text: "Something else", index:0},
@@ -22,24 +11,23 @@ module.exports = function (app) {
 
     var multer = require('multer'); // npm install multer --save
     var fs = require("fs");
+    var uploadsDirectory = __dirname+"/../../public/uploads";
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            var dirName = __dirname+"/../../public/uploads";
-            if(!fs.existsSync(dirName)){
+            if(!fs.existsSync(uploadsDirectory)){
                 // Directory does not exist, create one
-                console.log("Going to create directory "+dirName);
-                fs.mkdir(dirName, function(err){
+                console.log("Going to create directory "+uploadsDirectory);
+                fs.mkdir(uploadsDirectory, function(err){
                     if (err) {
                         return console.error(err);
                     }
                     console.log("Directory created successfully!");
                 });
             }
-            else{
-                console.log("uploads directory already exists");
-            }
-            // cb(null, __dirname+"/../../public/uploads");
-            cb(null, dirName);
+            // else{
+            //     console.log("uploads directory already exists");
+            // }
+            cb(null, uploadsDirectory);
         },
         filename: function (req, file, cb) {
             var extArray = file.mimetype.split("/");
@@ -96,7 +84,6 @@ module.exports = function (app) {
         }
         res.sendStatus(200);
     }
-
     function createWidget(req, res){
         var pageId = req.params.pageId;
         var widget = req.body;
@@ -195,6 +182,12 @@ module.exports = function (app) {
             })
         }
     }
+    function deleteUploadedImage(imageName) {
+        fs.unlink(uploadsDirectory+"/"+imageName, function(err){
+                if (err) throw err;
+                console.log('successfully deleted '+uploadsDirectory+"/"+imageName);
+        });
+    }
     function deleteWidget(req, res){
         var wgid = req.params.widgetId;
         var deletedIndex, deletedWidgetPageId;
@@ -203,6 +196,11 @@ module.exports = function (app) {
             if( widget._id === wgid ) {
                 deletedIndex = widget.index;
                 deletedWidgetPageId = widget.pageId;
+                if(widget.widgetType === "IMAGE"){
+                    // Remove the uploaded image
+                    var imageName = widget.url.split('//').pop().split("/").pop();
+                    deleteUploadedImage(imageName);
+                }
                 widgets.splice(i,1);
                 updateIndexesAfterDelete(deletedIndex, deletedWidgetPageId);
                 res.sendStatus(200);
