@@ -154,12 +154,12 @@
         // Need not be exposed using vm
         function hasEmptyProperties(target) {
             for (var member in target) {
-		// if(member === "url" || member == "index"){
-            if(member == "index"){
-                continue;
-            }
-            if (target[member] == "")
+                if(member == "index"){
+                    continue;
+                }
+                if (target[member] == ""){
                     return true;
+                }
             }
             return false;
         }
