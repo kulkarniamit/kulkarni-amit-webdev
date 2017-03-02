@@ -2,7 +2,7 @@ module.exports = function (app) {
     var widgets = [
         {_id: "123", widgetType : "HEADER", pageId: "321", size:"1", text: "GIZMODO", index: 4},
         {_id: "234", widgetType : "HEADER", pageId: "123", size:"4", text: "Something", index: 1},
-        {_id: "345", widgetType : "IMAGE", pageId: "321", width:"90%", url : "", index:3},
+        {_id: "345", widgetType : "IMAGE", pageId: "321", width:"60%", url : "https://s-media-cache-ak0.pinimg.com/originals/d8/cc/e1/d8cce14b98983a1f8311f241b9d7ad89.png", index:3},
         {_id: "456", widgetType : "HTML", pageId: "123", text: "<p>Some text of paragraph</p>", index:0},
         {_id: "567", widgetType : "HEADER", pageId: "321", size:"5", text: "Something else", index:0},
         {_id: "678", widgetType : "YOUTUBE", pageId: "321", width:"75%", url: "https://www.youtube.com/watch?v=vlDzYIIOYmM", index:2},
@@ -12,6 +12,8 @@ module.exports = function (app) {
     var multer = require('multer'); // npm install multer --save
     var fs = require("fs");
     var uploadsDirectory = __dirname+"/../../public/uploads";
+    var publicDirectory =__dirname+"/../../public";
+
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
             if(!fs.existsSync(uploadsDirectory)){
@@ -123,16 +125,11 @@ module.exports = function (app) {
                     // This could have been an update to the image
                     // The user may have chosen to delete the uploaded image
                     // Or the user may have pasted a link to a remote image URL
-                    // If the current widget.url contains req.get('host')
-                    // the user wants to change it. Delete it or replace it
-                    if(widget.url != ""){
-                        // Some image is stored
-                        if((widget.url.search(req.get('host')) != -1)
-                            && (widget.url != updatedWidget.url)){
-                            // Found a locally uploaded image
-                            var imageName = widget.url.split('//').pop().split("/").pop();
-                            deleteUploadedImage(imageName);
-                        }
+                    if((widget.url != "")
+                        &&(widget.url != updatedWidget.url)){
+                        // Some image is stored and a new URL has been inserted
+                        // Delete existing image
+                        deleteUploadedImage(widget.url);
                     }
                 }
                 widgets[i] = updatedWidget;
@@ -155,11 +152,19 @@ module.exports = function (app) {
             })
         }
     }
-    function deleteUploadedImage(imageName) {
-        fs.unlink(uploadsDirectory+"/"+imageName, function(err){
-                if (err) throw err;
-                console.log('successfully deleted '+uploadsDirectory+"/"+imageName);
-        });
+    function deleteUploadedImage(imageUrl) {
+        // Local helper function
+        if(imageUrl && imageUrl.search('http') == -1){
+            // Locally uploaded image
+            // Delete it
+            fs.unlink(publicDirectory+imageUrl, function (err) {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                console.log('successfully deleted '+publicDirectory+imageUrl);
+            });
+        }
     }
     function deleteWidget(req, res){
         var wgid = req.params.widgetId;
@@ -171,13 +176,7 @@ module.exports = function (app) {
                 deletedWidgetPageId = widget.pageId;
                 if(widget.widgetType === "IMAGE"){
                     // Remove the uploaded image
-                    if(widget.url){
-                        if(widget.url.search(req.get('host')) != -1){
-                            // If image uploaded already, delete it
-                            var imageName = widget.url.split('//').pop().split("/").pop();
-                            deleteUploadedImage(imageName);
-                        }
-                    }
+                    deleteUploadedImage(widget.url);
                 }
                 widgets.splice(i,1);
                 updateIndexesAfterDelete(deletedIndex, deletedWidgetPageId);
@@ -201,20 +200,17 @@ module.exports = function (app) {
             // Make sure file was uploaded
             var myFile = req.file;
             var originalname = myFile.originalname; // File name on user's computer
-            // var filename = myFile.filename; // new file name in upload folder
+            var filename = myFile.filename; // new file name in upload folder
             var path = myFile.path; // full path of uploaded file
             var destination = myFile.destination; // folder where file is saved to
             var size = myFile.size;
             var mimetype = myFile.mimetype;
             if(imageWidget.url){
-                // User wants to replace an image
-                if(imageWidget.url.search(req.get('host')) != -1){
-                    // If there is an uploaded image
-                    var imageName = imageWidget.url.split('//').pop().split("/").pop();
-                    deleteUploadedImage(imageName);
-                }
+                // An image URL already exists
+                // User wants to replace an image, delete the old one
+                deleteUploadedImage(imageWidget.url);
             }
-            imageWidget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+            imageWidget.url = "/uploads/" + filename;
         }
         res.redirect("/assignment/#/user/"+uid+"/website/"+wid+"/page/"+imageWidget.pageId+"/widget");
     }
