@@ -154,11 +154,11 @@
         // Need not be exposed using vm
         function hasEmptyProperties(target) {
             for (var member in target) {
-		// Ignore empty urls
-		if(member === "url" || member == "index"){
-			continue;
-		}
-                if (target[member] == "")
+		// if(member === "url" || member == "index"){
+            if(member == "index"){
+                continue;
+            }
+            if (target[member] == "")
                     return true;
             }
             return false;
@@ -182,14 +182,6 @@
                 .error(function(response){
                     vm.updateerror = "Could not update the widget!";
                 });
-            // var updatedWidgetObject = WidgetService.updateWidget(vm.wgid, updatedWidget);
-            // if(updatedWidgetObject == null){
-            //     vm.updateerror = "Could not update the widget!";
-            //     return;
-            // }
-            // else{
-            //     $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-            // }
         }
         function deleteWidget(wgid) {
             WidgetService

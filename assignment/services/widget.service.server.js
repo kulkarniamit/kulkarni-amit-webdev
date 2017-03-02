@@ -119,6 +119,22 @@ module.exports = function (app) {
         for(var i in widgets) {
             var widget = widgets[i];
             if( widget._id === wgid) {
+                if(widget.widgetType == "IMAGE"){
+                    // This could have been an update to the image
+                    // The user may have chosen to delete the uploaded image
+                    // Or the user may have pasted a link to a remote image URL
+                    // If the current widget.url contains req.get('host')
+                    // the user wants to change it. Delete it or replace it
+                    if(widget.url != ""){
+                        // Some image is stored
+                        if((widget.url.search(req.get('host')) != -1)
+                            && (widget.url != updatedWidget.url)){
+                            // Found a locally uploaded image
+                            var imageName = widget.url.split('//').pop().split("/").pop();
+                            deleteUploadedImage(imageName);
+                        }
+                    }
+                }
                 widgets[i] = updatedWidget;
                 res.json(widget);
                 return;
@@ -156,9 +172,11 @@ module.exports = function (app) {
                 if(widget.widgetType === "IMAGE"){
                     // Remove the uploaded image
                     if(widget.url){
-                        // If image uploaded already, delete it
-                        var imageName = widget.url.split('//').pop().split("/").pop();
-                        deleteUploadedImage(imageName);
+                        if(widget.url.search(req.get('host')) != -1){
+                            // If image uploaded already, delete it
+                            var imageName = widget.url.split('//').pop().split("/").pop();
+                            deleteUploadedImage(imageName);
+                        }
                     }
                 }
                 widgets.splice(i,1);
@@ -190,8 +208,11 @@ module.exports = function (app) {
             var mimetype = myFile.mimetype;
             if(imageWidget.url){
                 // User wants to replace an image
-                var imageName = imageWidget.url.split('//').pop().split("/").pop();
-                deleteUploadedImage(imageName);
+                if(imageWidget.url.search(req.get('host')) != -1){
+                    // If there is an uploaded image
+                    var imageName = imageWidget.url.split('//').pop().split("/").pop();
+                    deleteUploadedImage(imageName);
+                }
             }
             imageWidget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
         }
