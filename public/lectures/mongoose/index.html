@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../assignment/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Movies</title>
+
+    <!--Locally downloaded angular is 1.6 which replaces .success calls with .then calls-->
+    <!--<script src="../../assignment/js/angular.js"></script>-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Mountains+of+Christmas" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+    <script src="app.js"></script>
+    <style>
+        a:hover {
+            cursor:pointer;
+        }
+        body, .btn{
+            /*font-family: 'Amatic SC', cursive;*/
+            font-family: "Open Sans";
+            font-size: 12px;
+        }
+        h2{
+            font-weight: bolder;
+        }
+        .form-control{
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" ng-controller="MovieController as model">
+    <div class="row">
+        <div class="col-xs-4">
+            <h2> Movies Database </h2>
+            <label for="name">Title</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   ng-model="model.movie.title"/>
+
+            <a ng-click="model.createMovie(model.movie)"
+               class="btn btn-success btn-block">
+                Add Movie
+            </a>
+            <a ng-click="model.updateMovie(model.movie)"
+               class="btn btn-info btn-block">
+                Update
+            </a>
+            <ul class="list-group">
+                <li ng-repeat="movie in model.movies"
+                    class="list-group-item">
+                    <img ng-src="{{movie.poster}}" width="20px"/>
+                    <a ng-click="model.searchMovieDetails(movie.imdbID)"> {{movie.title}}</a>
+                    <a  class="pull-right btn btn-danger"
+                        style="padding: 4px 4px 1px 4px; font-size: 12px;"
+                        ng-click="model.deleteMovie(movie._id)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a class="pull-right btn btn-default"
+                       style="padding: 4px 4px 1px 4px; font-size: 12px; margin-right: 2px;"
+                       ng-click="model.selectMovie(movie._id)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-4">
+            <h2>Search Movies</h2>
+            <label>Movie Title</label>
+            <input type="text"
+                   ng-model="model.movie.searchTitle"
+                   class="form-control"
+                   placeholder="Eg: Terminator"/>
+            <button ng-click="model.searchMovie(model.movie)"
+                    class="btn btn-block btn-info">
+                Search
+            </button>
+            <div>
+                <h2> Search Results </h2>
+                <!--{{model.movieSearchResults}}-->
+                <ul class="list-group">
+                    <li class="list-group-item"
+                     ng-repeat="movie in model.movieSearchResults">
+
+                        <img ng-src="{{movie.Poster}}" width="20px"/>
+                        <a ng-click="model.searchMovieDetails(movie.imdbID)"> {{movie.Title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-4" ng-show="model.movieDetails">
+            <h2>Search details</h2>
+            <h4><span class="glyphicon glyphicon-star-empty"
+                      ng-click="model.likeMovie(model.movieDetails)">
+
+            </span>
+                {{model.movieDetails.Title}}</h4>
+
+            <p>{{model.movieDetails.Plot}}</p>
+
+            <ul>
+                <li ng-repeat="actor in model.movieDetails.Actors.split(', ')">
+                    {{actor}}
+                </li>
+            </ul>
+            <img ng-src="{{model.movieDetails.Poster}}"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

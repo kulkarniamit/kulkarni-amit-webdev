@@ -13,7 +13,6 @@ module.exports = function (app) {
     var fs = require("fs");
     var uploadsDirectory = __dirname+"/../../public/uploads";
     var publicDirectory =__dirname+"/../../public";
-
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
             if(!fs.existsSync(uploadsDirectory)){
@@ -35,6 +34,7 @@ module.exports = function (app) {
         }
     });
     var upload = multer({storage: storage});
+
     app.post("/api/upload",upload.single('myFile'), uploadImage);
     app.post("/api/page/:pageId/widget",createWidget);
     app.get("/api/page/:pageId/widget",findAllWidgetsForPage);
