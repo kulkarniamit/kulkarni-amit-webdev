@@ -20,8 +20,8 @@
 <div class="container-fluid wbdev-container-side-space-fix">
     <div class="row">
         <div class="col-xs-12">
-            <div ng-switch="model.widget.widgetType">
-                <div ng-switch-when="HEADER">
+            <div ng-switch="model.widget.type">
+                <div ng-switch-when="HEADING">
                     <ng-include src="'views/widget/templates/editors/widget-heading.view.client.html'"/>
                 </div>
                 <div ng-switch-when="YOUTUBE">

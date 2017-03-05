@@ -32,8 +32,8 @@
                 <!--<span class="glyphicon glyphicon-menu-hamburger wbdev-hamburger-style"></span>-->
             <!--</div>-->
 
-            <div ng-switch="widget.widgetType">
-                <div ng-switch-when="HEADER">
+            <div ng-switch="widget.type">
+                <div ng-switch-when="HEADING">
                     <ng-include src="'views/widget/templates/widget-HEADER.view.client.html'"></ng-include>
                     <div class="wbdev-widget-setings-icons">
                         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">

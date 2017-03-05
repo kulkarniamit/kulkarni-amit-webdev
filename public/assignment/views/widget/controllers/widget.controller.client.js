@@ -66,7 +66,7 @@
                 });
         }
         function createHeaderWidget(headerSize) {
-            var widget = {type: "HEADER",
+            var widget = {type: "HEADING",
                           size: headerSize.toString(),
                           text: "Sample Heading "+headerSize}
             WidgetService

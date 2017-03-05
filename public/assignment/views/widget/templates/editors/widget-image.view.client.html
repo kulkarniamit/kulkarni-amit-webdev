@@ -9,6 +9,7 @@
            id="imageUrl"
            ng-model="model.widget.url"
            class="form-control"/>
+
     <form action="/api/upload"
           method="post"
           enctype="multipart/form-data">
@@ -30,6 +31,9 @@
                class="wbdev-hide-element"/>
         <input name="wid"
                value="{{model.wid}}"
+               class="wbdev-hide-element"/>
+        <input name="pid"
+               value="{{model.pid}}"
                class="wbdev-hide-element"/>
         <input name="widgetId"
                value="{{model.widget._id}}"
