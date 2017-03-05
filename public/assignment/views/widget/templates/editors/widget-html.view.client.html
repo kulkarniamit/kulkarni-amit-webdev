@@ -1,17 +1,24 @@
-<form method="POST">
-    <div ng-show="model.updateerror"
-         class="alert alert-warning text-center"
-         role="alert">
-        {{model.updateerror}}
+<div ng-show="model.updateerror"
+     class="alert alert-warning text-center"
+     role="alert">
+    {{model.updateerror}}
+</div>
+<div class="form-group">
+    <!--<label for="inputname">Text</label>-->
+    <!--<textarea class="form-control"-->
+              <!--id="inputname"-->
+              <!--ng-model="model.widget.text"></textarea>-->
+
+    <div ng-model="model.widget.text"
+         text-angular
+         ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
+            ['bold','italics','underline','strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+            ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+            ['indent','outdent'],['html', 'insertImage','insertLink', 'wordcount', 'charcount']]">
     </div>
-    <div class="form-group">
-        <label for="inputname">Text</label>
-        <textarea class="form-control"
-                  id="inputname"
-                  ng-model="model.widget.text"></textarea>
-    </div>
-    <a class="form-control btn btn-danger"
-       ng-click="model.deleteWidget(model.widget._id)">
-        Delete
-    </a>
-</form>
+
+</div>
+<a class="form-control btn btn-danger"
+   ng-click="model.deleteWidget(model.widget._id)">
+    Delete
+</a>

@@ -24,9 +24,9 @@ module.exports = function () {
     };
 
     userModel.setModel(model);
-    // websiteModel.setModel(model);
-    // pageModel.setModel(model);
-    // widgetModel.setModel(model);
+    websiteModel.setModel(model);
+    pageModel.setModel(model);
+    widgetModel.setModel(model);
 
     return model;
 };

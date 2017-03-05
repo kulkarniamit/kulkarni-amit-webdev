@@ -41,11 +41,30 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
 
-        vm.createHeaderWidget = createHeaderWidget;
-        vm.createHTMLWidget = createHTMLWidget;
-        vm.createImageWidget = createImageWidget;
-        vm.createYoutubeWidget = createYoutubeWidget;
+        vm.createHeaderWidget   = createHeaderWidget;
+        vm.createHTMLWidget     = createHTMLWidget;
+        vm.createImageWidget    = createImageWidget;
+        vm.createYoutubeWidget  = createYoutubeWidget;
+        vm.createTEXTWidget     = createTEXTWidget;
 
+        function createTEXTWidget() {
+            var widget = {  type: "TEXT",
+                            text: "Sample text",
+                            rows: 1,
+                            placeholder: "Enter some text",
+                            formatted: false};
+            WidgetService
+                .createWidget(vm.pid, widget)
+                .success(function (response) {
+                    var newWidget = response;
+                    if(newWidget){
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id+"?status=new");
+                    }
+                })
+                .error(function (response) {
+
+                });
+        }
         function createHeaderWidget(headerSize) {
             var widget = {type: "HEADER",
                           size: headerSize.toString(),
@@ -154,7 +173,7 @@
         // Need not be exposed using vm
         function hasEmptyProperties(target) {
             for (var member in target) {
-                if(member == "index"){
+                if(member == "index" || member == "formatted"){
                     continue;
                 }
                 if (target[member] == ""){

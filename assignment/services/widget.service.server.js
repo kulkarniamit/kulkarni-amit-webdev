@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, widgetModel) {
     var widgets = [
         {_id: "123", widgetType : "HEADER", pageId: "321", size:"1", text: "GIZMODO", index: 4},
         {_id: "234", widgetType : "HEADER", pageId: "123", size:"4", text: "Something", index: 1},
@@ -91,6 +91,16 @@ module.exports = function (app) {
                     pageId: pageId,
                     width: widget.width,
                     url: widget.url,
+                    index: newIndex};
+                break;
+            case "TEXT":
+                newWidget = {   _id: wgid,
+                    widgetType: widget.type,
+                    pageId: pageId,
+                    text: widget.text,
+                    rows: widget.rows,
+                    placeholder: widget.placeholder,
+                    formatted: widget.formatted,
                     index: newIndex};
                 break;
         }

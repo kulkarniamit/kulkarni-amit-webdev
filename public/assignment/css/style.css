@@ -41,6 +41,9 @@ body {
     margin-bottom: 50px;
 }
 
+textarea{
+    resize: vertical;
+}
 a{
     cursor: pointer;
 }
