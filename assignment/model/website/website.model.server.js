@@ -58,7 +58,8 @@ module.exports = function () {
                             var websites = user.websites;
                             websites.splice(websites.indexOf(websiteId),1);
                             user.save();
-                            return WebsiteModel.remove({_id:websiteId});
+                            return deleteWebsiteOfUser(websiteId);
+                            // return WebsiteModel.remove({_id:websiteId});
                         },function (err) {
                             return err;
                         })

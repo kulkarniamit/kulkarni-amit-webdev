@@ -60,7 +60,8 @@ module.exports = function () {
                             var pages = website.pages;
                             pages.splice(pages.indexOf(page._id),1);
                             website.save();
-                            return PageModel.remove({_id:pageId});
+                            return deletePageOfWebsite(pageId);
+                            // return PageModel.remove({_id:pageId});
                         }, function (err) {
                             return err;
                         });
@@ -98,8 +99,6 @@ module.exports = function () {
         // No need to delete the page reference from the websites collection
         // We have already done a shift() in websites collection
         // Delete the widgets of this page and delete this page
-        // INCOMPLETE
-        // Delete all the widgets
 
         return PageModel.findById({_id: pageId})
             .then(function (page) {
