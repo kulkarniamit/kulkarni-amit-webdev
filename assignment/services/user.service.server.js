@@ -127,8 +127,8 @@ module.exports = function (app, userModel) {
     }
     function createUser(req, res){
         var user = req.body;
-        var userId = (parseInt(users[users.length -1]._id) + 1).toString();
-        var newUser = {_id: userId,
+        // var userId = (parseInt(users[users.length -1]._id) + 1).toString();
+        var newUser = {
                         username: user.username,
                         password: user.password,
                         email: user.email,
@@ -139,7 +139,7 @@ module.exports = function (app, userModel) {
             .then(function (newUser) {
                     res.json(newUser);
             },function (err) {
-                res.sendStatus(500).send(err);
+                res.sendStatus(404).send(err);
             });
         // users.push(newUser);
         // res.json(newUser);

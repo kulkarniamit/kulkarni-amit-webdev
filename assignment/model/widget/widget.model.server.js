@@ -12,6 +12,7 @@ module.exports = function () {
         "findWidgetById":findWidgetById,
         "updateWidget":updateWidget,
         "deleteWidget":deleteWidget,
+        "deleteWidgetOfPage":deleteWidgetOfPage,
         "reorderWidget":reorderWidget,
         "setModel":setModel
     };
@@ -126,6 +127,25 @@ module.exports = function () {
                return err;
             });
     }
+
+    function deleteWidgetOfPage(widgetId) {
+        // To be called when a page is deleted
+        // No need to delete the widget reference from the pages collection
+        // We have already done a shift() in pages collection
+        // Delete this widget and the associated local image (if present)
+        // INCOMPLETE
+        // Delete all the widgets
+        return WidgetModel.findById(widgetId)
+            .then(function (widget) {
+                if(widget.type == "IMAGE"){
+                    deleteUploadedImage(widget.url);
+                }
+                return WidgetModel.remove({_id: widgetId});
+            }, function (err) {
+                return err;
+            });
+    }
+
     function reorderWidget(pageId, start, end) {
         return model.pageModel
             .findPageById(pageId)

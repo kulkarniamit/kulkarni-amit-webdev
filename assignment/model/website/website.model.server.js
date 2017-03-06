@@ -10,6 +10,7 @@ module.exports = function () {
         "findWebsiteById"       :findWebsiteById,
         "updateWebsite"         :updateWebsite,
         "deleteWebsite"         :deleteWebsite,
+        "deleteWebsiteOfUser"   :deleteWebsiteOfUser,
         "setModel"              :setModel
     };
 
@@ -46,10 +47,7 @@ module.exports = function () {
         return WebsiteModel.update({_id:websiteId},{$set:updatedWebsite});
     }
     function deleteWebsite(websiteId){
-        // INCOMPLETE
-        // Delete all the pages
-        // Delete all the widgets of those pages
-
+        // To be called when a website is to be deleted
         return WebsiteModel
             .findOne({_id:websiteId})
             .then(function (website) {
@@ -67,6 +65,60 @@ module.exports = function () {
             }, function (err) {
                 console.log(repsonse);
             });
+    }
+
+    function recursiveDelete(pagesOfWebsite, websiteId) {
+        if(pagesOfWebsite.length == 0){
+            // All pages of website successfully deleted
+            // Delete the website
+            return WebsiteModel.remove({_id: websiteId})
+                .then(function (response) {
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
+                }, function (err) {
+                    return err;
+                });
+        }
+
+        return model.pageModel.deletePageOfWebsite(pagesOfWebsite.shift())
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return recursiveDelete(pagesOfWebsite, websiteId);
+                }
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function deleteWebsiteOfUser(websiteId){
+        // To be called when a user is deleted
+        // No need to delete the website reference from the users collection
+        // We have already dont a shift() in users collection
+        // Delete the pages of this website and delete this website
+        // INCOMPLETE
+        // Delete all the pages
+        // Delete all the widgets of those pages
+
+        return WebsiteModel.findById({_id: websiteId})
+            .then(function (website) {
+                var pagesOfWebsite = website.pages;
+                return recursiveDelete(pagesOfWebsite, websiteId);
+            }, function (err) {
+                return err;
+            });
+        //
+        // return WebsiteModel.remove({_id: websiteId})
+        //     .then(function (response) {
+        //         if(response.result.n == 1 && response.result.ok == 1){
+        //             return response;
+        //         }
+        //         else{
+        //             return 404;
+        //         }
+        //     }, function (err) {
+        //         return err;
+        //     });
     }
 
     function setModel(_model) {

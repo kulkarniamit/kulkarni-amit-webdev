@@ -67,7 +67,8 @@ module.exports = function (app, pageModel) {
         pageModel
             .updatePage(pageId, updatedPage)
             .then(function (response) {
-                if(response.nModified === 1 && response.ok === 1 && response.n === 1){
+                if(response.ok === 1 && response.n === 1){
+                // if(response.nModified === 1 && response.ok === 1 && response.n === 1){
                     res.sendStatus(200);
                 }
                 else{

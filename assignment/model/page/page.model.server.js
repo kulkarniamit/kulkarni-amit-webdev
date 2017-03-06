@@ -10,6 +10,7 @@ module.exports = function () {
         "findPageById":findPageById,
         "updatePage":updatePage,
         "deletePage":deletePage,
+        "deletePageOfWebsite":deletePageOfWebsite,
         "setModel":setModel
     };
 
@@ -55,6 +56,7 @@ module.exports = function () {
                         .websiteModel
                         .findWebsiteById({_id:page._website})
                         .then(function (website) {
+                            // Remove the reference of this page from the websites collection
                             var pages = website.pages;
                             pages.splice(pages.indexOf(page._id),1);
                             website.save();
@@ -64,8 +66,62 @@ module.exports = function () {
                         });
             }, function (err) {
                 return err;
-            });;
+            });
     }
+
+    function recursiveDelete(widgetsOfPage, pageId) {
+        if(widgetsOfPage.length == 0){
+            // All widgets of page successfully deleted
+            // Delete the page
+            return PageModel.remove({_id: pageId})
+                .then(function (response) {
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
+                }, function (err) {
+                    return err;
+                });
+        }
+
+        return model.widgetModel.deleteWidgetOfPage(widgetsOfPage.shift())
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return recursiveDelete(widgetsOfPage, pageId);
+                }
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function deletePageOfWebsite(pageId) {
+        // To be called when a website is deleted
+        // No need to delete the page reference from the websites collection
+        // We have already done a shift() in websites collection
+        // Delete the widgets of this page and delete this page
+        // INCOMPLETE
+        // Delete all the widgets
+
+        return PageModel.findById({_id: pageId})
+            .then(function (page) {
+                var widgetsOfPage = page.widgets;
+                return recursiveDelete(widgetsOfPage, pageId);
+            }, function (err) {
+                return err;
+            });
+
+        // return PageModel.remove({_id: pageId})
+        //     .then(function (response) {
+        //         if(response.result.n == 1 && response.result.ok == 1){
+        //             return response;
+        //         }
+        //         else{
+        //             return 404;
+        //         }
+        //     }, function (err) {
+        //         return err;
+        //     });
+    }
+
     function setModel(_model) {
         model = _model;
     }
