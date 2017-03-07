@@ -46,7 +46,7 @@ module.exports = function () {
                 });
         }
 
-        return model.websiteModel.deleteWebsiteOfUser(websitesOfUser.shift())
+        return model.websiteModel.deleteWebsiteAndChildren(websitesOfUser.shift())
             .then(function (response) {
                 if(response.result.n == 1 && response.result.ok == 1){
                     return recursiveDelete(websitesOfUser, userId);
@@ -69,7 +69,6 @@ module.exports = function () {
             }, function (err) {
                 return err;
             });
-        // return UserModel.remove({_id:userId});
     }
     function updateUser(userId, updatedUser) {
         return UserModel.update({_id:userId},{$set:updatedUser});

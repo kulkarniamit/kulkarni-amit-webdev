@@ -10,7 +10,7 @@ module.exports = function () {
         "findPageById":findPageById,
         "updatePage":updatePage,
         "deletePage":deletePage,
-        "deletePageOfWebsite":deletePageOfWebsite,
+        "deletePageAndChildren":deletePageAndChildren,
         "setModel":setModel
     };
 
@@ -46,28 +46,14 @@ module.exports = function () {
         return PageModel.update({_id:pageId},{$set: updatedPage});
     }
     function deletePage(pageId) {
-        // INCOMPLETE
-        // Delete the page reference in websites : DONE
-        // Delete all the widgets of this page
-        return PageModel
-            .findOne({_id:pageId})
-            .then(function (page) {
-                return model
-                        .websiteModel
-                        .findWebsiteById({_id:page._website})
-                        .then(function (website) {
-                            // Remove the reference of this page from the websites collection
-                            var pages = website.pages;
-                            pages.splice(pages.indexOf(page._id),1);
-                            website.save();
-                            return deletePageOfWebsite(pageId);
-                            // return PageModel.remove({_id:pageId});
-                        }, function (err) {
-                            return err;
-                        });
-            }, function (err) {
-                return err;
-            });
+        // Delete a page, its reference in parent website and its children (widgets)
+        return PageModel.findById(pageId).populate('_website').then(function (page) {
+            page._website.pages.splice(page._website.pages.indexOf(pageId),1);
+            page._website.save();
+            return deletePageAndChildren(pageId);
+        }, function (err) {
+            return err;
+        });
     }
 
     function recursiveDelete(widgetsOfPage, pageId) {
@@ -94,12 +80,8 @@ module.exports = function () {
             });
     }
 
-    function deletePageOfWebsite(pageId) {
-        // To be called when a website is deleted
-        // No need to delete the page reference from the websites collection
-        // We have already done a shift() in websites collection
-        // Delete the widgets of this page and delete this page
-
+    function deletePageAndChildren(pageId) {
+        // Delete the page and its children (widgets)
         return PageModel.findById({_id: pageId})
             .then(function (page) {
                 var widgetsOfPage = page.widgets;
@@ -107,18 +89,6 @@ module.exports = function () {
             }, function (err) {
                 return err;
             });
-
-        // return PageModel.remove({_id: pageId})
-        //     .then(function (response) {
-        //         if(response.result.n == 1 && response.result.ok == 1){
-        //             return response;
-        //         }
-        //         else{
-        //             return 404;
-        //         }
-        //     }, function (err) {
-        //         return err;
-        //     });
     }
 
     function setModel(_model) {

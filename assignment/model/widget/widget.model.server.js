@@ -108,33 +108,22 @@ module.exports = function () {
         return WidgetModel.update({_id:widgetId},{$set: updatedWidget});
     }
     function deleteWidget(widgetId){
-        return WidgetModel
-            .findById(widgetId)
-            .then(function (widget) {
-                return model.pageModel
-                    .findPageById(widget._page)
-                    .then(function (page) {
-                        page.widgets.splice(page.widgets.indexOf(widget._id),1);
-                        page.save();
-                        if(widget.type == "IMAGE"){
-                            deleteUploadedImage(widget.url);
-                        }
-                        return WidgetModel.remove({_id:widgetId});
-                    }, function (err) {
-                       return err;
-                    });
-            }, function (err) {
-               return err;
-            });
+        // Delete the widget, its reference in the parent page and delete the image
+        // associated (if the widget is an IMAGE widget)
+        return WidgetModel.findById(widgetId).populate('_page').then(function (widget) {
+            widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId),1);
+            widget._page.save();
+            if(widget.type == "IMAGE"){
+                deleteUploadedImage(widget.url);
+            }
+            return WidgetModel.remove({_id:widgetId});
+        }, function (err) {
+           return err;
+        });
     }
 
     function deleteWidgetOfPage(widgetId) {
-        // To be called when a page is deleted
-        // No need to delete the widget reference from the pages collection
-        // We have already done a shift() in pages collection
-        // Delete this widget and the associated local image (if present)
-        // INCOMPLETE
-        // Delete all the widgets
+        // Delete the widget and the associated image (if present)
         return WidgetModel.findById(widgetId)
             .then(function (widget) {
                 if(widget.type == "IMAGE"){
