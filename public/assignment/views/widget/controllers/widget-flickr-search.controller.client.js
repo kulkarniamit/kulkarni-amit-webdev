@@ -26,19 +26,23 @@
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-            var updatedWidget = {
-                _id: vm.wgid
-            };
-            updatedWidget.url = url;
             WidgetService
-                .updateWidget(vm.wgid, updatedWidget)
+                .findWidgetById(vm.wgid)
                 .then(function (response) {
-                    var updatedWidgetObject = response;
-                    if(updatedWidgetObject){
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-                    }
+                    var updatedWidget = response.data;
+                    updatedWidget.url = url;
+                    WidgetService
+                        .updateWidget(vm.wgid, updatedWidget)
+                        .then(function (response) {
+                            var updatedWidgetObject = response;
+                            if(updatedWidgetObject){
+                                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                            }
+                        }, function (err) {
+                            vm.updateerror = "Could not update the widget!";
+                        });
                 }, function (err) {
-                    vm.updateerror = "Could not update the widget!";
+                    vm.updateerror = "Could not get the widget!";
                 });
             // WidgetService
             //     .updateWidget(websiteId, pageId, widgetId, {url: url})
@@ -47,6 +51,5 @@
             //     }, function (err) {
             //     });
         }
-
     }
 })();

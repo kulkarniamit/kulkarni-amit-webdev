@@ -1,13 +1,13 @@
 module.exports = function (app, widgetModel) {
-    var widgets = [
-        {_id: "567", widgetType : "HEADER", pageId: "58bb3366c10b7732a9daf56f", index: 0, size: "5", text: "Something else"},
-        {_id: "456", widgetType : "HTML",   pageId: "123", index: 0, text: "<p>Some text of paragraph</p>"},
-        {_id: "789", widgetType : "HTML",   pageId: "58bb3366c10b7732a9daf56f", index: 1, text: "<p>Lorem <i>Ipsum</i> something</p>"},
-        {_id: "678", widgetType : "YOUTUBE",pageId: "58bb3366c10b7732a9daf56f", index: 2, width: "75%", url: "https://www.youtube.com/watch?v=vlDzYIIOYmM"},
-        {_id: "345", widgetType : "IMAGE",  pageId: "58bb3366c10b7732a9daf56f", index: 3, width: "60%", url : "https://s-media-cache-ak0.pinimg.com/originals/d8/cc/e1/d8cce14b98983a1f8311f241b9d7ad89.png"},
-        {_id: "123", widgetType : "HEADER", pageId: "58bb3366c10b7732a9daf56f", index: 4, size: "1", text: "GIZMODO"},
-        {_id: "234", widgetType : "HEADER", pageId: "123", index: 1, size: "4", text: "Something"}
-    ];
+    // var widgets = [
+    //     {_id: "567", widgetType : "HEADER", pageId: "58bb3366c10b7732a9daf56f", index: 0, size: "5", text: "Something else"},
+    //     {_id: "456", widgetType : "HTML",   pageId: "123", index: 0, text: "<p>Some text of paragraph</p>"},
+    //     {_id: "789", widgetType : "HTML",   pageId: "58bb3366c10b7732a9daf56f", index: 1, text: "<p>Lorem <i>Ipsum</i> something</p>"},
+    //     {_id: "678", widgetType : "YOUTUBE",pageId: "58bb3366c10b7732a9daf56f", index: 2, width: "75%", url: "https://www.youtube.com/watch?v=vlDzYIIOYmM"},
+    //     {_id: "345", widgetType : "IMAGE",  pageId: "58bb3366c10b7732a9daf56f", index: 3, width: "60%", url : "https://s-media-cache-ak0.pinimg.com/originals/d8/cc/e1/d8cce14b98983a1f8311f241b9d7ad89.png"},
+    //     {_id: "123", widgetType : "HEADER", pageId: "58bb3366c10b7732a9daf56f", index: 4, size: "1", text: "GIZMODO"},
+    //     {_id: "234", widgetType : "HEADER", pageId: "123", index: 1, size: "4", text: "Something"}
+    // ];
 
     var multer = require('multer'); // npm install multer --save
     var fs = require("fs");
@@ -114,14 +114,6 @@ module.exports = function (app, widgetModel) {
             }, function (err) {
                 res.sendStatus(404);
             });
-        // var widgetsList = widgets.filter(function(widget){
-        //     return widget.pageId === pageId;
-        // });
-        // // Sort by index
-        // var sortedWidgetList = widgetsList.sort(function (widgeta, widgetb) {
-        //     return widgeta.index > widgetb.index;
-        // })
-        // res.json(sortedWidgetList);
     }
     function findWidgetById(req, res){
         var widgetId = req.params.widgetId;
@@ -132,10 +124,6 @@ module.exports = function (app, widgetModel) {
             }, function (err) {
                 res.sendStatus(404);
             });
-        // var widget = widgets.find(function (widget) {
-        //     return widget._id === widgetId;
-        // })
-        // res.json(widget);
     }
 
     function widgetUpdateRequest(widgetId, updatedWidget, res) {
@@ -157,7 +145,6 @@ module.exports = function (app, widgetModel) {
         var widgetId = req.params.widgetId;
         var updatedWidget = req.body;
 
-        // INCOMPLETE: Handle IMAGE special cases
         if(updatedWidget.type == "IMAGE"){
             if(updatedWidget.url.search('http') != -1){
                 // A new URL has been inserted
@@ -185,39 +172,6 @@ module.exports = function (app, widgetModel) {
         else{
             widgetUpdateRequest(widgetId, updatedWidget, res);
         }
-        // for(var i in widgets) {
-        //     var widget = widgets[i];
-        //     if( widget._id === wgid) {
-        //         if(widget.widgetType == "IMAGE"){
-        //             // This could have been an update to the image
-        //             // The user may have chosen to delete the uploaded image
-        //             // Or the user may have pasted a link to a remote image URL
-        //             if((widget.url != "")
-        //                 &&(widget.url != updatedWidget.url)){
-        //                 // Some image is stored and a new URL has been inserted
-        //                 // Delete existing image
-        //                 deleteUploadedImage(widget.url);
-        //             }
-        //         }
-        //         widgets[i] = updatedWidget;
-        //         res.json(widget);
-        //         return;
-        //     }
-        // }
-        // res.sendStatus(404);
-    }
-    function updateIndexesAfterDelete(deletedIndex, deletedWidgetPageId) {
-        var widgetsToUpdate = widgets.filter(function (w) {
-            return w.pageId == deletedWidgetPageId;
-        })
-        var widgetsToUpdateIndex = widgetsToUpdate.filter(function (w) {
-            return w.index > deletedIndex;
-        })
-        if(widgetsToUpdateIndex){
-            widgetsToUpdateIndex.map(function (widget) {
-                widget.index--;
-            })
-        }
     }
     function deleteUploadedImage(imageUrl) {
         // Local helper function
@@ -238,7 +192,6 @@ module.exports = function (app, widgetModel) {
         widgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
-                // deleteUploadedImage(widget.url);
                 widgetModel
                     .deleteWidget(widgetId)
                     .then(function (response) {
@@ -251,23 +204,6 @@ module.exports = function (app, widgetModel) {
             }, function (err) {
                 res.sendStatus(404);
             });
-        // var deletedIndex, deletedWidgetPageId;
-        // for(var i in widgets) {
-        //     var widget = widgets[i];
-        //     if( widget._id === wgid ) {
-        //         deletedIndex = widget.index;
-        //         deletedWidgetPageId = widget.pageId;
-        //         if(widget.widgetType === "IMAGE"){
-        //             // Remove the uploaded image
-        //             deleteUploadedImage(widget.url);
-        //         }
-        //         widgets.splice(i,1);
-        //         updateIndexesAfterDelete(deletedIndex, deletedWidgetPageId);
-        //         res.sendStatus(200);
-        //         return;
-        //     }
-        // }
-        // res.sendStatus(404);
     }
     function uploadImage(req, res){
         var widgetId = req.body.widgetId;
@@ -275,14 +211,10 @@ module.exports = function (app, widgetModel) {
         var uid = req.body.uid;
         var websiteId = req.body.wid;
         var pageId = req.body.pid;
-        var imageWidget = {};
-
-        // var imageWidget = widgets.find(function (widget) {
-        //     return widget._id == widgetId;
-        // })
-        imageWidget.width = width;
-
-        imageWidget._id = widgetId;
+        var imageWidget = {
+            width: width,
+            _id:widgetId
+        };
 
         if(req.file){
             // Make sure file was uploaded
@@ -334,39 +266,5 @@ module.exports = function (app, widgetModel) {
             }, function (err) {
                 res.sendStatus(404);
             });
-        // var widgetsOfPage = widgets.filter(function (w) {
-        //     return w.pageId === pageId;
-        // })
-        //
-        // var fromWidget = widgetsOfPage.find(function (w) {
-        //     return w.index === startIndex;
-        // })
-        // var toWidget = widgetsOfPage.find(function (w) {
-        //     return w.index === endIndex;
-        // })
-        //
-        // fromWidget.index = endIndex;
-        //
-        // if(startIndex < endIndex){
-        //     // A widget moved down
-        //     // Other widget index -= 1
-        //     widgetsOfPage.filter(function (w) {
-        //         return w.index > startIndex && w.index < endIndex;
-        //     }).map(function (w) {
-        //         w.index -= 1;
-        //     });
-        //     toWidget.index -=1;
-        // }
-        // else {
-        //     // A widget moved up
-        //     // Other widget index += 1
-        //     widgetsOfPage.filter(function (w) {
-        //         return w.index < startIndex && w.index > endIndex;
-        //     }).map(function (w) {
-        //         w.index += 1;
-        //     });
-        //     toWidget.index +=1;
-        // }
-        // res.sendStatus(200);
     }
 }
