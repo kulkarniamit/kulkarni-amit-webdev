@@ -1,14 +1,4 @@
 module.exports = function (app, widgetModel) {
-    // var widgets = [
-    //     {_id: "567", widgetType : "HEADER", pageId: "58bb3366c10b7732a9daf56f", index: 0, size: "5", text: "Something else"},
-    //     {_id: "456", widgetType : "HTML",   pageId: "123", index: 0, text: "<p>Some text of paragraph</p>"},
-    //     {_id: "789", widgetType : "HTML",   pageId: "58bb3366c10b7732a9daf56f", index: 1, text: "<p>Lorem <i>Ipsum</i> something</p>"},
-    //     {_id: "678", widgetType : "YOUTUBE",pageId: "58bb3366c10b7732a9daf56f", index: 2, width: "75%", url: "https://www.youtube.com/watch?v=vlDzYIIOYmM"},
-    //     {_id: "345", widgetType : "IMAGE",  pageId: "58bb3366c10b7732a9daf56f", index: 3, width: "60%", url : "https://s-media-cache-ak0.pinimg.com/originals/d8/cc/e1/d8cce14b98983a1f8311f241b9d7ad89.png"},
-    //     {_id: "123", widgetType : "HEADER", pageId: "58bb3366c10b7732a9daf56f", index: 4, size: "1", text: "GIZMODO"},
-    //     {_id: "234", widgetType : "HEADER", pageId: "123", index: 1, size: "4", text: "Something"}
-    // ];
-
     var multer = require('multer'); // npm install multer --save
     var fs = require("fs");
     var uploadsDirectory = __dirname+"/../../public/uploads";
@@ -46,20 +36,6 @@ module.exports = function (app, widgetModel) {
     function createWidget(req, res){
         var pageId = req.params.pageId;
         var widget = req.body;
-        // var wgid = (parseInt(widgets[widgets.length -1]._id) + 1).toString();
-        // // Find the highest index in that page and increment it by 1 for the new widget
-        // var sortedWidgetsList = widgets.filter(function (w) {
-        //                                 return w.pageId == pageId;
-        //                             })
-        //                              .sort(function (a, b) {
-        //                                 return a.index < b.index;
-        //                              });
-        // var newHighestIndex = 0;
-        // if(sortedWidgetsList.length != 0){
-        //     newHighestIndex = sortedWidgetsList[0].index + 1;
-        // }
-        // var newIndex = newHighestIndex;
-
         var newWidget = {};
         switch (widget.type){
             case "HEADING":
@@ -102,8 +78,6 @@ module.exports = function (app, widgetModel) {
             }, function (err) {
                 res.sendStatus(404);
             });
-        // widgets.push(newWidget);
-        // res.json(newWidget);
     }
     function findAllWidgetsForPage(req, res){
         var pageId = req.params.pageId;
@@ -190,17 +164,11 @@ module.exports = function (app, widgetModel) {
     function deleteWidget(req, res){
         var widgetId = req.params.widgetId;
         widgetModel
-            .findWidgetById(widgetId)
-            .then(function (widget) {
-                widgetModel
-                    .deleteWidget(widgetId)
-                    .then(function (response) {
-                        if(response.result.n == 1 && response.result.ok == 1){
-                            res.sendStatus(200);
-                        }
-                    }, function (err) {
-                        res.sendStatus(404);
-                    });
+            .deleteWidget(widgetId)
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
+                    res.sendStatus(200);
+                }
             }, function (err) {
                 res.sendStatus(404);
             });
@@ -267,4 +235,4 @@ module.exports = function (app, widgetModel) {
                 res.sendStatus(404);
             });
     }
-}
+};
