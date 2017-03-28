@@ -116,7 +116,7 @@
         }
     }
     
-    function RegisterController($location, UserService) {
+    function RegisterController($location, UserService, $rootScope) {
         var vm = this;
         vm.register = register;
 
@@ -143,10 +143,18 @@
                 })
                 .error(function (err) {
                     // There was an error, so the user does not exist
+                    // UserService
+                    //     .createUser(user)
+                    //     .success(function (newuser) {
+                    //         $location.url("/user/"+newuser._id);
+                    //     });
+
                     UserService
-                        .createUser(user)
-                        .success(function (newuser) {
-                            $location.url("/user/"+newuser._id);
+                        .register(user)
+                        .then(function(response) {
+                            var user = response.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/user/"+user._id);
                         });
                 });
         }

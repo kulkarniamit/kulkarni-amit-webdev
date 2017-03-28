@@ -8,11 +8,11 @@ module.exports = function (app, userModel) {
     app.get("/api/user", findUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
-    app.post("/api/user", createUser);
+    // app.post("/api/user", createUser);
+    app.post ('/api/register', register);
     app.delete("/api/user/:userId", deleteUser);
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-
 
     function localStrategy(username, password, done) {
         userModel
@@ -56,7 +56,6 @@ module.exports = function (app, userModel) {
                 }
             );
     }
-
     function findUser(req, res) {
         var username = req.query.username;
         var password = req.query.password;
@@ -132,22 +131,34 @@ module.exports = function (app, userModel) {
                 res.sendStatus(404);
             });
     }
-    function createUser(req, res){
+
+    function register (req, res) {
         var user = req.body;
-        var newUser = {
-                        username: user.username,
-                        password: user.password,
-                        email: user.email,
-                        firstName: user.firstname,
-                        lastName: user.lastname};
         userModel
-            .createUser(newUser)
-            .then(function (newUser) {
-                    res.json(newUser);
-            },function (err) {
-                res.sendStatus(404).send(err);
-            });
+            .createUser(user)
+            .then(function(user){
+                if(user){
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.status(400).send(err);
+                        } else {
+                            res.json(user);
+                        }
+                    });
+                }
+            }
+        );
     }
+    // function createUser(req, res){
+    //     var user = req.body;
+    //     userModel
+    //         .createUser(user)
+    //         .then(function (newUser) {
+    //                 res.json(newUser);
+    //         },function (err) {
+    //             res.sendStatus(404).send(err);
+    //         });
+    // }
     function deleteUser(req, res) {
         var userId = req.params.userId;
         userModel
