@@ -6,6 +6,7 @@ module.exports = function (app, userModel) {
     app.post("/api/login", passport.authenticate('local'), login);
     app.post('/api/logout',logout);
     app.get("/api/user", findUser);
+    app.get ('/api/loggedin', loggedin);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     // app.post("/api/user", createUser);
@@ -30,17 +31,17 @@ module.exports = function (app, userModel) {
                 }
             );
     }
-
     function login(req, res) {
         var user = req.user;
         res.json(user);
     }
-
     function logout(req, res) {
         req.logOut();
         res.send(200);
     }
-
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
     function serializeUser(user, done) {
         done(null, user);
     }

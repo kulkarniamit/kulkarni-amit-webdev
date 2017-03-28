@@ -3,6 +3,18 @@
         .module("WebAppMaker")
         .config(configuration);
 
+
+    var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope) {
+        return $http.get('/api/loggedin').success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user !== '0') {
+                $rootScope.currentUser = user;
+            } else{
+                $location.url('/login');
+            }
+        });
+    };
+
     function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Content-Type']='application/json;charset=UTF-8';
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
@@ -20,7 +32,8 @@
             .when("/user/:uid",{
                 templateUrl: 'views/user/profile.view.client.html',
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
             })
             .when("/user/:uid/website",{
                 templateUrl: 'views/website/website-list.view.client.html',
@@ -75,6 +88,8 @@
             .otherwise({
                 // Default
                 templateUrl: 'views/user/login.view.client.html'
-            })
+            });
     }
+
+
 })();
