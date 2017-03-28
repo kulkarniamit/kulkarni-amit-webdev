@@ -5,38 +5,49 @@
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, $rootScope) {
         var vm = this;
         vm.login = login;
-        function login(username, password) {
-            // var user = UserService.findUserByCredentials(username,password);
+        function login(user) {
             UserService
-                .findUserByCredentials(username,password)
-                .success(function (response) {
-                   var user = response;
-                    if(user){
-                        $location.url("/user/"+user._id);
-                    }})
-                    .error(function (error) {
-                        vm.error = "Username/password does not match";
-                        return null;
-            });
-            // if(user == null){
-            //     vm.error = "Username/password does not match";
-            //     return null;
-            // }
-            // else{
-            //     $location.url("/user/"+user._id);
-            // }
-
+                .login(user)
+                .then(function (response) {
+                    var user = response.data;
+                    $rootScope.currentUser = user;
+                    $location.url("/user/"+user._id);
+                },function (err) {
+                    vm.error = "Username/password does not match";
+                });
+            // UserService
+            //     .findUserByCredentials(username,password)
+            //     .success(function (response) {
+            //        var user = response;
+            //         if(user){
+            //             $location.url("/user/"+user._id);
+            //         }})
+            //         .error(function (error) {
+            //             vm.error = "Username/password does not match";
+            //             return null;
+            // });
         }
     }
     
-    function ProfileController($routeParams, UserService, $location) {
+    function ProfileController($routeParams, UserService, $location, $rootScope) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+
         function init() {
             var promise = UserService.findUserById(vm.userId);
             promise.success(function (user) {

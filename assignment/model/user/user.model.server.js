@@ -29,7 +29,7 @@ module.exports = function () {
         return UserModel.find({"username":username});
     }
     function findUserByCredentials(_username, _password) {
-        return UserModel.find({username:_username, password: _password});
+        return UserModel.findOne({username:_username, password: _password});
     }
 
     function recursiveDelete(websitesOfUser, userId) {
