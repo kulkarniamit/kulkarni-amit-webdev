@@ -1,7 +1,66 @@
 module.exports = function (app, userModel) {
+
+    var facebookConfig = {
+        clientID: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL:process.env.FACEBOOK_CALLBACK_URL,
+        profileFields: ['id','displayName', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
+    };
+
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
     passport.use(new LocalStrategy(localStrategy));
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    app.get('/auth/facebook',passport.authenticate('facebook',{ scope : 'email'}));
+    app.get('/auth/facebook/callback',passport.authenticate('facebook', {
+            failureRedirect: '/assignment/#/login'
+        }), function(req, res){
+        var url = '/assignment/#/user/' + req.user._id.toString();
+        res.redirect(url);
+    });
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByFacebookId(profile.id)
+            .then(function(user) {
+                    if(user) {
+                        // If User exists
+                        console.log(user);
+                        return done(null, user);
+                    } else {
+                        var names = profile.displayName.split(" ");
+                        var newFacebookUser = {
+                            firstName:  names[0],
+                            lastName:  names[1],
+                            facebook: {
+                                id:    profile.id,
+                                token: token
+                            },
+                            email: profile.emails[0].value
+                        };
+                        console.log(newFacebookUser);
+                        userModel
+                            .createUser(newFacebookUser)
+                            .then(function (user) {
+                                return done(null, user);
+                            });
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+            // .then(
+            //     function(user){
+            //         return done(null, user);
+            //     },
+            //     function(err){
+            //         if (err) { return done(err); }
+            //     }
+            // );
+    }
 
     app.post("/api/login", passport.authenticate('local'), login);
     app.post('/api/logout',logout);
