@@ -9,7 +9,7 @@
     <div class="row wbdev-login-container">
         <div class="col-xs-12">
             <h3>Login </h3>
-            <form method="POST">
+            <form method="POST" name="form" novalidate>
                 <div ng-show="model.error" class="alert alert-danger text-center" role="alert"> {{model.error}}</div>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -17,8 +17,16 @@
                            ng-model="model.user.username"
                            class="form-control"
                            id="username"
+                           name="username"
                            placeholder="Username"
+                           required
                     />
+
+                    <div ng-show="form.$submitted || form.username.$touched">
+                        <div ng-show="form.username.$error.required" class="text-danger">
+                            Please enter your username
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -26,7 +34,15 @@
                            ng-model="model.user.password"
                            class="form-control"
                            id="password"
+                           required
+                           name="password"
                            placeholder="Password"/>
+                    <div ng-show="form.$submitted || form.password.$touched">
+                        <div ng-show="form.password.$error.required" class="text-danger">
+                            Please enter your password
+                        </div>
+                    </div>
+
                 </div>
                 <div class="wbdev-buttons-style">
                     <a class="btn btn-primary btn-block"
