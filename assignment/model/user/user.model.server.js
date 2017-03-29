@@ -31,7 +31,8 @@ module.exports = function () {
         return UserModel.findById(userId);
     }
     function findUserbyUsername(username) {
-        return UserModel.find({"username":username});
+        return UserModel.findOne({"username":username});
+        // return UserModel.findOne({"username":username}).select({ "password": 0, "dateCreated":0});
     }
     function findUserByCredentials(_username, _password) {
         return UserModel.findOne({username:_username, password: _password});
