@@ -37,7 +37,6 @@ module.exports = function (app, userModel) {
             .then(function(user) {
                     if(user) {
                         // If User exists
-                        console.log(user);
                         return done(null, user);
                     } else {
                         var names = profile.displayName.split(" ");
@@ -60,14 +59,6 @@ module.exports = function (app, userModel) {
                 function(err) {
                     if (err) { return done(err); }
                 });
-            // .then(
-            //     function(user){
-            //         return done(null, user);
-            //     },
-            //     function(err){
-            //         if (err) { return done(err); }
-            //     }
-            // );
     }
     function googleStrategy(token, refreshToken, profile, done) {
         userModel
@@ -145,7 +136,7 @@ module.exports = function (app, userModel) {
     }
     function logout(req, res) {
         req.logOut();
-        res.send(200);
+        res.sendStatus(200);
     }
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
