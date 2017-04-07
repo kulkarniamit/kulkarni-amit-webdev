@@ -12,10 +12,6 @@
                 The News Network</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li class="active"><a href="#">Home</a></li>-->
-                <!--<li><a href="#about">About</a></li>-->
-            <!--</ul>-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="#/" class="tnn-navbar-btn">HOME</a>
@@ -35,20 +31,23 @@
 </nav>
 
 <div class="container">
-    <div class="row tnn-welcome-message">
-        <div class="col-xs-12">
-            <div class="tnn-welcome-header"> Welcome readers and publishers</div>
-            <div class="text-center">
-                We live in a world where news content is created faster than ever before. The News Network aims to be a central platform for a reader
-                who wants to save news articles to read later, share and comment on news, subscribe to various publishers and personalize the news
-                that appear on his/her feed. The News Network also provides a platform for publishers to build a userbase and deliver news straight
-                to the newsfeed of a subscriber
-            </div>
+
+    <div class="row tnn-search-div">
+        <div class="col-xs-10">
+            <select ng-model="model.option">
+            </select>
+        </div>
+        <div class="col-xs-2">
+            <a ng-click="model.searchNewsFromSource(model.option)"
+               class="btn btn-primary">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
+
     <div class="row tnn-home-news">
         <div class="col-xs-12 tnn-home-news-item"
-             ng-repeat="news in model.homenews">
+             ng-repeat="news in model.searchNews">
             <div class="tnn-news-title">
                 {{news.title}}
             </div>

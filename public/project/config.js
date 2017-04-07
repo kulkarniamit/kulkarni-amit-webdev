@@ -24,6 +24,11 @@
                 controller: "HomeController",
                 controllerAs: "model"
             })
+            .when("/search", {
+                templateUrl: 'views/search/templates/search.view.client.html',
+                controller: "SearchController",
+                controllerAs: "model"
+            })
             .when("/login", {
                 templateUrl: 'views/user/login.view.client.html',
                 controller: "LoginController",

@@ -5,7 +5,6 @@
     
     function HomeController(HomeNewsService) {
         var vm = this;
-        console.log("I am in home controller now");
         vm.getNews = getNews;
         
         function init() {

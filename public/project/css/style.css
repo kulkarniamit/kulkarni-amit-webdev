@@ -254,6 +254,9 @@ a.thumbnail{
 /******************************************************************************/
 /* Project styles */
 /******************************************************************************/
+.tnn-bar-color{
+    background-color: #1C053A;
+}
 .tnn-navbar{
     background-color: #1C053A;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
@@ -311,6 +314,18 @@ a.thumbnail{
 }
 .tnn-news-source{
     padding-bottom: 10px;
+}
+
+.tnn-search-div .col-xs-10 {
+    padding-right: 0;
+}
+.tnn-search-div .col-xs-2 {
+    padding-left: 0;
+}
+
+.selectize-input{
+    border-radius: 0;
+    padding: 7px;
 }
 
 .navbar-default .navbar-nav>li>a:focus,
