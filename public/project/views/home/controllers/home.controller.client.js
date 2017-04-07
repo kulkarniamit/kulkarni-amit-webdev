@@ -3,8 +3,30 @@
         .module('TheNewsNetwork')
         .controller("HomeController",HomeController);
     
-    function HomeController() {
+    function HomeController(HomeNewsService) {
         var vm = this;
         console.log("I am in home controller now");
+        vm.getNews = getNews;
+        
+        function init() {
+            vm.getNews();
+            // vm.homenews = [{
+            //                     "author":"Rachel Kaser",
+            //                     "title":"WikiLeaks reveals Grasshopper, the CIA's Windows hacking tool",
+            //                     "description":"In case you haven’t had your dose of paranoia fuel today, WikiLeaks released new information concerning a CIA malware program called “Grasshopper,” that specifically targets Windows. The Grasshopper framework was (is?) allegedly used by the CIA to make custom malware payloads. According to the user guide: Grasshopper is a software tool used to build custom installers for target …",
+            //                     "url":"https://thenextweb.com/security/2017/04/07/wikileaks-reveals-grasshopper-cias-windows-hacking-tool/",
+            //                     "urlToImage":"https://cdn3.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/Grasshopper.jpg",
+            //                     "publishedAt":"2017-04-07T16:40:26Z"}];
+        }
+        init();
+
+        function getNews() {
+            HomeNewsService
+                .searchNews()
+                .then(function(response) {
+                    vm.homenews = response.data.articles;
+                });
+
+        }
     }
 })();

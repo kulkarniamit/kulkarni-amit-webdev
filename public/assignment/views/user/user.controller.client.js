@@ -18,17 +18,6 @@
                 },function (err) {
                     vm.error = "Username/password does not match";
                 });
-            // UserService
-            //     .findUserByCredentials(username,password)
-            //     .success(function (response) {
-            //        var user = response;
-            //         if(user){
-            //             $location.url("/user/"+user._id);
-            //         }})
-            //         .error(function (error) {
-            //             vm.error = "Username/password does not match";
-            //             return null;
-            // });
         }
     }
     

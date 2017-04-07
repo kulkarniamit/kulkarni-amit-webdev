@@ -1,9 +1,17 @@
+/*
+ * Color combinations
+ * http://paletton.com/#uid=14t0u0kllllaFw0g0qFqFg0w0aF
+ */
+
+/******************************************************************************/
 /* Bootstrap overrides */
+/******************************************************************************/
 .navbar-default .navbar-brand{
     color:#e5bd1d;
     font-weight: bold;
 }
 
+.navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover{
     color:#e5bd1d;
 }
@@ -56,16 +64,12 @@ a.thumbnail{
     cursor: default;
 }
 
-/* Project styles */
-.tnn-navbar{
-    background-color: #1C053A;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
+.panel, .panel-heading{
+    border-radius: 0;
 }
-
-
-
+/******************************************************************************/
 /* My webdev custom styles */
-
+/******************************************************************************/
 .wbdev-bar-color{
     /*background-color: #172435;*/
     background-color: #36465d;
@@ -247,3 +251,76 @@ a.thumbnail{
 .wbdev-hide-element{
     display: none;
 }
+/******************************************************************************/
+/* Project styles */
+/******************************************************************************/
+.tnn-navbar{
+    background-color: #1C053A;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
+}
+
+.tnn-logo-navbar{
+    margin-right: 5px;
+}
+
+.tnn-welcome-message{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.518);
+    background-color: #eeeeee;
+    padding: 20px;
+    line-height: 2;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.tnn-welcome-header {
+    font-size: 18px;
+    text-align: center;
+}
+.tnn-welcome-header::first-letter {
+    font-size: 150%;
+}
+
+.tnn-home-news{
+    max-width: 600px;
+    margin: 0 auto;
+}
+.tnn-home-news-item>img{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tnn-home-news-item{
+    margin-top: 15px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+}
+
+.tnn-news-title{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid #EEE;
+    font-weight: 900;
+}
+
+.tnn-news-description {
+    line-height: 1.8;
+    text-align: justify;
+    padding-bottom: 10px;
+}
+.tnn-news-author {
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+.tnn-news-source{
+    padding-bottom: 10px;
+}
+
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover
+{
+    color: #555555;
+    background-color: #e7e7e7;
+}
+.navbar-default .navbar-nav>li>a{
+    color: white;
+    font-size: 12px;
+}
+/******************************************************************************/
