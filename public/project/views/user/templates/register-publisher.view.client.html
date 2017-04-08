@@ -1,0 +1,91 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row tnn-registration-container">
+        <div class="col-xs-12">
+            <h3>Register as Publisher</h3>
+            <div ng-show="model.registrationerror"
+                 class="alert alert-danger text-center"
+                 role="alert"> {{model.registrationerror}}</div>
+            <div ng-show="model.passwordmismatch"
+                 class="alert alert-danger text-center"
+                 role="alert"> {{model.passwordmismatch}}</div>
+            <form action="#/register"
+                  method="POST">
+                <div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email"
+                               class="form-control"
+                               id="email"
+                               ng-model="model.user.email"
+                               placeholder="Please enter your email address"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Firt Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="firstname"
+                               ng-model="model.user.firstName"
+                               placeholder="First Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="lastname"
+                               ng-model="model.user.lastName"
+                               placeholder="Last Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               ng-model="model.user.username"
+                               placeholder="Username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="org">Name of your Organization</label>
+                        <input type="text"
+                               class="form-control"
+                               id="org"
+                               ng-model="model.user.organization"
+                               placeholder="Organization Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               ng-model="model.user.password"
+                               placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="vpassword">Verify Password</label>
+                        <input type="password"
+                               class="form-control"
+                               id="vpassword"
+                               ng-model="model.user.passwordverification"
+                               placeholder="Verify Password"/>
+                    </div>
+                    <input class="tnn-hide-input" type="text" ng-model="model.user.role" value="PUBLISHER"/>
+                </div>
+                <div class="wbdev-buttons-style">
+                    <a class="btn btn-success btn-block"
+                       ng-click="model.register(model.user)">
+                        Register</a>
+                    <a class="btn btn-danger  btn-block"
+                       href="#/login">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

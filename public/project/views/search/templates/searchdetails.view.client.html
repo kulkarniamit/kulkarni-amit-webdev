@@ -29,53 +29,32 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-
 <div class="container">
-
-    <div class="row tnn-search-div">
-        <div class="col-xs-10">
-            <select ng-model="model.option">
-            </select>
-        </div>
-        <div class="col-xs-2">
-            <a ng-click="model.searchNewsFromSource(model.option)"
-               class="btn btn-primary tnn-search-btn">
-                <i class="fa fa-search" aria-hidden="true"></i> SEARCH
-            </a>
-        </div>
-    </div>
-
-    <div class="row tnn-home-news">
-        <div class="col-xs-12 tnn-home-news-item"
-             ng-repeat="news in model.searchNews">
-
-            <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img src="{{news.urlToImage}}">
-                    </a>
-                </div>
-                <div class="col-xs-12 col-md-9">
-                    <div class="tnn-search-news-title">
-                        <a ng-click="model.setLastClickedSearchDetails($index)">{{news.title}}</a>
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col-xs-12 tnn-news-search-item">
+            <div class="tnn-news-title">
+                <h3>
+                {{model.detailsForNews.title}}
+                </h3>
             </div>
-
-            <!--<img class="img-responsive" src="{{news.urlToImage}}">-->
-            <!--<div class="tnn-news-description">-->
-                <!--{{news.description}}-->
-            <!--</div>-->
-            <!--<div ng-show="news.author" class="tnn-news-author">-->
-                <!--Author: {{news.author}}-->
-            <!--</div>-->
-            <!--<div class="tnn-news-source">-->
-                <!--<a href="{{news.url}}"> Source </a>-->
-            <!--</div>-->
+            <img class="img-responsive" src="{{model.detailsForNews.urlToImage}}" width="100%">
+            <div class="tnn-news-description">
+                <h3>
+                    {{model.detailsForNews.description}}
+                </h3>
+            </div>
+            <div ng-show="model.detailsForNews.author" class="tnn-news-author">
+                Author: {{model.detailsForNews.author}}
+            </div>
+            <div class="tnn-news-source col">
+                <a href="{{model.detailsForNews.url}}"> Source </a>
+            </div>
+            <div class="tnn-news-date col">
+                Date of publishing: {{model.detailsForNews.publishedAt}}
+            </div>
         </div>
     </div>
 </div>
-
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid">
         <div class="pull-right">

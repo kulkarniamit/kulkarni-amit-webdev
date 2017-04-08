@@ -3,10 +3,14 @@
         .module('TheNewsNetwork')
         .controller("HomeController",HomeController);
     
-    function HomeController(HomeNewsService) {
+    function HomeController($location, HomeNewsService,SearchNewsService) {
         var vm = this;
         vm.getNews = getNews;
-        
+        vm.getNewsDetails = getNewsDetails;
+        $('.carousel').carousel({
+            interval: 3000
+        })
+
         function init() {
             vm.getNews();
             // vm.homenews = [{
@@ -26,6 +30,11 @@
                     vm.homenews = response.data.articles;
                 });
 
+        }
+
+        function getNewsDetails(index) {
+            SearchNewsService.setLastClickedSearchDetails(vm.homenews[index]);
+            $location.url('/searchdetails');
         }
     }
 })();

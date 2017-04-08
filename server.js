@@ -26,7 +26,10 @@ app.use(express.static(__dirname + '/public'));
 require ("./test/app.js")(app);
 
 // Our assignment server
-require("./assignment/app.js")(app);
+// require("./assignment/app.js")(app);
+
+// Our project server
+require("./project/app.js")(app);
 
 // Testing mongoose in class
 require("./public/lectures/mongoose/movies")(app);

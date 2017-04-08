@@ -3,17 +3,16 @@
         .module("TheNewsNetwork")
         .config(configuration);
 
-
-    // var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope) {
-    //     return $http.get('/api/loggedin').success(function(user) {
-    //         $rootScope.errorMessage = null;
-    //         if (user !== '0') {
-    //             $rootScope.currentUser = user;
-    //         } else{
-    //             $location.url('/login');
-    //         }
-    //     });
-    // };
+    var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope) {
+        return $http.get('/api/project/loggedin').success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user !== '0') {
+                $rootScope.currentUser = user;
+            } else{
+                $location.url('/login');
+            }
+        });
+    };
 
     function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Content-Type']='application/json;charset=UTF-8';
@@ -29,22 +28,32 @@
                 controller: "SearchController",
                 controllerAs: "model"
             })
+            .when("/searchdetails", {
+                templateUrl: 'views/search/templates/searchdetails.view.client.html',
+                controller: "SearchDetailsController",
+                controllerAs: "model"
+            })
             .when("/login", {
-                templateUrl: 'views/user/login.view.client.html',
+                templateUrl: 'views/user/templates/login.view.client.html',
                 controller: "LoginController",
                 controllerAs: "model"
             })
-            // .when("/register",{
-            //     templateUrl: 'views/user/register.view.client.html',
-            //     controller: "RegisterController",
-            //     controllerAs: "model"
-            // })
-            // .when("/user/:uid",{
-            //     templateUrl: 'views/user/profile.view.client.html',
-            //     controller: "ProfileController",
-            //     controllerAs: "model",
-            //     resolve: { loggedin: checkLoggedIn }
-            // })
+            .when("/register/reader",{
+                templateUrl: 'views/user/templates/register-reader.view.client.html',
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/register/publisher",{
+                templateUrl: 'views/user/templates/register-publisher.view.client.html',
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid",{
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
             // .when("/user/:uid/website",{
             //     templateUrl: 'views/website/website-list.view.client.html',
             //     controller: "WebsiteListController",

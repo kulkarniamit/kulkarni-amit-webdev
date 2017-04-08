@@ -1,0 +1,93 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container-fluid ">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               ng-click="model.updateUser(model.user)">
+                <span class="glyphicon glyphicon-ok-sign"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand">Profile</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row tnn-profile-heading text-center">
+        Welcome {{model.firstName}}
+    </div>
+    <div class="tnn-profile-container">
+        <div class="alert alert-success"
+             ng-show="model.message">
+            {{model.message}}
+        </div>
+        <div class="alert alert-danger"
+             ng-show="model.error">
+            {{model.error}}
+        </div>
+        <div class="alert alert-danger"
+             ng-show="model.blankerror">
+            {{model.blankerror}}
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       placeholder="username@domain.com"
+                       ng-model="model.user.email">
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="first-name"
+                       placeholder="First name"
+                       ng-model="model.user.firstName">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="last-name"
+                       placeholder="Last name"
+                       ng-model="model.user.lastName">
+            </div>
+            <div class="form-group tnn-btn-margin-bottom">
+                <a ng-click="model.updateUser(model.user)"
+                   class="btn btn-success btn-block">
+                    Update
+                </a>
+            </div>
+            <div class="form-group">
+                <a ng-click="model.deleteUser(model.user)"
+                   class="btn btn-danger btn-block">
+                    Unregister
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="row wbdev-other-links">
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-primary btn-block"
+               href="#/user/{{model.userId}}/website">
+            Websites</a>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <a class="btn btn-danger btn-block"
+               ng-click="model.logout()">Logout</a>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

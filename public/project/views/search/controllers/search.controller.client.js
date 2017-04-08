@@ -1,9 +1,25 @@
 (function () {
     angular
         .module('TheNewsNetwork')
-        .controller("SearchController",SearchController);
-    
-    function SearchController(SearchNewsService) {
+        .controller("SearchController",SearchController)
+        .controller("SearchDetailsController",SearchDetailsController);
+
+    function SearchDetailsController($location, SearchNewsService) {
+        var vm = this;
+
+        function init() {
+            var newsItem = SearchNewsService.getLastClickedSearchDetails();
+            if(newsItem){
+                vm.detailsForNews = newsItem;
+            }
+            else{
+                $location.url('/');
+            }
+
+        }
+        init();
+    }
+    function SearchController(SearchNewsService, $location) {
         var vm = this;
         $('select').selectize({
             options:[
@@ -14,7 +30,7 @@
                 {value:"bbc-news", text:"BBC News"},
                 {value:"bbc-sport", text:"BBC Sports"},
                 {value:"bild", text:"Bild"},
-                {value:"bloomberg", text:"Bloomberd"},
+                {value:"bloomberg", text:"Bloomberg"},
                 {value:"breitbart-news", text:"Breitbart News"},
                 {value:"business-insider", text:"Business Insider"},
                 {value:"business-insider-uk", text:"Business Insider UK"},
@@ -85,14 +101,20 @@
             placeholder: "Select a news source"
         });
         vm.searchNewsFromSource = searchNewsFromSource;
-        
+        vm.setLastClickedSearchDetails= setLastClickedSearchDetails;
+
         function searchNewsFromSource(source){
             SearchNewsService
                 .searchNews(source)
                 .then(function(response) {
                     vm.searchNews = response.data.articles;
                 });
-
         }
+        
+        function setLastClickedSearchDetails(index) {
+            SearchNewsService.setLastClickedSearchDetails(vm.searchNews[index]);
+            $location.url('/searchdetails');
+        }
+        
     }
 })();

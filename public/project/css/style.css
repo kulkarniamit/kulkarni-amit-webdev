@@ -47,6 +47,8 @@ body {
     font-family: 'Roboto','Open Sans', sans-serif;
     margin-top: 60px;
     margin-bottom: 50px;
+    background: url('../images/slider2_blur.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 textarea{
@@ -132,7 +134,7 @@ a.thumbnail{
 /* Login page styles */
 
 .wbdev-login-container{
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 
@@ -255,10 +257,12 @@ a.thumbnail{
 /* Project styles */
 /******************************************************************************/
 .tnn-bar-color{
-    background-color: #1C053A;
+    /*background-color: #1C053A;*/
+    background-color: #55361E;
 }
 .tnn-navbar{
-    background-color: #1C053A;
+    /*background-color: #1C053A;*/
+    background-color: #55361E;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.56);
 }
 
@@ -285,17 +289,30 @@ a.thumbnail{
 .tnn-home-news{
     max-width: 600px;
     margin: 0 auto;
+    /*margin-left:0;*/
+    /*margin-right: 0;*/
 }
 .tnn-home-news-item>img{
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.tnn-home-news-item{
-    margin-top: 15px;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+.tnn-home-news .thumbnail{
+    margin-bottom: 0;
 }
 
+.tnn-home-news-item{
+    margin-top: 5px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    background-color: white;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.tnn-image-div{
+    padding-left: 0;
+    padding-right: 0;
+}
 .tnn-news-title{
     padding-bottom: 10px;
     padding-top: 10px;
@@ -303,9 +320,17 @@ a.thumbnail{
     font-weight: 900;
 }
 
+.tnn-search-news-title{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: 900;
+}
+.tnn-search-btn{
+    display: block;
+}
 .tnn-news-description {
     line-height: 1.8;
-    text-align: justify;
+    /*text-align: justify;*/
     padding-bottom: 10px;
 }
 .tnn-news-author {
@@ -316,11 +341,77 @@ a.thumbnail{
     padding-bottom: 10px;
 }
 
+.tnn-news-date{
+    padding-bottom: 10px;
+}
 .tnn-search-div .col-xs-10 {
     padding-right: 0;
 }
 .tnn-search-div .col-xs-2 {
     padding-left: 0;
+}
+
+.tnn-hide-input{
+    display: none;
+}
+
+.tnn-news-search-item{
+    background-color: white;
+    margin-bottom: 20px;
+}
+/* Registration page styles */
+.tnn-registration-container{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    /* Optional */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    /* Optional */
+}
+.tnn-login-container{
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    /* Optional */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    /* Optional */
+}
+
+.tnn-profile-container{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+    background-color: white;
+}
+.tnn-registration-container h3{
+    text-align: center;
+}
+
+.tnn-btn-margin-bottom{
+    margin-bottom: 5px;
+}
+
+.tnn-profile-heading{
+    font-size:26px;
+    color: #000000;
+    padding: 10px;
+    max-width: 600px;
+    margin-bottom: 10px;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
+    background-color: white;
 }
 
 .selectize-input{
@@ -333,6 +424,9 @@ a.thumbnail{
 {
     color: #555555;
     background-color: #e7e7e7;
+}
+.navbar-default{
+    border-color: transparent;
 }
 .navbar-default .navbar-nav>li>a{
     color: white;
