@@ -14,6 +14,20 @@
         });
     };
 
+    var redirectToProfile = function($q, $timeout, $http, $location, $rootScope) {
+        return $http.get('/api/project/loggedin').success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user !== '0') {
+                $location.url('/user/'+user._id);
+            } else{
+                if($location.path() != "/"){
+                    $location.url('/login');
+                }
+            }
+        });
+    };
+
+
     function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Content-Type']='application/json;charset=UTF-8';
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
@@ -21,7 +35,8 @@
             .when("/", {
                 templateUrl: 'views/home/templates/home.view.client.html',
                 controller: "HomeController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: redirectToProfile }
             })
             .when("/search", {
                 templateUrl: 'views/search/templates/search.view.client.html',
@@ -36,7 +51,8 @@
             .when("/login", {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: "LoginController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: redirectToProfile }
             })
             .when("/register/reader",{
                 templateUrl: 'views/user/templates/register-reader.view.client.html',

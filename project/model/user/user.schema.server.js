@@ -14,6 +14,7 @@ module.exports = function() {
         // [2] List of articles published by a publisher
         articles: [{type: mongoose.Schema.Types.ObjectId, ref:'ArticleModel'}],
         publishers:[{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
+        friends:[{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
         role: {type: String, enum: ['READER', 'ADMIN', 'PUBLISHER'], default: 'READER'},
         dateCreated: {type:Date, default: Date.now()},
         facebook: {id:String, token: String},

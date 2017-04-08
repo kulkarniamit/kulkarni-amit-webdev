@@ -5,6 +5,19 @@ module.exports = function () {
     var ArticleModel = mongoose.model('ArticleModel', ArticleSchema);
 
     var api = {
+        "createArticle"             :createArticle,
+/*
+        "findAllWebsitesForUser"    :findAllWebsitesForUser,
+        "findWebsiteById"           :findWebsiteById,
+        "updateWebsite"             :updateWebsite,
+        "deleteWebsite"             :deleteWebsite,
+        "deleteWebsiteAndChildren"  :deleteWebsiteAndChildren,
+*/
+        "setModel"                  :setModel
+    };
+
+/*
+    var api = {
         "createArticleForUser"      :createArticleForUser,
         "findAllWebsitesForUser"    :findAllWebsitesForUser,
         "findWebsiteById"           :findWebsiteById,
@@ -13,8 +26,20 @@ module.exports = function () {
         "deleteWebsiteAndChildren"  :deleteWebsiteAndChildren,
         "setModel"                  :setModel
     };
+*/
 
     return api;
+
+    function createArticle(newarticle) {
+        return ArticleModel
+            .create(newarticle)
+            .then(function (article) {
+                return article
+            },function (err) {
+                return err;
+            })
+    }
+/*
 
     function createArticleForUser(userId, article) {
         return ArticleModel
@@ -56,7 +81,6 @@ module.exports = function () {
            return err;
         });
     }
-
     function recursiveDelete(pagesOfWebsite, websiteId) {
         if(pagesOfWebsite.length == 0){
             // All pages of website successfully deleted
@@ -80,7 +104,6 @@ module.exports = function () {
                 return err;
             });
     }
-
     function deleteWebsiteAndChildren(websiteId){
         // Delete the website and its children (pages)
         return WebsiteModel.findById({_id: websiteId}).select({'pages':1})
@@ -91,6 +114,8 @@ module.exports = function () {
                 return err;
             });
     }
+
+*/
 
     function setModel(_model) {
         model = _model;

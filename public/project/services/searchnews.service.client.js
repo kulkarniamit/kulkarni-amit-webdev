@@ -12,7 +12,8 @@
         var api = {
             "searchNews":searchNews,
             "setLastClickedSearchDetails":setLastClickedSearchDetails,
-            "getLastClickedSearchDetails":getLastClickedSearchDetails
+            "getLastClickedSearchDetails":getLastClickedSearchDetails,
+            "saveArticle":saveArticle
         };
         return api;
 
@@ -20,14 +21,14 @@
             var url = urlBase+"?source="+source+"&apikey="+key;
             return $http.get(url);
         }
-
-
         function setLastClickedSearchDetails(news) {
             lastClickedSearchDetails = news;
         }
-
         function getLastClickedSearchDetails() {
             return lastClickedSearchDetails;
+        }
+        function saveArticle(article) {
+            return $http.post("/api/project/article", article);
         }
     }
 })();

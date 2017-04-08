@@ -321,9 +321,8 @@ a.thumbnail{
 }
 
 .tnn-search-news-title{
-    padding-bottom: 10px;
-    padding-top: 10px;
     font-weight: 900;
+    padding: 10px;
 }
 .tnn-search-btn{
     display: block;
@@ -332,6 +331,9 @@ a.thumbnail{
     line-height: 1.8;
     /*text-align: justify;*/
     padding-bottom: 10px;
+}
+.tnn-news-description h4{
+    line-height: 1.8;
 }
 .tnn-news-author {
     font-weight: bolder;
@@ -414,6 +416,15 @@ a.thumbnail{
     background-color: white;
 }
 
+.tnn-bookmark-icon{
+    margin-right: 2px;
+}
+.tnn-article-options {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
 .selectize-input{
     border-radius: 0;
     padding: 7px;
@@ -431,5 +442,8 @@ a.thumbnail{
 .navbar-default .navbar-nav>li>a{
     color: white;
     font-size: 12px;
+}
+.alert{
+    border-radius: 0;
 }
 /******************************************************************************/

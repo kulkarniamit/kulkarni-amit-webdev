@@ -6,8 +6,9 @@
 
     function SearchDetailsController($location, SearchNewsService) {
         var vm = this;
-
+        vm.saveArticle = saveArticle;
         function init() {
+            vm.unsaved = true;
             var newsItem = SearchNewsService.getLastClickedSearchDetails();
             if(newsItem){
                 vm.detailsForNews = newsItem;
@@ -15,9 +16,22 @@
             else{
                 $location.url('/');
             }
-
         }
         init();
+
+        function saveArticle(article) {
+            vm.unauthorized = "";
+            SearchNewsService
+                .saveArticle(article)
+                .then(function (response) {
+                    console.log(response.data);
+                    vm.saved = true;
+                    vm.unsaved = null;
+                },function (err) {
+                    vm.unauthorized = "Please register/login to save articles";
+                    console.log(err);
+                })
+        }
     }
     function SearchController(SearchNewsService, $location) {
         var vm = this;
