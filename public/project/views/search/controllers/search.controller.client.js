@@ -4,11 +4,12 @@
         .controller("SearchController",SearchController)
         .controller("SearchDetailsController",SearchDetailsController);
 
-    function SearchDetailsController($location, SearchNewsService) {
+    function SearchDetailsController($rootScope, $location, SearchNewsService) {
         var vm = this;
         vm.saveArticle = saveArticle;
         function init() {
             vm.unsaved = true;
+            vm.user = $rootScope.currentUser;
             var newsItem = SearchNewsService.getLastClickedSearchDetails();
             if(newsItem){
                 vm.detailsForNews = newsItem;
@@ -33,8 +34,9 @@
                 })
         }
     }
-    function SearchController(SearchNewsService, $location) {
+    function SearchController($rootScope, SearchNewsService, $location) {
         var vm = this;
+        vm.user = $rootScope.currentUser;
         $('select').selectize({
             options:[
                 {value:"abc-news-au", text:"ABC News"},

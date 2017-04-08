@@ -13,7 +13,7 @@ module.exports = function (app, articleModel) {
         var newArticle = req.body;
 
         articleModel
-            .createArticle(newArticle)
+            .createArticle(userId, newArticle)
             .then(function (article) {
                 res.send(article);
             },function (err) {

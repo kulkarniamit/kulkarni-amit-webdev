@@ -30,11 +30,20 @@ module.exports = function () {
 
     return api;
 
-    function createArticle(newarticle) {
+    function createArticle(userId, newarticle) {
         return ArticleModel
             .create(newarticle)
             .then(function (article) {
-                return article
+                // Article was saved, now save the reference in user
+                return model.userModel
+                    .findUserById(userId)
+                    .then(function (user) {
+                        user.articles.push(article._id);
+                        user.save();
+                        return article;
+                    },function (err) {
+                        return err;
+                    });
             },function (err) {
                 return err;
             })

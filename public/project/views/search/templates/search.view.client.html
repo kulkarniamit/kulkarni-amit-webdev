@@ -13,19 +13,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
+                <li ng-show="model.user" class="">
+                    <a href="#/user/{{model.user._id}}" class="tnn-navbar-btn">
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li ng-hide="model.user" class="">
                     <a href="#/" class="tnn-navbar-btn">HOME</a>
                 </li>
                 <li class="">
                     <a href="#/search" class="tnn-navbar-btn">SEARCH</a>
                 </li>
-                <li class="">
+                <li ng-hide="model.user" class="">
                     <a href="#/login" class="tnn-navbar-btn">LOGIN</a>
                 </li>
                 <!--<li class="">-->
-                    <!--<a href="#/register" class="tnn-navbar-btn">REGISTER</a>-->
+                <!--<a href="#/register" class="tnn-navbar-btn">REGISTER</a>-->
                 <!--</li>-->
-                <li class="dropdown">
+                <li ng-hide="model.user" class="dropdown">
                     <a href="#/"
                        class="dropdown-toggle"
                        data-toggle="dropdown"
