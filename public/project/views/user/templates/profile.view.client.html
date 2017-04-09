@@ -2,16 +2,19 @@
     <div class="container-fluid ">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               ng-click="model.updateUser(model.user)">
-                <span class="glyphicon glyphicon-ok-sign"></span>
-            </a>
-            <a class="navbar-brand"
                href="#/search">
                 <span class="glyphicon glyphicon-search"></span> SEARCH
             </a>
+            <a class="navbar-brand"
+               ng-click="model.logout()">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
+            </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand">Profile</a>
+            <a class="navbar-brand" href="#/">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+            <!--<a class="navbar-brand">Profile</a>-->
         </div>
     </div>
 </nav>
@@ -19,6 +22,22 @@
     <div class="row tnn-profile-heading text-center">
         Welcome {{model.firstName}}
     </div>
+
+    <div class="row tnn-profile-links">
+        <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
+            <a class="btn btn-block btn-default"
+                href="#/user/{{model.userId}}/saved">
+                <i class="fa fa-bookmark profile-links-icon" aria-hidden="true"></i>My Saved Articles
+            </a>
+        </div>
+        <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
+            <a class="btn btn-block btn-default"
+               href="#/user/{{model.userId}}/subscriptions">
+                <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Subscriptions
+            </a>
+        </div>
+    </div>
+
     <div class="tnn-profile-container">
         <div class="alert alert-success"
              ng-show="model.message">
@@ -73,17 +92,27 @@
         </form>
     </div>
 
-    <div class="row wbdev-other-links">
-        <div class="col-xs-12 col-md-6">
-            <a class="btn btn-primary btn-block"
-               href="#/user/{{model.userId}}/website">
-            Websites</a>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <a class="btn btn-danger btn-block"
-               ng-click="model.logout()">Logout</a>
-        </div>
-    </div>
+    <!--<div class="row tnn-profile-following">-->
+        <!--<div>-->
+            <!--People I follow-->
+        <!--</div>-->
+        <!--<div class="col-xs-12 tnn-home-news-item"-->
+             <!--ng-repeat="friend in model.following">-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row wbdev-other-links">-->
+        <!--<div class="col-xs-12 col-md-6">-->
+            <!--<a class="btn btn-primary btn-block"-->
+               <!--href="#/user/{{model.userId}}/website">-->
+            <!--Websites</a>-->
+        <!--</div>-->
+        <!--<div class="col-xs-12 col-md-6">-->
+            <!--<a class="btn btn-danger btn-block"-->
+               <!--ng-click="model.logout()">Logout</a>-->
+        <!--</div>-->
+    <!--</div>-->
+
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">

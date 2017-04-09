@@ -13,7 +13,8 @@
             "findUserByUsername":findUserByUsername,
             "findUserByCredentials":findUserByCredentials,
             "updateUser":updateUser,
-            "deleteUserById":deleteUserById
+            "deleteUserById":deleteUserById,
+            "removeBookmark":removeBookmark
         };
 
         return api;
@@ -45,6 +46,10 @@
         }
         function deleteUserById(uid) {
             return $http.delete("/api/project/user/"+uid);
+        }
+
+        function removeBookmark(uid, articleId) {
+            return $http.delete("/api/project/user/"+uid+"/article/"+articleId);
         }
     }
 })();

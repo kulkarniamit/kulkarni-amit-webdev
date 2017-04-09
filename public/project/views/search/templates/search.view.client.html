@@ -22,7 +22,10 @@
                     <a href="#/" class="tnn-navbar-btn">HOME</a>
                 </li>
                 <li class="">
-                    <a href="#/search" class="tnn-navbar-btn">SEARCH</a>
+                    <a href="#/search" class="tnn-navbar-btn">
+                        <span class="glyphicon glyphicon-search"></span>
+                        SEARCH
+                    </a>
                 </li>
                 <li ng-hide="model.user" class="">
                     <a href="#/login" class="tnn-navbar-btn">LOGIN</a>
@@ -59,7 +62,7 @@
         <div class="col-xs-2">
             <a ng-click="model.searchNewsFromSource(model.option)"
                class="btn btn-primary tnn-search-btn">
-                <i class="fa fa-search" aria-hidden="true"></i> SEARCH
+                <i class="fa fa-search" aria-hidden="true"></i>
             </a>
         </div>
     </div>
@@ -67,11 +70,10 @@
     <div class="row tnn-home-news">
         <div class="col-xs-12 tnn-home-news-item"
              ng-repeat="news in model.searchNews">
-
             <div class="row">
                 <div class="col-xs-12 col-md-3">
                     <a href="#" class="thumbnail">
-                        <img src="{{news.urlToImage}}">
+                        <img ng-src="{{news.urlToImage}}">
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-9">
@@ -80,17 +82,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<img class="img-responsive" src="{{news.urlToImage}}">-->
-            <!--<div class="tnn-news-description">-->
-                <!--{{news.description}}-->
-            <!--</div>-->
-            <!--<div ng-show="news.author" class="tnn-news-author">-->
-                <!--Author: {{news.author}}-->
-            <!--</div>-->
-            <!--<div class="tnn-news-source">-->
-                <!--<a href="{{news.url}}"> Source </a>-->
-            <!--</div>-->
         </div>
     </div>
 </div>

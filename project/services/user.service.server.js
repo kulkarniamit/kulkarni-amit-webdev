@@ -108,6 +108,9 @@ module.exports = function (app, userModel) {
     // app.post("/api/user", createUser);
     app.post ('/api/project/register', register);
     app.delete("/api/project/user/:userId", deleteUser);
+    app.get("/api/project/:userId/saved",findAllSavedArticlesForUser);
+    app.delete("/api/project/user/:userId/article/:articleId",removeBookmark);
+
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
@@ -247,16 +250,6 @@ module.exports = function (app, userModel) {
             }
         );
     }
-    // function createUser(req, res){
-    //     var user = req.body;
-    //     userModel
-    //         .createUser(user)
-    //         .then(function (newUser) {
-    //                 res.json(newUser);
-    //         },function (err) {
-    //             res.sendStatus(404).send(err);
-    //         });
-    // }
     function deleteUser(req, res) {
         var userId = req.params.userId;
         userModel
@@ -267,4 +260,27 @@ module.exports = function (app, userModel) {
                 res.sendStatus(404);
             });
     }
+    function findAllSavedArticlesForUser(req, res){
+        var userId = req.params.userId;
+        userModel
+            .findAllSavedArticlesForUser(userId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.sendStatus(404);
+            });
+    }
+
+    function removeBookmark(req, res) {
+        var userId = req.params.userId;
+        var articleId = req.params.articleId;
+        userModel
+            .removeBookmark(userId,articleId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.sendStatus(404);
+            })
+    }
+
 }

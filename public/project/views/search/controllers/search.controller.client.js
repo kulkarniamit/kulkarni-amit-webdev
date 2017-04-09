@@ -4,9 +4,11 @@
         .controller("SearchController",SearchController)
         .controller("SearchDetailsController",SearchDetailsController);
 
-    function SearchDetailsController($rootScope, $location, SearchNewsService) {
+    function SearchDetailsController($rootScope, $location, UserService, SearchNewsService) {
         var vm = this;
+        vm.logout = logout;
         vm.saveArticle = saveArticle;
+
         function init() {
             vm.unsaved = true;
             vm.user = $rootScope.currentUser;
@@ -25,7 +27,6 @@
             SearchNewsService
                 .saveArticle(article)
                 .then(function (response) {
-                    console.log(response.data);
                     vm.saved = true;
                     vm.unsaved = null;
                 },function (err) {
@@ -33,8 +34,17 @@
                     console.log(err);
                 })
         }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
     }
-    function SearchController($rootScope, SearchNewsService, $location) {
+    function SearchController($location, $rootScope, UserService, SearchNewsService) {
         var vm = this;
         vm.user = $rootScope.currentUser;
         $('select').selectize({
@@ -126,11 +136,18 @@
                     vm.searchNews = response.data.articles;
                 });
         }
-        
         function setLastClickedSearchDetails(index) {
             SearchNewsService.setLastClickedSearchDetails(vm.searchNews[index]);
             $location.url('/searchdetails');
         }
-        
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+
     }
 })();

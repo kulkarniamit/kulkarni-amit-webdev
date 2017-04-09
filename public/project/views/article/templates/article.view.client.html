@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container-fluid ">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               href="#/search">
+                <span class="glyphicon glyphicon-search"></span> SEARCH
+            </a>
+            <a class="navbar-brand"
+               ng-click="model.logout()">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
+            </a>
+        </div>
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+            <!--<a class="navbar-brand">Profile</a>-->
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row tnn-profile-heading">
+        <i class="fa fa-bookmark" aria-hidden="true"></i> Saved Articles
+    </div>
+    <div class="row tnn-home-news">
+        <div class="col-xs-12 tnn-saved-news-items"
+             ng-repeat="news in model.savedArticles">
+                <div class="tnn-news-title">
+                    <h4>{{news.title}}</h4>
+                </div>
+
+                <img class="img-responsive" ng-src="{{news.urlToImage}}" width="100%">
+                <div class="tnn-news-description">
+                    <h4>{{news.description}}</h4>
+                </div>
+                <div ng-show="news.author" class="tnn-news-author">
+                    Author: {{news.author}}
+                </div>
+                <div class="tnn-news-source">
+                    <a href="{{news.url}}"> Source </a>
+                </div>
+                <div class="tnn-news-forget-div">
+                    <a ng-click="model.removeBookmark(news._id)" class="btn btn-danger btn-block">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </div>
+        </div>
+    </div>
+
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               href="#/user/{{model.user._id}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

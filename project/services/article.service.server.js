@@ -9,9 +9,7 @@ module.exports = function (app, articleModel) {
             res.sendStatus(401);
             return;
         }
-
         var newArticle = req.body;
-
         articleModel
             .createArticle(userId, newArticle)
             .then(function (article) {
@@ -20,6 +18,7 @@ module.exports = function (app, articleModel) {
                 res.sendStatus(404);
             })
     }
+
 /****************************************************************************
     app.post("/api/user/:userId/website",createWebsite);
     app.get("/api/user/:userId/website",findAllWebsitesForUser);

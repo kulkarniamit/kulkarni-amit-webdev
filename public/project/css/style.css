@@ -49,6 +49,7 @@ body {
     margin-bottom: 50px;
     background: url('../images/slider2_blur.jpg') no-repeat center center fixed;
     background-size: cover;
+    font-size: 12px;
 }
 
 textarea{
@@ -314,10 +315,9 @@ a.thumbnail{
     padding-right: 0;
 }
 .tnn-news-title{
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-bottom: 1px solid #EEE;
+    border-bottom: 1px solid #CCC;
     font-weight: 900;
+    margin-bottom: 5px;
 }
 
 .tnn-search-news-title{
@@ -326,6 +326,9 @@ a.thumbnail{
 }
 .tnn-search-btn{
     display: block;
+}
+.col-xs-2 .btn{
+    font-size: 14px;
 }
 .tnn-news-description {
     line-height: 1.8;
@@ -424,11 +427,36 @@ a.thumbnail{
     top: 10px;
     right: 5px;
 }
-
+.row.tnn-profile-links {
+    max-width: 600px;
+    margin: 5px auto;
+}
+.row .tnn-profile-link{
+    padding: 1px;
+}
 .selectize-input{
     border-radius: 0;
     padding: 7px;
 }
+
+.tnn-saved-news-items{
+    padding: 10px;
+    margin-top: 5px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    background-color: white;
+}
+.profile-links-icon{
+    margin-right: 5px;
+}
+.btn{
+    font-size: 12px;
+}
+
+.tnn-news-forget-div{
+    border-top: 1px solid #EEE;
+}
+
+
 
 .navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li>a:hover

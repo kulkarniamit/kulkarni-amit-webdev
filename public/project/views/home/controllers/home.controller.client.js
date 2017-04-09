@@ -3,7 +3,7 @@
         .module('TheNewsNetwork')
         .controller("HomeController",HomeController);
     
-    function HomeController($location, HomeNewsService,SearchNewsService) {
+    function HomeController($location, HomeNewsService, SearchNewsService) {
         var vm = this;
         vm.getNews = getNews;
         vm.getNewsDetails = getNewsDetails;

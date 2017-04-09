@@ -13,6 +13,14 @@
             }
         });
     };
+    var loadUserToRootScope = function($q, $timeout, $http, $location, $rootScope) {
+        return $http.get('/api/project/loggedin').success(function(user) {
+            $rootScope.errorMessage = null;
+            if (user !== '0') {
+                $rootScope.currentUser = user;
+            }
+        });
+    };
 
     var redirectToProfile = function($q, $timeout, $http, $location, $rootScope) {
         return $http.get('/api/project/loggedin').success(function(user) {
@@ -41,12 +49,14 @@
             .when("/search", {
                 templateUrl: 'views/search/templates/search.view.client.html',
                 controller: "SearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: loadUserToRootScope }
             })
             .when("/searchdetails", {
                 templateUrl: 'views/search/templates/searchdetails.view.client.html',
                 controller: "SearchDetailsController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: loadUserToRootScope }
             })
             .when("/login", {
                 templateUrl: 'views/user/templates/login.view.client.html',
@@ -70,11 +80,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedIn }
             })
-            // .when("/user/:uid/website",{
-            //     templateUrl: 'views/website/website-list.view.client.html',
-            //     controller: "WebsiteListController",
-            //     controllerAs: "model"
-            // })
+            .when("/user/:uid/saved",{
+                templateUrl: 'views/article/templates/article.view.client.html',
+                controller: "ArticleListController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
             // .when("/user/:uid/website/new",{
             //     templateUrl: 'views/website/website-new.view.client.html',
             //     controller: "NewWebsiteController",

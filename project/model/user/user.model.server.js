@@ -13,11 +13,16 @@ module.exports = function () {
         "updateUser":updateUser,
         "setModel":setModel,
         "findUserByFacebookId": findUserByFacebookId,
-        "findUserByGoogleId":findUserByGoogleId
+        "findUserByGoogleId":findUserByGoogleId,
+        "findAllSavedArticlesForUser":findAllSavedArticlesForUser,
+        "removeBookmark":removeBookmark
     };
 
     return api;
 
+    function findAllSavedArticlesForUser(userId){
+        return UserModel.findOne({_id: userId}).select({"articles":1}).populate('articles');
+    }
     function findUserByFacebookId(facebookId) {
         return UserModel.findOne({'facebook.id': facebookId});
     }
@@ -67,21 +72,33 @@ module.exports = function () {
     }
 
     function deleteUser(userId) {
-        // Perform cascade delete to delete the associated websites
-        // The websites will in turn delete the associated pages
+        // Perform cascade delete to delete the associated articles if
+        // the user is a publisher
+        // The articles will in turn delete the associated comments
         // The page delete will in turn delete the associated widgets
         // Perform a recursive function delete since the queries
         // are asynchronous
-        return UserModel.findById({_id: userId})
-            .then(function (user) {
-                var websitesOfUser = user.websites;
-                return recursiveDelete(websitesOfUser, userId);
-            }, function (err) {
-                return err;
-            });
+        return UserModel.remove({_id: userId});
+        // return UserModel.findById({_id: userId})
+        //     .then(function (user) {
+        //         return user;
+        //         // var websitesOfUser = user.websites;
+        //         // return recursiveDelete(websitesOfUser, userId);
+        //     }, function (err) {
+        //         return err;
+        //     });
     }
     function updateUser(userId, updatedUser) {
         return UserModel.update({_id:userId},{$set:updatedUser});
+    }
+    function removeBookmark(userId, articleId) {
+        return UserModel
+            .findOne({_id:userId})
+            .then(function (user) {
+                user.articles.splice(user.articles.indexOf(articleId),1);
+                user.save();
+                return user;
+            })
     }
     function setModel(_model) {
         model = _model;
