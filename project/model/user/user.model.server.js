@@ -17,7 +17,10 @@ module.exports = function () {
         "findAllSavedArticlesForUser":findAllSavedArticlesForUser,
         "removeBookmark":removeBookmark,
         "followAPerson":followAPerson,
-        "unfollowAPerson":unfollowAPerson
+        "unfollowAPerson":unfollowAPerson,
+        "findAllPublishers":findAllPublishers,
+        "subscribe":subscribe,
+        "unsubscribe":unsubscribe
     };
 
     return api;
@@ -43,6 +46,7 @@ module.exports = function () {
             .findById(userId)
             .populate('followers')
             .populate('following')
+            .populate('subscribers')
             .populate('articles');
     }
     function findUserbyUsername(username) {
@@ -146,6 +150,48 @@ module.exports = function () {
                 return err;
             });
     }
+    function findAllPublishers() {
+        return UserModel.find({role:"PUBLISHER"});
+    }
+    function subscribe(userId, publisherId) {
+        return UserModel
+            .findOne({_id:userId})
+            .then(function (user) {
+                user.publishers.push(publisherId);
+                user.save();
+                return UserModel
+                    .findOne({_id:publisherId})
+                    .then(function (publisher) {
+                        publisher.subscribers.push(userId);
+                        publisher.save();
+                        return user;
+                    },function (err) {
+                        return err;
+                    });
+            },function (err) {
+                return err;
+            });
+    }
+    function unsubscribe(userId, publisherId) {
+        return UserModel
+            .findOne({_id:userId})
+            .then(function (user) {
+                user.publishers.splice(user.publishers.indexOf(publisherId),1);
+                user.save();
+                return UserModel
+                    .findOne({_id:publisherId})
+                    .then(function (publisher) {
+                        publisher.subscribers.splice(publisher.subscribers.indexOf(userId),1);
+                        publisher.save();
+                        return user;
+                    },function (err) {
+                        return err;
+                    });
+            },function (err) {
+                return err;
+            });
+    }
+
     function setModel(_model) {
         model = _model;
     }

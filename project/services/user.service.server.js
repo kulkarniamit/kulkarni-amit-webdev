@@ -103,6 +103,7 @@ module.exports = function (app, userModel) {
     app.post('/api/project/logout',logout);
     app.get("/api/project/user", findUser);
     app.get ('/api/project/loggedin', loggedin);
+    app.get("/api/project/user/publishers",findAllPublishers);
     app.get("/api/project/user/:userId", findUserById);
     app.put("/api/project/user/:userId", updateUser);
     // app.post("/api/user", createUser);
@@ -112,6 +113,9 @@ module.exports = function (app, userModel) {
     app.delete("/api/project/user/:userId/article/:articleId",removeBookmark);
     app.put("/api/project/user/:userId/follow/:userIdToFollow",followAPerson);
     app.put("/api/project/user/:userId/unfollow/:userIdToUnfollow",unfollowAPerson);
+    app.put("/api/project/user/:userId/subscribe/:publisherId",subscribe);
+    app.put("/api/project/user/:userId/unsubscribe/:publisherId",unsubscribe);
+
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -208,7 +212,7 @@ module.exports = function (app, userModel) {
             .then(function (user) {
                 res.json(user);
             },function (err) {
-                res.sendStatus(500).send(err);
+                res.sendStatus(500);
             });
     }
     function updateUser(req, res) {
@@ -305,5 +309,37 @@ module.exports = function (app, userModel) {
                 res.send(err);
             });
     }
+    function findAllPublishers(req, res) {
+        userModel
+            .findAllPublishers()
+            .then(function (publishers) {
+                res.json(publishers);
+            },function (err) {
+                res.sendStatus(404);
+            })
+    }
+    function subscribe(req, res) {
+        var userId = req.params.userId;
+        var publisherId = req.params.publisherId;
+        userModel
+            .subscribe(userId,publisherId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            });
+    }
+    function unsubscribe(req, res) {
+        var userId = req.params.userId;
+        var publisherId = req.params.publisherId;
+        userModel
+            .unsubscribe(userId,publisherId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            });
+    }
+
 
 }

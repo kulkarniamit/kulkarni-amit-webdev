@@ -490,6 +490,11 @@ a.thumbnail{
     padding: 10px;
     font-size: 18px;
 }
+
+.tnn-publishers-list-section{
+    max-width: 600px;
+    margin: 0 auto;
+}
 li.list-group-item:first-child,li.list-group-item:last-child{
     border-radius: 0;
 }

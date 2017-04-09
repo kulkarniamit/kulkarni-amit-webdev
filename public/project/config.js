@@ -73,6 +73,14 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/user/publishers",{
+                // Remember the order of this route is important
+                // Do not push it below
+                templateUrl: 'views/user/templates/publishers-list.view.client.html',
+                controller: "PublisherController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
             .when("/user/:uid",{
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: "ProfileController",

@@ -16,7 +16,10 @@
             "deleteUserById":deleteUserById,
             "removeBookmark":removeBookmark,
             "followPerson":followPerson,
-            "unfollowPerson":unfollowPerson
+            "unfollowPerson":unfollowPerson,
+            "findAllPublishers":findAllPublishers,
+            "subscribe":subscribe,
+            "unsubscribe":unsubscribe
         };
 
         return api;
@@ -61,5 +64,18 @@
         function unfollowPerson(userIdToUnfollow,myUserId) {
             return $http.put("/api/project/user/"+myUserId+"/unfollow/"+userIdToUnfollow);
         }
+
+        function findAllPublishers() {
+            return $http.get("/api/project/user/publishers");
+        }
+
+        function subscribe(publisherId, myUserId) {
+            return $http.put("/api/project/user/"+myUserId+"/subscribe/"+publisherId);
+        }
+
+        function unsubscribe(publisherId,myUserId) {
+            return $http.put("/api/project/user/"+myUserId+"/unsubscribe/"+publisherId);
+        }
+
     }
 })();

@@ -3,7 +3,8 @@
         .module("TheNewsNetwork")
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
-        .controller("RegisterController", RegisterController);
+        .controller("RegisterController", RegisterController)
+        .controller("PublisherController",PublisherController);
 
     function LoginController($location, UserService, $rootScope) {
         var vm = this;
@@ -27,6 +28,7 @@
         vm.myProfile = false;
         vm.currentUser = $rootScope.currentUser;
         vm.myUserId = vm.currentUser._id;
+        vm.subscribed = false;
 
         if(vm.userId == vm.myUserId){
             vm.myProfile = true;
@@ -37,6 +39,8 @@
         vm.followPerson = followPerson;
         vm.unfollowPerson = unfollowPerson;
         vm.getNewsDetails = getNewsDetails;
+        vm.subscribePublisher = subscribePublisher;
+        vm.unsubscribePublisher = unsubscribePublisher;
         vm.logout = logout;
 
         function logout() {
@@ -67,7 +71,12 @@
                                 // Already followed the user
                                 vm.followed = true;
                             }
-                            vm.currentUser.articles = vm.currentUser.articles.map(function(x){return x._id});
+                            // vm.currentUser.articles = vm.currentUser.articles.map(function(x){return x._id});
+                            // Check if I am on a publishers profile
+                            var publisherIndex = vm.currentUser.publishers.map(function(x){return x._id;}).indexOf(vm.userId);
+                            if(publisherIndex > -1){
+                                vm.subscribed = true;
+                            }
                         }
                     }
                 });
@@ -130,6 +139,28 @@
             SearchNewsService.setLastClickedSearchDetails(vm.user.articles[index]);
             $location.url('/searchdetails');
         }
+        function subscribePublisher(publisherId) {
+            UserService
+                .subscribe(publisherId,vm.myUserId)
+                .then(function (response) {
+                    // If a person is trying to follow someone, it means they are on
+                    // the other person's profile page
+                    // Hence, vm.user is the person who was just followed by
+                    // current user
+                    vm.user.subscribers.push(response.data);
+                    vm.subscribed = true;
+                })
+        }
+        function unsubscribePublisher(publisherId){
+            UserService
+                .unsubscribe(publisherId,vm.myUserId)
+                .then(function (response) {
+                    // Update the vm.users.followers list (Remove the current user from that list)
+                    var followerIndex = vm.user.followers.map(function(x){return x._id;}).indexOf(vm.currentUser._id);
+                    vm.user.subscribers.splice(followerIndex,1);
+                    vm.subscribed = false;
+                })
+        }
 
     }
     
@@ -179,5 +210,22 @@
                         });
                 });
         }
+    }
+
+    function PublisherController($location, $routeParams, $rootScope, UserService) {
+        var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
+
+        function init() {
+            UserService
+                .findAllPublishers()
+                .then(function (response) {
+                    vm.publishers = response.data;
+                },function (err) {
+                    console.log(err);
+                });
+        }
+        init()
     }
 })();
