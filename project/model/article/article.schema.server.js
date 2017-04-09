@@ -1,6 +1,6 @@
 module.exports = function() {
     var mongoose = require("mongoose");
-    var WebsiteSchema = mongoose.Schema({
+    var ArticleSchema = mongoose.Schema({
         // Store the publisher ID if created by publisher
         _user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
         title: String,
@@ -12,5 +12,5 @@ module.exports = function() {
         // comments:[{type: mongoose.Schema.Types.ObjectId, ref:'CommentModel'}],
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "project.articles"});
-    return WebsiteSchema;
+    return ArticleSchema;
 };
