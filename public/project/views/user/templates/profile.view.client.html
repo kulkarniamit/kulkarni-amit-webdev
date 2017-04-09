@@ -1,21 +1,55 @@
 <nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
     <div class="container-fluid ">
-        <div class="pull-right wbdev-margin-right-fix">
-            <a class="navbar-brand"
-               href="#/search">
-                <span class="glyphicon glyphicon-search"></span> SEARCH
-            </a>
-            <a class="navbar-brand"
-               ng-click="model.logout()">
-                <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
-            </a>
-        </div>
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#/">
                 <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
                 The News Network</a>
-            <!--<a class="navbar-brand">Profile</a>-->
         </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a class="" href="#/user/{{model.currentUser._id}}">
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                        {{model.currentUser.firstName}}
+                    </a>
+                </li>
+                <li class="">
+                    <a class=""
+                       href="#/search">
+                        <span class="glyphicon glyphicon-search"></span> SEARCH
+                    </a>
+                </li>
+                <li class="">
+                    <a class=""
+                       ng-click="model.logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
+                    </a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+
+        <!--<div class="pull-right wbdev-margin-right-fix">-->
+
+            <!--<a class="navbar-brand tnn-navbar-btn"-->
+               <!--href="#/user/{{model.currentUser._id}}">-->
+                <!--<i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>-->
+                <!--{{model.currentUser.firstName}}-->
+            <!--</a>-->
+            <!--<a class="navbar-brand"-->
+               <!--href="#/search">-->
+                <!--<span class="glyphicon glyphicon-search"></span> SEARCH-->
+            <!--</a>-->
+            <!--<a class="navbar-brand"-->
+               <!--ng-click="model.logout()">-->
+                <!--<i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT-->
+            <!--</a>-->
+        <!--</div>-->
     </div>
 </nav>
 <div class="container-fluid">
@@ -139,6 +173,47 @@
                 <a href="#/user/{{followed._id}}">{{followed.firstName+" "+followed.lastName}}</a>
             </li>
         </ul>
+    </div>
+
+    <div ng-hide="model.myProfile" class="row tnn-other-profile-saved-articles">
+        <div class="tnn-other-profile-saved-articles-title">
+            <i class="fa fa-bookmark" aria-hidden="true"></i> {{model.user.firstName}}'s Saved Articles
+        </div>
+        <div ng-hide="model.user.articles.length >0"
+            class="alert alert-warning">
+            <span class="glyphicon glyphicon-alert"></span> Sorry, {{model.user.firstName}} hasn't saved any articles yet
+        </div>
+        <div class="tnn-other-profile-news-section">
+            <div class="col-xs-12 tnn-saved-news-items"
+                 ng-repeat="news in model.user.articles">
+
+                <div class="col-xs-12 col-md-3 tnn-image-div">
+                    <a ng-click="model.getNewsDetails($index)" class="thumbnail">
+                        <img ng-src="{{news.urlToImage}}">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
+                    <div style="padding: 10px;">
+                        <a ng-click="model.getNewsDetails($index)">{{news.title}}</a>
+                    </div>
+                </div>
+
+                <!--<div class="tnn-news-title">-->
+                    <!--<h4>{{news.title}}</h4>-->
+                <!--</div>-->
+
+                <!--<img class="img-responsive" ng-src="{{news.urlToImage}}" width="100%">-->
+                <!--<div class="tnn-news-description">-->
+                    <!--<h4>{{news.description}}</h4>-->
+                <!--</div>-->
+                <!--<div ng-show="news.author" class="tnn-news-author">-->
+                    <!--Author: {{news.author}}-->
+                <!--</div>-->
+                <!--<div class="tnn-news-source">-->
+                    <!--<a href="{{news.url}}"> Source </a>-->
+                <!--</div>-->
+            </div>
+        </div>
     </div>
 
 </div>

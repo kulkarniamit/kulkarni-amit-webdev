@@ -21,7 +21,7 @@
         }
     }
     
-    function ProfileController($routeParams, $location, $rootScope, UserService) {
+    function ProfileController($routeParams, $location, $rootScope, UserService, SearchNewsService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.myProfile = false;
@@ -36,6 +36,7 @@
         vm.deleteUser = deleteUser;
         vm.followPerson = followPerson;
         vm.unfollowPerson = unfollowPerson;
+        vm.getNewsDetails = getNewsDetails;
         vm.logout = logout;
 
         function logout() {
@@ -66,6 +67,7 @@
                                 // Already followed the user
                                 vm.followed = true;
                             }
+                            vm.currentUser.articles = vm.currentUser.articles.map(function(x){return x._id});
                         }
                     }
                 });
@@ -124,6 +126,11 @@
                     vm.followed = false;
                 })
         }
+        function getNewsDetails(index) {
+            SearchNewsService.setLastClickedSearchDetails(vm.user.articles[index]);
+            $location.url('/searchdetails');
+        }
+
     }
     
     function RegisterController($location, UserService, $rootScope) {

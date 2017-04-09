@@ -481,6 +481,15 @@ a.thumbnail{
 .tnn-follow-list ul.list-group{
     margin-bottom: 0;
 }
+.tnn-other-profile-saved-articles{
+    max-width: 700px;
+    margin: 0 auto;
+}
+.tnn-other-profile-saved-articles-title{
+    background-color: white;
+    padding: 10px;
+    font-size: 18px;
+}
 li.list-group-item:first-child,li.list-group-item:last-child{
     border-radius: 0;
 }

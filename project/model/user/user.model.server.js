@@ -39,7 +39,11 @@ module.exports = function () {
         return UserModel.create(user);
     }
     function findUserById(userId) {
-        return UserModel.findById(userId).populate('followers').populate('following');
+        return UserModel
+            .findById(userId)
+            .populate('followers')
+            .populate('following')
+            .populate('articles');
     }
     function findUserbyUsername(username) {
         return UserModel.findOne({"username":username});

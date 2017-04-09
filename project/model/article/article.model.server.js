@@ -45,7 +45,22 @@ module.exports = function () {
                         return err;
                     });
             },function (err) {
-                return err;
+                // Duplicate record found
+                return ArticleModel
+                    .findOne({title:newarticle.title})
+                    .then(function (article) {
+                        return model.userModel
+                            .findUserById(userId)
+                            .then(function (user) {
+                                user.articles.push(article._id);
+                                user.save();
+                                return article;
+                            },function (err) {
+                                return err;
+                            });
+                    },function (err) {
+                        return err;
+                    });
             })
     }
 /*
