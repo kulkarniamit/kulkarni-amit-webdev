@@ -14,14 +14,8 @@ module.exports = function() {
         // [2] List of articles published by a publisher
         articles: [{type: mongoose.Schema.Types.ObjectId, ref:'ArticleModel'}],
         publishers:[{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
-
-        // Friendship relation is not straighforward, requires two way acceptance
-        // Following is simple
-        // You can use a separate scheme/collection that only stores the
-        // one way relation between a follower and the id he is following
-        // So, a better option would be to remove friends
-        friends:[{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
-
+        followers:[{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
+        following:[{type: mongoose.Schema.Types.ObjectId, ref:'UserModel'}],
         role: {type: String, enum: ['READER', 'ADMIN', 'PUBLISHER'], default: 'READER'},
         dateCreated: {type:Date, default: Date.now()},
         facebook: {id:String, token: String},

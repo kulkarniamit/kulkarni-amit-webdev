@@ -456,7 +456,34 @@ a.thumbnail{
     border-top: 1px solid #EEE;
 }
 
+.tnn-other-profile{
+    max-width: 800px;
+    margin: 0 auto;
+}
 
+.tnn-other-profile-name{
+    color: white;
+}
+
+.tnn-follow-list{
+    background-color: white;
+    max-width: 700px;
+    margin:10px auto;
+}
+
+.tnn-follow-list-title{
+    padding: 10px;
+    font-weight: 900;
+}
+.tnn-follow-list-title.alert.alert-info{
+    margin-bottom: 0;
+}
+.tnn-follow-list ul.list-group{
+    margin-bottom: 0;
+}
+li.list-group-item:first-child,li.list-group-item:last-child{
+    border-radius: 0;
+}
 
 .navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li>a:hover

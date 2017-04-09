@@ -15,7 +15,9 @@ module.exports = function () {
         "findUserByFacebookId": findUserByFacebookId,
         "findUserByGoogleId":findUserByGoogleId,
         "findAllSavedArticlesForUser":findAllSavedArticlesForUser,
-        "removeBookmark":removeBookmark
+        "removeBookmark":removeBookmark,
+        "followAPerson":followAPerson,
+        "unfollowAPerson":unfollowAPerson
     };
 
     return api;
@@ -37,7 +39,7 @@ module.exports = function () {
         return UserModel.create(user);
     }
     function findUserById(userId) {
-        return UserModel.findById(userId);
+        return UserModel.findById(userId).populate('followers').populate('following');
     }
     function findUserbyUsername(username) {
         return UserModel.findOne({"username":username});
@@ -98,7 +100,47 @@ module.exports = function () {
                 user.articles.splice(user.articles.indexOf(articleId),1);
                 user.save();
                 return user;
+            },function (err) {
+                return err;
             })
+    }
+    function followAPerson(userId, userIdToFollow) {
+        return UserModel
+            .findOne({_id:userId})
+            .then(function (user) {
+                user.following.push(userIdToFollow);
+                user.save();
+                return UserModel
+                    .findOne({_id:userIdToFollow})
+                    .then(function (followedUser) {
+                        followedUser.followers.push(userId);
+                        followedUser.save();
+                        return user;
+                    },function (err) {
+                        return err;
+                    });
+            },function (err) {
+                return err;
+            });
+    }
+    function unfollowAPerson(userId, userIdToUnfollow) {
+        return UserModel
+            .findOne({_id:userId})
+            .then(function (user) {
+                user.following.splice(user.following.indexOf(userIdToUnfollow),1);
+                user.save();
+                return UserModel
+                    .findOne({_id:userIdToUnfollow})
+                    .then(function (followedUser) {
+                        followedUser.followers.splice(followedUser.followers.indexOf(userId),1);
+                        followedUser.save();
+                        return user;
+                    },function (err) {
+                        return err;
+                    });
+            },function (err) {
+                return err;
+            });
     }
     function setModel(_model) {
         model = _model;

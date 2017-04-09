@@ -35,7 +35,6 @@
         });
     };
 
-
     function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Content-Type']='application/json;charset=UTF-8';
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';

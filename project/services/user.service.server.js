@@ -110,6 +110,8 @@ module.exports = function (app, userModel) {
     app.delete("/api/project/user/:userId", deleteUser);
     app.get("/api/project/:userId/saved",findAllSavedArticlesForUser);
     app.delete("/api/project/user/:userId/article/:articleId",removeBookmark);
+    app.put("/api/project/user/:userId/follow/:userIdToFollow",followAPerson);
+    app.put("/api/project/user/:userId/unfollow/:userIdToUnfollow",unfollowAPerson);
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -270,7 +272,6 @@ module.exports = function (app, userModel) {
                 res.sendStatus(404);
             });
     }
-
     function removeBookmark(req, res) {
         var userId = req.params.userId;
         var articleId = req.params.articleId;
@@ -281,6 +282,28 @@ module.exports = function (app, userModel) {
             },function (err) {
                 res.sendStatus(404);
             })
+    }
+    function followAPerson(req, res) {
+        var userId = req.params.userId;
+        var userIdToFollow = req.params.userIdToFollow;
+        userModel
+            .followAPerson(userId,userIdToFollow)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            });
+    }
+    function unfollowAPerson(req, res) {
+        var userId = req.params.userId;
+        var userIdToUnfollow = req.params.userIdToUnfollow;
+        userModel
+            .unfollowAPerson(userId,userIdToUnfollow)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            });
     }
 
 }

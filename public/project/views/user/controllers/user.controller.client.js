@@ -21,11 +21,21 @@
         }
     }
     
-    function ProfileController($routeParams, UserService, $location, $rootScope) {
+    function ProfileController($routeParams, $location, $rootScope, UserService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
+        vm.myProfile = false;
+        vm.currentUser = $rootScope.currentUser;
+        vm.myUserId = vm.currentUser._id;
+
+        if(vm.userId == vm.myUserId){
+            vm.myProfile = true;
+        }
+        vm.followed = false;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.followPerson = followPerson;
+        vm.unfollowPerson = unfollowPerson;
         vm.logout = logout;
 
         function logout() {
@@ -38,23 +48,27 @@
         }
 
         function init() {
-            var promise = UserService.findUserById(vm.userId);
-            promise.success(function (user) {
-                vm.user = user;
-                if (vm.user == null){
-                    $location.url("/login");
-                }
-                else{
-                    vm.firstName = angular.copy(vm.user.firstName);
-                }
-            });
-            // vm.user = UserService.findUserById(vm.userId);
-            // if (vm.user == null){
-            //     $location.url("/login");
-            // }
-            // else{
-            //     vm.firstName = angular.copy(vm.user.firstName);
-            // }
+            UserService
+                .findUserById(vm.userId)
+                .then(function (response) {
+                    vm.user = response.data;
+                    if (vm.user == null){
+                        $location.url("/login");
+                    }
+                    else{
+                        vm.firstName = angular.copy(vm.user.firstName);
+                        if(!vm.myProfile){
+                            // Go through myprofile array of user and set
+                            // vm.followed depending on whether this profile
+                            // user exists or not
+                            var followedIndex = vm.currentUser.following.map(function(x){return x._id;}).indexOf(vm.userId);
+                            if(followedIndex > -1){
+                                // Already followed the user
+                                vm.followed = true;
+                            }
+                        }
+                    }
+                });
         }
         init();
 
@@ -87,6 +101,28 @@
                 .error(function (response) {
                     vm.error = "User not found";
                 });
+        }
+        function followPerson(userIdToFollow) {
+            UserService
+                .followPerson(userIdToFollow,vm.myUserId)
+                .then(function (response) {
+                    // If a person is trying to follow someone, it means they are on
+                    // the other person's profile page
+                    // Hence, vm.user is the person who was just followed by
+                    // current user
+                    vm.user.followers.push(response.data);
+                    vm.followed = true;
+                })
+        }
+        function unfollowPerson(userIdToUnfollow) {
+            UserService
+                .unfollowPerson(userIdToUnfollow,vm.myUserId)
+                .then(function (response) {
+                    // Update the vm.users.followers list (Remove the current user from that list)
+                    var followerIndex = vm.user.followers.map(function(x){return x._id;}).indexOf(vm.currentUser._id);
+                    vm.user.followers.splice(followerIndex,1);
+                    vm.followed = false;
+                })
         }
     }
     

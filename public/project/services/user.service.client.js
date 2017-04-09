@@ -14,7 +14,9 @@
             "findUserByCredentials":findUserByCredentials,
             "updateUser":updateUser,
             "deleteUserById":deleteUserById,
-            "removeBookmark":removeBookmark
+            "removeBookmark":removeBookmark,
+            "followPerson":followPerson,
+            "unfollowPerson":unfollowPerson
         };
 
         return api;
@@ -50,6 +52,14 @@
 
         function removeBookmark(uid, articleId) {
             return $http.delete("/api/project/user/"+uid+"/article/"+articleId);
+        }
+
+        function followPerson(userIdToFollow, myUserId) {
+            return $http.put("/api/project/user/"+myUserId+"/follow/"+userIdToFollow);
+        }
+
+        function unfollowPerson(userIdToUnfollow,myUserId) {
+            return $http.put("/api/project/user/"+myUserId+"/unfollow/"+userIdToUnfollow);
         }
     }
 })();

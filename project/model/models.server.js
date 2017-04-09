@@ -18,7 +18,7 @@ module.exports = function () {
 
     var model = {
         userModel: userModel,
-        articleModel: articleModel
+        articleModel: articleModel,
         // pageModel:pageModel,
         // widgetModel:widgetModel
     };
