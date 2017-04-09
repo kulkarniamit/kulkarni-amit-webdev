@@ -81,6 +81,18 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedIn }
             })
+            .when("/user/:uid/publisher/compose",{
+                templateUrl: 'views/user/templates/publisher-compose.view.client.html',
+                controller: "ComposeController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
+            .when("/user/:uid/publisher/articles",{
+                templateUrl: 'views/user/templates/publisher-articles.view.client.html',
+                controller: "PublishedArticlesController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
             .when("/user/:uid",{
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: "ProfileController",

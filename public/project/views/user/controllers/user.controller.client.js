@@ -4,7 +4,9 @@
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController)
-        .controller("PublisherController",PublisherController);
+        .controller("PublisherController",PublisherController)
+        .controller("ComposeController",ComposeController)
+        .controller("PublishedArticlesController",PublishedArticlesController);
 
     function LoginController($location, UserService, $rootScope) {
         var vm = this;
@@ -73,7 +75,7 @@
                             }
                             // vm.currentUser.articles = vm.currentUser.articles.map(function(x){return x._id});
                             // Check if I am on a publishers profile
-                            var publisherIndex = vm.currentUser.publishers.map(function(x){return x._id;}).indexOf(vm.userId);
+                            var publisherIndex = vm.currentUser.publishers.indexOf(vm.userId);
                             if(publisherIndex > -1){
                                 vm.subscribed = true;
                             }
@@ -155,9 +157,9 @@
             UserService
                 .unsubscribe(publisherId,vm.myUserId)
                 .then(function (response) {
-                    // Update the vm.users.followers list (Remove the current user from that list)
-                    var followerIndex = vm.user.followers.map(function(x){return x._id;}).indexOf(vm.currentUser._id);
-                    vm.user.subscribers.splice(followerIndex,1);
+                    // Update the vm.users.subscribers list (Remove the current user from that list)
+                    var subscriberIndex = vm.user.subscribers.map(function(x){return x._id;}).indexOf(vm.currentUser._id);
+                    vm.user.subscribers.splice(subscriberIndex, 1);
                     vm.subscribed = false;
                 })
         }
@@ -216,6 +218,16 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
 
         function init() {
             UserService
@@ -228,4 +240,76 @@
         }
         init()
     }
+
+    function ComposeController($location, $routeParams, $rootScope, SearchNewsService, UserService) {
+        var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
+        vm.submitArticle = submitArticle;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+
+        function submitArticle(article) {
+            article._user = vm.currentUser._id;
+            SearchNewsService
+                .saveArticle(article)
+                .then(function (response) {
+                    vm.message = "Article successfully posted";
+                    // Reset the form
+                    vm.publisher = {};
+                },function (err) {
+                    console.log(err);
+                });
+        }
+    }
+
+    function PublishedArticlesController($routeParams, $location, $rootScope, UserService, ArticleService) {
+        var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
+        vm.removeArticle = removeArticle;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+
+        function init() {
+            // Fetch all articles written by publisher
+            UserService
+                .findPublishedArticles(vm.currentUser._id)
+                .then(function (response) {
+                    vm.publishedArticles = response.data;
+                },function (err) {
+                    console.log(err);
+                })
+        }
+        init();
+
+        function removeArticle(articleId) {
+            ArticleService
+                .removeArticle(articleId,vm.currentUser._id)
+                .then(function (response) {
+                    vm.deleteSuccess = "Article successfully deleted";
+                    var deletedArticleIndex = vm.publishedArticles.map(function (x) {return x._id}).indexOf(articleId);
+                    vm.publishedArticles.splice(deletedArticleIndex,1);
+                },function (err) {
+                    console.log(err);
+                })
+        }
+    }
+
 })();

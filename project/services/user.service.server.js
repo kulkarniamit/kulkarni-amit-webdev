@@ -106,7 +106,6 @@ module.exports = function (app, userModel) {
     app.get("/api/project/user/publishers",findAllPublishers);
     app.get("/api/project/user/:userId", findUserById);
     app.put("/api/project/user/:userId", updateUser);
-    // app.post("/api/user", createUser);
     app.post ('/api/project/register', register);
     app.delete("/api/project/user/:userId", deleteUser);
     app.get("/api/project/:userId/saved",findAllSavedArticlesForUser);
@@ -115,7 +114,6 @@ module.exports = function (app, userModel) {
     app.put("/api/project/user/:userId/unfollow/:userIdToUnfollow",unfollowAPerson);
     app.put("/api/project/user/:userId/subscribe/:publisherId",subscribe);
     app.put("/api/project/user/:userId/unsubscribe/:publisherId",unsubscribe);
-
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -340,6 +338,4 @@ module.exports = function (app, userModel) {
                 res.send(err);
             });
     }
-
-
-}
+};

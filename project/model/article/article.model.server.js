@@ -6,6 +6,8 @@ module.exports = function () {
 
     var api = {
         "createArticle"             :createArticle,
+        "findArticlesByPublisher"   :findArticlesByPublisher,
+        "removeArticle"             :removeArticle,
 /*
         "findAllWebsitesForUser"    :findAllWebsitesForUser,
         "findWebsiteById"           :findWebsiteById,
@@ -15,18 +17,6 @@ module.exports = function () {
 */
         "setModel"                  :setModel
     };
-
-/*
-    var api = {
-        "createArticleForUser"      :createArticleForUser,
-        "findAllWebsitesForUser"    :findAllWebsitesForUser,
-        "findWebsiteById"           :findWebsiteById,
-        "updateWebsite"             :updateWebsite,
-        "deleteWebsite"             :deleteWebsite,
-        "deleteWebsiteAndChildren"  :deleteWebsiteAndChildren,
-        "setModel"                  :setModel
-    };
-*/
 
     return api;
 
@@ -54,6 +44,14 @@ module.exports = function () {
             },function (err) {
                         return err;
             });
+    }
+
+    function findArticlesByPublisher(publisherId) {
+        return ArticleModel.find({_user:publisherId});
+    }
+
+    function removeArticle(articleId) {
+        return ArticleModel.remove({_id:articleId});
     }
 /*
 

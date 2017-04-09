@@ -19,7 +19,8 @@
             "unfollowPerson":unfollowPerson,
             "findAllPublishers":findAllPublishers,
             "subscribe":subscribe,
-            "unsubscribe":unsubscribe
+            "unsubscribe":unsubscribe,
+            "findPublishedArticles":findPublishedArticles
         };
 
         return api;
@@ -34,9 +35,6 @@
         function register(user) {
             return $http.post("/api/project/register", user);
         }
-        // function createUser(user) {
-        //     return $http.post("/api/user/", user);
-        // }
         function findUserById(userid) {
             return $http.get("/api/project/user/"+userid);
         }
@@ -77,5 +75,8 @@
             return $http.put("/api/project/user/"+myUserId+"/unsubscribe/"+publisherId);
         }
 
+        function findPublishedArticles(publisherId) {
+            return $http.get("/api/project/user/publisher/articles/"+publisherId);
+        }
     }
 })();
