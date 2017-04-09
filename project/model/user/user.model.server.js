@@ -20,7 +20,8 @@ module.exports = function () {
         "unfollowAPerson":unfollowAPerson,
         "findAllPublishers":findAllPublishers,
         "subscribe":subscribe,
-        "unsubscribe":unsubscribe
+        "unsubscribe":unsubscribe,
+        "findAllSubscribedArticlesOfUser":findAllSubscribedArticlesOfUser
     };
 
     return api;
@@ -192,6 +193,26 @@ module.exports = function () {
             });
     }
 
+    function findAllSubscribedArticlesOfUser(userId) {
+
+        return UserModel
+            .findOne({_id:userId})
+            .select({"publishers":1})
+            .populate({
+                path: 'publishers',
+                model: 'UserModel',
+                populate: {
+                    path: 'articles',
+                    model: 'ArticleModel'
+                }
+            });
+
+        // return UserModel
+        //     .findOne({_id:userId})
+        //     .select({"publishers":1})
+        //     .populate("publishers")
+        //     .populate("articles");
+    }
     function setModel(_model) {
         model = _model;
     }

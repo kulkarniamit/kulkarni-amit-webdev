@@ -20,7 +20,8 @@
             "findAllPublishers":findAllPublishers,
             "subscribe":subscribe,
             "unsubscribe":unsubscribe,
-            "findPublishedArticles":findPublishedArticles
+            "findPublishedArticles":findPublishedArticles,
+            "findAllMySubscribedArticles":findAllMySubscribedArticles
         };
 
         return api;
@@ -77,6 +78,10 @@
 
         function findPublishedArticles(publisherId) {
             return $http.get("/api/project/user/publisher/articles/"+publisherId);
+        }
+
+        function findAllMySubscribedArticles(userId) {
+            return $http.get("/api/project/user/"+userId+"/subscriber/articles");
         }
     }
 })();

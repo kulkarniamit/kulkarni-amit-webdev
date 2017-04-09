@@ -101,19 +101,20 @@ module.exports = function (app, userModel) {
 
     app.post("/api/project/login", passport.authenticate('local'), login);
     app.post('/api/project/logout',logout);
+    app.post ('/api/project/register', register);
     app.get("/api/project/user", findUser);
     app.get ('/api/project/loggedin', loggedin);
     app.get("/api/project/user/publishers",findAllPublishers);
     app.get("/api/project/user/:userId", findUserById);
-    app.put("/api/project/user/:userId", updateUser);
-    app.post ('/api/project/register', register);
-    app.delete("/api/project/user/:userId", deleteUser);
+    app.get("/api/project/user/:userId/subscriber/articles",findAllSubscribedArticlesOfUser);
     app.get("/api/project/:userId/saved",findAllSavedArticlesForUser);
-    app.delete("/api/project/user/:userId/article/:articleId",removeBookmark);
+    app.put("/api/project/user/:userId", updateUser);
     app.put("/api/project/user/:userId/follow/:userIdToFollow",followAPerson);
     app.put("/api/project/user/:userId/unfollow/:userIdToUnfollow",unfollowAPerson);
     app.put("/api/project/user/:userId/subscribe/:publisherId",subscribe);
     app.put("/api/project/user/:userId/unsubscribe/:publisherId",unsubscribe);
+    app.delete("/api/project/user/:userId", deleteUser);
+    app.delete("/api/project/user/:userId/article/:articleId",removeBookmark);
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -337,5 +338,16 @@ module.exports = function (app, userModel) {
             },function (err) {
                 res.send(err);
             });
+    }
+
+    function findAllSubscribedArticlesOfUser(req, res) {
+        var userId = req.params.userId;
+        userModel
+            .findAllSubscribedArticlesOfUser(userId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            })
     }
 };

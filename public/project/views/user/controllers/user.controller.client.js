@@ -6,7 +6,8 @@
         .controller("RegisterController", RegisterController)
         .controller("PublisherController",PublisherController)
         .controller("ComposeController",ComposeController)
-        .controller("PublishedArticlesController",PublishedArticlesController);
+        .controller("PublishedArticlesController",PublishedArticlesController)
+        .controller("SubscriberArticleListController",SubscriberArticleListController);
 
     function LoginController($location, UserService, $rootScope) {
         var vm = this;
@@ -277,7 +278,6 @@
         vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
         vm.removeArticle = removeArticle;
         vm.logout = logout;
-
         function logout() {
             UserService
                 .logout()
@@ -312,4 +312,35 @@
         }
     }
 
+    function SubscriberArticleListController($routeParams, $location, $rootScope, UserService) {
+        var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
+        vm.logout = logout;
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+
+        function init() {
+            // Fetch and populate all the articles from the people I have subscribed to
+            UserService
+                .findAllMySubscribedArticles(vm.currentUser._id)
+                .then(function (response) {
+                    vm.subscribedArticles = [];
+                    response.data.publishers.map(function(x){
+                        x.articles.map(function(y){
+                            vm.subscribedArticles.push(y)
+                        })
+                    })
+                },function (err) {
+                    console.log(err);
+                })
+        }
+        init()
+    }
 })();

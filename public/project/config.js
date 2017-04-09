@@ -105,6 +105,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedIn }
             })
+            .when("/user/:uid/subscriptions",{
+                templateUrl: 'views/user/templates/subscriber-articles.view.client.html',
+                controller: "SubscriberArticleListController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
             // .when("/user/:uid/website/new",{
             //     templateUrl: 'views/website/website-new.view.client.html',
             //     controller: "NewWebsiteController",
