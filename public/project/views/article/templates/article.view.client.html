@@ -24,11 +24,16 @@
         <div class="col-xs-12 tnn-news-search-item">
             <div class="tnn-article-options">
                 <a ng-show="!model.saved"
-                   ng-click="model.saveArticle(model.article)"
+                   ng-click="model.bookmarkArticleById(model.article._id)"
                    class="btn btn-default tnn-bookmark-icon">
                     <i class="fa fa-bookmark-o" aria-hidden="true"></i>
                 </a>
                 <span ng-show="model.saved" class="label label-success">Saved</span>
+                <a ng-show="model.saved"
+                   ng-click="model.removeBookmark(model.article._id)"
+                   class="btn btn-default tnn-bookmark-icon">
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                </a>
             </div>
 
             <div class="tnn-news-title">

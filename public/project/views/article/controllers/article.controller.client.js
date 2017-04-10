@@ -42,6 +42,8 @@
         vm.articleId = $routeParams['articleId'];
         vm.logout = logout;
         vm.user = $rootScope.currentUser;
+        vm.bookmarkArticleById = bookmarkArticleById;
+        vm.removeBookmark = removeBookmark;
         vm.saved = false;
         function init() {
             // Check if this article has already been bookmarked
@@ -49,7 +51,6 @@
                 // user has already saved this article
                 vm.saved = true;
             }
-
             ArticleService
                 .findArticleById(vm.articleId)
                 .then(function (response) {
@@ -59,6 +60,29 @@
                 });
         }
         init();
+
+        function bookmarkArticleById(articleId) {
+            UserService
+                .bookmarkArticleById(vm.user._id, articleId)
+                .then(function (response) {
+                    vm.saved = true;
+                    vm.unsaved = null;
+                },function (err) {
+                    vm.unauthorized = "Please register/login to save articles";
+                    console.log(err);
+                })
+        }
+        function removeBookmark(articleId) {
+            UserService
+                .removeBookmark(vm.user._id, articleId)
+                .then(function (response) {
+                    vm.saved = false;
+                },function (err) {
+                    vm.unauthorized = "Please register/login to save articles";
+                    console.log(err);
+                })
+        }
+
         function logout() {
             UserService
                 .logout()

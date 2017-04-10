@@ -21,13 +21,22 @@ module.exports = function () {
         "findAllPublishers":findAllPublishers,
         "subscribe":subscribe,
         "unsubscribe":unsubscribe,
-        "findAllSubscribedArticlesOfUser":findAllSubscribedArticlesOfUser
+        "findAllSubscribedArticlesOfUser":findAllSubscribedArticlesOfUser,
+        "bookmarkArticleById":bookmarkArticleById
     };
 
     return api;
 
     function findAllSavedArticlesForUser(userId){
-        return UserModel.findOne({_id: userId}).select({"articles":1}).populate('articles');
+        return UserModel
+            .findOne({_id: userId})
+            .select({"articles":1})
+            .populate({
+                path: 'articles',
+                model: 'ArticleModel',
+                options: { sort: { createdAt: -1 }}
+            });
+            // .populate('articles');
     }
     function findUserByFacebookId(facebookId) {
         return UserModel.findOne({'facebook.id': facebookId});
@@ -192,9 +201,7 @@ module.exports = function () {
                 return err;
             });
     }
-
     function findAllSubscribedArticlesOfUser(userId) {
-
         return UserModel
             .findOne({_id:userId})
             .select({"publishers":1})
@@ -206,13 +213,19 @@ module.exports = function () {
                     model: 'ArticleModel'
                 }
             });
-
-        // return UserModel
-        //     .findOne({_id:userId})
-        //     .select({"publishers":1})
-        //     .populate("publishers")
-        //     .populate("articles");
     }
+    function bookmarkArticleById(userId, articleId) {
+        return UserModel
+            .findById(userId)
+            .then(function (user) {
+                user.articles.push(articleId);
+                user.save();
+                return user;
+            },function (err) {
+                return err;
+            })
+    }
+
     function setModel(_model) {
         model = _model;
     }

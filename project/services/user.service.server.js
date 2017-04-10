@@ -113,6 +113,7 @@ module.exports = function (app, userModel) {
     app.put("/api/project/user/:userId/unfollow/:userIdToUnfollow",unfollowAPerson);
     app.put("/api/project/user/:userId/subscribe/:publisherId",subscribe);
     app.put("/api/project/user/:userId/unsubscribe/:publisherId",unsubscribe);
+    app.put("/api/project/user/:userId/article/:articleId",bookmarkArticleById);
     app.delete("/api/project/user/:userId", deleteUser);
     app.delete("/api/project/user/:userId/article/:articleId",removeBookmark);
 
@@ -339,11 +340,21 @@ module.exports = function (app, userModel) {
                 res.send(err);
             });
     }
-
     function findAllSubscribedArticlesOfUser(req, res) {
         var userId = req.params.userId;
         userModel
             .findAllSubscribedArticlesOfUser(userId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            })
+    }
+    function bookmarkArticleById(req, res) {
+        var userId      = req.params.userId;
+        var articleId   = req.params.articleId;
+        userModel
+            .bookmarkArticleById(userId, articleId)
             .then(function (response) {
                 res.json(response);
             },function (err) {

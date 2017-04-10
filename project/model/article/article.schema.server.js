@@ -9,8 +9,13 @@ module.exports = function() {
         author: String,
         url: String,
         publishedAt: String,
-        comments:[{type: mongoose.Schema.Types.ObjectId, ref:'CommentModel'}],
-        dateCreated: {type: Date, default: Date.now()}
-    }, {collection: "project.articles"});
+        comments:[{type: mongoose.Schema.Types.ObjectId, ref:'CommentModel'}]
+        // Since we use findOneAndUpdate, default date wont be applied, and query needs to change
+        // Read more: http://mongoosejs.com/docs/defaults.html
+        // dateCreated: {type:Date, default: Date.now()}
+    }, {
+        collection: "project.articles",
+        timestamps: true
+    });
     return ArticleSchema;
 };

@@ -21,7 +21,8 @@
             "subscribe":subscribe,
             "unsubscribe":unsubscribe,
             "findPublishedArticles":findPublishedArticles,
-            "findAllMySubscribedArticles":findAllMySubscribedArticles
+            "findAllMySubscribedArticles":findAllMySubscribedArticles,
+            "bookmarkArticleById":bookmarkArticleById
         };
 
         return api;
@@ -83,5 +84,10 @@
         function findAllMySubscribedArticles(userId) {
             return $http.get("/api/project/user/"+userId+"/subscriber/articles");
         }
+
+        function bookmarkArticleById(userId, articleId) {
+            return $http.put("/api/project/user/"+userId+"/article/"+articleId);
+        }
+
     }
 })();

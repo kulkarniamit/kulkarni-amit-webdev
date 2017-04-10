@@ -293,8 +293,7 @@ a.thumbnail{
 .tnn-home-news{
     max-width: 600px;
     margin: 0 auto;
-    /*margin-left:0;*/
-    /*margin-right: 0;*/
+    margin-bottom: 100px;
 }
 .tnn-home-news-item>img{
     padding-top: 10px;
@@ -366,6 +365,8 @@ a.thumbnail{
 .tnn-news-search-item{
     background-color: white;
     margin-bottom: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 /* Registration page styles */
 .tnn-registration-container{
