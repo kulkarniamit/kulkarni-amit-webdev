@@ -9,7 +9,7 @@ module.exports = function() {
         author: String,
         url: String,
         publishedAt: String,
-        // comments:[{type: mongoose.Schema.Types.ObjectId, ref:'CommentModel'}],
+        comments:[{type: mongoose.Schema.Types.ObjectId, ref:'CommentModel'}],
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "project.articles"});
     return ArticleSchema;

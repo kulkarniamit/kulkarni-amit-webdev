@@ -13,18 +13,21 @@ module.exports = function () {
     //
     var userModel       = require("./user/user.model.server")();
     var articleModel    = require("./article/article.model.server")();
+    var commentModel    = require("./comment/comment.model.server")();
     // var pageModel       = require("./page/page.model.server")();
     // var widgetModel     = require("./widget/widget.model.server")();
 
     var model = {
         userModel: userModel,
         articleModel: articleModel,
+        commentModel: commentModel
         // pageModel:pageModel,
         // widgetModel:widgetModel
     };
 
     userModel.setModel(model);
     articleModel.setModel(model);
+    commentModel.setModel(model);
     // pageModel.setModel(model);
     // widgetModel.setModel(model);
 
