@@ -81,6 +81,12 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedIn }
             })
+            .when("/article/:articleId",{
+                templateUrl: 'views/article/templates/article.view.client.html',
+                controller: "ArticleController",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedIn }
+            })
             .when("/user/:uid/publisher/compose",{
                 templateUrl: 'views/user/templates/publisher-compose.view.client.html',
                 controller: "ComposeController",
@@ -100,7 +106,7 @@
                 resolve: { loggedin: checkLoggedIn }
             })
             .when("/user/:uid/saved",{
-                templateUrl: 'views/article/templates/article.view.client.html',
+                templateUrl: 'views/article/templates/article-list.view.client.html',
                 controller: "ArticleListController",
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedIn }

@@ -6,6 +6,7 @@ module.exports = function () {
 
     var api = {
         "createArticle"             :createArticle,
+        "findArticleById"           :findArticleById,
         "findArticlesByPublisher"   :findArticlesByPublisher,
         "removeArticle"             :removeArticle,
 /*
@@ -46,6 +47,9 @@ module.exports = function () {
             });
     }
 
+    function findArticleById(articleId) {
+        return ArticleModel.findById(articleId);
+    }
     function findArticlesByPublisher(publisherId) {
         return ArticleModel.find({_user:publisherId});
     }

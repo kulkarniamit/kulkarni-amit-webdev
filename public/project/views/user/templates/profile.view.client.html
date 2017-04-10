@@ -248,18 +248,22 @@
             class="alert alert-warning">
             <span class="glyphicon glyphicon-alert"></span> Sorry, {{model.user.firstName}} hasn't saved any articles yet
         </div>
-        <div class="tnn-other-profile-news-section">
+        <div class="row tnn-other-profile-news-section">
             <div class="col-xs-12 tnn-saved-news-items"
                  ng-repeat="news in model.user.articles">
 
                 <div class="col-xs-12 col-md-3 tnn-image-div">
-                    <a ng-click="model.getNewsDetails($index)" class="thumbnail">
+                    <!--<a ng-click="model.getNewsDetails($index)" class="thumbnail">-->
+                        <!--<img ng-src="{{news.urlToImage}}">-->
+                    <!--</a>-->
+                    <a href="#/article/{{news._id}}" class="thumbnail">
                         <img ng-src="{{news.urlToImage}}">
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
                     <div style="padding: 10px;">
-                        <a ng-click="model.getNewsDetails($index)">{{news.title}}</a>
+                        <!--<a ng-click="model.getNewsDetails($index)">{{news.title}}</a>-->
+                        <a href="#/article/{{news._id}}">{{news.title}}</a>
                     </div>
                 </div>
             </div>

@@ -68,40 +68,32 @@
         <div class="col-xs-12 tnn-news-search-item">
             <div class="tnn-article-options">
                 <a ng-show="model.unsaved"
-                    ng-click="model.saveArticle(model.detailsForNews)"
+                    ng-click="model.saveArticle(model.article)"
                     class="btn btn-default tnn-bookmark-icon">
                     <i class="fa fa-bookmark-o" aria-hidden="true"></i>
                 </a>
                 <span ng-show="model.saved" class="label label-success">Saved</span>
-                <!--<a ng-show="model.saved"-->
-                   <!--ng-click="model.saveArticle(model.detailsForNews)"-->
-                   <!--class="btn btn-default tnn-bookmark-icon">-->
-                    <!--<i class="fa fa-bookmark" aria-hidden="true"></i>-->
-                <!--</a>-->
-                <a class="btn btn-default">
-                    <i class="fa fa-share-square-o" aria-hidden="true"></i>
-                </a>
             </div>
 
             <div class="tnn-news-title">
                 <h4>
-                {{model.detailsForNews.title}}
+                    {{model.article.title}}
                 </h4>
             </div>
-            <img class="img-responsive" ng-src="{{model.detailsForNews.urlToImage}}" width="100%">
+            <img class="img-responsive" ng-src="{{model.article.urlToImage}}" width="100%">
             <div class="tnn-news-description">
                 <h4>
-                    {{model.detailsForNews.description}}
+                    {{model.article.description}}
                 </h4>
             </div>
-            <div ng-show="model.detailsForNews.author" class="tnn-news-author">
-                Author: {{model.detailsForNews.author}}
+            <div ng-show="model.article.author" class="tnn-news-author">
+                Author: {{model.article.author}}
             </div>
             <div class="tnn-news-source col">
-                <a href="{{model.detailsForNews.url}}"> Source </a>
+                <a href="{{model.article.url}}"> Source </a>
             </div>
             <div class="tnn-news-date col">
-                Date of publishing: {{model.detailsForNews.publishedAt}}
+                Date of publishing: {{model.article.publishedAt}}
             </div>
         </div>
     </div>

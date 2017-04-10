@@ -365,7 +365,7 @@ a.thumbnail{
 
 .tnn-news-search-item{
     background-color: white;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
 }
 /* Registration page styles */
 .tnn-registration-container{
@@ -441,7 +441,11 @@ a.thumbnail{
     border-radius: 0;
     padding: 7px;
 }
-
+.tnn-other-profile-news-section{
+    margin: 0 auto;
+    max-width: 700px;
+    margin-bottom: 100px;
+}
 .tnn-saved-news-items{
     padding: 10px;
     margin-top: 5px;
@@ -496,6 +500,11 @@ a.thumbnail{
 
 .tnn-publishers-list-section{
     max-width: 600px;
+    margin: 0 auto;
+}
+
+.tnn-news-item-section{
+    max-width: 900px;
     margin: 0 auto;
 }
 li.list-group-item:first-child,li.list-group-item:last-child{

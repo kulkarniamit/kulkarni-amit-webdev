@@ -14,7 +14,7 @@
             vm.user = $rootScope.currentUser;
             var newsItem = SearchNewsService.getLastClickedSearchDetails();
             if(newsItem){
-                vm.detailsForNews = newsItem;
+                vm.article = newsItem;
             }
             else{
                 $location.url('/');

@@ -2,7 +2,7 @@ module.exports = function (app, articleModel) {
     app.post("/api/project/article", createArticle);
     app.delete("/api/project/user/:userId/publisher/article/:articleId",removeArticle);
     app.get("/api/project/user/publisher/articles/:publisherId",findArticlesByPublisher);
-
+    app.get("/api/project/article/:articleId",findArticleById);
 
 
     function createArticle(req, res) {
@@ -45,6 +45,16 @@ module.exports = function (app, articleModel) {
             })
     }
 
+    function findArticleById(req, res) {
+        var articleId = req.params.articleId;
+        articleModel
+            .findArticleById(articleId)
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            });
+    }
     /****************************************************************************
     app.post("/api/user/:userId/website",createWebsite);
     app.get("/api/user/:userId/website",findAllWebsitesForUser);
