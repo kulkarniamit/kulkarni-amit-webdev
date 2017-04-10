@@ -43,20 +43,32 @@
         <div class="row tnn-home-news">
             <div class="col-xs-12 tnn-saved-news-items"
                  ng-repeat="news in model.subscribedArticles">
-                <div class="tnn-news-title">
-                    <h4>{{news.title}}</h4>
+
+                <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
+                    <a href="#/article/{{news._id}}" class="thumbnail">
+                        <img ng-src="{{news.urlToImage}}">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
+                    <div style="padding: 10px;">
+                        <a href="#/article/{{news._id}}">{{news.title}}</a>
+                    </div>
                 </div>
 
-                <img ng-show="news.urlToImage" class="img-responsive" ng-src="{{news.urlToImage}}" width="100%">
-                <div class="tnn-news-description">
-                    <h4>{{news.description}}</h4>
-                </div>
-                <div ng-show="news.author" class="tnn-news-author">
-                    Author: {{news.author}}
-                </div>
-                <div ng-show="news.url" class="tnn-news-source">
-                    <a href="{{news.url}}"> Source </a>
-                </div>
+                <!--<div class="tnn-news-title">-->
+                    <!--<h4>{{news.title}}</h4>-->
+                <!--</div>-->
+
+                <!--<img ng-show="news.urlToImage" class="img-responsive" ng-src="{{news.urlToImage}}" width="100%">-->
+                <!--<div class="tnn-news-description">-->
+                    <!--<h4>{{news.description}}</h4>-->
+                <!--</div>-->
+                <!--<div ng-show="news.author" class="tnn-news-author">-->
+                    <!--Author: {{news.author}}-->
+                <!--</div>-->
+                <!--<div ng-show="news.url" class="tnn-news-source">-->
+                    <!--<a href="{{news.url}}"> Source </a>-->
+                <!--</div>-->
             </div>
         </div>
 </div>

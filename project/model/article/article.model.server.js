@@ -51,11 +51,23 @@ module.exports = function () {
         return ArticleModel.findById(articleId);
     }
     function findArticlesByPublisher(publisherId) {
-        return ArticleModel.find({_user:publisherId});
+        return ArticleModel
+            .find({_user:publisherId})
+            .sort('-createdAt');
     }
 
     function removeArticle(articleId) {
-        return ArticleModel.remove({_id:articleId});
+        return ArticleModel
+            .findById({_id:articleId})
+            .populate('_user')
+            .then(function (article) {
+                article._user.articles.splice(article._user.articles.indexOf(articleId),1);
+                article._user.save();
+                return ArticleModel.remove({_id: articleId});
+            },function (err) {
+                return err;
+            });
+        // return ArticleModel.remove({_id:articleId});
     }
 /*
 

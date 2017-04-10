@@ -8,10 +8,11 @@
         var vm = this;
         vm.logout = logout;
         vm.removeBookmark = removeBookmark;
-        vm.user = $rootScope.currentUser;
+        vm.currentUser = $rootScope.currentUser;
+        // vm.user = $rootScope.currentUser;
         function init() {
             ArticleService
-                .getSavedArticlesOfUser(vm.user._id)
+                .getSavedArticlesOfUser(vm.currentUser._id)
                 .then(function (response) {
                     vm.savedArticles = response.data.articles;
                 },function (err) {
@@ -30,7 +31,7 @@
         }
         function removeBookmark(articleId) {
             UserService
-                .removeBookmark(vm.user._id, articleId)
+                .removeBookmark(vm.currentUser._id, articleId)
                 .then(function (response) {
                     var removedArticleIndex = vm.savedArticles.map(function(x){return x._id}).indexOf(articleId);
                     vm.savedArticles.splice(removedArticleIndex,1);
@@ -41,16 +42,30 @@
         var vm = this;
         vm.articleId = $routeParams['articleId'];
         vm.logout = logout;
-        vm.user = $rootScope.currentUser;
+        vm.currentUser = $rootScope.currentUser;
+        // vm.user = $rootScope.currentUser;
         vm.bookmarkArticleById = bookmarkArticleById;
         vm.removeBookmark = removeBookmark;
+        vm.removeArticle = removeArticle;
         vm.saved = false;
+        vm.articleByPublisher = false;
+
         function init() {
             // Check if this article has already been bookmarked
-            if(vm.user.articles.map(function(x){return x._id}).indexOf(vm.articleId) > -1){
+            if(vm.currentUser.articles.map(function(x){return x._id}).indexOf(vm.articleId) > -1){
                 // user has already saved this article
                 vm.saved = true;
             }
+
+            if(vm.currentUser.role == 'PUBLISHER'){
+                // Check if this article was published by this publisher
+                if(vm.currentUser.articles.map(function (x) {return x._id}).indexOf(vm.articleId) > -1){
+                    // Yes, this article was written by this publisher
+                    // Allow delete option
+                    vm.articleByPublisher = true;
+                }
+            }
+
             ArticleService
                 .findArticleById(vm.articleId)
                 .then(function (response) {
@@ -63,7 +78,7 @@
 
         function bookmarkArticleById(articleId) {
             UserService
-                .bookmarkArticleById(vm.user._id, articleId)
+                .bookmarkArticleById(vm.currentUser._id, articleId)
                 .then(function (response) {
                     vm.saved = true;
                     vm.unsaved = null;
@@ -74,11 +89,21 @@
         }
         function removeBookmark(articleId) {
             UserService
-                .removeBookmark(vm.user._id, articleId)
+                .removeBookmark(vm.currentUser._id, articleId)
                 .then(function (response) {
                     vm.saved = false;
                 },function (err) {
                     vm.unauthorized = "Please register/login to save articles";
+                    console.log(err);
+                })
+        }
+        function removeArticle(articleId) {
+            ArticleService
+                .removeArticle(articleId,vm.currentUser._id)
+                .then(function (response) {
+                    vm.article = null;
+                    vm.deleteSuccess = "Article successfully deleted";
+                },function (err) {
                     console.log(err);
                 })
         }

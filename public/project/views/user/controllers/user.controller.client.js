@@ -276,7 +276,7 @@
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
-        vm.removeArticle = removeArticle;
+        // vm.removeArticle = removeArticle;
         vm.logout = logout;
         function logout() {
             UserService
@@ -299,17 +299,17 @@
         }
         init();
 
-        function removeArticle(articleId) {
-            ArticleService
-                .removeArticle(articleId,vm.currentUser._id)
-                .then(function (response) {
-                    vm.deleteSuccess = "Article successfully deleted";
-                    var deletedArticleIndex = vm.publishedArticles.map(function (x) {return x._id}).indexOf(articleId);
-                    vm.publishedArticles.splice(deletedArticleIndex,1);
-                },function (err) {
-                    console.log(err);
-                })
-        }
+        // function removeArticle(articleId) {
+        //     ArticleService
+        //         .removeArticle(articleId,vm.currentUser._id)
+        //         .then(function (response) {
+        //             vm.deleteSuccess = "Article successfully deleted";
+        //             var deletedArticleIndex = vm.publishedArticles.map(function (x) {return x._id}).indexOf(articleId);
+        //             vm.publishedArticles.splice(deletedArticleIndex,1);
+        //         },function (err) {
+        //             console.log(err);
+        //         })
+        // }
     }
 
     function SubscriberArticleListController($routeParams, $location, $rootScope, UserService) {
