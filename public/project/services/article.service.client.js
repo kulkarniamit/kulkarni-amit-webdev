@@ -7,7 +7,9 @@
         var api = {
             "findArticleById":findArticleById,
             "getSavedArticlesOfUser":getSavedArticlesOfUser,
-            "removeArticle":removeArticle
+            "removeArticle":removeArticle,
+            "submitComment":submitComment,
+            "deleteComment":deleteComment
         };
         return api;
 
@@ -20,6 +22,14 @@
 
         function removeArticle(articleId, userId) {
             return $http.delete("/api/project/user/"+userId+"/publisher/article/"+articleId);
+        }
+
+        function submitComment(articleId, comment) {
+            return $http.post("/api/project/article/"+articleId+"/comment",comment);
+        }
+
+        function deleteComment(articleId, commentId) {
+            return $http.delete("/api/project/article/"+articleId+"/comment/"+commentId);
         }
     }
 })();

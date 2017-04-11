@@ -47,6 +47,8 @@
         vm.bookmarkArticleById = bookmarkArticleById;
         vm.removeBookmark = removeBookmark;
         vm.removeArticle = removeArticle;
+        vm.submitComment = submitComment;
+        vm.deleteComment = deleteComment;
         vm.saved = false;
         vm.articleByPublisher = false;
 
@@ -107,7 +109,29 @@
                     console.log(err);
                 })
         }
+        function submitComment(comment) {
+            ArticleService
+                .submitComment(vm.article._id,comment)
+                .then(function (response) {
+                    var newComment = response.data;
+                    vm.article.comments.unshift(newComment);
+                    vm.comment = ""
+                },function (err) {
+                    console.log(err);
+                })
+        }
 
+        function deleteComment(commentId) {
+            ArticleService
+                .deleteComment(vm.article._id, commentId)
+                .then(function (response) {
+                    // Comment was successfully deleted
+                    var commentIndex = vm.article.comments.map(function(x){return x._id;}).indexOf(commentId);
+                    vm.article.comments.splice(commentIndex,1);
+                },function (err) {
+                    console.log(err);
+                })
+        }
         function logout() {
             UserService
                 .logout()

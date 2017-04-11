@@ -9,13 +9,6 @@ module.exports = function () {
         "findArticleById"           :findArticleById,
         "findArticlesByPublisher"   :findArticlesByPublisher,
         "removeArticle"             :removeArticle,
-/*
-        "findAllWebsitesForUser"    :findAllWebsitesForUser,
-        "findWebsiteById"           :findWebsiteById,
-        "updateWebsite"             :updateWebsite,
-        "deleteWebsite"             :deleteWebsite,
-        "deleteWebsiteAndChildren"  :deleteWebsiteAndChildren,
-*/
         "setModel"                  :setModel
     };
 
@@ -48,7 +41,17 @@ module.exports = function () {
     }
 
     function findArticleById(articleId) {
-        return ArticleModel.findById(articleId);
+        return ArticleModel
+            .findById(articleId)
+            .populate({
+                path: 'comments',
+                model: 'CommentModel',
+                populate: {
+                    path: '_user',
+                    model: 'UserModel'
+                }
+            });
+    // .populate('comments');
     }
     function findArticlesByPublisher(publisherId) {
         return ArticleModel

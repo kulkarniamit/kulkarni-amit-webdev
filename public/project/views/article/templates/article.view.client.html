@@ -84,6 +84,59 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
             </div>
+
+            <!-- Comments section -->
+            <div class="tnn-news-comments-section">
+                <div class="tnn-comments-heading">Comments</div>
+                <div class="row tnn-comment-box">
+                    <div class="col-xs-12">
+                        <div class="input-group add-on">
+                            <input  ng-keyup="$event.keyCode == 13 && model.submitComment(model.comment)"
+                                    class="form-control tnn-form-control"
+                                    placeholder="Enter your comment here"
+                                    type="text"
+                                    ng-model="model.comment.text"/>
+                            <div class="input-group-btn tnn-comment-send-div">
+                                <a  ng-click="model.submitComment(model.comment)"
+                                    class="btn btn-success"
+                                    title="Post a comment">
+                                    <i class="glyphicon glyphicon-send"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-xs-12 col-md-10 tnn-comment-input-div">-->
+                        <!--<input  class="form-control tnn-form-control"-->
+                                <!--placeholder="Enter your comment here"-->
+                                <!--type="text"-->
+                                <!--ng-model="model.comment"/>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-12 col-md-2 tnn-comment-send-div">-->
+                        <!--<a ng-click="model.submitComment(model.comment)"-->
+                            <!--class="btn btn-success btn-block"-->
+                            <!--title="Post a comment">-->
+                            <!--<i class="fa fa-paper-plane" aria-hidden="true"></i>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                </div>
+
+
+            </div>
+            <div class="tnn-news-comments-display"
+                 ng-repeat="comment in model.article.comments">
+                <a title="Posted at {{comment.createdAt}}"
+                   href="#/user/{{comment._user._id}}">
+                    {{comment._user.firstName+" "+comment._user.lastName}}
+                </a>
+                {{comment.comment}}
+                <div ng-show="comment._user._id == model.currentUser._id"
+                     class="tnn-comment-delete">
+                    <a ng-click="model.deleteComment(comment._id)" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span> Delete Comment
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
