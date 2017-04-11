@@ -53,247 +53,249 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <div ng-show="model.myProfile" class="row tnn-profile-heading text-center">
-        Welcome {{model.firstName}}
-    </div>
-
-    <div ng-show="model.myProfile && model.user.role == 'READER'" class="row tnn-profile-links">
-        <!--Links for a logged in user visiting his profile-->
-        <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
-            <a class="btn btn-block btn-default"
-                href="#/user/{{model.userId}}/saved">
-                <i class="fa fa-bookmark profile-links-icon" aria-hidden="true"></i>My Saved Articles
-            </a>
-        </div>
-        <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
-            <a class="btn btn-block btn-default"
-               href="#/user/publishers">
-                <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Publishers
-            </a>
-        </div>
-        <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
-            <a class="btn btn-block btn-default"
-               href="#/user/{{model.userId}}/subscriptions">
-                <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Subscriptions
-            </a>
-        </div>
-    </div>
-
-    <div ng-show="model.myProfile && model.user.role == 'PUBLISHER'" class="row tnn-profile-links">
-        <!--Links to show a publisher on his profile page-->
-        <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
-            <a class="btn btn-block btn-default"
-               href="#/user/{{model.userId}}/publisher/compose">
-                <i class="fa fa-pencil profile-links-icon" aria-hidden="true"></i></i>Compose Article
-            </a>
-        </div>
-        <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
-            <a class="btn btn-block btn-default"
-               href="#/user/{{model.userId}}/publisher/articles">
-                <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Articles
-            </a>
-        </div>
-    </div>
-
-    <div ng-show="model.myProfile" class="tnn-profile-container">
-        <div class="alert alert-success"
-             ng-show="model.message">
-            {{model.message}}
-        </div>
-        <div class="alert alert-danger"
-             ng-show="model.error">
-            {{model.error}}
-        </div>
-        <div class="alert alert-danger"
-             ng-show="model.blankerror">
-            {{model.blankerror}}
+    <div class="tnn-profile-container-div">
+        <div ng-show="model.myProfile" class="row tnn-profile-heading text-center">
+            Welcome {{model.firstName}}
         </div>
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email"
-                       class="form-control"
-                       id="email"
-                       placeholder="username@domain.com"
-                       ng-model="model.user.email">
-            </div>
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text"
-                       class="form-control"
-                       id="first-name"
-                       placeholder="First name"
-                       ng-model="model.user.firstName">
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text"
-                       class="form-control"
-                       id="last-name"
-                       placeholder="Last name"
-                       ng-model="model.user.lastName">
-            </div>
-            <div class="form-group tnn-btn-margin-bottom">
-                <a ng-click="model.updateUser(model.user)"
-                   class="btn btn-success btn-block">
-                    Update
+        <div ng-show="model.myProfile && model.user.role == 'READER'" class="row tnn-profile-links">
+            <!--Links for a logged in user visiting his profile-->
+            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                    href="#/user/{{model.userId}}/saved">
+                    <i class="fa fa-bookmark profile-links-icon" aria-hidden="true"></i>My Saved Articles
                 </a>
             </div>
-            <div class="form-group">
-                <a ng-click="model.deleteUser(model.user)"
-                   class="btn btn-danger btn-block">
-                    Unregister
+            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                   href="#/user/publishers">
+                    <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Publishers
                 </a>
             </div>
-        </form>
-    </div>
+            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                   href="#/user/{{model.userId}}/subscriptions">
+                    <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Subscriptions
+                </a>
+            </div>
+        </div>
 
-    <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role == 'PUBLISHER'"
-         class="row tnn-other-profile">
-        <h3 class="tnn-other-profile-name text-center">
-            Profile: {{model.firstName}}
-        </h3>
-    </div>
-    <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role != 'PUBLISHER'"
-         class="row tnn-other-profile">
-        <!-- Display if the user has navigated to other's profile -->
-        <h3 class="tnn-other-profile-name text-center">
-            Profile: {{model.firstName}}
-        </h3>
-        <div class="col-xs-12 text-center">
-            <a ng-show="model.followed" ng-click="model.unfollowPerson(model.user._id)"
-               class="btn btn-danger">
-                Unfollow
-            </a>
-            <a ng-hide="model.followed" ng-click="model.followPerson(model.user._id)"
-               class="btn btn-success">
-                Follow
-            </a>
+        <div ng-show="model.myProfile && model.user.role == 'PUBLISHER'" class="row tnn-profile-links">
+            <!--Links to show a publisher on his profile page-->
+            <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                   href="#/user/{{model.userId}}/publisher/compose">
+                    <i class="fa fa-pencil profile-links-icon" aria-hidden="true"></i></i>Compose Article
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                   href="#/user/{{model.userId}}/publisher/articles">
+                    <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Articles
+                </a>
+            </div>
         </div>
-    </div>
 
-    <div ng-show="!model.myProfile && model.user.role == 'PUBLISHER'" class="row tnn-other-profile">
-        <!-- Display if the user has navigated to publisher's profile -->
-        <h3 class="tnn-other-profile-name text-center">
-            Publisher: {{model.user.organization}}
-        </h3>
-        <div class="col-xs-12 text-center">
-            <a ng-show="model.subscribed" ng-click="model.unsubscribePublisher(model.user._id)"
-               class="btn btn-danger">
-                Unsubscribe
-            </a>
-            <a ng-hide="model.subscribed" ng-click="model.subscribePublisher(model.user._id)"
-               class="btn btn-success">
-                Subscribe
-            </a>
-        </div>
-    </div>
+        <div ng-show="model.myProfile" class="tnn-profile-container">
+            <div class="alert alert-success"
+                 ng-show="model.message">
+                {{model.message}}
+            </div>
+            <div class="alert alert-danger"
+                 ng-show="model.error">
+                {{model.error}}
+            </div>
+            <div class="alert alert-danger"
+                 ng-show="model.blankerror">
+                {{model.blankerror}}
+            </div>
 
-    <div ng-show="model.user.role == 'PUBLISHER'" class="row tnn-follow-list">
-        <div ng-show="model.user.subscribers.length == 0"
-             class="tnn-follow-list-title alert alert-info">
-            {{model.user.organization}} is not being followed by anyone yet
-        </div>
-        <div ng-show="model.user.subscribers.length > 0"
-             class="tnn-follow-list-title alert alert-info">
-            Subscribers of {{model.user.organization}}:
-        </div>
-        <ul  ng-show="model.user.subscribers.length > 0"
-             class="list-group">
-            <li ng-repeat="subscriber in model.user.subscribers" class="list-group-item">
-                <a href="#/user/{{subscriber._id}}">{{subscriber.firstName+" "+subscriber.lastName}}</a>
-            </li>
-        </ul>
-    </div>
-
-    <div ng-show="model.user.role == 'READER'" class="row tnn-follow-list">
-        <div ng-show="model.user.followers.length == 0"
-             class="tnn-follow-list-title alert alert-info">
-            {{model.firstName}} is not being followed by anyone yet
-        </div>
-        <div ng-show="model.user.followers.length > 0"
-             class="tnn-follow-list-title alert alert-info">
-            Followers of {{model.firstName}}:
-        </div>
-        <ul  ng-show="model.user.followers.length > 0"
-             class="list-group">
-            <li ng-repeat="follower in model.user.followers" class="list-group-item">
-                <a href="#/user/{{follower._id}}">{{follower.firstName+" "+follower.lastName}}</a>
-            </li>
-        </ul>
-    </div>
-
-    <div ng-show="model.user.role == 'READER'" class="row tnn-follow-list">
-        <div ng-show="model.user.following.length == 0"
-             class="tnn-follow-list-title alert alert-info">
-            {{model.firstName}} is not following anyone yet
-        </div>
-        <div ng-show="model.user.following.length > 0"
-             class="tnn-follow-list-title alert alert-info">
-            {{model.firstName}} follows:
-        </div>
-        <ul ng-show="model.user.following.length > 0" class="list-group">
-            <li ng-repeat="followed in model.user.following" class="list-group-item">
-                <a href="#/user/{{followed._id}}">{{followed.firstName+" "+followed.lastName}}</a>
-            </li>
-        </ul>
-    </div>
-
-    <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role != 'PUBLISHER'"
-         class="row tnn-other-profile-saved-articles">
-        <!-- List of news to show to other visitors who are not publishers -->
-        <div class="tnn-other-profile-saved-articles-title">
-            <i class="fa fa-bookmark" aria-hidden="true"></i> {{model.user.firstName}}'s Saved Articles
-        </div>
-        <div ng-hide="model.user.articles.length >0"
-            class="alert alert-warning">
-            <span class="glyphicon glyphicon-alert"></span> Sorry, {{model.user.firstName}} hasn't saved any articles yet
-        </div>
-        <div class="row tnn-other-profile-news-section">
-            <div class="col-xs-12 tnn-saved-news-items"
-                 ng-repeat="news in model.user.articles">
-
-                <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
-                    <a href="#/article/{{news._id}}" class="thumbnail">
-                        <img ng-src="{{news.urlToImage}}">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           placeholder="username@domain.com"
+                           ng-model="model.user.email">
+                </div>
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="first-name"
+                           placeholder="First name"
+                           ng-model="model.user.firstName">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="last-name"
+                           placeholder="Last name"
+                           ng-model="model.user.lastName">
+                </div>
+                <div class="form-group tnn-btn-margin-bottom">
+                    <a ng-click="model.updateUser(model.user)"
+                       class="btn btn-success btn-block">
+                        Update
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
-                    <div class="tnn-news-title-link">
-                        <a href="#/article/{{news._id}}">{{news.title}}</a>
+                <div class="form-group">
+                    <a ng-click="model.deleteUser(model.user)"
+                       class="btn btn-danger btn-block">
+                        Unregister
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role == 'PUBLISHER'"
+             class="row tnn-other-profile">
+            <h3 class="tnn-other-profile-name text-center">
+                Profile: {{model.firstName}}
+            </h3>
+        </div>
+        <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role != 'PUBLISHER'"
+             class="row tnn-other-profile">
+            <!-- Display if the user has navigated to other's profile -->
+            <h3 class="tnn-other-profile-name text-center">
+                Profile: {{model.firstName}}
+            </h3>
+            <div class="col-xs-12 text-center">
+                <a ng-show="model.followed" ng-click="model.unfollowPerson(model.user._id)"
+                   class="btn btn-danger">
+                    Unfollow
+                </a>
+                <a ng-hide="model.followed" ng-click="model.followPerson(model.user._id)"
+                   class="btn btn-success">
+                    Follow
+                </a>
+            </div>
+        </div>
+
+        <div ng-show="!model.myProfile && model.user.role == 'PUBLISHER'" class="row tnn-other-profile">
+            <!-- Display if the user has navigated to publisher's profile -->
+            <h3 class="tnn-other-profile-name text-center">
+                Publisher: {{model.user.organization}}
+            </h3>
+            <div class="col-xs-12 text-center">
+                <a ng-show="model.subscribed" ng-click="model.unsubscribePublisher(model.user._id)"
+                   class="btn btn-danger">
+                    Unsubscribe
+                </a>
+                <a ng-hide="model.subscribed" ng-click="model.subscribePublisher(model.user._id)"
+                   class="btn btn-success">
+                    Subscribe
+                </a>
+            </div>
+        </div>
+
+        <div ng-show="model.user.role == 'PUBLISHER'" class="row tnn-follow-list">
+            <div ng-show="model.user.subscribers.length == 0"
+                 class="tnn-follow-list-title alert alert-info">
+                {{model.user.organization}} is not being followed by anyone yet
+            </div>
+            <div ng-show="model.user.subscribers.length > 0"
+                 class="tnn-follow-list-title alert alert-info">
+                Subscribers of {{model.user.organization}}:
+            </div>
+            <ul  ng-show="model.user.subscribers.length > 0"
+                 class="list-group">
+                <li ng-repeat="subscriber in model.user.subscribers" class="list-group-item">
+                    <a href="#/user/{{subscriber._id}}">{{subscriber.firstName+" "+subscriber.lastName}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-show="model.user.role == 'READER'" class="row tnn-follow-list">
+            <div ng-show="model.user.followers.length == 0"
+                 class="tnn-follow-list-title alert alert-info">
+                {{model.firstName}} is not being followed by anyone yet
+            </div>
+            <div ng-show="model.user.followers.length > 0"
+                 class="tnn-follow-list-title alert alert-info">
+                Followers of {{model.firstName}}:
+            </div>
+            <ul  ng-show="model.user.followers.length > 0"
+                 class="list-group">
+                <li ng-repeat="follower in model.user.followers" class="list-group-item">
+                    <a href="#/user/{{follower._id}}">{{follower.firstName+" "+follower.lastName}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-show="model.user.role == 'READER'" class="row tnn-follow-list">
+            <div ng-show="model.user.following.length == 0"
+                 class="tnn-follow-list-title alert alert-info">
+                {{model.firstName}} is not following anyone yet
+            </div>
+            <div ng-show="model.user.following.length > 0"
+                 class="tnn-follow-list-title alert alert-info">
+                {{model.firstName}} follows:
+            </div>
+            <ul ng-show="model.user.following.length > 0" class="list-group">
+                <li ng-repeat="followed in model.user.following" class="list-group-item">
+                    <a href="#/user/{{followed._id}}">{{followed.firstName+" "+followed.lastName}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role != 'PUBLISHER'"
+             class="row tnn-other-profile-saved-articles">
+            <!-- List of news to show to other visitors who are not publishers -->
+            <div class="tnn-other-profile-saved-articles-title">
+                <i class="fa fa-bookmark" aria-hidden="true"></i> {{model.user.firstName}}'s Saved Articles
+            </div>
+            <div ng-hide="model.user.articles.length >0"
+                class="alert alert-warning">
+                <span class="glyphicon glyphicon-alert"></span> Sorry, {{model.user.firstName}} hasn't saved any articles yet
+            </div>
+            <div class="row tnn-other-profile-news-section">
+                <div class="col-xs-12 tnn-saved-news-items"
+                     ng-repeat="news in model.user.articles">
+
+                    <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
+                        <a href="#/article/{{news._id}}" class="thumbnail">
+                            <img ng-src="{{news.urlToImage}}">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
+                        <div class="tnn-news-title-link">
+                            <a href="#/article/{{news._id}}">{{news.title}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role == 'PUBLISHER'"
-         class="row tnn-other-profile-saved-articles">
-        <!--Showing other readers saved articles to a publisher -->
-        <div class="row tnn-profile-heading">
-            <i class="fa fa-bookmark" aria-hidden="true"></i> Saved Articles
-        </div>
-        <div class="row tnn-home-news">
+        <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role == 'PUBLISHER'"
+             class="row tnn-other-profile-saved-articles">
+            <!--Showing other readers saved articles to a publisher -->
+            <div class="row tnn-profile-heading">
+                <i class="fa fa-bookmark" aria-hidden="true"></i> Saved Articles
+            </div>
+            <div class="row tnn-home-news">
 
-            <div class="col-xs-12 tnn-saved-news-items"
-                 ng-repeat="news in model.user.articles">
+                <div class="col-xs-12 tnn-saved-news-items"
+                     ng-repeat="news in model.user.articles">
 
-                <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
-                    <a href="#/article/{{news._id}}" class="thumbnail">
-                        <img ng-src="{{news.urlToImage}}">
-                    </a>
-                </div>
-                <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
-                    <div class="tnn-news-title-link">
-                        <a href="#/article/{{news._id}}">{{news.title}}</a>
+                    <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
+                        <a href="#/article/{{news._id}}" class="thumbnail">
+                            <img ng-src="{{news.urlToImage}}">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
+                        <div class="tnn-news-title-link">
+                            <a href="#/article/{{news._id}}">{{news.title}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">

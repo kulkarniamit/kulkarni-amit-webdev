@@ -553,6 +553,9 @@ a.thumbnail{
     padding: 10px;
     font-size: 18px;
 }
+.tnn-profile-container-div{
+    margin-bottom: 75px;
+}
 li.list-group-item:first-child,li.list-group-item:last-child{
     border-radius: 0;
 }
