@@ -64,9 +64,9 @@ module.exports = function () {
         return UserModel.findOne({username:_username, password: _password});
     }
 
-    function recursiveDelete(websitesOfUser, userId) {
-        if(websitesOfUser.length == 0){
-            // All websites of user successfully deleted
+    function recursiveDelete(articlesOfUser, userId) {
+        if(articlesOfUser.length == 0){
+            // All articles of user successfully deleted
             // Delete the user
             return UserModel.remove({_id: userId})
                 .then(function (response) {
@@ -78,10 +78,10 @@ module.exports = function () {
                 });
         }
 
-        return model.websiteModel.deleteWebsiteAndChildren(websitesOfUser.shift())
+        return model.articleModel.removeArticle(articlesOfUser.shift())
             .then(function (response) {
                 if(response.result.n == 1 && response.result.ok == 1){
-                    return recursiveDelete(websitesOfUser, userId);
+                    return recursiveDelete(articlesOfUser, userId);
                 }
             }, function (err) {
                 return err;
@@ -92,10 +92,25 @@ module.exports = function () {
         // Perform cascade delete to delete the associated articles if
         // the user is a publisher
         // The articles will in turn delete the associated comments
-        // The page delete will in turn delete the associated widgets
         // Perform a recursive function delete since the queries
         // are asynchronous
-        return UserModel.remove({_id: userId});
+        // return UserModel.remove({_id: userId});
+
+        return UserModel
+            .findById(userId)
+            .then(function (user) {
+                // Check if the user is a publisher, if yes, delete his articles
+                if(user.role == "PUBLISHER"){
+                    var articles = user.articles;
+                    return recursiveDelete(articles, userId);
+                }
+                else{
+                    return UserModel.remove({_id:userId});
+                }
+            },function (err) {
+                return err;
+            });
+
         // return UserModel.findById({_id: userId})
         //     .then(function (user) {
         //         return user;

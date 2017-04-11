@@ -104,6 +104,7 @@ module.exports = function (app, userModel) {
 
     app.post("/api/project/login", passport.authenticate('local'), login);
     app.post('/api/project/logout',logout);
+    app.get("/api/project/isAdmin",isAdmin);
     app.post ('/api/project/register', register);
     app.get("/api/project/user", findUser);
     app.get ('/api/project/loggedin', loggedin);
@@ -147,6 +148,9 @@ module.exports = function (app, userModel) {
     function logout(req, res) {
         req.logOut();
         res.sendStatus(200);
+    }
+    function isAdmin(req, res) {
+        res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
     }
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');

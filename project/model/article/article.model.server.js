@@ -78,7 +78,6 @@ module.exports = function () {
             },function (err) {
                 return err;
             });
-        // return ArticleModel.remove({_id:articleId});
     }
 /*
 

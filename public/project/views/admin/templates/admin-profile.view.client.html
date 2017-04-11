@@ -1,0 +1,132 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container-fluid ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a class="" href="#/user/{{model.currentUser._id}}">
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                        {{model.currentUser.firstName}}
+                    </a>
+                </li>
+                <!--<li class="">-->
+                    <!--<a class=""-->
+                       <!--href="#/search">-->
+                        <!--<span class="glyphicon glyphicon-search"></span> SEARCH-->
+                    <!--</a>-->
+                <!--</li>-->
+                <li class="">
+                    <a class=""
+                       ng-click="model.logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
+                    </a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="tnn-profile-container-div">
+        <div class="row tnn-profile-heading text-center">
+            <span class="badge badge-success" style="background-color: #468847">Administrator</span>
+            {{model.firstName}} {{model.lastName}}
+        </div>
+
+        <div ng-show="model.currentUser.role == 'ADMIN'" class="row tnn-profile-links">
+            <!--Links for a logged in user visiting his profile-->
+            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                    href="#/user/{{model.userId}}/saved">
+                    <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Readers
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                   href="#/user/publishers">
+                    <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Publishers
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+                <a class="btn btn-block btn-default"
+                   href="#/user/{{model.userId}}/subscriptions">
+                    <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>Articles
+                </a>
+            </div>
+        </div>
+
+        <div ng-show="model.currentUser.role == 'ADMIN'" class="tnn-profile-container">
+            <div class="alert alert-success alert-dismissible fade in"
+                 ng-show="model.message">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <p><i class="fa fa-check-square tnn-bookmark-icon" aria-hidden="true"></i>{{model.message}}</p>
+            </div>
+            <div class="alert alert-danger"
+                 ng-show="model.error">
+                {{model.error}}
+            </div>
+            <div class="alert alert-danger"
+                 ng-show="model.blankerror">
+                {{model.blankerror}}
+            </div>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           placeholder="username@domain.com"
+                           ng-model="model.user.email">
+                </div>
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="first-name"
+                           placeholder="First name"
+                           ng-model="model.user.firstName">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="last-name"
+                           placeholder="Last name"
+                           ng-model="model.user.lastName">
+                </div>
+                <div class="form-group tnn-btn-margin-bottom">
+                    <a ng-click="model.updateUser(model.user)"
+                       class="btn btn-success btn-block">
+                        Update
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a ng-click="model.deleteUser(model.user)"
+                       class="btn btn-danger btn-block">
+                        Unregister
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

@@ -7,6 +7,7 @@
         var api={
             "login":login,
             "logout":logout,
+            "isAdmin":isAdmin,
             "register":register,
             // "createUser":createUser,
             "findUserById":findUserById,
@@ -32,6 +33,10 @@
 
         function logout() {
             return $http.post("/api/project/logout");
+        }
+
+        function isAdmin() {
+            return $http.get("/api/project/isAdmin");
         }
 
         function register(user) {

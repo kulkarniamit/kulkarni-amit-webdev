@@ -18,7 +18,12 @@
                 .then(function (response) {
                     var user = response.data;
                     $rootScope.currentUser = user;
-                    $location.url("/user/"+user._id);
+                    if(user.role == "ADMIN"){
+                        $location.url("/admin/"+user._id);
+                    }
+                    else{
+                        $location.url("/user/"+user._id);
+                    }
                 },function (err) {
                     vm.error = "Username/password does not match";
                 });
@@ -242,7 +247,7 @@
         init()
     }
 
-    function ComposeController($location, $routeParams, $rootScope, SearchNewsService, UserService) {
+    function ComposeController($scope, $location, $routeParams, $rootScope, SearchNewsService, UserService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.currentUser = $rootScope.currentUser;    // Required to provide profile link using ID
@@ -260,15 +265,24 @@
 
         function submitArticle(article) {
             article._user = vm.currentUser._id;
-            SearchNewsService
-                .saveArticle(article)
-                .then(function (response) {
-                    vm.message = "Article successfully posted";
-                    // Reset the form
-                    vm.publisher = {};
-                },function (err) {
-                    console.log(err);
-                });
+            if(article){
+                if(article.title != "" && article.description != "" && article.author != ""){
+                    SearchNewsService
+                        .saveArticle(article)
+                        .then(function (response) {
+                            vm.message = "Article successfully posted";
+                            // Reset the form
+                            vm.publisher = {};
+                            $scope.composer.$setPristine();
+                            $scope.composer.$setUntouched();
+                        },function (err) {
+                            console.log(err);
+                        });
+                }
+            }
+            else{
+                vm.blankFormError = "Please enter the required details to submit the form";
+            }
         }
     }
 

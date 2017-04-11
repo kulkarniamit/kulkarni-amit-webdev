@@ -21,7 +21,6 @@
             }
         });
     };
-
     var redirectToProfile = function($q, $timeout, $http, $location, $rootScope) {
         return $http.get('/api/project/loggedin').success(function(user) {
             $rootScope.errorMessage = null;
@@ -35,6 +34,21 @@
         });
     };
 
+    function isAdmin($q, UserService, $location, $rootScope) {
+        return UserService
+            .isAdmin()
+            .then(function (response) {
+                user = response.data;
+                if(user == '0') {
+                    $location.url('/login');
+                } else {
+                    $rootScope.errorMessage = null;
+                    $rootScope.currentUser = user;
+                    $location.url('/admin/'+user._id);
+                }
+            });
+    }
+
     function configuration($routeProvider, $httpProvider) {
         $httpProvider.defaults.headers.post['Content-Type']='application/json;charset=UTF-8';
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
@@ -44,6 +58,14 @@
                 controller: "HomeController",
                 controllerAs: "model",
                 resolve: { loggedin: redirectToProfile }
+            })
+            .when("/admin/:uid",{
+                templateUrl: 'views/admin/templates/admin-profile.view.client.html',
+                controller: "AdminProfileController",
+                controllerAs: "model",
+                resolve: {
+                    adminUser: isAdmin
+                }
             })
             .when("/search", {
                 templateUrl: 'views/search/templates/search.view.client.html',
