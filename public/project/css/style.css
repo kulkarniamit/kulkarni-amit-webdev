@@ -328,6 +328,11 @@ a.thumbnail{
     line-height: 1.2;
     margin-top: 0;
 }
+.tnn-saved-label {
+    position: absolute;
+    right: 7px;
+    top: 40px;
+}
 .tnn-news-image-section{
     padding-top: 5px;
     border-top: 1px solid #EEE;
