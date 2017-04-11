@@ -51,7 +51,7 @@ body {
     margin-top: 60px;
     margin-bottom: 50px;
     background: url('../images/slider2_blur.jpg') no-repeat center center fixed;
-    background-size: cover;
+    /*background-size: cover;*/
     font-size: 12px;
     max-height: 100% !important;
     padding-bottom: 10px;
@@ -381,6 +381,7 @@ a.thumbnail{
     padding-right: 20px;
     padding-bottom: 20px;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
+    margin-bottom: 75px;
     /* Optional */
 }
 .tnn-login-container{
@@ -572,7 +573,11 @@ li.list-group-item:first-child,li.list-group-item:last-child{
 .alert{
     border-radius: 0;
 }
-
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #FFFFFF;
+    }
+}
 /******************************************************************************/
 /*Modal settings*/
 /******************************************************************************/
