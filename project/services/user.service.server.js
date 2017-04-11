@@ -45,7 +45,10 @@ module.exports = function (app, userModel) {
                                 id:    profile.id,
                                 token: token
                             },
-                            email: profile.emails[0].value
+                            email: profile.emails[0].value,
+                            // username is a mandatory field for creating user
+                            // facebook does not give username
+                            username: profile.emails[0].value
                         };
                         userModel
                             .createUser(newFacebookUser)
