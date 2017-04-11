@@ -51,6 +51,7 @@
         vm.deleteComment = deleteComment;
         vm.saved = false;
         vm.articleByPublisher = false;
+        vm.blankCommentError = false;
 
         function init() {
             // Check if this article has already been bookmarked
@@ -110,15 +111,21 @@
                 })
         }
         function submitComment(comment) {
-            ArticleService
-                .submitComment(vm.article._id,comment)
-                .then(function (response) {
-                    var newComment = response.data;
-                    vm.article.comments.unshift(newComment);
-                    vm.comment = ""
-                },function (err) {
-                    console.log(err);
-                })
+            if(comment){
+                vm.blankCommentError = false;
+                ArticleService
+                    .submitComment(vm.article._id,comment)
+                    .then(function (response) {
+                        var newComment = response.data;
+                        vm.article.comments.unshift(newComment);
+                        vm.comment = ""
+                    },function (err) {
+                        console.log(err);
+                    })
+            }
+            else{
+                vm.blankCommentError = "Please enter a comment to post";
+            }
         }
 
         function deleteComment(commentId) {
