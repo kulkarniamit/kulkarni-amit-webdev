@@ -538,6 +538,14 @@ a.thumbnail{
     font-size: 10px;
     padding: 5px;
 }
+.tnn-publisher-organization-label{
+    font-weight: 900;
+    margin-bottom: 10px;
+    font-size: 14px
+}
+.tnn-publisher-organization-label > span.label {
+    border-radius: 0;
+}
 li.list-group-item:first-child,li.list-group-item:last-child{
     border-radius: 0;
 }
@@ -557,5 +565,25 @@ li.list-group-item:first-child,li.list-group-item:last-child{
 }
 .alert{
     border-radius: 0;
+}
+
+/******************************************************************************/
+/*Modal settings*/
+/******************************************************************************/
+.modal-content{
+    border-radius: 0;
+}
+.modal-footer{
+    padding: 5px;
+}
+.modal-footer > button.btn {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.modal-open {
+    overflow-y: scroll;
+}
+.modal-open[style] {
+    padding-right: 0px !important;
 }
 /******************************************************************************/

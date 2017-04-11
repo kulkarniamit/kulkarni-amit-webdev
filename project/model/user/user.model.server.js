@@ -210,7 +210,8 @@ module.exports = function () {
                 model: 'UserModel',
                 populate: {
                     path: 'articles',
-                    model: 'ArticleModel'
+                    model: 'ArticleModel',
+                    options: { sort: { 'createdAt': -1 }}
                 }
             });
     }

@@ -122,15 +122,38 @@
         }
 
         function deleteComment(commentId) {
-            ArticleService
-                .deleteComment(vm.article._id, commentId)
-                .then(function (response) {
-                    // Comment was successfully deleted
-                    var commentIndex = vm.article.comments.map(function(x){return x._id;}).indexOf(commentId);
-                    vm.article.comments.splice(commentIndex,1);
-                },function (err) {
-                    console.log(err);
-                })
+            bootbox.confirm({
+                size: "small",
+                message: "Are you sure you want to delete your comment?",
+                buttons:{
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result){
+                    /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        // User wants to delete
+                        ArticleService
+                            .deleteComment(vm.article._id, commentId)
+                            .then(function (response) {
+                                // Comment was successfully deleted
+                                var commentIndex = vm.article.comments.map(function(x){return x._id;}).indexOf(commentId);
+                                vm.article.comments.splice(commentIndex,1);
+                            },function (err) {
+                                console.log(err);
+                            })
+                    }
+                    else{
+                        // User accidentally hit delete
+                    }
+                }
+            });
         }
         function logout() {
             UserService

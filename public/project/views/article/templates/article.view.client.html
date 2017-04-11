@@ -59,6 +59,11 @@
                 </a>
             </div>
 
+            <div ng-show="model.article._user"
+                 class="tnn-publisher-organization-label">
+                <span class="label label-info">Published by {{model.article._user.organization}}</span>
+            </div>
+
             <div class="tnn-news-title">
                 <h4>
                     {{model.article.title}}

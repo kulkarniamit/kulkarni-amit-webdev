@@ -44,6 +44,11 @@
             <div class="col-xs-12 tnn-saved-news-items"
                  ng-repeat="news in model.subscribedArticles">
 
+                <div ng-show="news._user"
+                     class="tnn-publisher-organization-label">
+                    <span class="label label-info">Published by {{news.organization}}</span>
+                </div>
+
                 <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
                     <a href="#/article/{{news._id}}" class="thumbnail">
                         <img ng-src="{{news.urlToImage}}">

@@ -7,6 +7,7 @@ module.exports = function () {
     var api = {
         "postComment":postComment,
         "deleteComment":deleteComment,
+        "deleteCommentsOfArticle":deleteCommentsOfArticle,
         "setModel": setModel
     };
 
@@ -37,7 +38,6 @@ module.exports = function () {
                 return err;
             });
     }
-
     function deleteComment(userId, articleId, commentId) {
         return CommentModel
             .findById(commentId)
@@ -52,6 +52,10 @@ module.exports = function () {
             },function (err) {
                 return err;
             })
+    }
+    function deleteCommentsOfArticle(articleId) {
+        return CommentModel
+            .remove({_article: articleId});
     }
 
     function setModel(_model) {

@@ -43,6 +43,7 @@ module.exports = function () {
     function findArticleById(articleId) {
         return ArticleModel
             .findById(articleId)
+            .populate('_user')
             .populate({
                 path: 'comments',
                 model: 'CommentModel',
@@ -66,7 +67,14 @@ module.exports = function () {
             .then(function (article) {
                 article._user.articles.splice(article._user.articles.indexOf(articleId),1);
                 article._user.save();
-                return ArticleModel.remove({_id: articleId});
+                // Delete the comments of this article as well !
+                return model.commentModel
+                        .deleteCommentsOfArticle(articleId)
+                    .then(function (response) {
+                        return ArticleModel.remove({_id: articleId});
+                    },function (err) {
+                        return err;
+                    });
             },function (err) {
                 return err;
             });

@@ -334,6 +334,7 @@
                     vm.subscribedArticles = [];
                     response.data.publishers.map(function(x){
                         x.articles.map(function(y){
+                            y.organization = x.organization;
                             vm.subscribedArticles.push(y)
                         })
                     })
