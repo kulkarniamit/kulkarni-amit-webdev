@@ -262,6 +262,18 @@ a.thumbnail{
 /******************************************************************************/
 /* Project styles */
 /******************************************************************************/
+.tnn-validation-error-div{
+    margin-bottom: 10px;
+}
+.tnn-registration-buttons-div{
+    margin-top: 5px;
+}
+.tnn-register-reader-btn{
+    padding-right: 0;
+}
+.tnn-register-publisher-btn{
+    padding-left: 2px;
+}
 .tnn-bar-color{
     /*background-color: #1C053A;*/
     background-color: #55361E;

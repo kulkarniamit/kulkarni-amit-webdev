@@ -159,9 +159,9 @@
         <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role != 'PUBLISHER'"
              class="row tnn-other-profile">
             <!-- Display if the user has navigated to other's profile -->
-            <h3 class="tnn-other-profile-name text-center">
-                Profile: {{model.firstName}}
-            </h3>
+            <h1 class="tnn-other-profile-name text-center">
+                {{model.firstName}} {{model.user.lastName}}
+            </h1>
             <div class="col-xs-12 text-center">
                 <a ng-show="model.followed" ng-click="model.unfollowPerson(model.user._id)"
                    class="btn btn-danger">

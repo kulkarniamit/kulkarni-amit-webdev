@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row wbdev-login-container">
         <div class="col-xs-12">
-            <h3>Login </h3>
+            <h3>Login</h3>
             <form method="POST" name="form" novalidate>
                 <div ng-show="model.error" class="alert alert-danger text-center" role="alert"> {{model.error}}</div>
                 <div class="form-group">
@@ -42,11 +42,10 @@
                             Please enter your password
                         </div>
                     </div>
-
                 </div>
                 <div class="wbdev-buttons-style">
                     <a class="btn btn-primary btn-block"
-                       ng-click="model.login(model.user)">Login</a>
+                       ng-click="form.$valid && model.login(model.user)">Login</a>
                     <a href="/auth/facebook" class="btn btn-info btn-block">
                         <span class="fa fa-facebook"></span> Login with Facebook
                     </a>
