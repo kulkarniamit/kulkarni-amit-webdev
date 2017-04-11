@@ -40,8 +40,7 @@
         <i class="fa fa-pencil-square-o tnn-bookmark-icon" aria-hidden="true"></i>Your published articles
     </div>
 
-    <div class="row tnn-profile-container">
-        <div class="row tnn-home-news">
+    <div class="row tnn-home-news">
             <div class="col-xs-12 tnn-saved-news-items"
                  ng-repeat="news in model.publishedArticles">
 
@@ -51,7 +50,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
-                    <div style="padding: 10px;">
+                    <div class="tnn-news-title-link">
                         <a href="#/article/{{news._id}}">{{news.title}}</a>
                     </div>
                 </div>
@@ -77,7 +76,6 @@
                 <!--</div>-->
             </div>
         </div>
-    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">

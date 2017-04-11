@@ -66,7 +66,7 @@
 
     <div class="row">
         <div class="col-xs-12 tnn-news-search-item">
-            <div class="tnn-article-options">
+            <div ng-show="model.user.role != 'PUBLISHER'" class="tnn-article-options">
                 <a ng-show="model.unsaved"
                     ng-click="model.saveArticle(model.article)"
                     class="btn btn-default tnn-bookmark-icon">
