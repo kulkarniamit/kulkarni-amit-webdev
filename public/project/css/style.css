@@ -319,11 +319,19 @@ a.thumbnail{
     padding-right: 0;
 }
 .tnn-news-title{
-    border-bottom: 1px solid #CCC;
+    /*border-bottom: 1px solid #CCC;*/
     font-weight: 900;
     margin-bottom: 5px;
+    width: 90%; /* Make space for the bookmark button */
 }
-
+.tnn-news-title>h4{
+    line-height: 1.2;
+    margin-top: 0;
+}
+.tnn-news-image-section{
+    padding-top: 5px;
+    border-top: 1px solid #EEE;
+}
 .tnn-search-news-title{
     font-weight: 900;
     padding: 10px;

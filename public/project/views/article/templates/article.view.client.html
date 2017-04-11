@@ -58,7 +58,6 @@
                     <i class="fa fa-bookmark" aria-hidden="true"></i>
                 </a>
             </div>
-
             <div ng-show="model.article._user"
                  class="tnn-publisher-organization-label">
                 <span class="label label-info">Published by {{model.article._user.organization}}</span>
@@ -69,7 +68,9 @@
                     {{model.article.title}}
                 </h4>
             </div>
-            <img class="img-responsive" ng-src="{{model.article.urlToImage}}" width="100%">
+            <div class="tnn-news-image-section">
+                <img class="img-responsive" ng-src="{{model.article.urlToImage}}" width="100%">
+            </div>
             <div class="tnn-news-description">
                 <h4>
                     {{model.article.description}}
