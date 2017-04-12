@@ -98,30 +98,17 @@
         <!--<span class="sr-only">Next</span>-->
         <!--</a>-->
     </div>
-    <!--<div class="row tnn-welcome-message">-->
-        <!--<div class="col-xs-12">-->
-            <!--<div class="tnn-welcome-header"> Welcome readers and publishers</div>-->
-            <!--<div class="text-center">-->
-                <!--We live in a world where news content is created faster than ever before. The News Network aims to be a central platform for a reader-->
-                <!--who wants to save news articles to read later, share and comment on news, subscribe to various publishers and personalize the news-->
-                <!--that appear on his/her feed. The News Network also provides a platform for publishers to build a userbase and deliver news straight-->
-                <!--to the newsfeed of a subscriber-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="row tnn-home-news">
         <div class="col-xs-12 col-md-12 tnn-home-news-item"
              ng-repeat="news in model.homenews">
 
-                <div class="col-xs-12 col-md-3 tnn-image-div">
+                <div class="col-xs-12 col-md-5 tnn-image-div">
                     <a ng-click="model.getNewsDetails($index)" class="thumbnail">
                         <img ng-src="{{news.urlToImage}}">
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
-                    <div style="padding: 10px;">
-                        <a ng-click="model.getNewsDetails($index)">{{news.title}}</a>
-                    </div>
+                <div class="col-xs-12 col-md-7 tnn-search-news-title">
+                    <a ng-click="model.getNewsDetails($index)">{{news.title}}</a>
                 </div>
         </div>
     </div>

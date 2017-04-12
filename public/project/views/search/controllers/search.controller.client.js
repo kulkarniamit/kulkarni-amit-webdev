@@ -31,7 +31,7 @@
                     vm.unsaved = null;
                 },function (err) {
                     vm.unauthorized = "Please register/login to save articles";
-                    console.log(err);
+                    $('html,body').animate({scrollTop:0},800);
                 })
         }
 

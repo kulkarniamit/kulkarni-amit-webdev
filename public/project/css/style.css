@@ -64,6 +64,16 @@ a{
     cursor: pointer;
 }
 
+.thumbnail{
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 1.2);
+    padding:0;
+    border-radius:0;
+    margin-bottom: 0;
+}
+.thumbnail>img{
+    width:100%; display:block
+}
+
 a.thumbnail:hover, .thumbnail{
     border: 0;
 }
@@ -305,7 +315,7 @@ a.thumbnail{
 }
 
 .tnn-home-news{
-    max-width: 600px;
+    /*max-width: 700px;*/
     margin: 0 auto;
     margin-bottom: 100px;
 }
@@ -322,8 +332,9 @@ a.thumbnail{
     margin-top: 5px;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.518);
     background-color: white;
-    padding-left: 0;
-    padding-right: 0;
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+    padding: 5px;
 }
 
 .tnn-image-div{
@@ -334,16 +345,22 @@ a.thumbnail{
     /*border-bottom: 1px solid #CCC;*/
     font-weight: 900;
     margin-bottom: 5px;
-    width: 90%; /* Make space for the bookmark button */
+    /*width: 90%; !* Make space for the bookmark button *!*/
 }
 .tnn-news-title>h4{
     line-height: 1.2;
     margin-top: 0;
+    font-size:32px;
 }
 .tnn-saved-label {
     position: absolute;
     right: 7px;
     top: 40px;
+}
+.tnn-saved-news-section{
+    margin: 0 auto;
+    max-width: 700px;
+    margin-bottom: 75px;
 }
 .tnn-news-image-section{
     padding-top: 5px;
@@ -351,7 +368,15 @@ a.thumbnail{
 }
 .tnn-search-news-title{
     font-weight: 900;
-    padding: 10px;
+    font-size: 32px;
+}
+.tnn-search-section{
+    max-width: 700px;
+    margin: 0 auto;
+}
+.tnn-search-details-section{
+    max-width: 750px;
+    margin: 0 auto;
 }
 .tnn-search-btn{
     display: block;
@@ -369,10 +394,12 @@ a.thumbnail{
 }
 .tnn-news-author {
     font-weight: bolder;
-    padding-bottom: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #EEE;
 }
 .tnn-news-source{
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .tnn-news-date{
@@ -423,7 +450,7 @@ a.thumbnail{
 }
 
 .tnn-profile-container{
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -442,9 +469,8 @@ a.thumbnail{
     font-size:26px;
     color: #000000;
     padding: 10px;
-    max-width: 600px;
     margin-bottom: 10px;
-    max-width: 600px;
+    max-width: 700px;
     margin-left:auto;
     margin-right: auto;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
@@ -460,11 +486,16 @@ a.thumbnail{
     right: 5px;
 }
 .row.tnn-profile-links {
-    max-width: 600px;
+    max-width: 700px;
     margin: 5px auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
 }
 .row .tnn-profile-link{
-    padding: 1px;
+    padding: 0;
+}
+.row .tnn-profile-link > a.btn{
+    margin-bottom: 1px;
+    border: 0;
 }
 .selectize-input{
     border-radius: 0;
@@ -528,7 +559,7 @@ a.thumbnail{
 }
 
 .tnn-publishers-list-section{
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -581,7 +612,7 @@ a.thumbnail{
 .tnn-profile-container-div{
     margin-bottom: 75px;
 }
-li.list-group-item:first-child,li.list-group-item:last-child{
+a.list-group-item:first-child,a.list-group-item:last-child{
     border-radius: 0;
 }
 

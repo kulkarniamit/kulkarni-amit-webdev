@@ -37,16 +37,25 @@
 </nav>
 <div class="container-fluid">
     <div class="row tnn-profile-heading text-center">
-        Publishers on The News Network
+        <i class="fa fa-users" aria-hidden="true"></i> Publishers on The News Network
     </div>
 
     <div class="row tnn-publishers-list-section">
-        <ul ng-show="model.publishers.length > 0"
+        <div ng-show="model.publishers.length > 0"
              class="list-group">
-            <li ng-repeat="publisher in model.publishers" class="list-group-item">
-                <a href="#/user/{{publisher._id}}">{{publisher.organization}}</a>
-            </li>
-        </ul>
+            <a ng-repeat="publisher in model.publishers"
+               href="#/user/{{publisher._id}}"
+               class="list-group-item">
+                {{publisher.organization}}
+            </a>
+        </div>
+
+        <!--<ul ng-show="model.publishers.length > 0"-->
+            <!--class="list-group">-->
+            <!--<li ng-repeat="publisher in model.publishers" class="list-group-item">-->
+                <!--<a href="#/user/{{publisher._id}}">{{publisher.organization}}</a>-->
+            <!--</li>-->
+        <!--</ul>-->
     </div>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">

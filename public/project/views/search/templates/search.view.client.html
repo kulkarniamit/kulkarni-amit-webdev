@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top tnn-navbar">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="model.user" class="">
                     <a href="#/user/{{model.user._id}}" class="tnn-navbar-btn">
-                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i> {{model.user.firstName}}
                     </a>
                 </li>
                 <li ng-hide="model.user" class="">
@@ -53,32 +53,33 @@
 </nav>
 
 <div class="container">
-
-    <div class="row tnn-search-div">
-        <div class="col-xs-10">
-            <select ng-model="model.option">
-            </select>
+    <div class="tnn-search-section">
+        <div class="row tnn-search-div">
+            <div class="col-xs-10">
+                <select ng-model="model.option">
+                </select>
+            </div>
+            <div class="col-xs-2">
+                <a ng-click="model.searchNewsFromSource(model.option)"
+                   class="btn btn-primary tnn-search-btn">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
-        <div class="col-xs-2">
-            <a ng-click="model.searchNewsFromSource(model.option)"
-               class="btn btn-primary tnn-search-btn">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="row tnn-home-news">
-        <div class="col-xs-12 tnn-home-news-item"
-             ng-repeat="news in model.searchNews">
-            <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img ng-src="{{news.urlToImage}}">
-                    </a>
-                </div>
-                <div class="col-xs-12 col-md-9">
-                    <div class="tnn-search-news-title">
-                        <a ng-click="model.setLastClickedSearchDetails($index)">{{news.title}}</a>
+        <div class="row tnn-home-news">
+            <div class="col-xs-12 tnn-home-news-item"
+                 ng-repeat="news in model.searchNews">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img ng-src="{{news.urlToImage}}">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-9">
+                        <div class="tnn-search-news-title">
+                            <a ng-click="model.setLastClickedSearchDetails($index)">{{news.title}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,7 +90,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid">
         <div class="pull-right">
-            <a class="navbar-brand"
+            <a class="navbar-brand wbdev-margin-right-fix"
                href="https://newsapi.org/">
                 API Courtesy: <i class="fa fa-newspaper-o" aria-hidden="true"></i>NewsApi</span>
             </a>

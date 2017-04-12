@@ -45,28 +45,27 @@
         <div ng-show="model.article"
             class="col-xs-12 tnn-news-search-item">
 
-            <div ng-show="model.currentUser.role == 'READER'" class="tnn-article-options">
-                <a ng-show="!model.saved"
-                   ng-click="model.bookmarkArticleById(model.article._id)"
-                   class="btn btn-default tnn-bookmark-icon">
-                    <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                </a>
-                <!--<span ng-show="model.saved" class="label label-success">Saved</span>-->
-                <a ng-show="model.saved"
-                   ng-click="model.removeBookmark(model.article._id)"
-                   class="btn btn-default tnn-bookmark-icon">
-                    <i class="fa fa-bookmark" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="tnn-saved-label">
-                <span ng-show="model.saved" class="label label-success">Saved</span>
-            </div>
+            <!--<div ng-show="model.currentUser.role == 'READER'" class="tnn-article-options">-->
+                <!--<a ng-show="!model.saved"-->
+                   <!--ng-click="model.bookmarkArticleById(model.article._id)"-->
+                   <!--class="btn btn-default tnn-bookmark-icon">-->
+                    <!--<i class="fa fa-bookmark-o" aria-hidden="true"></i>-->
+                <!--</a>-->
+                <!--&lt;!&ndash;<span ng-show="model.saved" class="label label-success">Saved</span>&ndash;&gt;-->
+                <!--<a ng-show="model.saved"-->
+                   <!--ng-click="model.removeBookmark(model.article._id)"-->
+                   <!--class="btn btn-default tnn-bookmark-icon">-->
+                    <!--<i class="fa fa-bookmark" aria-hidden="true"></i>-->
+                <!--</a>-->
+            <!--</div>-->
 
+            <!--<div class="tnn-saved-label">-->
+                <!--<span ng-show="model.saved" class="label label-success">Saved</span>-->
+            <!--</div>-->
             <div ng-show="model.article._user"
                  class="tnn-publisher-organization-label">
                 <span class="label label-info">Published by {{model.article._user.organization}}</span>
             </div>
-
             <div class="tnn-news-title">
                 <h4>
                     {{model.article.title}}
@@ -83,15 +82,34 @@
             <div ng-show="model.article.author" class="tnn-news-author">
                 Author: {{model.article.author}}
             </div>
-            <div class="tnn-news-source col">
+            <div ng-show="model.article.url"
+                 class="tnn-news-source ">
                 <a href="{{model.article.url}}"> Source </a>
             </div>
-            <div class="tnn-news-date col">
+            <div ng-show="model.article._user"
+                 class="tnn-news-date">
+                Date of publishing: {{model.article.createdAt}}
+            </div>
+            <div ng-show="model.article.publishedAt"
+                 class="tnn-news-date col">
                 Date of publishing: {{model.article.publishedAt}}
             </div>
             <div ng-show="model.currentUser.role == 'PUBLISHER' && model.articleByPublisher" class="tnn-news-forget-div">
                 <a ng-click="model.removeArticle(model.article._id)" class="btn btn-danger btn-block">
                     <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div ng-show="model.currentUser.role == 'READER'">
+                <a ng-show="!model.saved"
+                   ng-click="model.bookmarkArticleById(model.article._id)"
+                   class="btn btn-success btn-block">
+                    <i class="fa fa-bookmark-o tnn-bookmark-icon" aria-hidden="true"></i> SAVE
+                </a>
+                <a ng-show="model.saved"
+                   ng-click="model.removeBookmark(model.article._id)"
+                   class="btn btn-danger btn-block">
+                    <i class="fa fa-bookmark tnn-bookmark-icon" aria-hidden="true"></i> REMOVE FROM SAVED
                 </a>
             </div>
 

@@ -60,19 +60,19 @@
 
         <div ng-show="model.myProfile && model.user.role == 'READER'" class="row tnn-profile-links">
             <!--Links for a logged in user visiting his profile-->
-            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
                     href="#/user/{{model.userId}}/saved">
                     <i class="fa fa-bookmark profile-links-icon" aria-hidden="true"></i>My Saved Articles
                 </a>
             </div>
-            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
                    href="#/user/publishers">
                     <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Publishers
                 </a>
             </div>
-            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
                    href="#/user/{{model.userId}}/subscriptions">
                     <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Subscriptions
@@ -82,13 +82,13 @@
 
         <div ng-show="model.myProfile && model.user.role == 'PUBLISHER'" class="row tnn-profile-links">
             <!--Links to show a publisher on his profile page-->
-            <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
                    href="#/user/{{model.userId}}/publisher/compose">
                     <i class="fa fa-pencil profile-links-icon" aria-hidden="true"></i></i>Compose Article
                 </a>
             </div>
-            <div class="col-xs-12 col-md-6 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
                    href="#/user/{{model.userId}}/publisher/articles">
                     <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>My Articles
@@ -251,22 +251,38 @@
                 class="alert alert-warning">
                 <span class="glyphicon glyphicon-alert"></span> Sorry, {{model.user.firstName}} hasn't saved any articles yet
             </div>
-            <div class="row tnn-other-profile-news-section">
-                <div class="col-xs-12 tnn-saved-news-items"
+            <div class="row tnn-saved-news-section">
+                <div class="col-xs-12 col-md-12 tnn-home-news-item"
                      ng-repeat="news in model.user.articles">
 
-                    <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
+                    <div class="col-xs-12 col-md-5 tnn-image-div">
                         <a href="#/article/{{news._id}}" class="thumbnail">
                             <img ng-src="{{news.urlToImage}}">
                         </a>
                     </div>
-                    <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
-                        <div class="tnn-news-title-link">
-                            <a href="#/article/{{news._id}}">{{news.title}}</a>
-                        </div>
+                    <div class="col-xs-12 col-md-7 tnn-search-news-title">
+                        <a href="#/article/{{news._id}}">{{news.title}}</a>
                     </div>
                 </div>
             </div>
+
+            <!--<div class="row tnn-other-profile-news-section">-->
+                <!--<div class="col-xs-12 tnn-saved-news-items"-->
+                     <!--ng-repeat="news in model.user.articles">-->
+
+                    <!--<div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">-->
+                        <!--<a href="#/article/{{news._id}}" class="thumbnail">-->
+                            <!--<img ng-src="{{news.urlToImage}}">-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">-->
+                        <!--<div class="tnn-news-title-link">-->
+                            <!--<a href="#/article/{{news._id}}">{{news.title}}</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
         </div>
 
         <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role == 'PUBLISHER'"
@@ -275,23 +291,39 @@
             <div class="row tnn-profile-heading">
                 <i class="fa fa-bookmark" aria-hidden="true"></i> Saved Articles
             </div>
-            <div class="row tnn-home-news">
 
-                <div class="col-xs-12 tnn-saved-news-items"
+            <div class="row tnn-saved-news-section">
+                <div class="col-xs-12 col-md-12 tnn-home-news-item"
                      ng-repeat="news in model.user.articles">
 
-                    <div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">
+                    <div class="col-xs-12 col-md-5 tnn-image-div">
                         <a href="#/article/{{news._id}}" class="thumbnail">
                             <img ng-src="{{news.urlToImage}}">
                         </a>
                     </div>
-                    <div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">
-                        <div class="tnn-news-title-link">
-                            <a href="#/article/{{news._id}}">{{news.title}}</a>
-                        </div>
+                    <div class="col-xs-12 col-md-7 tnn-search-news-title">
+                        <a href="#/article/{{news._id}}">{{news.title}}</a>
                     </div>
                 </div>
             </div>
+
+            <!--<div class="row tnn-home-news">-->
+                <!--<div class="col-xs-12 tnn-saved-news-items"-->
+                     <!--ng-repeat="news in model.user.articles">-->
+
+                    <!--<div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">-->
+                        <!--<a href="#/article/{{news._id}}" class="thumbnail">-->
+                            <!--<img ng-src="{{news.urlToImage}}">-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">-->
+                        <!--<div class="tnn-news-title-link">-->
+                            <!--<a href="#/article/{{news._id}}">{{news.title}}</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
         </div>
 
     </div>

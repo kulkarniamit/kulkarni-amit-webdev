@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top tnn-navbar">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -49,36 +49,38 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row alert alert-danger alert-dismissible fade in" role="alert" ng-show="model.unauthorized">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <p>{{model.unauthorized}}</p>
-        <p>
-            <a href="#/register/reader" class="btn btn-success">
-                Register
-            </a>
-            <a href="#/login" class="btn btn-primary">
-                Login
-            </a>
-        </p>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 tnn-news-search-item">
-            <div ng-show="model.user.role != 'PUBLISHER'" class="tnn-article-options">
-                <a ng-show="model.unsaved"
-                    ng-click="model.saveArticle(model.article)"
-                    class="btn btn-default tnn-bookmark-icon">
-                    <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+    <div class="row tnn-search-details-section">
+        <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="model.unauthorized">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <p>{{model.unauthorized}}</p>
+            <p>
+                <a href="#/register/reader" class="btn btn-success">
+                    Register
                 </a>
-                <span ng-show="model.saved" class="label label-success">Saved</span>
-            </div>
+                <a href="#/login" class="btn btn-primary">
+                    Login
+                </a>
+            </p>
+        </div>
+        <div class="col-xs-12 tnn-news-search-item">
+            <!--<div ng-show="model.user.role != 'PUBLISHER'" class="tnn-article-options">-->
+                <!--<a ng-show="model.unsaved"-->
+                    <!--ng-click="model.saveArticle(model.article)"-->
+                    <!--class="btn btn-default tnn-bookmark-icon">-->
+                    <!--<i class="fa fa-bookmark-o" aria-hidden="true"></i>-->
+                <!--</a>-->
+                <!--<span ng-show="model.saved" class="label label-success">Saved</span>-->
+            <!--</div>-->
 
             <div class="tnn-news-title">
                 <h4>
                     {{model.article.title}}
                 </h4>
+            </div>
+            <div ng-show="model.article.author" class="tnn-news-author">
+                Author: {{model.article.author}}
             </div>
             <img class="img-responsive" ng-src="{{model.article.urlToImage}}" width="100%">
             <div class="tnn-news-description">
@@ -86,8 +88,17 @@
                     {{model.article.description}}
                 </h4>
             </div>
-            <div ng-show="model.article.author" class="tnn-news-author">
-                Author: {{model.article.author}}
+            <div ng-show="model.user.role != 'PUBLISHER'">
+                <a ng-show="model.unsaved"
+                   ng-click="model.saveArticle(model.article)"
+                   class="btn btn-success btn-block">
+                    <i class="fa fa-bookmark-o tnn-bookmark-icon" aria-hidden="true"></i>SAVE
+                </a>
+                <div ng-show="model.saved" class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <p><i class="fa fa-check-square tnn-bookmark-icon" aria-hidden="true"></i>Saved</p>
+                </div>
+                <!--<span ng-show="model.saved" class="label label-success">Saved</span>-->
             </div>
             <div class="tnn-news-source col">
                 <a href="{{model.article.url}}"> Source </a>
@@ -95,13 +106,14 @@
             <div class="tnn-news-date col">
                 Date of publishing: {{model.article.publishedAt}}
             </div>
+
         </div>
     </div>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid">
         <div class="pull-right">
-            <a class="navbar-brand"
+            <a class="navbar-brand wbdev-margin-right-fix"
                href="https://newsapi.org/">
                 API Courtesy: <i class="fa fa-newspaper-o" aria-hidden="true"></i>NewsApi</span>
             </a>
