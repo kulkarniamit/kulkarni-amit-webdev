@@ -59,9 +59,17 @@
                 controllerAs: "model",
                 resolve: { loggedin: redirectToProfile }
             })
-            .when("/admin/manage/user",{
-                templateUrl: 'views/admin/templates/admin-user-management.view.client.html',
-                controller: "AdminUserManagementController",
+            .when("/admin/manage/reader",{
+                templateUrl: 'views/admin/templates/admin-reader-management.view.client.html',
+                controller: "AdminReaderManagementController",
+                controllerAs: "model",
+                resolve: {
+                    adminUser: isAdmin
+                }
+            })
+            .when("/admin/manage/publisher",{
+                templateUrl: 'views/admin/templates/admin-publisher-management.view.client.html',
+                controller: "AdminPublisherManagementController",
                 controllerAs: "model",
                 resolve: {
                     adminUser: isAdmin

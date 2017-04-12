@@ -3,7 +3,8 @@
         .module('TheNewsNetwork')
         .controller("AdminProfileController",AdminProfileController)
         .controller("AdminUserCreateController",AdminUserCreateController)
-        .controller("AdminUserManagementController",AdminUserManagementController);
+        .controller("AdminPublisherManagementController",AdminPublisherManagementController)
+        .controller("AdminReaderManagementController",AdminReaderManagementController);
 
     function AdminProfileController($rootScope, $location, UserService, AdminService) {
         var vm = this;
@@ -70,7 +71,6 @@
                 });
         }
     }
-
     function AdminUserCreateController($scope, $rootScope, $location, UserService, AdminService) {
         var vm = this;
         vm.currentUser = $rootScope.currentUser;
@@ -128,7 +128,7 @@
                 });
         }
     }
-    function AdminUserManagementController($rootScope, $location, UserService, AdminService) {
+    function AdminReaderManagementController($rootScope, $location, UserService, AdminService) {
         var vm = this;
         vm.currentUser = $rootScope.currentUser;
         vm.deleteUser = deleteUser;
@@ -139,6 +139,7 @@
                 .findAllUsers()
                 .then(function (response) {
                     vm.users = response.data;
+                    vm.readers = vm.users.filter(function(x){return x.role == "READER"});
                 },function (err) {
                     console.log(err);
                 })
@@ -166,8 +167,8 @@
                             .deleteUserById(userId)
                             .then(function (response) {
                                 // User was successfully deleted
-                                var deletedUserIndex = vm.users.map(function (x) {return x._id}).indexOf(userId);
-                                vm.users.splice(deletedUserIndex, 1);
+                                var deletedUserIndex = vm.readers.map(function (x) {return x._id}).indexOf(userId);
+                                vm.readers.splice(deletedUserIndex, 1);
                             },function (err) {
                                 console.log(err);
                             })
@@ -179,6 +180,66 @@
             });
         }
         init();
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+    }
+    function AdminPublisherManagementController($rootScope, $location, UserService, AdminService) {
+        var vm = this;
+        vm.currentUser = $rootScope.currentUser;
+        vm.deleteUser = deleteUser;
+        vm.logout = logout;
+
+        function init() {
+            AdminService
+                .findAllUsers()
+                .then(function (response) {
+                    vm.users = response.data;
+                    vm.publishers = vm.users.filter(function(x){return x.role == "PUBLISHER"});
+                },function (err) {
+                    console.log(err);
+                })
+        }
+        init();
+        function deleteUser(userId) {
+            bootbox.confirm({
+                size: "small",
+                message: "Are you sure you want to delete this user?",
+                buttons:{
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result){
+                    /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        // Admin wants to delete the user
+                        UserService
+                            .deleteUserById(userId)
+                            .then(function (response) {
+                                // User was successfully deleted
+                                var deletedUserIndex = vm.publishers.map(function (x) {return x._id}).indexOf(userId);
+                                vm.publishers.splice(deletedUserIndex, 1);
+                            },function (err) {
+                                console.log(err);
+                            })
+                    }
+                    else{
+                        // User accidentally hit delete
+                    }
+                }
+            });
+        }
         function logout() {
             UserService
                 .logout()

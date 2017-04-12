@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container-fluid ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/admin/{{model.currentUser._id}}">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a class="ng-binding" href="#/admin/manage/user/create">
+                        <i class="fa fa-user-plus tnn-logo-navbar" aria-hidden="true"></i>
+                        Add a user
+                    </a>
+                </li>
+                <li class="">
+                    <a class="" href="#/admin/{{model.currentUser._id}}">
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                        {{model.currentUser.firstName}}
+                    </a>
+                </li>
+                <li class="">
+                    <a class=""
+                       ng-click="model.logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
+                    </a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="tnn-profile-container-div">
+        <div class="tnn-admin-user-mgmt-title">
+            <i class="fa fa-cogs tnn-bookmark-icon" aria-hidden="true"></i> Reader Management
+        </div>
+        <div class="tnn-admin-users-list">
+            <ul class="list-group">
+                <li ng-repeat="user in model.readers" class="list-group-item">
+                    <span class="pull-right">
+                        <span ng-click="model.deleteUser(user._id)" class="btn btn-xs btn-danger">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </span>
+                    </span>
+                    {{user.firstName}} {{user.lastName}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               href="#/admin/{{model.currentUser._id}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

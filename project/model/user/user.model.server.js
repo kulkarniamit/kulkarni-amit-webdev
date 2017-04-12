@@ -246,7 +246,7 @@ module.exports = function () {
     }
 
     function findAllUsers() {
-        // Retrieve all users who are not ADMIN
+        // Retrieve all readers who are not ADMIN
         return UserModel.find({ "role": { "$ne": "ADMIN" } });
     }
     function setModel(_model) {

@@ -13,7 +13,6 @@
         function findAllUsers() {
             return $http.get("/api/project/admin/user");
         }
-
         function createUser(user) {
             return $http.post("/api/project/admin/user/create",user);
         }
