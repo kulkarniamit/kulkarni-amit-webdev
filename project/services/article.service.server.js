@@ -3,8 +3,26 @@ module.exports = function (app, articleModel) {
     app.delete("/api/project/user/:userId/publisher/article/:articleId",removeArticle);
     app.get("/api/project/user/publisher/articles/:publisherId",findArticlesByPublisher);
     app.get("/api/project/article/:articleId",findArticleById);
+    app.get("/api/project/admin/articles",adminAuthentication, findAllArticles);
 
-
+    function adminAuthentication(req, res, next) {
+        if(req.user && req.isAuthenticated() && req.user.role == "ADMIN"){
+            next();
+        }
+        else{
+            // Unauthorized
+            res.sendStatus(401);
+        }
+    }
+    function findAllArticles(req, res) {
+        articleModel
+            .findAllArticles()
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            })
+    }
     function createArticle(req, res) {
         if(req.user){
             var userId = req.user._id;

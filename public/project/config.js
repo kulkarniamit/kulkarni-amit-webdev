@@ -75,6 +75,14 @@
                     adminUser: isAdmin
                 }
             })
+            .when("/admin/manage/articles",{
+                templateUrl: 'views/admin/templates/admin-article-management.view.client.html',
+                controller: "AdminArticleManagementController",
+                controllerAs: "model",
+                resolve: {
+                    adminUser: isAdmin
+                }
+            })
             .when("/admin/manage/user/create",{
                 templateUrl: 'views/admin/templates/admin-user-create.view.client.html',
                 controller: "AdminUserCreateController",

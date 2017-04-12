@@ -4,7 +4,8 @@
         .controller("AdminProfileController",AdminProfileController)
         .controller("AdminUserCreateController",AdminUserCreateController)
         .controller("AdminPublisherManagementController",AdminPublisherManagementController)
-        .controller("AdminReaderManagementController",AdminReaderManagementController);
+        .controller("AdminReaderManagementController",AdminReaderManagementController)
+        .controller("AdminArticleManagementController",AdminArticleManagementController);
 
     function AdminProfileController($rootScope, $location, UserService, AdminService) {
         var vm = this;
@@ -230,6 +231,67 @@
                                 // User was successfully deleted
                                 var deletedUserIndex = vm.publishers.map(function (x) {return x._id}).indexOf(userId);
                                 vm.publishers.splice(deletedUserIndex, 1);
+                            },function (err) {
+                                console.log(err);
+                            })
+                    }
+                    else{
+                        // User accidentally hit delete
+                    }
+                }
+            });
+        }
+        function logout() {
+            UserService
+                .logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                });
+        }
+    }
+    function AdminArticleManagementController($rootScope, $location, UserService, AdminService, ArticleService) {
+        var vm = this;
+        vm.currentUser = $rootScope.currentUser;
+        vm.deleteArticle = deleteArticle;
+        vm.logout = logout;
+
+        function init() {
+            AdminService
+                .findAllArticles()
+                .then(function (response) {
+                    console.log(response.data);
+                    vm.articles = response.data;
+                },function (err) {
+                    console.log(err);
+                });
+        }
+        init();
+
+        function deleteArticle(articleId) {
+            bootbox.confirm({
+                size: "small",
+                message: "Are you sure you want to delete this article?",
+                buttons:{
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result){
+                    /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        // Admin wants to delete the article
+                        ArticleService
+                            .removeArticle(articleId)
+                            .then(function (response) {
+                                // Article deleted, remove from array
+                                var deletedArticleIndex = vm.articles.map(function (x) {return x._id}).indexOf(articleId);
+                                vm.articles.splice(deletedArticleIndex,1);
                             },function (err) {
                                 console.log(err);
                             })
