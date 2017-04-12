@@ -8,6 +8,7 @@ module.exports = function () {
         "postComment":postComment,
         "deleteComment":deleteComment,
         "deleteCommentsOfArticle":deleteCommentsOfArticle,
+        "deleteAllCommentsOfUser":deleteAllCommentsOfUser,
         "setModel": setModel
     };
 
@@ -57,7 +58,9 @@ module.exports = function () {
         return CommentModel
             .remove({_article: articleId});
     }
-
+    function deleteAllCommentsOfUser(userId) {
+        return CommentModel.remove({_user:userId});
+    }
     function setModel(_model) {
         model = _model;
     }

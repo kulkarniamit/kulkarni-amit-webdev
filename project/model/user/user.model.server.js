@@ -22,7 +22,8 @@ module.exports = function () {
         "subscribe":subscribe,
         "unsubscribe":unsubscribe,
         "findAllSubscribedArticlesOfUser":findAllSubscribedArticlesOfUser,
-        "bookmarkArticleById":bookmarkArticleById
+        "bookmarkArticleById":bookmarkArticleById,
+        "findAllUsers":findAllUsers
     };
 
     return api;
@@ -63,7 +64,6 @@ module.exports = function () {
     function findUserByCredentials(_username, _password) {
         return UserModel.findOne({username:_username, password: _password});
     }
-
     function recursiveDelete(articlesOfUser, userId) {
         if(articlesOfUser.length == 0){
             // All articles of user successfully deleted
@@ -87,7 +87,6 @@ module.exports = function () {
                 return err;
             });
     }
-
     function deleteUser(userId) {
         // Perform cascade delete to delete the associated articles if
         // the user is a publisher
@@ -99,14 +98,21 @@ module.exports = function () {
         return UserModel
             .findById(userId)
             .then(function (user) {
-                // Check if the user is a publisher, if yes, delete his articles
-                if(user.role == "PUBLISHER"){
-                    var articles = user.articles;
-                    return recursiveDelete(articles, userId);
-                }
-                else{
-                    return UserModel.remove({_id:userId});
-                }
+                // Delete all the comments of this user first
+                return model.commentModel
+                    .deleteAllCommentsOfUser(user._id)
+                    .then(function (response) {
+                        // Check if the user is a publisher, if yes, delete his articles
+                        if(user.role == "PUBLISHER"){
+                            var articles = user.articles;
+                            return recursiveDelete(articles, userId);
+                        }
+                        else{
+                            return UserModel.remove({_id:userId});
+                        }
+                    },function (err) {
+                        return err;
+                    });
             },function (err) {
                 return err;
             });
@@ -239,6 +245,10 @@ module.exports = function () {
             })
     }
 
+    function findAllUsers() {
+        // Retrieve all users who are not ADMIN
+        return UserModel.find({ "role": { "$ne": "ADMIN" } });
+    }
     function setModel(_model) {
         model = _model;
     }

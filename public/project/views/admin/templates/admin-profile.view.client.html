@@ -7,24 +7,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/">
+            <a class="navbar-brand" href="#/admin/{{model.currentUser._id}}">
                 <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
                 The News Network</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                    <a class="" href="#/user/{{model.currentUser._id}}">
+                    <a class="ng-binding" href="#/admin/manage/user/create">
+                        <i class="fa fa-user-plus tnn-logo-navbar" aria-hidden="true"></i>
+                        Add a user
+                    </a>
+                </li>
+
+                <li class="">
+                    <a class="" href="#/admin/{{model.currentUser._id}}">
                         <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
                         {{model.currentUser.firstName}}
                     </a>
                 </li>
-                <!--<li class="">-->
-                    <!--<a class=""-->
-                       <!--href="#/search">-->
-                        <!--<span class="glyphicon glyphicon-search"></span> SEARCH-->
-                    <!--</a>-->
-                <!--</li>-->
                 <li class="">
                     <a class=""
                        ng-click="model.logout()">
@@ -44,22 +45,22 @@
 
         <div ng-show="model.currentUser.role == 'ADMIN'" class="row tnn-profile-links">
             <!--Links for a logged in user visiting his profile-->
-            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
-                    href="#/user/{{model.userId}}/saved">
-                    <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Readers
+                    href="#/admin/manage/user">
+                    <i class="fa fa-users profile-links-icon" aria-hidden="true"></i>Manage Readers
                 </a>
             </div>
-            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
-                   href="#/user/publishers">
-                    <i class="fa fa-search profile-links-icon" aria-hidden="true"></i>Publishers
+                   href="#/admin/manage/publishers">
+                    <i class="fa fa-users profile-links-icon" aria-hidden="true"></i>Manage Publishers
                 </a>
             </div>
-            <div class="col-xs-12 col-md-4 tnn-profile-link text-center">
+            <div class="col-xs-12 tnn-profile-link text-center">
                 <a class="btn btn-block btn-default"
-                   href="#/user/{{model.userId}}/subscriptions">
-                    <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>Articles
+                   href="#/admin/manage/articles">
+                    <i class="fa fa-newspaper-o profile-links-icon" aria-hidden="true"></i>Manage Articles
                 </a>
             </div>
         </div>
@@ -124,7 +125,7 @@
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">
             <a class="navbar-brand"
-               href="#/user/{{model.userId}}">
+               href="#/admin/{{model.currentUser._id}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

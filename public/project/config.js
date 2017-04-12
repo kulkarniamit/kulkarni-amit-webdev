@@ -44,7 +44,7 @@
                 } else {
                     $rootScope.errorMessage = null;
                     $rootScope.currentUser = user;
-                    $location.url('/admin/'+user._id);
+                    // $location.url('/admin/'+user._id);
                 }
             });
     }
@@ -58,6 +58,22 @@
                 controller: "HomeController",
                 controllerAs: "model",
                 resolve: { loggedin: redirectToProfile }
+            })
+            .when("/admin/manage/user",{
+                templateUrl: 'views/admin/templates/admin-user-management.view.client.html',
+                controller: "AdminUserManagementController",
+                controllerAs: "model",
+                resolve: {
+                    adminUser: isAdmin
+                }
+            })
+            .when("/admin/manage/user/create",{
+                templateUrl: 'views/admin/templates/admin-user-create.view.client.html',
+                controller: "AdminUserCreateController",
+                controllerAs: "model",
+                resolve: {
+                    adminUser: isAdmin
+                }
             })
             .when("/admin/:uid",{
                 templateUrl: 'views/admin/templates/admin-profile.view.client.html',

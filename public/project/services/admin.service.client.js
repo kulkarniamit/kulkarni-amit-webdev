@@ -5,12 +5,17 @@
 
     function AdminService($http) {
         var api = {
-            "searchNews":searchNews
+            "findAllUsers":findAllUsers,
+            "createUser":createUser
         };
         return api;
 
-        function searchNews() {
-            return $http.get(urlBase+"&apikey="+key);
+        function findAllUsers() {
+            return $http.get("/api/project/admin/user");
+        }
+
+        function createUser(user) {
+            return $http.post("/api/project/admin/user/create",user);
         }
     }
 })();

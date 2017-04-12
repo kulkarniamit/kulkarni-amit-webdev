@@ -105,6 +105,8 @@ module.exports = function (app, userModel) {
     app.post("/api/project/login", passport.authenticate('local'), login);
     app.post('/api/project/logout',logout);
     app.get("/api/project/isAdmin",isAdmin);
+    app.get("/api/project/admin/user",adminAuthentication, findAllUsers);
+    app.post("/api/project/admin/user/create",adminAuthentication, createUser);
     app.post ('/api/project/register', register);
     app.get("/api/project/user", findUser);
     app.get ('/api/project/loggedin', loggedin);
@@ -141,6 +143,16 @@ module.exports = function (app, userModel) {
                 }
             );
     }
+
+    function adminAuthentication(req, res, next) {
+        if(req.user && req.isAuthenticated() && req.user.role == "ADMIN"){
+            next();
+        }
+        else{
+            // Unauthorized
+            res.sendStatus(401);
+        }
+    }
     function login(req, res) {
         var user = req.user;
         res.json(user);
@@ -150,7 +162,16 @@ module.exports = function (app, userModel) {
         res.sendStatus(200);
     }
     function isAdmin(req, res) {
-        res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
+        res.send(req.user && req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
+    }
+    function findAllUsers(req, res) {
+        userModel
+            .findAllUsers()
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            })
     }
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
@@ -262,6 +283,18 @@ module.exports = function (app, userModel) {
                 }
             }
         );
+    }
+    function createUser(req, res) {
+        var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
+        userModel
+            .createUser(user)
+            .then(function(user){
+                // No need to login since the administrator has created this user
+                res.json(user);
+                },function (err) {
+                res.send(err);
+            });
     }
     function deleteUser(req, res) {
         var userId = req.params.userId;

@@ -1,0 +1,251 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container-fluid ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/admin/{{model.currentUser._id}}">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a class="ng-binding" href="#/admin/manage/user/create">
+                        <i class="fa fa-user-plus tnn-logo-navbar" aria-hidden="true"></i>
+                        Add a user
+                    </a>
+                </li>
+                <li class="">
+                    <a class="" href="#/admin/{{model.currentUser._id}}">
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                        {{model.currentUser.firstName}}
+                    </a>
+                </li>
+                <li class="">
+                    <a class=""
+                       ng-click="model.logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
+                    </a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="tnn-admin-container-div">
+        <div class="tnn-admin-user-create-title">
+            <i class="fa fa-user-plus tnn-bookmark-icon" aria-hidden="true"></i> Add a User
+        </div>
+        <div class="tnn-admin-user-create-form">
+            <!--<div class="row tnn-registration-container">-->
+                <!--<div class="col-xs-12">-->
+                    <div ng-show="!form.$valid
+                            && !form.$submitted
+                            && form.email.$touched
+                            && form.firstname.$touched
+                            && form.lastname.$touched
+                            && form.username.$touched
+                            && form.vpassword.$touched
+                            && form.password.$touched"
+                         class="alert alert-danger alert-dismissible fade in"
+                         role="alert">
+                        <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            Please enter all details to register</p>
+                    </div>
+                    <div ng-show="model.message"
+                         class="alert alert-success"
+                         role="alert">
+                        <p><i class="fa fa-check-square" aria-hidden="true"></i>
+                        {{model.message}}
+                        </p>
+                    </div>
+                    <div ng-show="model.orgnameMissing"
+                         class="alert alert-danger"
+                         role="alert">
+                        <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            {{model.orgnameMissing}}</p>
+                    </div>
+
+                    <div ng-show="model.registrationerror"
+                         class="alert alert-danger"
+                         role="alert">
+                        <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            {{model.registrationerror}}</p>
+                    </div>
+                    <div ng-show="model.passwordmismatch"
+                         class="alert alert-danger"
+                         role="alert">
+                        <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                            {{model.passwordmismatch}}</p>
+                    </div>
+                    <form action="#/register"
+                          name="form"
+                          novalidate
+                          method="POST">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email"
+                                   autofocus
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   ng-model="model.user.email"
+                                   required
+                                   placeholder="Please enter your email address"/>
+                        </div>
+                        <div ng-show="form.$submitted || form.email.$touched"
+                             class="tnn-validation-error-div">
+                            <div ng-show="form.email.$error.email || form.email.$error.required" class="text-danger">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="firstname"
+                                   required
+                                   name="firstname"
+                                   ng-model="model.user.firstName"
+                                   placeholder="First Name"/>
+                        </div>
+                        <div ng-show="form.$submitted || form.firstname.$touched"
+                             class="tnn-validation-error-div">
+                            <div ng-show="form.firstname.$error.required" class="text-danger">
+                                Please enter your first name
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="lastname"
+                                   required
+                                   name="lastname"
+                                   ng-model="model.user.lastName"
+                                   placeholder="Last Name"/>
+                        </div>
+                        <div ng-show="form.$submitted || form.lastname.$touched"
+                             class="tnn-validation-error-div">
+                            <div ng-show="form.lastname.$error.required" class="text-danger">
+                                Please enter your last name
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="username"
+                                   required
+                                   name="username"
+                                   ng-model="model.user.username"
+                                   placeholder="Username"/>
+                        </div>
+                        <div ng-show="form.$submitted || form.username.$touched"
+                             class="tnn-validation-error-div">
+                            <div ng-show="form.username.$error.required" class="text-danger">
+                                Please choose a username
+                            </div>
+                        </div>
+                        <label>
+                            Choose the type of user
+                        </label>
+                        <div class="radio form-group">
+                            <label>
+                                <input type="radio"
+                                       name="role"
+                                       id="optionsRadios1"
+                                       value="READER"
+                                       ng-model="model.user.role"
+                                       ng-checked="true"
+                                       checked>
+                                Reader
+                            </label>
+                        </div>
+                        <div class="radio form-group">
+                            <label>
+                                <input type="radio"
+                                       name="role"
+                                       id="optionsRadios2"
+                                       ng-model="model.user.role"
+                                       value="PUBLISHER">
+                                Publisher
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="org">Name of your Organization</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="org"
+                                   name="org"
+                                   ng-model="model.user.organization"
+                                   placeholder="Organization Name"/>
+                        </div>
+                        <!--<div ng-show="form.$submitted || form.org.$touched"-->
+                             <!--class="tnn-validation-error-div">-->
+                            <!--<div ng-show="form.org.$error.required" class="text-danger">-->
+                                <!--Please enter the name of your organization-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="password"
+                                   required
+                                   name="password"
+                                   ng-model="model.user.password"
+                                   placeholder="Password"/>
+                        </div>
+                        <div ng-show="form.$submitted || form.password.$touched"
+                             class="tnn-validation-error-div">
+                            <div ng-show="form.password.$error.required" class="text-danger">
+                                Please choose a password
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vpassword">Verify Password</label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="vpassword"
+                                   required
+                                   name="vpassword"
+                                   ng-model="model.user.passwordverification"
+                                   placeholder="Verify Password"/>
+                        </div>
+                        <div ng-show="form.$submitted || form.vpassword.$touched"
+                             class="tnn-validation-error-div">
+                            <div ng-show="form.vpassword.$error.required" class="text-danger">
+                                Please re-enter your password
+                            </div>
+                        </div>
+                        <input class="tnn-hide-input" type="text" ng-model="model.user.role" value="PUBLISHER"/>
+                        <div class="wbdev-buttons-style">
+                            <a class="btn btn-success btn-block"
+                               ng-click="form.$valid && model.register(model.user)">
+                                Register</a>
+                            <a class="btn btn-danger btn-block"
+                               href="#/login">Cancel</a>
+                        </div>
+                    </form>
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
+    <div class="container-fluid wbdev-container-side-space-fix">
+        <div class="pull-right wbdev-margin-right-fix">
+            <a class="navbar-brand"
+               href="#/admin/{{model.currentUser._id}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
