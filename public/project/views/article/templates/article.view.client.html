@@ -146,11 +146,20 @@
 
             <div class="tnn-news-comments-display"
                  ng-repeat="comment in model.article.comments">
-                <a title="Posted at {{comment.createdAt}}"
-                   href="#/user/{{comment._user._id}}">
+
+                <div ng-show="model.currentUser.role == 'ADMIN'">
+                    <!--Admin should not able to visit other profiles, follow or subscribe to people-->
                     {{comment._user.firstName+" "+comment._user.lastName}}
-                </a>
-                {{comment.comment}}
+                    {{comment.comment}}
+                </div>
+                <div ng-show="model.currentUser.role != 'ADMIN'">
+                    <a title="Posted at {{comment.createdAt}}"
+                       href="#/user/{{comment._user._id}}">
+                        {{comment._user.firstName+" "+comment._user.lastName}}
+                    </a>
+                    {{comment.comment}}
+                </div>
+
                 <div ng-show="comment._user._id == model.currentUser._id"
                      class="tnn-comment-delete">
                     <a ng-click="model.deleteComment(comment._id)" class="btn btn-danger">
