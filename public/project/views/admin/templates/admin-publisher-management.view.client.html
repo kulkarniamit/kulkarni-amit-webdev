@@ -41,6 +41,10 @@
             <i class="fa fa-cogs tnn-bookmark-icon" aria-hidden="true"></i> Publisher Management
         </div>
         <div class="tnn-admin-users-list">
+            <div ng-show="model.publishers.length == 0" class="alert alert-warning">
+                <i class="fa fa-warning tnn-bookmark-icon" aria-hidden="true"></i>
+                No publishers found
+            </div>
             <ul class="list-group">
                 <li ng-repeat="user in model.publishers" class="list-group-item">
                     <span class="pull-right">

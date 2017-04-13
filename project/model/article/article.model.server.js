@@ -69,11 +69,14 @@ module.exports = function () {
             .findById({_id:articleId})
             .populate('_user')
             .then(function (article) {
-                article._user.articles.splice(article._user.articles.indexOf(articleId),1);
-                article._user.save();
+                if(article._user){
+                    // If the article was published by a publisher on TNN
+                    article._user.articles.splice(article._user.articles.indexOf(articleId),1);
+                    article._user.save();
+                }
                 // Delete the comments of this article as well !
                 return model.commentModel
-                        .deleteCommentsOfArticle(articleId)
+                    .deleteCommentsOfArticle(articleId)
                     .then(function (response) {
                         return ArticleModel.remove({_id: articleId});
                     },function (err) {

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top tnn-navbar">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -102,12 +102,12 @@
         <div class="col-xs-12 col-md-12 tnn-home-news-item"
              ng-repeat="news in model.homenews">
 
-                <div class="col-xs-12 col-md-5 tnn-image-div">
+                <div class="col-xs-12 col-md-5 tnn-image-div tnn-home-image">
                     <a ng-click="model.getNewsDetails($index)" class="thumbnail">
                         <img ng-src="{{news.urlToImage}}">
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-7 tnn-search-news-title">
+                <div class="col-xs-12 col-md-7 tnn-search-news-title tnn-home-title">
                     <a ng-click="model.getNewsDetails($index)">{{news.title}}</a>
                 </div>
         </div>
@@ -117,7 +117,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid">
         <div class="pull-right">
-            <a class="navbar-brand"
+            <a class="navbar-brand wbdev-margin-right-fix"
                href="https://newsapi.org/">
                 API Courtesy: <i class="fa fa-newspaper-o" aria-hidden="true"></i>NewsApi</span>
             </a>

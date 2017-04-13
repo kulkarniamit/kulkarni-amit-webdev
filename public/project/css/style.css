@@ -622,6 +622,10 @@ a.thumbnail{
 .tnn-profile-container-div{
     margin-bottom: 75px;
 }
+
+.tnn-home-image, .tnn-home-title{
+    padding: 5px;
+}
 /******************************************************************************/
 /*Admin CSS Styles*/
 /******************************************************************************/
@@ -680,6 +684,9 @@ a.thumbnail{
 }
 .tnn-admin-article-section{
     padding: 0;
+}
+.tnn-admin-users-list .alert-warning{
+    margin-bottom: 0;
 }
 input[type="radio"],
 input[type="checkbox"] {

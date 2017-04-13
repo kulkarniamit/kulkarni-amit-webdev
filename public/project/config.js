@@ -25,7 +25,13 @@
         return $http.get('/api/project/loggedin').success(function(user) {
             $rootScope.errorMessage = null;
             if (user !== '0') {
-                $location.url('/user/'+user._id);
+                if(user.role != 'ADMIN'){
+                    $location.url('/user/'+user._id);
+                }
+                else{
+                    $location.url('/admin/'+user._id);
+                }
+
             } else{
                 if($location.path() != "/"){
                     $location.url('/login');

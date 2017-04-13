@@ -41,6 +41,11 @@
             <i class="fa fa-cogs tnn-bookmark-icon" aria-hidden="true"></i> Reader Management
         </div>
         <div class="tnn-admin-users-list">
+            <div ng-show="model.readers.length == 0" class="alert alert-warning">
+                <i class="fa fa-warning tnn-bookmark-icon" aria-hidden="true"></i>
+                No readers found
+            </div>
+
             <ul class="list-group">
                 <li ng-repeat="user in model.readers" class="list-group-item">
                     <span class="pull-right">

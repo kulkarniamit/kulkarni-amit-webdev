@@ -80,6 +80,8 @@
 
         function register(user) {
             vm.orgnameMissing = false;
+            vm.registrationerror = false;
+            vm.passwordmismatch = false;
             if(user == null){
                 vm.registrationerror = "Please enter your username, email and password";
                 return;

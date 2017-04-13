@@ -14,12 +14,17 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                    <a class="" href="#/user/{{model.currentUser._id}}">
+                    <a ng-show="model.currentUser.role !='ADMIN'" class="" href="#/user/{{model.currentUser._id}}">
+                        <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
+                        {{model.currentUser.firstName}}
+                    </a>
+                    <a ng-show="model.currentUser.role =='ADMIN'" class="" href="#/admin/{{model.currentUser._id}}">
                         <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>
                         {{model.currentUser.firstName}}
                     </a>
                 </li>
-                <li class="">
+                <li ng-show="model.currentUser.role !='ADMIN'"
+                    class="">
                     <a class=""
                        href="#/search">
                         <span class="glyphicon glyphicon-search"></span> SEARCH
@@ -45,23 +50,6 @@
         <div ng-show="model.article"
             class="col-xs-12 tnn-news-search-item">
 
-            <!--<div ng-show="model.currentUser.role == 'READER'" class="tnn-article-options">-->
-                <!--<a ng-show="!model.saved"-->
-                   <!--ng-click="model.bookmarkArticleById(model.article._id)"-->
-                   <!--class="btn btn-default tnn-bookmark-icon">-->
-                    <!--<i class="fa fa-bookmark-o" aria-hidden="true"></i>-->
-                <!--</a>-->
-                <!--&lt;!&ndash;<span ng-show="model.saved" class="label label-success">Saved</span>&ndash;&gt;-->
-                <!--<a ng-show="model.saved"-->
-                   <!--ng-click="model.removeBookmark(model.article._id)"-->
-                   <!--class="btn btn-default tnn-bookmark-icon">-->
-                    <!--<i class="fa fa-bookmark" aria-hidden="true"></i>-->
-                <!--</a>-->
-            <!--</div>-->
-
-            <!--<div class="tnn-saved-label">-->
-                <!--<span ng-show="model.saved" class="label label-success">Saved</span>-->
-            <!--</div>-->
             <div ng-show="model.article._user"
                  class="tnn-publisher-organization-label">
                 <span class="label label-info">Published by {{model.article._user.organization}}</span>
@@ -114,7 +102,7 @@
             </div>
 
             <!-- Comments section -->
-            <div class="tnn-news-comments-section">
+            <div ng-show="model.currentUser.role != 'ADMIN'" class="tnn-news-comments-section">
                 <div class="tnn-comments-heading">Comments</div>
 
                 <div ng-show="model.blankCommentError"
@@ -174,7 +162,11 @@
 <nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="pull-right wbdev-margin-right-fix">
-            <a class="navbar-brand"
+            <a ng-show="model.currentUser.role == 'ADMIN'" class="navbar-brand"
+               href="#/admin/{{model.currentUser._id}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+            <a ng-show="model.currentUser.role != 'ADMIN'" class="navbar-brand"
                href="#/user/{{model.currentUser._id}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>

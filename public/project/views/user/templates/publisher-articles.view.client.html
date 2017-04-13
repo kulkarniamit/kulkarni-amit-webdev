@@ -40,6 +40,9 @@
         <i class="fa fa-pencil-square-o tnn-bookmark-icon" aria-hidden="true"></i>Your published articles
     </div>
 
+    <div ng-show="model.publishedArticles.length == 0" class="alert alert-warning tnn-saved-news-section">
+        <i class="fa fa-warning tnn-bookmark-icon" aria-hidden="true"></i> No articles published yet
+    </div>
     <div class="row tnn-saved-news-section">
         <div class="col-xs-12 col-md-12 tnn-home-news-item"
              ng-repeat="news in model.publishedArticles">
