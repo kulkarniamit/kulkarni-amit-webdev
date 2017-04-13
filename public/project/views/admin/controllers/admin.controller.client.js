@@ -32,6 +32,13 @@
                         .getArticlesCount()
                         .then(function (response) {
                             vm.numberOfArticles = response.data;
+                            AdminService
+                                .getCommentsCount()
+                                .then(function (response) {
+                                    vm.numberOfComments = response.data;
+                                },function (err) {
+                                    console.log(err);
+                                })
                         },function (err) {
                            console.log(err);
                         })

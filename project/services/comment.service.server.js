@@ -1,5 +1,6 @@
 module.exports = function (app, commentModel) {
     app.post("/api/project/article/:articleId/comment",postComment);
+    app.get("/api/project/admin/commentcount",getCommentCount);
     app.delete("/api/project/article/:articleId/comment/:commentId",deleteComment);
 
     function postComment(req, res) {
@@ -20,6 +21,15 @@ module.exports = function (app, commentModel) {
             })
     }
 
+    function getCommentCount(req, res) {
+        commentModel
+            .getCommentCount()
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            })
+    }
     function deleteComment(req, res) {
         var articleId = req.params.articleId;
         var commentId = req.params.commentId;

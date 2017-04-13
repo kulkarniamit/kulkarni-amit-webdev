@@ -7,7 +7,8 @@
         var api = {
             "findAllUsers":findAllUsers,
             "findAllArticles":findAllArticles,
-            "createUser":createUser
+            "createUser":createUser,
+            "getCommentsCount":getCommentsCount
         };
         return api;
 
@@ -19,6 +20,9 @@
         }
         function createUser(user) {
             return $http.post("/api/project/admin/user/create",user);
+        }
+        function getCommentsCount() {
+            return $http.get("/api/project/admin/commentcount");
         }
     }
 })();
