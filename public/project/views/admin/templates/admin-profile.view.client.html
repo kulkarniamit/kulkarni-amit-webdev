@@ -43,6 +43,101 @@
             {{model.firstName}} {{model.lastName}}
         </div>
 
+        <!--Testing Adming Theme - 1-->
+        <div class="row" style="max-width: 700px; margin: 0 auto;">
+            <div class="col-lg-4 col-sm-12">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-blue">
+                            <i class="fa fa-user fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-blue">
+                        <div class="circle-tile-description text-faded">
+                            Number of Readers
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            {{model.numberOfReaders}}
+                            <span id="sparklineA"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading green">
+                            <i class="fa fa-users fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content green">
+                        <div class="circle-tile-description text-faded">
+                            Number of Publishers
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            {{model.numberOfPublishers}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading orange">
+                            <i class="fa fa-newspaper-o fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content orange">
+                        <div class="circle-tile-description text-faded">
+                            Number of Articles
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            {{model.numberOfArticles}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Testing Adming Theme - 2-->
+
+        <!--<div class="row" style="max-width: 700px; margin: 0 auto; background-color: #FFF;">-->
+            <!--<div class="col-sm-4">-->
+                <!--<div class="hero-widget well well-sm">-->
+                    <!--<div class="icon">-->
+                        <!--<i class="fa fa-users"></i>-->
+                    <!--</div>-->
+                    <!--<div class="text">-->
+                        <!--<var>{{model.numberOfReaders}}</var>-->
+                        <!--<label class="text-muted">Number of Readers</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-4">-->
+                <!--<div class="hero-widget well well-sm">-->
+                    <!--<div class="icon">-->
+                        <!--<i class="fa fa-users"></i>-->
+                    <!--</div>-->
+                    <!--<div class="text">-->
+                        <!--<var>{{model.numberOfPublishers}}</var>-->
+                        <!--<label class="text-muted">Number of Publishers</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-4">-->
+                <!--<div class="hero-widget well well-sm">-->
+                    <!--<div class="icon">-->
+                        <!--<i class="fa fa-newspaper-o"></i>-->
+                    <!--</div>-->
+                    <!--<div class="text">-->
+                        <!--<var>{{model.numberOfArticles}}</var>-->
+                        <!--<label class="text-muted">Number of Articles</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
         <div ng-show="model.currentUser.role == 'ADMIN'" class="row tnn-profile-links">
             <!--Links for a logged in user visiting his profile-->
             <div class="col-xs-12 tnn-profile-link text-center">

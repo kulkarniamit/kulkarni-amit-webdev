@@ -5,6 +5,7 @@
 
     function ArticleService($http) {
         var api = {
+            "getArticlesCount":getArticlesCount,
             "findArticleById":findArticleById,
             "getSavedArticlesOfUser":getSavedArticlesOfUser,
             "removeArticle":removeArticle,
@@ -13,6 +14,9 @@
         };
         return api;
 
+        function getArticlesCount() {
+            return $http.get("/api/project/articlecount");
+        }
         function findArticleById(articleId) {
             return $http.get("/api/project/article/"+articleId);
         }

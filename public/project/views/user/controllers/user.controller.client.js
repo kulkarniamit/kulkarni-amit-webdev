@@ -112,14 +112,37 @@
             });
         }
         function deleteUser(userToDelete) {
-            UserService
-                .deleteUserById(userToDelete._id)
-                .success(function (response) {
-                    $location.url("/login");
-                })
-                .error(function (response) {
-                    vm.error = "User not found";
-                });
+            bootbox.confirm({
+                size: "small",
+                message: "Are you sure you want to delete your account?",
+                buttons:{
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result){
+                    /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        // Admin wants to delete the user
+                        UserService
+                            .deleteUserById(userToDelete._id)
+                            .success(function (response) {
+                                $location.url("/login");
+                            })
+                            .error(function (response) {
+                                vm.error = "User not found";
+                            });
+                    }
+                    else{
+                        // User accidentally hit delete
+                    }
+                }
+            });
         }
         function followPerson(userIdToFollow) {
             UserService
@@ -177,6 +200,9 @@
         vm.register = register;
 
         function register(user) {
+            vm.registrationerror = false;
+            vm.passwordmismatch = false;
+
             if(user == null){
                 vm.registrationerror = "Please enter your username, email and password";
                 return;

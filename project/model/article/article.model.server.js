@@ -5,6 +5,7 @@ module.exports = function () {
     var ArticleModel = mongoose.model('ArticleModel', ArticleSchema);
 
     var api = {
+        "getArticleCount"           :getArticleCount,
         "createArticle"             :createArticle,
         "findAllArticles"           :findAllArticles,
         "findArticleById"           :findArticleById,
@@ -14,6 +15,10 @@ module.exports = function () {
     };
 
     return api;
+
+    function getArticleCount() {
+        return ArticleModel.find().count();
+    }
 
     function createArticle(userId, newarticle) {
         // new: bool - if true, return the modified document rather than the original. defaults to false (changed in 4.0)

@@ -7,7 +7,7 @@
         .controller("AdminReaderManagementController",AdminReaderManagementController)
         .controller("AdminArticleManagementController",AdminArticleManagementController);
 
-    function AdminProfileController($rootScope, $location, UserService, AdminService) {
+    function AdminProfileController($rootScope, $location, UserService, AdminService, ArticleService) {
         var vm = this;
         vm.currentUser = $rootScope.currentUser;
         vm.updateUser = updateUser;
@@ -28,6 +28,13 @@
                     // Use this stat to show on dashboard of administrator
                     vm.numberOfPublishers = vm.users.filter(function(x){return x.role=="PUBLISHER"}).length;
                     vm.numberOfReaders = vm.users.filter(function(x){return x.role=="READER"}).length;
+                    ArticleService
+                        .getArticlesCount()
+                        .then(function (response) {
+                            vm.numberOfArticles = response.data;
+                        },function (err) {
+                           console.log(err);
+                        })
                 },function (err) {
                     console.log(err);
                 })
@@ -54,14 +61,37 @@
                 });
         }
         function deleteUser(userToDelete) {
-            UserService
-                .deleteUserById(userToDelete._id)
-                .success(function (response) {
-                    $location.url("/login");
-                })
-                .error(function (response) {
-                    vm.error = "User not found";
-                });
+            bootbox.confirm({
+                size: "small",
+                message: "Are you sure you want to delete your account?",
+                buttons:{
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result){
+                    /* result is a boolean; true = OK, false = Cancel*/
+                    if(result){
+                        // Admin wants to delete the user
+                        UserService
+                            .deleteUserById(userToDelete._id)
+                            .success(function (response) {
+                                $location.url("/login");
+                            })
+                            .error(function (response) {
+                                vm.error = "User not found";
+                            });
+                    }
+                    else{
+                        // User accidentally hit delete
+                    }
+                }
+            });
         }
         function logout() {
             UserService

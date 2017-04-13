@@ -1,10 +1,20 @@
 module.exports = function (app, articleModel) {
+    app.get("/api/project/articlecount",getArticleCount);
     app.post("/api/project/article", createArticle);
     app.delete("/api/project/user/:userId/publisher/article/:articleId",removeArticle);
     app.get("/api/project/user/publisher/articles/:publisherId",findArticlesByPublisher);
     app.get("/api/project/article/:articleId",findArticleById);
     app.get("/api/project/admin/articles",adminAuthentication, findAllArticles);
 
+    function getArticleCount(req, res) {
+        articleModel
+            .getArticleCount()
+            .then(function (response) {
+                res.json(response);
+            },function (err) {
+                res.send(err);
+            })
+    }
     function adminAuthentication(req, res, next) {
         if(req.user && req.isAuthenticated() && req.user.role == "ADMIN"){
             next();
