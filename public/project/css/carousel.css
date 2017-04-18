@@ -60,10 +60,6 @@
     align-items: center;
     height: 100%;
 }
-/*.carousel-caption > h1{*/
-    /*font-size: 64px;*/
-/*}*/
-/* Vertical Align */
 
 /* Declare heights because of positioning of img element */
 .carousel .item {

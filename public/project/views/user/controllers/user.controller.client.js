@@ -338,18 +338,6 @@
                 })
         }
         init();
-
-        // function removeArticle(articleId) {
-        //     ArticleService
-        //         .removeArticle(articleId,vm.currentUser._id)
-        //         .then(function (response) {
-        //             vm.deleteSuccess = "Article successfully deleted";
-        //             var deletedArticleIndex = vm.publishedArticles.map(function (x) {return x._id}).indexOf(articleId);
-        //             vm.publishedArticles.splice(deletedArticleIndex,1);
-        //         },function (err) {
-        //             console.log(err);
-        //         })
-        // }
     }
 
     function SubscriberArticleListController($routeParams, $location, $rootScope, UserService) {

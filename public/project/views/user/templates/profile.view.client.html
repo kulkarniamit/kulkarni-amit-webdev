@@ -33,23 +33,6 @@
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
-
-        <!--<div class="pull-right wbdev-margin-right-fix">-->
-
-            <!--<a class="navbar-brand tnn-navbar-btn"-->
-               <!--href="#/user/{{model.currentUser._id}}">-->
-                <!--<i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i>-->
-                <!--{{model.currentUser.firstName}}-->
-            <!--</a>-->
-            <!--<a class="navbar-brand"-->
-               <!--href="#/search">-->
-                <!--<span class="glyphicon glyphicon-search"></span> SEARCH-->
-            <!--</a>-->
-            <!--<a class="navbar-brand"-->
-               <!--ng-click="model.logout()">-->
-                <!--<i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT-->
-            <!--</a>-->
-        <!--</div>-->
     </div>
 </nav>
 <div class="container-fluid">
@@ -265,24 +248,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<div class="row tnn-other-profile-news-section">-->
-                <!--<div class="col-xs-12 tnn-saved-news-items"-->
-                     <!--ng-repeat="news in model.user.articles">-->
-
-                    <!--<div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">-->
-                        <!--<a href="#/article/{{news._id}}" class="thumbnail">-->
-                            <!--<img ng-src="{{news.urlToImage}}">-->
-                        <!--</a>-->
-                    <!--</div>-->
-                    <!--<div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">-->
-                        <!--<div class="tnn-news-title-link">-->
-                            <!--<a href="#/article/{{news._id}}">{{news.title}}</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
         </div>
 
         <div ng-show="!model.myProfile && model.user.role == 'READER' && model.currentUser.role == 'PUBLISHER'"
@@ -306,24 +271,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<div class="row tnn-home-news">-->
-                <!--<div class="col-xs-12 tnn-saved-news-items"-->
-                     <!--ng-repeat="news in model.user.articles">-->
-
-                    <!--<div ng-show="news.urlToImage" class="col-xs-12 col-md-3 tnn-image-div">-->
-                        <!--<a href="#/article/{{news._id}}" class="thumbnail">-->
-                            <!--<img ng-src="{{news.urlToImage}}">-->
-                        <!--</a>-->
-                    <!--</div>-->
-                    <!--<div class="col-xs-12 col-md-9" style="background-color: white;padding-left: 0;padding-right: 0">-->
-                        <!--<div class="tnn-news-title-link">-->
-                            <!--<a href="#/article/{{news._id}}">{{news.title}}</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
         </div>
 
     </div>

@@ -116,15 +116,6 @@ module.exports = function () {
             },function (err) {
                 return err;
             });
-
-        // return UserModel.findById({_id: userId})
-        //     .then(function (user) {
-        //         return user;
-        //         // var websitesOfUser = user.websites;
-        //         // return recursiveDelete(websitesOfUser, userId);
-        //     }, function (err) {
-        //         return err;
-        //     });
     }
     function updateUser(userId, updatedUser) {
         return UserModel.update({_id:userId},{$set:updatedUser});
