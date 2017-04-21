@@ -128,6 +128,18 @@
         });
         vm.searchNewsFromSource = searchNewsFromSource;
         vm.setLastClickedSearchDetails= setLastClickedSearchDetails;
+        $(function(){
+            $(".typed-element").typed({
+                strings: ["Start typing", "Ex: BBC, CNN, Recode"],
+                typeSpeed: 0,
+                loop:true,
+                loopCount:3,
+                backDelay:1500,
+                backSpeed:100,
+                typeSpeed:200
+
+            });
+        });
 
         function searchNewsFromSource(source){
             SearchNewsService
