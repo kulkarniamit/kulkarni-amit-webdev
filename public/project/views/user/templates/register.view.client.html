@@ -1,0 +1,207 @@
+<nav class="navbar navbar-default navbar-fixed-top tnn-bar-color">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                The News Network</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row tnn-registration-container">
+        <div class="col-xs-12">
+            <h3>Register as Reader</h3>
+            <div ng-show="!form.$valid
+                            && !form.$submitted
+                            && form.email.$touched
+                            && form.firstname.$touched
+                            && form.lastname.$touched
+                            && form.username.$touched
+                            && form.vpassword.$touched
+                            && form.password.$touched"
+                    class="alert alert-danger alert-dismissible fade in"
+                    role="alert">
+                <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    Please enter all details to register</p>
+            </div>
+
+            <div ng-show="model.registrationerror"
+                 class="alert alert-danger"
+                 role="alert">
+                <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    {{model.registrationerror}}</p>
+            </div>
+            <div ng-show="model.passwordmismatch"
+                 class="alert alert-danger"
+                 role="alert">
+                <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    {{model.passwordmismatch}}</p>
+            </div>
+            <form action="#/register"
+                  name="form"
+                  novalidate
+                  method="POST">
+                <div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email"
+                               autofocus
+                               class="form-control"
+                               id="email"
+                               name="email"
+                               ng-model="model.user.email"
+                               required
+                               placeholder="Please enter your email address"/>
+                    </div>
+                    <div ng-show="form.$submitted || form.email.$touched"
+                         class="tnn-validation-error-div">
+                        <div ng-show="form.email.$error.email || form.email.$error.required" class="text-danger">
+                            Please enter a valid email address
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="firstname"
+                               required
+                               name="firstname"
+                               ng-model="model.user.firstName"
+                               placeholder="First Name"/>
+                    </div>
+                    <div ng-show="form.$submitted || form.firstname.$touched"
+                         class="tnn-validation-error-div">
+                        <div ng-show="form.firstname.$error.required" class="text-danger">
+                            Please enter your first name
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="lastname"
+                               required
+                               name="lastname"
+                               ng-model="model.user.lastName"
+                               placeholder="Last Name"/>
+                    </div>
+                    <div ng-show="form.$submitted || form.lastname.$touched"
+                         class="tnn-validation-error-div">
+                        <div ng-show="form.lastname.$error.required" class="text-danger">
+                            Please enter your last name
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text"
+                               class="form-control"
+                               id="username"
+                               required
+                               name="username"
+                               ng-model="model.user.username"
+                               placeholder="Username"/>
+                    </div>
+                    <div ng-show="form.$submitted || form.username.$touched"
+                         class="tnn-validation-error-div">
+                        <div ng-show="form.username.$error.required" class="text-danger">
+                            Please choose a username
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="optionsRadios1">
+                            Choose the type of user
+                        </label>
+                        <div class="radio form-group">
+                            <label>
+                                <input type="radio"
+                                       name="role"
+                                       id="optionsRadios1"
+                                       value="READER"
+                                       ng-model="model.user.role"
+                                       ng-checked="true"
+                                       checked>
+                                Reader
+                            </label>
+                        </div>
+                        <div class="radio form-group">
+                            <label>
+                                <input type="radio"
+                                       name="role"
+                                       id="optionsRadios2"
+                                       ng-model="model.user.role"
+                                       value="PUBLISHER">
+                                Publisher
+                            </label>
+                        </div>
+                        <div ng-if="model.user.role == 'PUBLISHER'">
+                            <label for="lastname">Name of your organization</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="userrole"
+                                   required
+                                   name="organization"
+                                   ng-model="model.user.organization"
+                                   placeholder="Enter your organization"/>
+                            <div ng-show="form.$submitted || form.organization.$touched"
+                                 class="tnn-validation-error-div">
+                                <div ng-show="form.organization.$error.required" class="text-danger">
+                                    Please enter your organization name
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               required
+                               name="password"
+                               ng-model="model.user.password"
+                               placeholder="Password"/>
+                    </div>
+                    <div ng-show="form.$submitted || form.password.$touched"
+                         class="tnn-validation-error-div">
+                        <div ng-show="form.password.$error.required" class="text-danger">
+                            Please choose a password
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vpassword">Verify Password</label>
+                        <input type="password"
+                               class="form-control"
+                               id="vpassword"
+                               required
+                               name="vpassword"
+                               ng-model="model.user.passwordverification"
+                               placeholder="Verify Password"/>
+                    </div>
+                    <div ng-show="form.$submitted || form.vpassword.$touched"
+                         class="tnn-validation-error-div">
+                        <div ng-show="form.vpassword.$error.required" class="text-danger">
+                            Please re-enter your password
+                        </div>
+                    </div>
+                    <!--<input class="tnn-hide-input" type="text" ng-model="model.user.role" value="READER"/>-->
+                </div>
+                <div class="wbdev-buttons-style">
+                    <a class="btn btn-success btn-block"
+                       ng-click="form.$valid && model.register(model.user)">
+                        Register</a>
+                    <a class="btn btn-danger btn-block"
+                       href="#/login">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom tnn-bar-color">
+    <div class="container-fluid">
+        <div class="pull-right">
+            <a class="navbar-brand"
+               href="https://newsapi.org/">
+                API Courtesy: <i class="fa fa-newspaper-o" aria-hidden="true"></i>NewsApi</span>
+            </a>
+        </div>
+    </div>
+</nav>

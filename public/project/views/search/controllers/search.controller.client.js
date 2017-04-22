@@ -124,17 +124,17 @@
             ],
             create: false,
             sortField: 'text',
-            placeholder: "Select a news source"
+            placeholder: "Select a news source or start typing"
         });
         vm.searchNewsFromSource = searchNewsFromSource;
         vm.setLastClickedSearchDetails= setLastClickedSearchDetails;
         $(function(){
             $(".typed-element").typed({
-                strings: ["Start typing", "Ex: BBC, CNN, Recode"],
+                strings: ["Start typing "],
                 typeSpeed: 0,
                 loop:true,
                 loopCount:3,
-                backDelay:1500,
+                backDelay:4000,
                 backSpeed:100,
                 typeSpeed:200
 
