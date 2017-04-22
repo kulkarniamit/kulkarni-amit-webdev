@@ -7,6 +7,7 @@
         var vm = this;
         vm.getNews = getNews;
         vm.getNewsDetails = getNewsDetails;
+        vm.location = $location.path();
         $('.carousel').carousel({
             interval: 3000
         })

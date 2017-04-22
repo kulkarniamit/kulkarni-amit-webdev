@@ -6,6 +6,7 @@
 
     function SearchDetailsController($rootScope, $location, UserService, SearchNewsService) {
         var vm = this;
+        vm.location = $location.path();
         vm.logout = logout;
         vm.saveArticle = saveArticle;
 
@@ -47,6 +48,7 @@
     function SearchController($location, $rootScope, UserService, SearchNewsService) {
         var vm = this;
         vm.user = $rootScope.currentUser;
+        vm.location = $location.path();
         $('select').selectize({
             options:[
                 {value:"abc-news-au", text:"ABC News"},
