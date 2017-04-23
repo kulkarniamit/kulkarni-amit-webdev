@@ -269,6 +269,13 @@ module.exports = function (app, userModel) {
     function register (req, res) {
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
+        if(user.role == "PUBLISHER"){
+            if(!user.organization || user.organization == ""){
+                //Prevent a publisher from registering without an oranization name
+                res.sendStatus(403);
+                return;
+            }
+        }
         userModel
             .createUser(user)
             .then(function(user){
@@ -281,6 +288,8 @@ module.exports = function (app, userModel) {
                         }
                     });
                 }
+            },function (err) {
+                res.status(403).send(err.errors.username.message);
             }
         );
     }

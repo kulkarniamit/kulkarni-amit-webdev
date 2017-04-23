@@ -86,18 +86,14 @@
         <div class="row tnn-home-news">
             <div class="col-xs-12 tnn-home-news-item"
                  ng-repeat="news in model.searchNews">
-                <!--<div class="row">/-->
                     <div class="col-xs-12 col-md-5 tnn-image-div tnn-home-image">
                         <a href="#" class="thumbnail">
                             <img ng-src="{{news.urlToImage}}">
                         </a>
                     </div>
                     <div class="col-xs-12 col-md-7 tnn-search-news-title tnn-home-title">
-                        <!--<div class="tnn-search-news-title">-->
-                            <a ng-click="model.setLastClickedSearchDetails($index)">{{news.title}}</a>
-                        <!--</div>-->
+                        <a ng-click="model.setLastClickedSearchDetails($index)">{{news.title}}</a>
                     </div>
-                <!--</div>-->
             </div>
         </div>
     </div>

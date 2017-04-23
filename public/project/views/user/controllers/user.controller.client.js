@@ -227,20 +227,12 @@
                         vm.passwordmismatch = "";
                 })
                 .error(function (err) {
-                    // There was an error, so the user does not exist
-                    // UserService
-                    //     .createUser(user)
-                    //     .success(function (newuser) {
-                    //         $location.url("/user/"+newuser._id);
-                    //     });
-
                     UserService
                         .register(user)
                         .then(function(response) {
                             var user = response.data;
                             $rootScope.currentUser = user;
                             $location.url("/user/"+user._id);
-                            // $location.url("/project/profile");
                         });
                 });
         }

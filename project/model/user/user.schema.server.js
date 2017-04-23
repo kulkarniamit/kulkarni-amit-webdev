@@ -1,7 +1,8 @@
 module.exports = function() {
     var mongoose = require("mongoose");
+    var uniqueValidator = require('mongoose-unique-validator');
     var UserSchema = mongoose.Schema({
-        username: {type:String, required:true},
+        username: {type:String, required:true, unique: true},
         password: String,
         firstName: String,
         lastName: String,
@@ -23,5 +24,6 @@ module.exports = function() {
         google: {id:String, token: String}
     }, {collection: "project.users"});
 
+    UserSchema.plugin(uniqueValidator, {message: 'username is already taken'});
     return UserSchema;
 };
