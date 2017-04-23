@@ -5,12 +5,47 @@
             <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
             The News Network</a>
     </div>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-show="model.user" class="">
+                <a href="#/user/{{model.user._id}}" class="tnn-navbar-btn">
+                    <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i> {{model.user.firstName}}
+                </a>
+            </li>
+            <li ng-hide="model.user" class="">
+                <a href="#/" class="tnn-navbar-btn">HOME</a>
+            </li>
+            <li class="">
+                <a href="https://docs.google.com/document/d/1CpexP2Op_X-j9OuUoz16FyMMvMHatdO74FJSNvOf0sQ/edit?usp=sharing"
+                   target="_blank"
+                   class="tnn-navbar-btn">DOCUMENTATION</a>
+            </li>
+            <li class="">
+                <a href="https://www.youtube.com/watch?v=JyxhGWtM9iU"
+                   target="_blank"
+                   class="tnn-navbar-btn">
+                    DEMO</a>
+            </li>
+            <li class="">
+                <a href="#/search" class="tnn-navbar-btn">
+                    <!--<span class="glyphicon glyphicon-search"></span>-->
+                    SEARCH
+                </a>
+            </li>
+            <li ng-hide="model.user" class="">
+                <a href="#/login" class="tnn-navbar-btn">LOGIN</a>
+            </li>
+            <li class="">
+                <a href="#/register" class="tnn-navbar-btn">REGISTER</a>
+            </li>
+        </ul>
+    </div><!--/.nav-collapse -->
 </div>
 </nav>
 <div class="container-fluid">
     <div class="row tnn-login-container">
         <div class="col-xs-12">
-            <h3>Login</h3>
+            <h3><i class="fa fa-sign-in tnn-bookmark-icon" aria-hidden="true"></i>Login</h3>
             <form method="POST" name="form" novalidate>
                 <div class="alert alert-danger alert-dismissible fade in"
                      ng-show="!form.$valid && !form.$submitted && form.username.$touched && form.password.$touched"
@@ -62,11 +97,14 @@
                         <span class="fa fa-google-plus"></span> Login with Google
                     </a>
                     <a href="#/register/reader" class="btn btn-success btn-block">
-                        <i class="fa fa-newspaper-o tnn-bookmark-icon" aria-hidden="true"></i>Register as reader
+                        <i class="fa fa-newspaper-o tnn-bookmark-icon" aria-hidden="true"></i>Register
                     </a>
-                    <a href="#/register/publisher" class="btn btn-success btn-block">
-                        <i class="fa fa-pencil-square tnn-bookmark-icon" aria-hidden="true"></i> Register as publisher
-                    </a>
+                    <!--<a href="#/register/reader" class="btn btn-success btn-block">-->
+                        <!--<i class="fa fa-newspaper-o tnn-bookmark-icon" aria-hidden="true"></i>Register as reader-->
+                    <!--</a>-->
+                    <!--<a href="#/register/publisher" class="btn btn-success btn-block">-->
+                        <!--<i class="fa fa-pencil-square tnn-bookmark-icon" aria-hidden="true"></i> Register as publisher-->
+                    <!--</a>-->
                 </div>
             </form>
         </div>

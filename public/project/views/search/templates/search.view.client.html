@@ -8,13 +8,15 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/">
-                <i class="fa fa-newspaper-o tnn-logo-navbar" aria-hidden="true"></i>
+                <i class="fa fa-newspaper-o tnn-logo-navbar"
+                   aria-hidden="true"></i>
                 The News Network</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="model.user" class="">
-                    <a href="#/user/{{model.user._id}}" class="tnn-navbar-btn">
+                    <a href="#/user/{{model.user._id}}"
+                       class="tnn-navbar-btn">
                         <i class="fa fa-user tnn-logo-navbar" aria-hidden="true"></i> {{model.user.firstName}}
                     </a>
                 </li>
@@ -33,30 +35,33 @@
                         DEMO</a>
                 </li>
                 <li class="">
-                    <a href="#/search" class="tnn-navbar-btn">
-                        <span class="glyphicon glyphicon-search"></span>
+                    <a href="#/search"
+                       class="tnn-navbar-btn">
+                        <!--<span class="glyphicon glyphicon-search"></span>-->
                         SEARCH
                     </a>
                 </li>
                 <li ng-hide="model.user" class="">
-                    <a href="#/login" class="tnn-navbar-btn">LOGIN</a>
+                    <a href="#/login"
+                       class="tnn-navbar-btn">LOGIN</a>
                 </li>
-                <!--<li class="">-->
-                <!--<a href="#/register" class="tnn-navbar-btn">REGISTER</a>-->
+                <li ng-hide="model.user" class="">
+                    <a href="#/register"
+                       class="tnn-navbar-btn">REGISTER</a>
+                </li>
+                <!--<li ng-hide="model.user" class="dropdown">-->
+                    <!--<a href="#{{model.location}}"-->
+                       <!--class="dropdown-toggle"-->
+                       <!--data-toggle="dropdown"-->
+                       <!--role="button"-->
+                       <!--aria-haspopup="true"-->
+                       <!--aria-expanded="false">REGISTER<span class="caret"></span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#/register/reader">Reader</a></li>-->
+                        <!--<li><a href="#/register/publisher">Publisher</a></li>-->
+                    <!--</ul>-->
                 <!--</li>-->
-                <li ng-hide="model.user" class="dropdown">
-                    <a href="#{{model.location}}"
-                       class="dropdown-toggle"
-                       data-toggle="dropdown"
-                       role="button"
-                       aria-haspopup="true"
-                       aria-expanded="false">REGISTER<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#/register/reader">Reader</a></li>
-                        <li><a href="#/register/publisher">Publisher</a></li>
-                    </ul>
-                </li>
 
             </ul>
         </div><!--/.nav-collapse -->

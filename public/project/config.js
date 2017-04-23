@@ -123,16 +123,21 @@
                 controllerAs: "model",
                 resolve: { loggedin: redirectToProfile }
             })
-            .when("/register/reader",{
-                templateUrl: 'views/user/templates/register-reader.view.client.html',
+            .when("/register",{
+                templateUrl: 'views/user/templates/register.view.client.html',
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/register/publisher",{
-                templateUrl: 'views/user/templates/register-publisher.view.client.html',
-                controller: "RegisterController",
-                controllerAs: "model"
-            })
+            // .when("/register/reader",{
+            //     templateUrl: 'views/user/templates/register-reader.view.client.html',
+            //     controller: "RegisterController",
+            //     controllerAs: "model"
+            // })
+            // .when("/register/publisher",{
+            //     templateUrl: 'views/user/templates/register-publisher.view.client.html',
+            //     controller: "RegisterController",
+            //     controllerAs: "model"
+            // })
             .when("/user/publishers",{
                 // Remember the order of this route is important
                 // Do not push it below
