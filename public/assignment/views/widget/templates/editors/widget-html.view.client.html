@@ -1,23 +1,22 @@
 <div ng-show="model.updateerror"
-     class="alert alert-warning text-center"
+     class="alert alert-danger"
      role="alert">
+    <span class="fa fa-warning"></span>
     {{model.updateerror}}
 </div>
-<div class="form-group">
-    <!--<label for="inputname">Text</label>-->
-    <!--<textarea class="form-control"-->
-              <!--id="inputname"-->
-              <!--ng-model="model.widget.text"></textarea>-->
-
-    <div ng-model="model.widget.text"
-         text-angular
-         ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
-            ['bold','italics','underline','strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
-            ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-            ['indent','outdent'],['html', 'insertImage','insertLink', 'wordcount', 'charcount']]">
+<form name="form"
+      novalidate>
+    <div class="form-group">
+        <div ng-model="model.widget.text"
+             text-angular
+             required="required"
+             ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
+                ['bold','italics','underline','strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                ['indent','outdent'],['html', 'insertImage','insertLink', 'wordcount', 'charcount']]">
+        </div>
     </div>
-
-</div>
+</form>
 <a class="form-control btn btn-danger"
    ng-click="model.deleteWidget(model.widget._id)">
     Delete

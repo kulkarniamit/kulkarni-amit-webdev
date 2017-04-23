@@ -20,7 +20,7 @@
         <div class="col-sm-8">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
-                   ng-click="model.addNewWebsite(website)">
+                   ng-click="form.$valid && model.addNewWebsite(website)">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -39,8 +39,11 @@
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
         <div ng-show="model.error"
-             class="alert alert-warning text-center wbdev-empty-form-margin"
-             role="alert"> {{model.error}}</div>
+             class="alert alert-warning wbdev-empty-form-margin"
+             role="alert">
+            <span class="fa fa-warning"></span>
+            {{model.error}}
+        </div>
         <div class="row wbdev-website-record"
              ng-repeat="website in model.websites">
             <a href="#/user/{{model.userId}}/website/{{website._id}}/page"
@@ -55,24 +58,46 @@
     </div>
 
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
-        <div ng-show="model.blankerror" class="alert alert-danger text-center" role="alert"> {{model.blankerror}}</div>
+        <div ng-show="model.blankerror"
+             class="alert alert-danger"
+             role="alert">
+            <span class="fa fa-warning"></span>
+            {{model.blankerror}}</div>
         <form class="wbdev-form-padding"
+              name="form"
+              novalidate
               method="POST">
             <div class="form-group">
                 <label for="wname">Name</label>
                 <input type="text"
                        class="form-control"
+                       ng-class="{'wbdev-input-danger': form.wname.$touched && form.wname.$error.required == true}"
+                       required
+                       name="wname"
                        id="wname"
                        ng-model="website.name"
                        placeholder="Name of your website">
+                <div ng-show="form.$submitted || form.wname.$touched">
+                    <div ng-show="form.wname.$error.required" class="text-danger">
+                        Please enter a website name
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="wdesc">Description</label>
                 <textarea rows="4"
                           class="form-control"
+                          ng-class="{'wbdev-input-danger': form.wdesc.$touched && form.wdesc.$error.required == true}"
+                          required
+                          name="wdesc"
                           id="wdesc"
                           ng-model="website.description"
                           placeholder="Description"></textarea>
+                <div ng-show="form.$submitted || form.wdesc.$touched">
+                    <div ng-show="form.wdesc.$error.required" class="text-danger">
+                        Please enter your website description
+                    </div>
+                </div>
             </div>
         </form>
     </div>

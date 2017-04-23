@@ -26,7 +26,9 @@
 .btn{
     border-radius: 0;
 }
-
+.alert{
+    border-radius: 0;
+}
 input.form-control {
     margin-bottom: 5px;
 }
@@ -131,7 +133,10 @@ a.thumbnail{
     /* Optional */
 }
 .wbdev-login-container h3{
-    text-align: center;
+    /*text-align: center;*/
+    border-bottom: 1px solid #e7e7e7;
+    padding: 5px;
+    padding-left: 0;
 }
 .wbdev-buttons-style{margin-top: 30px;}
 
@@ -144,8 +149,12 @@ a.thumbnail{
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.518);
 }
 .wbdev-registration-container h3{
-    text-align: center;
+    /*text-align: center;*/
+    padding: 5px;
+    padding-left: 0;
+    border-bottom: 1px solid #e7e7e7;
 }
+
 .wbdev-other-links{
     margin-top: 20px;
     margin-bottom: 10px;
@@ -261,4 +270,8 @@ a.thumbnail{
 }
 .wbdev-flickr-image-box img {
     cursor: pointer;
+}
+
+.wbdev-input-danger{
+    border: 1px solid firebrick;
 }

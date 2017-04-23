@@ -1,25 +1,45 @@
 <div ng-show="model.updateerror"
-     class="alert alert-warning text-center"
+     class="alert alert-danger"
      role="alert">
+    <span class="fa fa-warning"></span>
     {{model.updateerror}}
 </div>
 <div class="form-group">
-    <label for="imageUrl">URL</label>
-    <input type="text"
-           id="imageUrl"
-           ng-model="model.widget.url"
-           class="form-control"/>
+    <form novalidate
+          name="form">
+        <label for="imageUrl">URL</label>
+        <input type="url"
+               ng-class="{'wbdev-input-danger': form.imageUrl.$touched && form.imageUrl.$error.required}"
+               required
+               name="imageUrl"
+               id="imageUrl"
+               ng-model="model.widget.url"
+               class="form-control"/>
+        <div ng-show="form.$submitted || form.imageUrl.$touched">
+            <div ng-show="form.imageUrl.$error.url || form.imageUrl.$error.required" class="text-danger">
+                Please enter a valid URL
+            </div>
+        </div>
+    </form>
 
     <form action="/api/upload"
           method="post"
+          name="imageform"
           enctype="multipart/form-data">
         <div class="form-group">
             <label for="inputwidth">Width</label>
             <input type="text"
                    name="width"
+                   ng-class="{'wbdev-input-danger': imageform.width.$touched && imageform.width.$error.required}"
+                   required
                    id="inputwidth"
                    class="form-control"
                    ng-model="model.widget.width"/>
+            <div ng-show="imageform.$submitted || imageform.width.$touched">
+                <div ng-show="imageform.width.$error.required" class="text-danger">
+                    Please enter a width
+                </div>
+            </div>
         </div>
         <label for="inputimage">Upload</label>
         <input name="myFile"

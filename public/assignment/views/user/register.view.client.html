@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top wbdev-bar-color">
     <div class="container-fluid wbdev-container-side-space-fix">
         <div class="navbar-header">
-            <a class="navbar-brand">CS5610 Assignments</a>
+            <a href="#/login"
+                    class="navbar-brand">CS5610 Assignments</a>
         </div>
     </div>
 </nav>
@@ -10,66 +11,121 @@
         <div class="col-xs-12">
             <h3>Register</h3>
             <div ng-show="model.registrationerror"
-                 class="alert alert-danger text-center"
-                 role="alert"> {{model.registrationerror}}</div>
+                 class="alert alert-danger"
+                 role="alert">
+                <span class="fa fa-warning"></span>
+                {{model.registrationerror}}</div>
             <div ng-show="model.passwordmismatch"
-                 class="alert alert-danger text-center"
-                 role="alert"> {{model.passwordmismatch}}</div>
+                 class="alert alert-danger"
+                 role="alert">
+                <span class="fa fa-warning"></span>
+                {{model.passwordmismatch}}</div>
             <form action="#/register"
-                  method="POST">
+                  name="form"
+                  method="POST"
+                  novalidate>
                 <div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email"
+                               autofocus
                                class="form-control"
+                               ng-class="{'wbdev-input-danger': form.email.$touched && form.email.$error.required == true}"
+                               required
+                               name="email"
                                id="email"
                                ng-model="model.user.email"
                                placeholder="Please enter your email address"/>
+                        <div ng-show="form.$submitted || form.email.$touched">
+                            <div ng-show="form.email.$error.email || form.email.$error.required" class="text-danger">
+                                Please enter a valid email address
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="firstname">Firt Name</label>
                         <input type="text"
                                class="form-control"
+                               ng-class="{'wbdev-input-danger': form.firstName.$touched && form.firstName.$error.required == true}"
+                               required
+                               name="firstName"
                                id="firstname"
                                ng-model="model.user.firstName"
                                placeholder="First Name"/>
+                        <div ng-show="form.$submitted || form.firstName.$touched">
+                            <div ng-show="form.firstName.$error.required" class="text-danger">
+                                Please enter your first name
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name</label>
                         <input type="text"
                                class="form-control"
+                               ng-class="{'wbdev-input-danger': form.lastName.$touched && form.lastName.$error.required == true}"
+                               required
+                               name="lastName"
                                id="lastname"
                                ng-model="model.user.lastName"
                                placeholder="Last Name"/>
+                        <div ng-show="form.$submitted || form.lastName.$touched">
+                            <div ng-show="form.firstName.$error.required" class="text-danger">
+                                Please enter your last name
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text"
                                class="form-control"
+                               ng-class="{'wbdev-input-danger': form.username.$touched && form.username.$error.required == true}"
+                               required
+                               name="username"
                                id="username"
                                ng-model="model.user.username"
                                placeholder="Username"/>
+                        <div ng-show="form.$submitted || form.username.$touched">
+                            <div ng-show="form.username.$error.required" class="text-danger">
+                                Please choose a username
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password"
                                class="form-control"
+                               ng-class="{'wbdev-input-danger': form.password.$touched && form.password.$error.required == true}"
+                               required
+                               name="password"
                                id="password"
                                ng-model="model.user.password"
                                placeholder="Password"/>
+                        <div ng-show="form.$submitted || form.password.$touched">
+                            <div ng-show="form.password.$error.required" class="text-danger">
+                                Please choose a password
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="vpassword">Verify Password</label>
                         <input type="password"
                                class="form-control"
+                               ng-class="{'wbdev-input-danger': form.vpassword.$touched && form.vpassword.$error.required == true}"
+                               required
+                               name="vpassword"
                                id="vpassword"
                                ng-model="model.user.passwordverification"
                                placeholder="Verify Password"/>
+                        <div ng-show="form.$submitted || form.vpassword.$touched">
+                            <div ng-show="form.vpassword.$error.required" class="text-danger">
+                                Please choose a password
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="wbdev-buttons-style">
                     <a class="btn btn-success btn-block"
-                       ng-click="model.register(model.user)">
+                       ng-click="form.$valid && model.register(model.user)">
                         Register</a>
                     <a class="btn btn-danger  btn-block"
                        href="#/login">Cancel</a>

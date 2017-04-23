@@ -1,22 +1,40 @@
-<form method="POST">
+<form name="form"
+      novalidate>
     <div ng-show="model.updateerror"
-         class="alert alert-warning text-center"
+         class="alert alert-danger"
          role="alert">
+        <span class="fa fa-warning"></span>
         {{model.updateerror}}
     </div>
     <div class="form-group">
         <label for="inputurl">URL</label>
-        <input type="text"
+        <input type="url"
+               ng-class="{'wbdev-input-danger': form.inputurl.$touched && form.inputurl.$error.required == true}"
+               required
+               name="inputurl"
                id="inputurl"
                class="form-control"
                ng-model="model.widget.url"/>
+        <div ng-show="form.$submitted || form.inputurl.$touched">
+            <div ng-show="form.inputurl.$error.url || form.inputurl.$error.required" class="text-danger">
+                Please enter a valid URL
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="inputwidth">Width</label>
         <input type="text"
+               ng-class="{'wbdev-input-danger': form.inputwidth.$touched && form.inputwidth.$error.required == true}"
+               required
+               name="inputwidth"
                id="inputwidth"
                class="form-control"
                ng-model="model.widget.width"/>
+        <div ng-show="form.$submitted || form.inputwidth.$touched">
+            <div ng-show="form.inputwidth.$error.required" class="text-danger">
+                Please enter a valid percentage
+            </div>
+        </div>
     </div>
     <a class="form-control btn btn-danger"
        ng-click="model.deleteWidget(model.widget._id)">

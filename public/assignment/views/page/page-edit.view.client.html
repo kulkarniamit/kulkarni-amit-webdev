@@ -20,7 +20,7 @@
         <div class="col-sm-8">
             <div class="pull-right wbdev-margin-right-fix">
                 <a class="navbar-brand"
-                   ng-click="model.updatePage(model.page)">
+                   ng-click="form.$valid && model.updatePage(model.page)">
                     <span class="glyphicon glyphicon-ok-sign"></span>
                 </a>
             </div>
@@ -39,8 +39,9 @@
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
         <div ng-show="model.error"
-             class="alert alert-warning text-center"
+             class="alert alert-warning"
              role="alert">
+            <span class="fa fa-warning"></span>
             {{model.error}}
         </div>
         <div class="row wbdev-page-list-record"
@@ -58,39 +59,60 @@
 
     <div class="col-sm-8 col-xs-12 wbdv-right-pane">
         <div ng-show="model.error"
-             class="alert alert-danger text-center"
+             class="alert alert-danger"
              role="alert">
+            <span class="fa fa-warning"></span>
             {{model.error}}
         </div>
         <div ng-show="model.blankerror"
-             class="alert alert-danger text-center"
+             class="alert alert-danger"
              role="alert">
+            <span class="fa fa-warning"></span>
             {{model.blankerror}}
         </div>
         <div ng-show="model.deleteError"
-             class="alert alert-danger text-center"
+             class="alert alert-danger"
              role="alert">
+            <span class="fa fa-warning"></span>
             {{model.deleteError}}
         </div>
         <form method="POST"
+              name="form"
+              novalidate
               class="wbdev-form-padding">
             <div class="form-group">
                 <label for="pname">Name</label>
                 <input type="text"
                        class="form-control"
+                       ng-class="{'wbdev-input-danger': form.pname.$touched && form.pname.$error.required == true}"
+                       required
+                       name="pname"
                        id="pname"
                        placeholder="Name of your page"
                        ng-model="model.page.name"
-                       value="Blog post">
+                       value="Blog post"/>
+                <div ng-show="form.$submitted || form.pname.$touched">
+                    <div ng-show="form.pname.$error.required" class="text-danger">
+                        Please enter a page name
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label for="ptitle">Title</label>
+                <label for="ptitle">Description</label>
                 <input type="text"
                        class="form-control"
                        id="ptitle"
+                       ng-class="{'wbdev-input-danger': form.pdesc.$touched && form.pdesc.$error.required == true}"
+                       required
+                       name="pdesc"
                        placeholder="Name of your page"
                        ng-model="model.page.description"
-                       value="Some page title">
+                       value="Some page description"/>
+                <div ng-show="form.$submitted || form.pdesc.$touched">
+                    <div ng-show="form.pdesc.$error.required" class="text-danger">
+                        Please enter page description
+                    </div>
+                </div>
             </div>
             <a class="form-control btn btn-danger"
                ng-click="model.deletePage()">

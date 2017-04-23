@@ -1,26 +1,54 @@
 <div ng-show="model.updateerror"
-     class="alert alert-warning text-center"
+     class="alert alert-danger"
      role="alert">
+    <span class="fa fa-warning"></span>
     {{model.updateerror}}
 </div>
 
-Text
-<input ng-model="model.widget.text"
-       class="form-control"/>
-Rows
-<input ng-model="model.widget.rows"
-       class="form-control"
-       type="number"/>
-Placeholder
-<input ng-model="model.widget.placeholder"
-       class="form-control"/>
-<div class="checkbox">
-    <label>
-        <input type="checkbox"
-               ng-model="model.widget.formatted"> Formatted
-    </label>
-</div>
+<form name="form"
+      novalidate>
+    Text
+    <input ng-model="model.widget.text"
+           ng-class="{'wbdev-input-danger': form.wtext.$touched && form.wtext.$error.required == true}"
+           required
+           name="wtext"
+           class="form-control"/>
+    <div ng-show="form.$submitted || form.wtext.$touched">
+        <div ng-show="form.wtext.$error.required" class="text-danger">
+            Please enter sample text
+        </div>
+    </div>
 
+    Rows
+    <input ng-model="model.widget.rows"
+           ng-class="{'wbdev-input-danger': form.wrownum.$touched && form.wrownum.$error.required == true}"
+           required
+           name="wrownum"
+           class="form-control"
+           type="number"/>
+    <div ng-show="form.$submitted || form.wrownum.$touched">
+        <div ng-show="form.wrownum.$error.number || form.wrownum.$error.required" class="text-danger">
+            Please enter a number
+        </div>
+    </div>
+    Placeholder
+    <input ng-model="model.widget.placeholder"
+           ng-class="{'wbdev-input-danger': form.wplaceholder.$touched && form.wplaceholder.$error.required == true}"
+           required
+           name="wplaceholder"
+           class="form-control"/>
+    <div ng-show="form.$submitted || form.wplaceholder.$touched">
+        <div ng-show="form.wplaceholder.$error.required" class="text-danger">
+            Please write a placeholder text
+        </div>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox"
+                   ng-model="model.widget.formatted"> Formatted
+        </label>
+    </div>
+</form>
 <div class="form-group">
     <a class="btn btn-danger btn-block"
        ng-click="model.deleteWidget(model.widget._id)">

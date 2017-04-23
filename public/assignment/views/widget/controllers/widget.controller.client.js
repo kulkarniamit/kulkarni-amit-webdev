@@ -190,6 +190,18 @@
                 vm.updateerror = "Could not update the widget!";
                 return;
             }
+            if(updatedWidget.type == "YOUTUBE"){
+                if(!updatedWidget.url || !updatedWidget.width || updatedWidget.url=="" || updatedWidget.width == ""){
+                    vm.updateerror = "Could not update the widget";
+                    return;
+                }
+            }
+            if(updatedWidget.type == "HEADING"){
+                if(!updatedWidget.text || updatedWidget.text == ""){
+                    vm.updateerror = "Could not update the widget";
+                    return;
+                }
+            }
             WidgetService
                 .updateWidget(vm.wgid, updatedWidget)
                 .success(function (response) {

@@ -120,6 +120,10 @@ module.exports = function (app, widgetModel) {
         var updatedWidget = req.body;
 
         if(updatedWidget.type == "IMAGE"){
+            if(!updatedWidget.url){
+                res.sendStatus(403);
+                return;
+            }
             if(updatedWidget.url.search('http') != -1){
                 // A new URL has been inserted
                 // Delete any existing image
